@@ -17,14 +17,17 @@ class AccountMappingSeeder extends Seeder
     {
         //'
 
-        DB::table('account_mappings')->insertOrIgnore([
+        DB::table('account_mappings')->insert([
 
             [
-                'account_heads_id' => 1,
-                'account_sub_head_id ' => 1,
+                'account_heads_id' => '1',
+               
 
             ],
 
+           
+
+       
         ]);
     }
 }

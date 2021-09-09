@@ -16,8 +16,9 @@ class CreateAccountMappingsTable extends Migration
         Schema::create('account_mappings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('account_heads_id')->unsigned();
-            $table->bigInteger('account_sub_head_id')->unsigned();
             $table->string('status')->default('active');
+            $table->bigInteger('account_sub_head_id')->unsigned();
+       
             $table->foreign('account_heads_id')->references('id')->on('account_heads');
             $table->foreign('account_sub_head_id')->references('id')->on('account_sub_heads');
             $table->timestamps();
