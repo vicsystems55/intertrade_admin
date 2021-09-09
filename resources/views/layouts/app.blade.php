@@ -1,4 +1,18 @@
 <!doctype html>
+
+@auth
+
+    @if(Auth::user()->role == 'superadmin')
+
+    <html lang="en" class="semi-dark">
+    @else 
+    <html lang="en" class="">
+    
+    @endif
+
+@else 
+<html lang="en" class="">
+@endauth
 <html lang="en" class="">
 
 <head>
@@ -44,8 +58,31 @@
 			</div>
 			<!--navigation-->
 			<div class="p-5"></div>
+
+            @if (Auth::user()->role == 'superadmin')
+
+                @include('layouts.sidebars.admin')
+
+                
+            @elseif(Auth::user()->role == 'admin')
+
+                @include('layouts.sidebars.admin')
+
+
+            @elseif(Auth::user()->role == 'driver')
+
+
+            @elseif(Auth::user()->role == 'technician')
+
+
+            @elseif(Auth::user()->role == 'secretary')
+
+                
+            @endif
 			
-            @include('layouts.sidebars.admin')
+            
+
+
 			<!--end navigation-->
 		</div>
 		<!--end sidebar wrapper -->

@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <div class="page-content">
 
     <div class="container">
@@ -114,3 +118,7 @@
         </div>
      </div><!--End Row-->
 </div>
+
+
+    
+@endsection

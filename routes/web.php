@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\TechnicianPageController;
 use App\Http\Controllers\DriverPageController;
 use App\Http\Controllers\ChooseRoleController;
+use App\Http\Controllers\SuperAdminPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,18 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function(){
     Route::get('/notifications', [TechnicianPageController::class, 'notifications'])->name('technician.notifications');
 
     Route::get('/reports', [TechnicianPageController::class, 'reports'])->name('technician.report');
+
+
+
+});
+
+Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
+
+    Route::get('/', [SuperAdminPageController::class, 'index'])->name('superadmin');
+
+    Route::get('/notifications', [SuperAdminPageController::class, 'notifications'])->name('superadmin.notifications');
+
+    Route::get('/reports', [SuperAdminPageController::class, 'reports'])->name('superadmin.report');
 
 
 
