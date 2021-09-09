@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\TechnicianPageController;
 use App\Http\Controllers\DriverPageController;
+use App\Http\Controllers\ChooseRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +17,22 @@ use App\Http\Controllers\DriverPageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/loginx', function () {
-    return view('loginx');
-});
+// Route::get('/loginx', function () {
+//     return view('loginx');
+// });
 
-Route::get('/registerx', function () {
-    return view('registerx');
-});
+// Route::get('/registerx', function () {
+//     return view('registerx');
+// });
 
 
 // Get Routes
+
+Route::get('/', [ChooseRoleController::class, 'choose'])->name('choose');
 
 Route::get('/choose', [ChooseRoleController::class, 'choose'])->name('choose');
 
