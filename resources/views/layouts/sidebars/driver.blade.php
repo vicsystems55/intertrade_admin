@@ -1,3 +1,9 @@
+    <div class="p-3">
+        <h6 class="font-weight-bold">
+            Driver Dashboard
+        </h6>
+    </div>
+
 <ul class="metismenu" id="menu">
 
     <li>

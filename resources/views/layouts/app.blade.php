@@ -20,7 +20,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<link rel="icon" href="{{config('app.url')}}assets/images/favicon-32x32.png" type="image/png" />
 	<!--plugins-->
 	<link href="{{config('app.url')}}assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
 	<link href="{{config('app.url')}}assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
@@ -43,12 +43,12 @@
 
 <body>
 	<!--wrapper-->
-	<div class="wrapper">
+	<div id="app" class="wrapper">
 		<!--sidebar wrapper -->
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+					<img src="{{config('app.url')}}assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
 					<h4 class="logo-text">InterTrade</h4>
@@ -59,9 +59,11 @@
 			<!--navigation-->
 			<div class="p-5"></div>
 
+
+
             @if (Auth::user()->role == 'superadmin')
 
-                @include('layouts.sidebars.admin')
+                @include('layouts.sidebars.superadmin')
 
                 
             @elseif(Auth::user()->role == 'admin')
@@ -71,14 +73,25 @@
 
             @elseif(Auth::user()->role == 'driver')
 
+                @include('layouts.sidebars.driver')
+
 
             @elseif(Auth::user()->role == 'technician')
+
+                @include('layouts.sidebars.technician')
 
 
             @elseif(Auth::user()->role == 'secretary')
 
-                
-            @endif
+                @include('layouts.sidebars.secretary')
+
+
+            @elseif(Auth::user()->role == 'accounts')
+
+                 @include('layouts.sidebars.accounts')
+
+            
+        @endif
 			
             
 
@@ -92,6 +105,8 @@
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			@yield('content')
+
+           
 		<!--end page wrapper -->
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>
@@ -102,6 +117,8 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
+    
+
 	
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
@@ -122,6 +139,15 @@
 	<script src="{{config('app.url')}}assets/js/index2.js"></script>
 	<!--app JS-->
 	<script src="{{config('app.url')}}assets/js/app.js"></script>
+
+
+	
+    <script src="{{asset('js/app.js')}}"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
+
 </body>
 
 </html>

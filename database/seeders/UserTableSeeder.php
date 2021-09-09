@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
                 'email' => 'ukiaghe@intertradeltd.biz',
                 'password' => Hash::make('Intertrade_admin2@2021'),
                 'user_code' => 'ITL'.rand(11000,99990),
-                'role' => 'admin',
+                'role' => 'accounts',
             ],
 
             [

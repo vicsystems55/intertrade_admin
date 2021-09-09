@@ -32,6 +32,10 @@ class ChooseRoleController extends Controller
             elseif (Auth::user()->role =='client') {
                 return redirect('/client');
             }
+
+            elseif (Auth::user()->role =='accounts') {
+                return redirect('/accounts');
+            }
     
             else{
                 abort(403);

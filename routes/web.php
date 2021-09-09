@@ -6,6 +6,11 @@ use App\Http\Controllers\TechnicianPageController;
 use App\Http\Controllers\DriverPageController;
 use App\Http\Controllers\ChooseRoleController;
 use App\Http\Controllers\SuperAdminPageController;
+use App\Http\Controllers\AccountPageController;
+use App\Http\Controllers\AccountMappingController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +113,26 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
 });
 
 
+
+// Accounts
+
+Route::group(['middleware' => ['auth'],  'prefix' => 'accounts'], function(){
+
+    Route::get('/', [AccountPageController::class, 'index'])->name('accounts');
+
+    Route::get('/notifications', [AccountPageController::class, 'notifications'])->name('accounts.notifications');
+
+    Route::get('/coaccount', [AccountPageController::class, 'coaccount'])->name('accounts.coaccounts');
+
+    Route::get('/vouchers', [AccountPageController::class, 'vouchers'])->name('accounts.vouchers');
+
+    Route::get('/reports', [AccountPageController::class, 'index'])->name('accounts.reports');
+
+
+
+});
+
+
 // Drivers
 
 Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
@@ -137,4 +162,18 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'secretary'], function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// all post
+
+Route::post('/map_account', [AccountMappingController::class, 'map_account'])->name('map_account');
+
+
+// all get
+
+
+Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
+
+
+

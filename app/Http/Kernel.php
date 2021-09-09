@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'driver' => \App\Http\Middleware\SuperAdminMiddleware::class,
         'technician' => \App\Http\Middleware\TechnicianMiddleware::class,
         'secretary' => \App\Http\Middleware\SecretaryMiddleware::class,
+        'accounts' => \App\Http\Middleware\AccountMiddleware::class,
     ];
 }

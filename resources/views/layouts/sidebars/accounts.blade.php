@@ -1,6 +1,6 @@
 <div class="p-3">
     <h6 class="font-weight-bold">
-        Admin Dashboard
+        Accounts Dashboard
     </h6>
 </div>
 
@@ -38,7 +38,7 @@
     </li>
     <li class="menu-label">UI Elements</li> -->
     <li>
-        <a href="{{route('admin')}}">
+        <a href="{{route('accounts')}}">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
             <div class="menu-title">Dashboard</div>
@@ -47,22 +47,24 @@
 
     <li class="menu-label">Operations</li>
     <li>
-     <a href="{{route('admin.projects')}}">
+     <a href="{{route('accounts.coaccounts')}}">
          <div class="parent-icon"><i class='bx bx-cog'></i>
          </div>
-         <div class="menu-title">Projects</div>
-     </a>
- </li>
-    <li class="menu-label">Management</li>
-    <li>
-        <a href="{{route('admin.staff_records')}}">
-            <div class="parent-icon"><i class='lni lni-users'></i>
-            </div>
-            <div class="menu-title">Staff Records</div>
+         <div class="menu-title">Chart of Accounts</div>
         </a>
     </li>
 
     <li>
+        <a href="{{route('accounts.vouchers')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Vouchers</div>
+           </a>
+       </li>
+    <li class="menu-label">Management</li>
+
+
+    {{-- <li>
         <a href="{{route('admin.reports')}}">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
@@ -105,25 +107,9 @@
             </div>
             <div class="menu-title">Profile</div>
         </a>
-    </li>
+    </li> --}}
 
 
-
-    <li>
-        <a href="#">
-            <div class="parent-icon">
-            </div>
-            <div class="menu-title">
-
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Switch to Admin</label>
-                </div>
-
-
-            </div>
-        </a>
-    </li>
 
    
     

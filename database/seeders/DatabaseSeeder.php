@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call(UserTableSeeder::class);
+        // $this->call(UserTableSeeder::class);
+        // $this->call(AccountHeadSeeder::class);
+        // $this->call(AccountSubHeadSeeder::class);
+        $this->call(AccountMappingSeeder::class);
+
         
     }
 }

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DriverPageController extends Controller
+class SecretaryPageController extends Controller
 {
     //
 
     public function index()
     {
         
-        return view('driver_dashboard.index');
+        
+        return view('secretary_dashboard.index');
     }
 }
