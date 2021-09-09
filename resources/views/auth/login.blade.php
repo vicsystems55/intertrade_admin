@@ -17,6 +17,13 @@
 										<h3 class="">Sign in</h3>
 										
 									</div>
+                                    
+                                    @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                            <p class="alert alert-warning">{{$error}}</p>
+                                        @endforeach
+                                    @endif
+
 									
 									
 									<div class="form-body">
