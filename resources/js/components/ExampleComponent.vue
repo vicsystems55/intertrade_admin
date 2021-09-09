@@ -29,6 +29,8 @@
 
                 <tbody>
 
+                
+
                     <tr v-for="map in account_maps" :key="map.id">
                         <td>{{map.heads.title}}</td>
                         <td>
