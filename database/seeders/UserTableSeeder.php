@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 
 use DB;
 
+use Illuminate\Support\Facades\Hash;
+
 class UserTableSeeder extends Seeder
 {
     /**
