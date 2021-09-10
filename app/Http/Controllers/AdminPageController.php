@@ -131,9 +131,11 @@ class AdminPageController extends Controller
 
     public function staff_records()
     {
+        $users = User::latest()->get();
         
-        
-        return view('admin_dashboard.staff_records');
+        return view('admin_dashboard.staff_records',[
+            'users' => $users
+        ]);
     }
 
     public function staff_record()

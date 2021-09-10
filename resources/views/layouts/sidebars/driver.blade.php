@@ -23,7 +23,7 @@
     </li>
 
     <li>
-        <a href="{{route('drivers.deployments')}}">
+        <a href="{{route('driver.deployments')}}">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
             <div class="menu-title">Deployments</div>

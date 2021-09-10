@@ -11,6 +11,8 @@
     <div class="card">
         <div class="card-body">
 
+            <h4>Configure Truck Route</h4>
+
             <form action="{{route('create_truck_route')}}" class="col-md-10 " method="post">
                 
                 @csrf 
@@ -56,7 +58,7 @@
                     <input type="date" name="dropoff_date" class="form-control">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="">Select Driver</label>
                     <select name="driver_assigned" id="" class="form-control">
                         <option value="">-- Assign a driver--</option>

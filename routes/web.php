@@ -87,13 +87,13 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function(){
 
     Route::get('/profile', [AdminPageController::class, 'profile'])->name('admin.profile');
 
-    Route::get('/deployments', [AdminPageController::class, 'deployments'])->name('superadmin.deployments');
+    Route::get('/deployments', [AdminPageController::class, 'deployments'])->name('admin.deployments');
 
-    Route::get('/deployment/{deployment_id}', [AdminPageController::class, 'deployment'])->name('superadmin.deployment');
+    Route::get('/deployment/{deployment_id}', [AdminPageController::class, 'deployment'])->name('admin.deployment');
 
-    Route::get('/truck_routes', [AdminPageController::class, 'truck_routes'])->name('superadmin.truck_routes');
+    Route::get('/truck_routes', [AdminPageController::class, 'truck_routes'])->name('admin.truck_routes');
 
-    Route::get('/create_truck_route', [AdminPageController::class, 'create_truck_route'])->name('superadmin.create_truck_route');
+    Route::get('/create_truck_route', [AdminPageController::class, 'create_truck_route'])->name('admin.create_truck_route');
 
 });
 
@@ -124,6 +124,16 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
     Route::get('/create_staff', [SuperAdminPageController::class, 'create_staff'])->name('superadmin.create_staff');
 
     Route::get('/deployments', [SuperAdminPageController::class, 'deployments'])->name('superadmin.deployments');
+
+    Route::get('/deployment', [SuperAdminPageController::class, 'deployment'])->name('superadmin.deployment');
+
+    Route::get('/create_deployment', [SuperAdminPageController::class, 'create_deployment'])->name('superadmin.create_deployment');
+
+    Route::get('/projects', [SuperAdminPageController::class, 'projects'])->name('superadmin.projects');
+
+    Route::get('/inventories', [SuperAdminPageController::class, 'inventories'])->name('superadmin.inventories');
+
+    Route::get('/messages', [SuperAdminPageController::class, 'messages'])->name('superadmin.messages');
 
     Route::get('/truck_routes', [SuperAdminPageController::class, 'truck_routes'])->name('superadmin.truck_routes');
 
@@ -166,7 +176,11 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
 
     Route::get('/messages', [DriverPageController::class, 'messages'])->name('driver.messages');
 
+    Route::get('/profile', [DriverPageController::class, 'profile'])->name('driver.profile');
+
     Route::get('/deployments', [DriverPageController::class, 'deployments'])->name('driver.deployments');
+
+    Route::get('/projects', [DriverPageController::class, 'projects'])->name('driver.projects');
 
     Route::get('/deployment/{deployment_id}', [DriverPageController::class, 'deployment'])->name('driver.deployment');
 

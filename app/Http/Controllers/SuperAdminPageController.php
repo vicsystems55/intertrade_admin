@@ -103,6 +103,16 @@ class SuperAdminPageController extends Controller
         ]);
     }
 
+    public function create_deployment()
+    {
+
+        $deployments = Deployment::latest()->get();
+        
+        return view('superadmin_dashboard.create_deployment',[
+            'deployments' => $deployments
+        ]);
+    }
+
     public function deployment($deployment_id)
     {
 

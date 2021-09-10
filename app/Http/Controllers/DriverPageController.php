@@ -33,7 +33,7 @@ class DriverPageController extends Controller
 
         $projects = Project::latest()->get();
 
-        $deployments = Deployments::latest()->get();
+        $deployments = Deployment::latest()->get();
 
         $truck_routes = TruckRoute::where('driver_assigned', $user_id)->latest()->get();
 

@@ -32,7 +32,7 @@
     </li>
     <li class="menu-label">UI Elements</li> -->
     <li>
-        <a href="">
+        <a href="#">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
             <div class="menu-title">Dashboard</div>
@@ -48,7 +48,7 @@
     </li>
 
     <li>
-        <a href="">
+        <a href="#">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
             <div class="menu-title">Reports</div>
