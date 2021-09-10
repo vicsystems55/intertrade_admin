@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(AccountHeadSeeder::class);
         $this->call(AccountSubHeadSeeder::class);
+        $this->call(ProjectSeeder::class);
+        $this->call(InventorySeeder::class);
         // $this->call(AccountMappingSeeder::class);
 
         

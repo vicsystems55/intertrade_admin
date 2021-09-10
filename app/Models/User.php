@@ -37,4 +37,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function truck_routes()
+    {
+        # code...
+
+        return $this->hasMany('App\Models\TruckRoute', 'driver_assigned', 'id');
+    }
 }

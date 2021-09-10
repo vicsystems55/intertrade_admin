@@ -8,6 +8,9 @@ use App\Http\Controllers\ChooseRoleController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\AccountPageController;
 use App\Http\Controllers\AccountMappingController;
+use App\Http\Controllers\TruckRouteController;
+
+
 
 
 
@@ -84,6 +87,14 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function(){
 
     Route::get('/profile', [AdminPageController::class, 'profile'])->name('admin.profile');
 
+    Route::get('/deployments', [AdminPageController::class, 'deployments'])->name('superadmin.deployments');
+
+    Route::get('/deployment/{deployment_id}', [AdminPageController::class, 'deployment'])->name('superadmin.deployment');
+
+    Route::get('/truck_routes', [AdminPageController::class, 'truck_routes'])->name('superadmin.truck_routes');
+
+    Route::get('/create_truck_route', [AdminPageController::class, 'create_truck_route'])->name('superadmin.create_truck_route');
+
 });
 
 // Technicians
@@ -105,6 +116,18 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
     Route::get('/', [SuperAdminPageController::class, 'index'])->name('superadmin');
 
     Route::get('/notifications', [SuperAdminPageController::class, 'notifications'])->name('superadmin.notifications');
+
+    Route::get('/staff_records', [SuperAdminPageController::class, 'staff_records'])->name('superadmin.staff_records');
+
+    Route::get('/staff_record/{user_id}', [SuperAdminPageController::class, 'staff_record'])->name('superadmin.staff_record');
+
+    Route::get('/create_staff', [SuperAdminPageController::class, 'create_staff'])->name('superadmin.create_staff');
+
+    Route::get('/deployments', [SuperAdminPageController::class, 'deployments'])->name('superadmin.deployments');
+
+    Route::get('/truck_routes', [SuperAdminPageController::class, 'truck_routes'])->name('superadmin.truck_routes');
+
+    Route::get('/create_truck_route', [SuperAdminPageController::class, 'create_truck_route'])->name('superadmin.create_truck_route');
 
     Route::get('/reports', [SuperAdminPageController::class, 'reports'])->name('superadmin.report');
 
@@ -141,8 +164,15 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
 
     Route::get('/notifications', [DriverPageController::class, 'notifications'])->name('driver.notifications');
 
-    Route::get('/reports', [DriverPageController::class, 'reports'])->name('driver.reports');
+    Route::get('/messages', [DriverPageController::class, 'messages'])->name('driver.messages');
 
+    Route::get('/deployments', [DriverPageController::class, 'deployments'])->name('driver.deployments');
+
+    Route::get('/deployment/{deployment_id}', [DriverPageController::class, 'deployment'])->name('driver.deployment');
+
+    Route::get('/truck_routes', [DriverPageController::class, 'truck_routes'])->name('driver.truck_routes');
+
+    Route::get('/reports', [DriverPageController::class, 'reports'])->name('driver.reports');
 
 
 });
@@ -168,6 +198,10 @@ Auth::routes();
 // all post
 
 Route::post('/map_account', [AccountMappingController::class, 'map_account'])->name('map_account');
+
+Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_route'])->name('create_truck_route');
+
+
 
 
 // all get

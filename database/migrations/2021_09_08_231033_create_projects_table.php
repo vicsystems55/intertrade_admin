@@ -18,6 +18,9 @@ class CreateProjectsTable extends Migration
             $table->string('project_code');
             $table->string('title');
             $table->string('description');
+            $table->string('project_type');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('featured_img')->default(config('app.url').'project_featured_img/default.png');
             $table->string('status')->default('ongoing');
             $table->timestamps();

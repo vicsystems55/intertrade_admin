@@ -51,14 +51,37 @@
          <div class="parent-icon"><i class='bx bx-cog'></i>
          </div>
          <div class="menu-title">Projects</div>
-     </a>
- </li>
+        </a>
+    </li>
+    <li>
+        <a href="{{route('admin.deployments')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Deployments</div>
+           </a>
+    </li>
+
+    <li>
+        <a href="{{route('admin.truck_routes')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Truck Routes</div>
+           </a>
+    </li>
     <li class="menu-label">Management</li>
     <li>
         <a href="{{route('admin.staff_records')}}">
             <div class="parent-icon"><i class='lni lni-users'></i>
             </div>
             <div class="menu-title">Staff Records</div>
+        </a>
+    </li>
+
+    <li>
+        <a href="{{route('admin.inventories')}}">
+            <div class="parent-icon"><i class='lni lni-users'></i>
+            </div>
+            <div class="menu-title">Inventories</div>
         </a>
     </li>
 

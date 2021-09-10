@@ -4,43 +4,94 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
+use App\Models\TruckRoute;
+
+use App\Models\Inventory;
+
+use App\Models\Deployment;
+
+use App\Models\Notifications;
+
+use App\Models\Message;
+
+use App\Models\Stock;
+
+use App\Models\Project;
+
+use App\Models\AccountHead;
+
+use App\Models\AccountSubHead;
+
+use App\Models\AccountMapping;
+
+use Auth;
+
 class AdminPageController extends Controller
 {
     //
 
     public function index()
     {
-        
-        
-        return view('admin_dashboard.index');
+
+        $projects = Project::latest()->get();
+
+        $deployments = Deployment::latest()->get();
+
+        $inventories = Inventory::latest()->get();
+
+        $users = User::latest()->get();
+
+
+        return view('admin_dashboard.index',[
+            'projects' => $projects,
+            'deployments' => $deployments,
+            'inventories' => $inventories,
+            'users' => $users
+        ]);
     }
 
     public function inventories()
     {
-        
-        
-        return view('admin_dashboard.inventories');
+        $inventories = Inventory::latest()->get();
+                
+        return view('admin_dashboard.inventories',[
+            'inventories' => $inventories,
+        ]);
     }
 
     public function inventory($inventory_id)
     {
+        $inventory = Inventory::where('id', $inventory_id)->first();
         
-        
-        return view('admin_dashboard.inventory');
+        return view('admin_dashboard.inventory',[
+            'inventory' => $inventory
+        ]);
     }
 
     public function messages()
     {
+
+        $messages = Message::latest()->get();
         
         
-        return view('admin_dashboard.messages');
+        return view('admin_dashboard.messages',[
+            'messages' => $messages
+        ]);
     }
 
     public function notifications()
     {
+
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();
         
         
-        return view('admin_dashboard.notifications');
+        return view('admin_dashboard.notifications',[
+
+            'notifications' => $notifications
+            
+        ]);
     }
 
     public function orders()
@@ -94,17 +145,77 @@ class AdminPageController extends Controller
 
     public function projects()
     {
+
+        $projects = Project::latest()->get();
         
-        
-        return view('admin_dashboard.projects');
+        return view('admin_dashboard.projects',[
+
+            'projects' => $projects
+
+        ]);
     }
 
     public function project($project_id)
     {
+        $project = Project::where('id', $project_id)->first();
         
         
-        return view('admin_dashboard.project');
+        return view('admin_dashboard.project',[
+            'project' => $project
+        ]);
     }
+
+
+
+    public function deployments()
+    {
+
+        $deployments = Deployment::latest()->get();
+        
+        
+        return view('general.deployments',[
+
+            'deployments' => $deployments
+        ]);
+    }
+
+    public function deployment($deployment_id)
+    {
+
+        $deployment = Deployment::where('id', $deployment_id)->first();
+        
+        
+        return view('general.deployment',[
+            'deployment' => $deployment
+        ]);
+    }
+    
+    public function truck_routes()
+    {
+
+        $truck_routes = TruckRoute::latest()->get();
+        
+        
+        return view('general.truck_routes',[
+
+            'truck_routes' => $truck_routes
+
+        ]);
+    }
+
+    public function truck_route($truck_route_id)
+    {
+
+        $truck_routes = TruckRoute::where('id', $truck_route_id)->latest()->first();
+        
+        
+        return view('general.truck_route',[
+
+            'truck_routes' => $truck_routes
+            
+        ]);
+    }
+
 
 
 }
