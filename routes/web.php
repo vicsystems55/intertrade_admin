@@ -9,6 +9,9 @@ use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\AccountPageController;
 use App\Http\Controllers\AccountMappingController;
 use App\Http\Controllers\TruckRouteController;
+use App\Http\Controllers\DeploymentController;
+
+
 
 
 
@@ -222,6 +225,9 @@ Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_r
 
 
 Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
+
+Route::post('/create_deployment_zone', [DeploymentController::class, 'create_deployment_zone'])->name('create_deployment_zone');
+
 
 
 
