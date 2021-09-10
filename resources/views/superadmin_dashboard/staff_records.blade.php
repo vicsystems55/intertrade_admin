@@ -8,14 +8,28 @@
 
         <div class="p-5"></div>
 
-        <h4>Staff Records</h4>
+        <h4>Staff Records.</h4>
 
 
         <div class="card mb-3">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="">Search</label>
+                        <input type="text" class="form-control ">
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for=""></label>
+                            <button class="btn btn-primary mt-3">Search</button>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="form-group">
-                    <label for="">Search</label>
-                    <input type="text" class="form-control">
+                   
                 
                 </div>
             </div>
@@ -40,11 +54,12 @@
                         @forelse ($users as $user)
 
                             <tr>
+                                <td>{{$loop->iteration}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->role}}</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm shadow">Details</button>
+                                    <a href="{{route('superadmin.staff_record', $user->id)}}" class="btn btn-primary btn-sm shadow">Details</a>
                                 </td>
                             </tr>
 

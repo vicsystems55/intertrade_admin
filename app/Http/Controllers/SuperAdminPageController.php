@@ -12,7 +12,7 @@ use App\Models\Inventory;
 
 use App\Models\Deployment;
 
-use App\Models\Notifications;
+use App\Models\Notification;
 
 use App\Models\Message;
 
@@ -44,7 +44,7 @@ class SuperAdminPageController extends Controller
     public function staff_records()
     {
 
-        $user = User::latest()->get();
+        $users = User::latest()->get();
         
         
         return view('superadmin_dashboard.staff_records',[
@@ -82,23 +82,29 @@ class SuperAdminPageController extends Controller
     public function messages()
     {
 
-        $messages = Message::where('_to', Auth::user()->id)->get();
+        $messages = Message::with('fr_oms')->where('t_o', Auth::user()->id)->latest()->get();
+
+        $users = User::latest()->get();
         
         
         return view('general.messages',[
-            'messages' => $messages
+            'messages' => $messages,
+            'users' => $users
         ]);
     }
 
     public function deployments()
     {
 
+         $project = Project::where('id', 1)->first();
+
         $deployments = Deployment::latest()->get();
         
         
         return view('general.deployments',[
 
-            'deployments' => $deployments
+            'deployments' => $deployments,
+            'project' => $project
 
         ]);
     }
@@ -145,8 +151,36 @@ class SuperAdminPageController extends Controller
 
     public function truck_routes()
     {
+
+        $trucka_routes = TruckRoute::with('deployments')->where('inventory_id', 1)->latest()->get();
+
+        $truckb_routes = TruckRoute::with('deployments')->where('inventory_id', 2)->latest()->get();
         
         
-        return view('general.truck_routes');
+        return view('general.truck_routes',[
+            'trucka_routes' => $trucka_routes,
+            'truckb_routes' => $truckb_routes,
+        ]);
+    }
+
+    public function inventories()
+    {
+        $inventories = Inventory::latest()->get();
+                
+        return view('admin_dashboard.inventories',[
+            'inventories' => $inventories,
+        ]);
+    }
+
+    public function projects()
+    {
+
+        $projects = Project::latest()->get();
+        
+        return view('admin_dashboard.projects',[
+
+            'projects' => $projects
+
+        ]);
     }
 }

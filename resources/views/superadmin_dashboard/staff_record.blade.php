@@ -13,15 +13,17 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
+                        <div class="p-md-5"></div>
+                        <div class="p-md-5"></div>
 
-                        <table class="table">
+                        <table class="table table-striped table-hover">
 
                             <tr>
                                 <td>
                                     <span>FULL NAME:</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{$user->name}}</span>
+                                    <span style="font-weight: bold;" class="font-weight-bold">{{$user->name}}</span>
                                 </td>
                             </tr>
 
@@ -30,7 +32,7 @@
                                     <span>EMAIL:</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{$user->email}}</span>
+                                    <span style="font-weight: bold;" class="font-weight-bold">{{$user->email}}</span>
                                 </td>
                             </tr>
 
@@ -39,7 +41,7 @@
                                     <span>DESIGNATION:</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{$user->name}}</span>
+                                    <span style="font-weight: bold;" class="font-weight-bold">{{$user->role}}</span>
                                 </td>
                             </tr>
 
@@ -55,9 +57,9 @@
                     <div class="col-md-6 text-center">
 
                         <div class="c mb-3">
-                            <img src="{{$user->avatar}}" style="object-fit: cover;" alt="" class="rounded rounded-circle img-thumbnail">
+                            <img src="{{$user->avatar}}" style="object-fit: cover;" alt="" class="shadow rounded rounded-circle img-thumbnail">
                         </div>
-                        <div class=" mb-3">
+                        <div style="font-weight: bold;" class=" mb-3">
                             {{$user->user_code}}
                         </div>
 

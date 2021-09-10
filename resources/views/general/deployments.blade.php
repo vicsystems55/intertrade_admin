@@ -30,6 +30,10 @@
         <div class="car">
             <h4>Deployments</h4>
             <div class="card-bod">
+
+                <div class="fo text-center mb-3">
+                    <a href="{{route('superadmin.create_deployment')}}" class="btn btn-primary shadow col-md-5">Add New</a>
+                </div>
             
 
                   
