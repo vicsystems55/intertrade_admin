@@ -9,6 +9,8 @@ class Deployment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function vehicles()
     {
         # code...

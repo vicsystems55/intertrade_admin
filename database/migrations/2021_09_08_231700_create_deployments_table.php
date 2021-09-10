@@ -32,6 +32,8 @@ class CreateDeploymentsTable extends Migration
             $table->string('ware_house_distance')->nullable();
             $table->string('road_quality')->nullable();
 
+            $table->string('status')->default('Not delivered');
+
             $table->string('deployment_code')->default('ITL00000');
 
             $table->foreign('project_id')->references('id')->on('projects');

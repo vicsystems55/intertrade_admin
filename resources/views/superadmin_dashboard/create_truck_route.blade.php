@@ -11,9 +11,21 @@
     <div class="card">
         <div class="card-body">
 
+                   
+            @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <p class="alert alert-warning">{{$error}}</p>
+            @endforeach
+            @endif
+
+
+            @if(Session::has('truck_route_msg'))
+            <p class="alert alert-info">{{ Session::get('truck_route_msg') }}</p>
+            @endif
+
             <h4>Configure Truck Route</h4>
 
-            <form action="{{route('create_truck_route')}}" class="col-md-10 " method="post">
+            <form action="{{route('create_truck_route')}}" class="col-md-6 " method="post">
                 
                 @csrf 
 
@@ -24,11 +36,15 @@
 
                         @foreach ($deployments as $deployment)
 
-                            <option value="{{$deployment->id}}">{{$deployment->name}}</option>
+                            <option value="{{$deployment->id}}" title="{{$deployment->facility_address}}">
+                              
+                                {{$deployment->deployment_code}}
+                            
+                            </option>
                             
                         @endforeach
 
-                        <option value=""></option>
+               
                       
                     </select>
                 </div>
@@ -74,7 +90,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <button class="btn btn-primary btn-lg shadow">
+                    <button class="btn btn-primary col-md-12 btn-block">
                         Assign
                     </button>
                 </div>

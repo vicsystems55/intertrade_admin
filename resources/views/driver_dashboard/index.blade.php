@@ -97,25 +97,7 @@
            </div>
         </div>
 
-        <div class="col-12 col-lg-4 col-xl-4">
-            <div class="card radius-10">
-                <div class="card-header bg-transparent">
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <h6 class="mb-0 py-1">Sales This Week</h6>
-                        </div>
-                        
-                    </div>
-                   </div>
-                <div class="card-body">
-                 <div id="chart11" style="height:250px;"></div>
-               </div>
-           </div>
-
-           
-
-          
-        </div>
+  
      </div><!--End Row-->
 </div>
 

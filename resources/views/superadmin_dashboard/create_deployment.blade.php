@@ -11,15 +11,21 @@
 
 
 
-    <div class="card mb-5">
+    <div class=" {{Auth::user()->role =='driver'?'d-none':''}}    card mb-5">
         <div class="card-body">
 
                    
-@if ($errors->any())
-@foreach ($errors->all() as $error)
-    <p class="alert alert-warning">{{$error}}</p>
-@endforeach
-@endif
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-warning">{{$error}}</p>
+                    @endforeach
+                    @endif
+
+
+                    @if(Session::has('deployment_msg'))
+                    <p class="alert alert-info">{{ Session::get('deployment_msg') }}</p>
+                    @endif
+
 
 
             <form action="{{route('create_deployment_zone')}}" method="post">
@@ -95,7 +101,7 @@
 
                         <div class="form-group mb-3">
                             <label for="">Closet Town:</label>
-                            <input type="text" name="closest_town" class="form-control" placeholder="Enter town closet to installation site">
+                            <input type="text" name="closet_town" class="form-control" placeholder="Enter town closet to installation site">
                         </div>
 
                       
@@ -121,7 +127,7 @@
 
                         <div class="form-group mb-3">
                             <label for="">Contact Email:</label>
-                            <input type="email" name="contact_mail" class="form-control" placeholder="Email of Officer In Charge">
+                            <input type="email" name="contact_email" class="form-control" placeholder="Email of Officer In Charge">
                         </div>
 
 
@@ -149,6 +155,10 @@
 
                     </div>
                 </div>
+
+                <div class="form-group mb-5 text-center">
+                    <button class="btn btn-primary btn-lg btn-block col-md-4">Submit</button>
+                </div>
                
             </form>
 
@@ -157,45 +167,96 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card table-responsive">
         <div class="card-body">
 
 
-            <table class="table table-striped table-hove">
-                <thead>
-                    <tr>
-                        <th>State</th>
-                        <th>Facility Address</th>
-                        <th>Facility Name</th>
-                        <th>Closet Town</th>
-                        <th>OIC</th>
-                        <th>Contact Number</th>
-                        <th>Contact Email</th>
-                        <th>Number of UCCs</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+            
 
                         @forelse ($deployments as $deployment)
 
-                        <tr>
-                            <th>{{$deployment->state}}</th>
-                            <th>{{$deployment->facility_address}}</th>
-                            <th>{{$deployment->facility_name}}</th>
-                            <th>{{$deployment_closet_town}}</th>
-                            <th>{{$deployment->project_OIC}}}</th>
-                            <th>{{$deployment->contact_number}}</th>
-                            <th>{{$deployment->contact_email}}</th>
-                            <th>{{$deployment->no_ucc}}</th>
-                        </tr>
+                        <div class="card">
+                            <div class="card-body">
+
+                          <table class="table">
+                            <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->state}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->facility_address}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->facility_name}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->closet_town}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->project_OIC}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->contact_number}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->contact_email}}
+                                </span>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>Deployment Details: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold">
+                                    {{$deployment->no_ucc}}
+                                </span>
+                                </td>
+                                </tr>
+                          </table>
+                                
+                                
+                            </div>
+                        </div>
+
+                         
                             
                         @empty
                             
                         @endforelse
 
-                </tbody>
-            </table>
+            
+           
 
 
         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Model\Deployment;
+use App\Models\Deployment;
 
 class DeploymentController extends Controller
 {

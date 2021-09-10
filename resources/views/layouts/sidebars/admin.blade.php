@@ -93,13 +93,7 @@
         </a>
     </li>
 
-    <li>
-        <a href="{{route('admin.inventories')}}">
-            <div class="parent-icon"><i class='bx bx-buildings'></i>
-            </div>
-            <div class="menu-title">Inventory</div>
-        </a>
-    </li>
+
   
 
    

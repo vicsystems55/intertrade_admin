@@ -16,15 +16,15 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('_to')->unsigned();
-            $table->bigInteger('_from')->unsigned();
+            $table->bigInteger('t_o')->unsigned();
+            $table->bigInteger('fr_om')->unsigned();
 
             $table->string('title');
             $table->longText('body');
             $table->string('status')->default('unread');
 
-            $table->foreign('_to')->references('id')->on('users');
-            $table->foreign('_from')->references('id')->on('users');
+            $table->foreign('t_o')->references('id')->on('users');
+            $table->foreign('fr_om')->references('id')->on('users');
             $table->timestamps();
         });
     }

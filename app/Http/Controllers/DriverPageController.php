@@ -52,11 +52,16 @@ class DriverPageController extends Controller
         $user_id = Auth::user()->id;
 
         $truck_routes = TruckRoute::where('driver_assigned', $user_id)->first();
+
+        $trucka_routes = TruckRoute::with('deployments')->where('inventory_id', 1)->latest()->get();
+
+        $truckb_routes = TruckRoute::with('deployments')->where('inventory_id', 2)->latest()->get();
         
         return view('general.truck_routes',[
 
-            'truck_routes' => $truck_routes
-
+            'truck_routes' => $truck_routes,
+            'trucka_routes' => $trucka_routes,
+            'truckb_routes' => $truckb_routes,
         ]);
     }
 

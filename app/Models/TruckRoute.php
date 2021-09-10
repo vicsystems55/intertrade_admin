@@ -9,11 +9,13 @@ class TruckRoute extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function deployments()
     {
         
         
-        return $this->belongsTo('App\Models\TruckRoute', 'deployment_id', 'id');
+        return $this->belongsTo('App\Models\Deployment', 'deployment_id', 'id');
     }
 
     public function trucks()

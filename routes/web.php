@@ -10,6 +10,7 @@ use App\Http\Controllers\AccountPageController;
 use App\Http\Controllers\AccountMappingController;
 use App\Http\Controllers\TruckRouteController;
 use App\Http\Controllers\DeploymentController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -215,6 +216,8 @@ Auth::routes();
 // all post
 
 Route::post('/map_account', [AccountMappingController::class, 'map_account'])->name('map_account');
+
+Route::post('/send_message', [MessageController::class, 'send_message'])->name('send_message');
 
 Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_route'])->name('create_truck_route');
 

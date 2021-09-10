@@ -12,7 +12,7 @@ use App\Models\Inventory;
 
 use App\Models\Deployment;
 
-use App\Models\Notifications;
+use App\Models\Notification;
 
 use App\Models\Message;
 
@@ -73,11 +73,14 @@ class AdminPageController extends Controller
     public function messages()
     {
 
-        $messages = Message::latest()->get();
+        $messages = Message::with('fr_oms')->where('t_o', Auth::user()->id)->latest()->get();
+
+        $users = User::latest()->get();
         
         
-        return view('admin_dashboard.messages',[
-            'messages' => $messages
+        return view('general.messages',[
+            'messages' => $messages,
+            'users' => $users
         ]);
     }
 
@@ -87,7 +90,7 @@ class AdminPageController extends Controller
         $notifications = Notification::where('user_id', Auth::user()->id)->get();
         
         
-        return view('admin_dashboard.notifications',[
+        return view('general.notifications',[
 
             'notifications' => $notifications
             
@@ -138,11 +141,14 @@ class AdminPageController extends Controller
         ]);
     }
 
-    public function staff_record()
+    public function staff_record($user_id)
     {
+        $user = User::where('id', $user_id)->first();
         
         
-        return view('admin_dashboard.staff_record');
+        return view('admin_dashboard.staff_record',[
+            'user' => $user
+        ]);
     }
 
     public function projects()
@@ -159,11 +165,15 @@ class AdminPageController extends Controller
 
     public function project($project_id)
     {
+
         $project = Project::where('id', $project_id)->first();
+
+        $deployments = Deployment::latest()->get();
         
         
         return view('admin_dashboard.project',[
-            'project' => $project
+            'project' => $project,
+            'deployments' => $deployments
         ]);
     }
 
@@ -171,13 +181,15 @@ class AdminPageController extends Controller
 
     public function deployments()
     {
+        $project = Project::where('id', 1)->first();
 
         $deployments = Deployment::latest()->get();
         
         
         return view('general.deployments',[
 
-            'deployments' => $deployments
+            'deployments' => $deployments,
+            'project' => $project
         ]);
     }
 
@@ -195,12 +207,17 @@ class AdminPageController extends Controller
     public function truck_routes()
     {
 
-        $truck_routes = TruckRoute::latest()->get();
+        $trucka_routes = TruckRoute::with('deployments')->where('inventory_id', 1)->latest()->get();
+
+        $truckb_routes = TruckRoute::with('deployments')->where('inventory_id', 2)->latest()->get();
+
+        // dd($trucka_routes);
         
         
         return view('general.truck_routes',[
 
-            'truck_routes' => $truck_routes
+            'trucka_routes' => $trucka_routes,
+            'truckb_routes' => $truckb_routes,
 
         ]);
     }

@@ -16,53 +16,68 @@
     </p>
 
     <div class="col-md-12">
-        <div class="card">
-            <h4>Deliveries</h4>
-            <div class="card-body">
-                <table class="table">
+        <div class="car">
+            <h4>Deployments</h4>
+            <div class="card-bod">
+            
 
-                    <thead>
+                  
 
+
+                       @forelse ($deployments as $deployment)
+                       <div class="card">
+                        <div class="card-body">
+
+                      <table class="table">
                         <tr>
-                            <th>#</th>
-                            <th>Site Type</th>
-                            <th>State</th>
-                            <th>District</th>
-                            <th>Facility Address</th>
-                            <th>Facility Name</th>
-                            <th>Closet Town</th>
-                            <th>OIC</th>
-                            <th>Contact Number</th>
-                            <th>Contact Email</th>
-                            <th>No of UCCs</th>
-                            <th>Accessibility By Road</th>
-                            <th>Distance From Ware House</th>
-                            <th>Quality of road</th>
-                        </tr>
+                            <td>State: </td>
+                            <td>
+                            <span style="font-weight: bold;" class="font-weight-bold">
+                                {{$deployment->state}}
+                            </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>Facility Address: </td>
+                            <td>
+                            <span style="font-weight: bold;" class="font-weight-bold" title="{{$deployment->facility_name}}">
+                                {{$deployment->facility_address}}
+                            </span>
+                            </td>
+                            </tr>
+                           
+                           
+                            <tr>
+                            <td>Contact Number: </td>
+                            <td>
+                            <span style="font-weight: bold;" class="font-weight-bold" title="{{$deployment->contact_email}}">
+                                {{$deployment->contact_number}}
+                            </span>
+                            </td>
+                            </tr>
+                           
+                            <tr>
+                            <td>Number of UCCs: </td>
+                            <td>
+                            <span style="font-weight: bold;" class="font-weight-bold">
+                                {{$deployment->no_ucc}}
+                            </span>
+                            </td>
+                            </tr>
 
-                    </thead>
-
-                    <tbody>
-
-                       @forelse ($deliveries as $delivery)
-
-                       <tr>
-                        <th>{{$loop->iteration}}</th>
-                        <th>{{$project->site_type}}</th>
-                        <th>{{$project->state}}</th>
-                        <th>{{$project->district}}</th>
-                        <th>{{$prpject->facility_address}}</th>
-                        <th>{{$project->facility_name}}</th>
-                        <th>{{$project->closet_town}}</th>
-                        <th>{{$project_OIC}}</th>
-                        
-                        <th>{{$project->contact_number}}</th>
-                        <th>{{$project->contact_email}}</th>
-                        <th>{{$project->no_ucc}}</th>
-                        <th>{{$project->road_access}}</th>
-                        <th>{{$project->ware_house_distance}}</th>
-                        <th>{{$project->road_quality}}</th>
-                    </tr>
+                            <tr>
+                                <td>Delivery Status: </td>
+                                <td>
+                                <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
+                                    {{$deployment->status}}
+                                </span>
+                                </td>
+                                </tr>
+                      </table>
+                            
+                            
+                        </div>
+                    </div>
                            
                        @empty
 
@@ -70,9 +85,7 @@
                            
                        @endforelse
 
-                    </tbody>
-                    
-                </table>
+                  
             </div>
         </div>
     </div>
