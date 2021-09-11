@@ -188,6 +188,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
 
     Route::get('/projects', [DriverPageController::class, 'projects'])->name('driver.projects');
 
+    Route::get('/project/{project_id}', [DriverPageController::class, 'project'])->name('driver.project');
+
     Route::get('/deployment/{deployment_id}', [DriverPageController::class, 'deployment'])->name('driver.deployment');
 
     Route::get('/truck_routes', [DriverPageController::class, 'truck_routes'])->name('driver.truck_routes');

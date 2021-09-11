@@ -122,10 +122,24 @@ class DriverPageController extends Controller
 
         $projects = Project::latest()->get();
         
-        return view('admin_dashboard.projects',[
+        return view('general.projects',[
 
             'projects' => $projects
 
+        ]);
+    }
+
+    public function project($project_id)
+    {
+
+        $project = Project::where('id', $project_id)->first();
+
+        $deployments = Deployment::latest()->get();
+        
+        
+        return view('general.project',[
+            'project' => $project,
+            'deployments' => $deployments
         ]);
     }
 
