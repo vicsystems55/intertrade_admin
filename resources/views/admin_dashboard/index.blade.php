@@ -18,7 +18,8 @@
                             <h4 class="my-1 text-info">{{$projects->count()}}</h4>
                          
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                            <i class='lni lni-cog'></i>
                         </div>
                     </div>
                 </div>
@@ -33,7 +34,8 @@
                             <h4 class="my-1 text-danger">{{$deployments->count()}}</h4>
                            
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
+                            <i class='lni lni-delivery'></i>
                         </div>
                     </div>
                 </div>
@@ -48,7 +50,8 @@
                                 <h4 class="my-1 text-success">0%</h4>
                                
                             </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
+                            <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                <i class='lni lni-delivery' ></i>
                             </div>
                         </div>
                     </div>
@@ -72,7 +75,7 @@
         </div><!--end row-->
 
          <div class="row">
-        <div class="col-12 col-lg-8 col-xl-8">
+        <div class="col-12 col-lg-12 col-xl-12">
           <div class="card radius-10">
             <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center">
@@ -83,7 +86,8 @@
                 </div>
                </div>
              <div class="card-body">
-                    <div id="dashboard-map" style="height: 250px"></div>
+                    {{-- <div id="dashboard-map" style="height: 250px"></div> --}}
+                    <map-component></map-component>
                     
                     <div class="mb-4 d-none">
                         <p class="mb-2"><i class="flag-icon flag-icon-us me-1"></i> USA <span class="float-end">50%</span></p>
@@ -97,7 +101,7 @@
            </div>
         </div>
 
-        <div class="col-12 col-lg-4 col-xl-4">
+        <div class=" d-none col-12 col-lg-4 col-xl-4">
             <div class="card radius-10">
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">

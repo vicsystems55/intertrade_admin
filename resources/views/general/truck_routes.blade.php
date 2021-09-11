@@ -54,9 +54,11 @@
 
                                             <h4 class="card-titl text-primary">{{$trucka->deployments->facility_name}}</h4>
                                             <p class="card-text">{{$trucka->deployments->facility_address}}</p>
-                                            <p class="card-text text-danger">{{$trucka->deployments->status}}</p>
+                                            <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
+                                                {{$trucka->deployments->status}}
+                                            </span>
 
-                                            <a href="" class="{{Auth::user()->role=='admin'?'':'d-none'}}  btn btn-primary">View Report</a>
+                                            <a href="" class="{{Auth::user()->role=='admin'?'':'d-none'}}  btn btn-primary btn-sm">View Report</a>
 
                                         </div>
                                        
@@ -72,6 +74,11 @@
         
                                 <div class="col-sm">
                                     <!--spacer-->
+                                    <div class="p-5"></div>
+                                   
+                                        <img src="{{$trucka->drivers->avatar}}" style="height: 50px;" class="shadow rounded rounded-circle" alt=""> <br>
+
+                                        <strong class="mt-2" >Driver: <br> {{$trucka->drivers->name}}</strong>
                                 </div>
         
                                 
@@ -128,8 +135,13 @@
                                 @include('general.line_dot')
                                 <!-- timeline item 1 event content -->
         
-                                <div class="col-sm">
+                                <div class="col-sm pt-5">
                                     <!--spacer-->
+
+                                   
+                                        <img src="{{$truckb->drivers->avatar}}" style="height: 90px;" class="shadow rounded rounded-circle" alt=""> <br>
+
+                                        <p style="font-weight: bold" class="mt-2" >Driver: <br> {{$truckb->drivers->name}}</p>
                                 </div>
         
                                 

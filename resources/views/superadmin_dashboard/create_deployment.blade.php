@@ -178,71 +178,84 @@
                         <div class="card">
                             <div class="card-body">
 
-                          <table class="table">
+                          <table class="table table-striped">
                             <tr>
-                                <td>Deployment Details: </td>
+                                <td>State: </td>
+
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->state}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Facility Address: </td>
+
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->facility_address}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Facility Name: </td>
+
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->facility_name}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Closet Town: </td>
+
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->closet_town}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Project OIC: </td>
+
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->project_OIC}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Contact Number: </td>
+
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->contact_number}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+                                
+                            <tr>
+                                <td>Contact Email: </td>
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->contact_email}}
                                 </span>
                                 </td>
-                                </tr>
-                                <tr>
-                                <td>Deployment Details: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Number of UCCs: </td>
                                 <td>
                                 <span style="font-weight: bold;" class="font-weight-bold">
                                     {{$deployment->no_ucc}}
                                 </span>
                                 </td>
-                                </tr>
+                            </tr>
                           </table>
                                 
                                 

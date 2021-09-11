@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-6">
 
-            <a href="{{route('admin.truck_routes')}}" class="btn btn-lg btn-primary col-md-6">
+            <a href="{{route('admin.truck_routes')}}" class="{{Auth::user()->role=='admin'?'':'d-none'}} btn btn-lg btn-primary col-md-6">
                 View Logistic Plan
             </a>
 
@@ -32,7 +32,9 @@
             <div class="card-bod">
 
                 <div class="fo text-center mb-3">
-                    <a href="{{route('superadmin.create_deployment')}}" class="btn btn-primary shadow col-md-5">Add New</a>
+                    <a href="{{route('superadmin.create_deployment')}}" class="
+                    {{Auth::user()->role=='superadmin'?'':'d-none'}}
+                    btn btn-primary shadow col-md-5">Add New</a>
                 </div>
             
 

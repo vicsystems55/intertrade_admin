@@ -53,9 +53,9 @@ class DriverPageController extends Controller
 
         $truck_routes = TruckRoute::where('driver_assigned', $user_id)->first();
 
-        $trucka_routes = TruckRoute::with('deployments')->where('inventory_id', 1)->latest()->get();
+        $trucka_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 1)->latest()->get();
 
-        $truckb_routes = TruckRoute::with('deployments')->where('inventory_id', 2)->latest()->get();
+        $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->latest()->get();
         
         return view('general.truck_routes',[
 
@@ -111,5 +111,10 @@ class DriverPageController extends Controller
         return view('general.profile',[
             'user' => $user
         ]);
+    }
+
+    public function reports()
+    {
+        return view('driver_dashboard.reports');
     }
 }
