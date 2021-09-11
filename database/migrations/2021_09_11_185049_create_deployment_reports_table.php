@@ -15,7 +15,22 @@ class CreateDeploymentReportsTable extends Migration
     {
         Schema::create('deployment_reports', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->bigInteger('reporter_id')->unsigned();
+
+            $table->string('state')->nullable();
+            $table->string('site_name')->nullable();
+            $table->string('model')->nullable();
+            $table->string('installation_completion_date')->nullable();
+            $table->string('ucc_serial_number')->nullable();
+            $table->string('rtmd_number')->nullable();
+            $table->string('functional_state')->nullable();
+            $table->string('temp_at_update')->nullable();
+            $table->date('date_submitted')->nullable();
+            $table->longText('remark')->nullable();
+            $table->string('report_code');
+            $table->string('status')->default('not submitted');
+            $table->foreign('reporter_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

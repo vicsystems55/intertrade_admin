@@ -27,6 +27,7 @@
     "dependencies": {
         "vue-js-modal": "^2.0.1",
         "vue2-google-maps": "^0.10.7",
+        "vue-file-agent": "^1.7.3",
         "vuejs-google-maps": "^0.2.0"
     }
 }

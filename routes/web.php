@@ -12,13 +12,7 @@ use App\Http\Controllers\TruckRouteController;
 use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\StaffRecordController;
-
-
-
-
-
-
-
+use App\Http\Controllers\ReportImageController;
 
 
 /*
@@ -227,17 +221,19 @@ Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_r
 
 Route::post('/create_staff_account', [StaffRecordController::class, 'create_staff_account'])->name('create_staff_account');
 
-
-
-
-
-
-// all get
-
+Route::post('/create_report', [DeploymentController::class, 'create_report'])->name('create_report');
 
 Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
 
 Route::post('/create_deployment_zone', [DeploymentController::class, 'create_deployment_zone'])->name('create_deployment_zone');
+
+Route::post('/upload_pix', [ReportImageController::class, 'store'])->name('upload_pix');
+
+// all get
+
+
+
+Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('get_images');
 
 
 

@@ -18,7 +18,13 @@ use App\Models\Message;
 
 use App\Models\Project;
 
+use App\Models\ReportImage;
+
+use App\Models\DeploymentReport;
+
 use Auth;
+
+use Session;
 
 
 class DriverPageController extends Controller
@@ -114,7 +120,40 @@ class DriverPageController extends Controller
 
     public function reports()
     {
-        return view('driver_dashboard.reports');
+        $user_id = Auth::user()->id;
+
+        // check if session exist with listing code
+
+
+        $report = DeploymentReport::where('report_code', Session::get('report_code'))->where('reporter_id', $user_id)->first();
+
+        if (Session::get('report_code') && $report) {
+            # code...
+
+            // dd(Session::get('listing_code'));
+            
+        }else{
+
+           session([
+                'report_code' => rand(11100,99999)
+            ]);
+
+            $report = DeploymentReport::create([
+                'report_code' => Session::get('report_code'),
+                'reporter_id' => $user_id,
+                'status' => 'pending'
+            ]);
+
+            // dd($vehicle_listing);
+
+        }
+
+        $deployments = Deployment::latest()->get();
+
+
+        return view('driver_dashboard.reports',[
+            'deployments' => $deployments 
+        ]);
     }
 
 

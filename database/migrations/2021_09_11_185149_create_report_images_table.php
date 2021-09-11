@@ -15,6 +15,10 @@ class CreateReportImagesTable extends Migration
     {
         Schema::create('report_images', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('report_id')->unsigned();
+            $table->string('img_path');
+            $table->string('status')->default('active');
+            $table->foreign('report_id')->references('id')->on('deployment_reports');
             $table->timestamps();
         });
     }
