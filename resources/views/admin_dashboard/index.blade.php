@@ -85,7 +85,7 @@
                     
                 </div>
                </div>
-             <div class="card-body">
+             <div class="card-bod">
                     {{-- <div id="dashboard-map" style="height: 250px"></div> --}}
                     <map-component></map-component>
                     

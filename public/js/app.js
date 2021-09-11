@@ -39211,7 +39211,7 @@ var render = function() {
   return _c(
     "GmapMap",
     {
-      staticStyle: { "min-width": "500px", "min-height": "300px" },
+      staticStyle: { "min-width": "500px", "min-height": "500px" },
       attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "terrain" }
     },
     _vm._l(_vm.markers, function(m, index) {
