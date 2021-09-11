@@ -26,6 +26,7 @@ class StaffRecordController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'user_code' => $user_code,
+            'role' => $request->role,
             'password' => Hash::make($request->password)
         ]);
 
@@ -33,7 +34,7 @@ class StaffRecordController extends Controller
         $notification = Notification::create([
             'user_id' => Auth::user()->id,
             'title' => 'New Credential Created',
-            'body' => 'You just created an account with email:' .$request->email .' and '.$request->passwword,
+            'body' => 'You just created an account with email:' .$request->email .' and '.$request->password,
         ]);
 
         
