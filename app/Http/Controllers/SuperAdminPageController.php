@@ -152,9 +152,9 @@ class SuperAdminPageController extends Controller
     public function truck_routes()
     {
 
-        $trucka_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 1)->latest()->get();
+        $trucka_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 1)->get();
 
-        $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->latest()->get();
+        $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->get();
         
         
         return view('general.truck_routes',[

@@ -28,6 +28,10 @@
             <!--container-->
             <hr>
 
+            <div class=" {{Auth::user()->role =='superadmin'?'':'d-none'}} c text-center">
+                <a href="{{route('superadmin.create_truck_route')}}" class="btn btn-primary col-md-6 shadow">Create Truck Route</a>
+            </div>
+
             <div class="row">
                 <div class="  {{Auth::user()->role=='driver'?'col-md-12':'col-md-6'}}">
 

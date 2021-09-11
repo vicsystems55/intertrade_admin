@@ -89,15 +89,10 @@
                     {{-- <div id="dashboard-map" style="height: 250px"></div> --}}
                     <map-component></map-component>
                     
-                    <div class="mb-4 d-none">
-                        <p class="mb-2"><i class="flag-icon flag-icon-us me-1"></i> USA <span class="float-end">50%</span></p>
-                        <div class="progress" style="height: 5px;">
-                            <div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 50%"></div>
-                        </div>
-                    </div>
+                   
                     
                     
-             </div>
+              </div>
            </div>
         </div>
 

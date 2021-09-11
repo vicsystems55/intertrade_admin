@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "vue-js-modal": "^2.0.1",
+        "vue2-google-maps": "^0.10.7",
         "vuejs-google-maps": "^0.2.0"
     }
 }
