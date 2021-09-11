@@ -12,7 +12,7 @@ use App\Models\Inventory;
 
 use App\Models\Deployment;
 
-use App\Models\Notifications;
+use App\Models\Notification;
 
 use App\Models\Message;
 
@@ -65,15 +65,6 @@ class DriverPageController extends Controller
         ]);
     }
 
-    public function deployments()
-    {
-
-        $deployments = Deployment::latest()->get();
-        
-        return view('general.deployments',[
-            'deployments' => $deployments
-        ]);
-    }
 
     public function deployment($deployment_id)
     {
@@ -135,6 +126,21 @@ class DriverPageController extends Controller
 
             'projects' => $projects
 
+        ]);
+    }
+
+    
+    public function deployments()
+    {
+        $project = Project::where('id', 1)->first();
+
+        $deployments = Deployment::latest()->get();
+        
+        
+        return view('general.deployments',[
+
+            'deployments' => $deployments,
+            'project' => $project
         ]);
     }
 }
