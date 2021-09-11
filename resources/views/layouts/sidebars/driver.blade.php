@@ -34,7 +34,7 @@
         <a href="{{route('driver.truck_routes')}}">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
-            <div class="menu-title">Assigned Truck Routes</div>
+            <div class="menu-title">Truck Routes</div>
         </a>
     </li>
 
