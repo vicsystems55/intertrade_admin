@@ -62,6 +62,7 @@ class DriverPageController extends Controller
             'truck_routes' => $truck_routes,
             'trucka_routes' => $trucka_routes,
             'truckb_routes' => $truckb_routes,
+            
         ]);
     }
 
