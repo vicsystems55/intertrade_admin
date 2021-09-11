@@ -67,6 +67,11 @@
                         <input name="installation_completion_date" type="date" class="form-control" placeholder="Installation Completion Date">
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="">Number of Units;</label>
+                        <input type="number" name="units" class="form-control" placeholder="Number of Units">
+                    </div>
+
                     
 
                 </div>
@@ -110,7 +115,7 @@
                         <label for="">Remark:</label>
                         <i  title="Short description to go with this report" class="fadeIn animated bx bx-info-circle"></i>
 
-                        <textarea name="remar" col="10" row="5"  type="text" class="form-control" placeholder="Remark"></textarea>
+                        <textarea name="remark" col="10" row="5"  type="text" class="form-control" placeholder="Remark"></textarea>
                     </div>
 
 

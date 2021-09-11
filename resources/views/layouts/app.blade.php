@@ -38,6 +38,8 @@
 	<link rel="stylesheet" href="{{config('app.url')}}assets/css/dark-theme.css" />
 	<link rel="stylesheet" href="{{config('app.url')}}assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="{{config('app.url')}}assets/css/header-colors.css" />
+
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>InterTrade Admin</title>
 </head>
 

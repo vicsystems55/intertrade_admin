@@ -26,6 +26,10 @@ use App\Models\AccountSubHead;
 
 use App\Models\AccountMapping;
 
+use App\Models\DeploymentReport;
+
+use App\Models\ReportImage;
+
 use Auth;
 
 class AdminPageController extends Controller
@@ -120,9 +124,14 @@ class AdminPageController extends Controller
 
     public function reports()
     {
+
+
+        $reports = DeploymentReport::with('report_images')->latest()->get();
         
         
-        return view('admin_dashboard.reports');
+        return view('admin_dashboard.reports',[
+            'reports' => $reports
+        ]);
     }
 
     public function report()

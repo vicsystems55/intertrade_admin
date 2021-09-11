@@ -13,6 +13,9 @@ use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\StaffRecordController;
 use App\Http\Controllers\ReportImageController;
+use App\Http\Controllers\DeploymentReportController;
+
+
 
 
 /*
@@ -221,7 +224,7 @@ Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_r
 
 Route::post('/create_staff_account', [StaffRecordController::class, 'create_staff_account'])->name('create_staff_account');
 
-Route::post('/create_report', [DeploymentController::class, 'create_report'])->name('create_report');
+Route::post('/create_report', [DeploymentReportController::class, 'create_report'])->name('create_report');
 
 Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
 

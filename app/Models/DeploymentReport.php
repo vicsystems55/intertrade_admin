@@ -15,6 +15,6 @@ class DeploymentReport extends Model
     {
         
         
-        return $this->hasMany('App\Models\DeploymentReport', 'report_id', 'id');
+        return $this->hasMany('App\Models\ReportImage', 'report_id', 'id');
     }
 }

@@ -8,11 +8,13 @@ use App\Models\DeploymentReport;
 
 use Auth;
 
+use Session;
+
 class DeploymentReportController extends Controller
 {
     //
 
-    public function create_report()
+    public function create_report(Request $request)
     {
 
         
@@ -29,7 +31,8 @@ class DeploymentReportController extends Controller
         $report = DeploymentReport::where('report_code', $report_code)->update([
             'reporter_id' => Auth::user()->id,
             'state' => $request->state,
-            'site_name' => $request->site_name,
+            'site_name' => $request->site,
+            'units' => $request->units,
             'model' => $request->model,
             'installation_completion_date' => $request->installation_completion_date,
             'ucc_serial_number' => $request->ucc_serial_number,

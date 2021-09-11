@@ -41,7 +41,7 @@ class ReportImageController extends Controller
         }
     }
 
-    public function upload_image(Request $request)
+    public function store(Request $request)
     {
         # code...
 

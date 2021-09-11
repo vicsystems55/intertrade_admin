@@ -148,7 +148,7 @@
 
                         <div class="form-group mb-3">
                             <label for="">Road Quality:</label>
-                            <input type="number" name="road_quality" class="form-control" placeholder="What is the quality of the road">
+                            <input type="text" name="road_quality" class="form-control" placeholder="What is the quality of the road">
                         </div>
 
 
