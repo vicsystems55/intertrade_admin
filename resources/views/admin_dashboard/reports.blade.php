@@ -6,7 +6,7 @@
     <div class="page-content">
         <div class="p-5"></div>
 
-<h4>Reports</h4>
+<h4>Daily Reports</h4>
     </div>
 
     

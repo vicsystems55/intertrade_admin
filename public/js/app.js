@@ -2233,6 +2233,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -2247,7 +2259,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORT
     //// If you want to set the version, you can do so:
     // v: '3.26',
 
-  } //// If you intend to programmatically custom event listener code
+  },
+  //// If you intend to programmatically custom event listener code
   //// (e.g. `this.$refs.gmap.$on('zoom_changed', someFunc)`)
   //// instead of going through Vue templates (e.g. `<GmapMap @zoom_changed="someFunc">`)
   //// you might need to turn this on.
@@ -2256,8 +2269,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORT
   //// import {GmapMarker} from 'vue2-google-maps/src/components/marker'
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
-  // installComponents: true,
-
+  installComponents: true
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2269,8 +2281,23 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORT
   },
   props: ['appurl', 'listingcode'],
   methods: {},
+  computed: {
+    google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__.gmapApi
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
+    this.$refs.mapRef.$mapPromise.then(function (map) {
+      map.panTo({
+        lat: 11.995910,
+        lng: 8.550320
+      });
+    });
+    this.$refs.mapRef.$mapPromise.then(function (map) {
+      map.panTo({
+        lat: 11.989630,
+        lng: 8.534080
+      });
+    });
   }
 });
 
@@ -39211,21 +39238,45 @@ var render = function() {
   return _c(
     "GmapMap",
     {
-      staticStyle: { "min-width": "500px", "min-height": "500px" },
-      attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "terrain" }
+      ref: "mapRef",
+      staticStyle: { "min-height": "500px" },
+      attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "hybrid" }
     },
-    _vm._l(_vm.markers, function(m, index) {
-      return _c("GmapMarker", {
-        key: index,
-        attrs: { position: m.position, clickable: true, draggable: true },
-        on: {
-          click: function($event) {
-            _vm.center = m.position
+    [
+      _vm._l(_vm.markers, function(m, index) {
+        return _c("GmapMarker", {
+          key: index,
+          attrs: { position: m.position, clickable: true, draggable: true },
+          on: {
+            click: function($event) {
+              _vm.center = m.position
+            }
           }
+        })
+      }),
+      _vm._v(" "),
+      _c("GmapMarker", {
+        ref: "myMarker",
+        attrs: {
+          position: _vm.google && new _vm.google.maps.LatLng(11.99591, 8.55032)
+        }
+      }),
+      _vm._v(" "),
+      _c("GmapMarker", {
+        ref: "myMarker",
+        attrs: {
+          position: _vm.google && new _vm.google.maps.LatLng(11.98963, 8.53408)
+        }
+      }),
+      _vm._v(" "),
+      _c("GmapMarker", {
+        ref: "myMarker",
+        attrs: {
+          position: _vm.google && new _vm.google.maps.LatLng(7.14414, 3.24324)
         }
       })
-    }),
-    1
+    ],
+    2
   )
 }
 var staticRenderFns = []

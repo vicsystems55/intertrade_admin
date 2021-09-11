@@ -124,4 +124,17 @@ class DriverPageController extends Controller
     {
         return view('driver_dashboard.reports');
     }
+
+
+    public function projects()
+    {
+
+        $projects = Project::latest()->get();
+        
+        return view('admin_dashboard.projects',[
+
+            'projects' => $projects
+
+        ]);
+    }
 }

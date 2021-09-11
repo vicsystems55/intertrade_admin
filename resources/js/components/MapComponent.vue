@@ -1,11 +1,11 @@
 <template>
 
 
-<GmapMap
+<GmapMap ref="mapRef"
   :center="{lat:10, lng:10}"
   :zoom="7"
-  map-type-id="terrain"
-  style="min-width: 500px; min-height: 500px"
+  map-type-id="hybrid"
+  style="min-height: 500px"
 >
   <GmapMarker
     :key="index"
@@ -15,6 +15,17 @@
     :draggable="true"
     @click="center=m.position"
   />
+
+    <GmapMarker ref="myMarker"
+    :position="google && new google.maps.LatLng(11.995910, 8.550320)" />
+
+    <GmapMarker ref="myMarker"
+    :position="google && new google.maps.LatLng(11.989630, 8.534080)" />
+
+    <GmapMarker ref="myMarker"
+    :position="google && new google.maps.LatLng(7.144140, 3.243240)" />
+
+    
 </GmapMap>
          
    
@@ -27,6 +38,10 @@ import VModal from 'vue-js-modal'
 import Vue from 'vue'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+
+import {gmapApi} from 'vue2-google-maps'
+
+
 
 Vue.use(VModal)
 
@@ -52,13 +67,13 @@ Vue.use(VueGoogleMaps, {
   //// import {GmapMarker} from 'vue2-google-maps/src/components/marker'
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
-  // installComponents: true,
+  installComponents: true,
 })
 
 
     export default {
 
-
+   
 
         data() {
             return {
@@ -69,15 +84,36 @@ Vue.use(VueGoogleMaps, {
         },
 
 
+
           props: ['appurl', 'listingcode'],
 
         methods: {
    
 
         },
+
+
+        computed: {
+                google: gmapApi
+            },
+
+
         mounted() {
             
             console.log('Component mounted.');
+
+                this.$refs.mapRef.$mapPromise.then((map) => {
+                map.panTo(
+                    {
+                        lat: 11.995910, 
+                        lng: 8.550320,
+                        
+                        })
+                })
+
+                this.$refs.mapRef.$mapPromise.then((map) => {
+                map.panTo({lat: 11.989630, lng: 8.534080})
+                })
   
            
         }
