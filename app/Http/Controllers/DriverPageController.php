@@ -99,9 +99,14 @@ class DriverPageController extends Controller
     {
 
         $messages = Message::where('t_o', Auth::user()->id)->get();
+        $users = User::latest()->get();
+
         
         return view('general.messages',[
-            'messages' => $messages
+            'messages' => $messages,
+            'users' => $users
+
+            
         ]);
     }
 
