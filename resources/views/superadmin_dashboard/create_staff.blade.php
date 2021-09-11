@@ -20,7 +20,15 @@
                             @endforeach
                         @endif
 
-           
+                        
+                        @if(Session::has('staff_record_msg'))
+                        <p class="alert alert-info">{{ Session::get('staff_record_msg') }}</p>
+                        @endif
+
+
+                        <form action="{{route('create_staff_account')}}" method="post">
+                            @csrf
+       
                        <div class="form-group mb-3">
                            <label for="">Fullname:</label>
                            <input type="text" class="form-control" name="name" placeholder="Enter Staff Fullname">
@@ -62,7 +70,7 @@
                             </button>
                         </div>
            
-           
+                    </form>
                     </div>
                 </div>
             </div>

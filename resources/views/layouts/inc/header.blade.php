@@ -14,10 +14,16 @@
                     <li class=" nav-item mobile-search-ico">
                         
                     </li>
+
+                    <?php
+
+                        $notifications = \App\Models\Notification::where('user_id', Auth::user()->id)->where('status', 'unread')->latest()->get();
+
+                    ?>
                     
                     <li class="nav-item dropdown dropdown-large">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                             <span class="d-none alert-count">7</span>
+                             <span class="{{$notifications->count()>0?'':'d-none'}} alert-count">{{$notifications->count()}}</span>
                             <i class='bx bx-bell'></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -28,17 +34,23 @@
                                 </div>
                             </a>
                             <div class="header-notifications-list">
+                                @foreach ($notifications as $notification)
+
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="notify bg-light-primary text-primary"><i class="bx bx-group"></i>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
-                                        ago</span></h6>
-                                            <p class="msg-info">5 new user registered</p>
+                                            <h6 class="msg-name">{{$notification->title}}
+                                                <span class="msg-time float-end">{{$notification->created_at->diffForHumans()}}</span>
+                                            </h6>
+                                          
                                         </div>
                                     </div>
                                 </a>
+                                    
+                                @endforeach
+                                
                                 
                             </div>
                             <a href="javascript:;">

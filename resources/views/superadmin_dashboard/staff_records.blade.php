@@ -11,6 +11,11 @@
         <h4>Staff Records.</h4>
 
 
+        <div class="c py-5 text-center">
+            <a href="{{route('superadmin.create_staff')}}" class="btn btn-primary">Add Staff</a>
+        </div>
+
+
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
