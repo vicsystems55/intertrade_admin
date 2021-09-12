@@ -47,12 +47,15 @@ class AdminPageController extends Controller
 
         $users = User::latest()->get();
 
+        $reports = DeploymentReport::latest()->get();
+
 
         return view('admin_dashboard.index',[
             'projects' => $projects,
             'deployments' => $deployments,
             'inventories' => $inventories,
-            'users' => $users
+            'users' => $users,
+            'reports' => $reports
         ]);
     }
 
