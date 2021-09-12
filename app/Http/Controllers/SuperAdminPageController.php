@@ -72,6 +72,10 @@ class SuperAdminPageController extends Controller
     {
 
         $notifications = Notification::where('user_id', Auth::user()->id)->get();
+
+        $notificationx = Notification::where('user_id', Auth::user()->id)->update([
+            'status' => 'read'
+        ]);
         
         
         return view('general.notifications',[

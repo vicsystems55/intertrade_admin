@@ -85,7 +85,15 @@ class DriverPageController extends Controller
     {
 
         $notifications = Notification::where('user_id', Auth::user()->id)->get();
+
+        $notificationx = Notification::where('user_id', Auth::user()->id)->update([
+            'status' => 'read'
+        ]);
+
+
         $users = User::latest()->get();
+
+
         
         return view('general.notifications',[
             'notifications' => $notifications,

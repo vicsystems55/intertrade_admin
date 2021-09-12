@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\DeploymentReport;
 
+use App\Models\Notification;
+
 use Auth;
 
 use Session;
@@ -45,6 +47,32 @@ class DeploymentReportController extends Controller
             'remark' => $request->remark,
             'status' => 'submitted'
         ]);
+
+        $notification = Notification::create([
+            'user_id' => Auth::user()->id,
+            'title' => 'Report Submitted',
+            'body' => 'You just sumitted a report with report code : '. $report_code
+        ]);
+
+        $admin_notification = Notification::create([
+            'user_id' => 1,
+            'title' => 'New Report Submitted',
+            'body' => Auth::user()->name .' just sumitted a report'
+        ]);
+
+        $admin_notification = Notification::create([
+            'user_id' => 3,
+            'title' => 'New Report Submitted',
+            'body' => Auth::user()->name .' just sumitted a report'
+        ]);
+
+        $admin_notification = Notification::create([
+            'user_id' => 4,
+            'title' => 'New Report Submitted',
+            'body' => Auth::user()->name .' just sumitted a report'
+        ]);
+
+        Session::forget('report_code');
 
         return back()->with('report_msg', 'Report Submitted');
 
