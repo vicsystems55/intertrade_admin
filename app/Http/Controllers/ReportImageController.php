@@ -45,17 +45,25 @@ class ReportImageController extends Controller
     {
         # code...
 
-        $report_code = Session::get('report_code');
+            try {
+                
+                
+                $report_code = Session::get('report_code');
 
-        $user_id = Auth::user()->id;
+                $user_id = Auth::user()->id;
+        
+                $report = DeploymentReport::where('report_code', $report_code)->where('reporter_id', $user_id )->first();
+        
+                $image = $request->file('file');
+        
+                $new_name = rand().".".$image->getClientOriginalExtension();
+        
+                $file = $image->move(public_path('report_images'), $new_name);
+            } catch (\Throwable $th) {
+                //throw $th;
 
-        $report = DeploymentReport::where('report_code', $report_code)->where('reporter_id', $user_id )->first();
-
-        $image = $request->file('file');
-
-        $new_name = rand().".".$image->getClientOriginalExtension();
-
-        $file = $image->move(public_path('report_images'), $new_name);
+                return $th;
+            }
 
             try {
                 //code...
