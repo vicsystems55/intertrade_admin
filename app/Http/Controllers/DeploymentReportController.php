@@ -10,6 +10,8 @@ use Auth;
 
 use Session;
 
+use Carbon\Carbon;
+
 class DeploymentReportController extends Controller
 {
     //
@@ -39,7 +41,7 @@ class DeploymentReportController extends Controller
             'rtmd_number' => $request->rtmd_number,
             'functional_state' => $request->functional_state,
             'temp_at_update' => $request->temp_at_update,
-            'date_submitted' => $request->date_submitted,
+            'date_submitted' => Carbon::now(),
             'remark' => $request->remark,
             'status' => 'submitted'
         ]);

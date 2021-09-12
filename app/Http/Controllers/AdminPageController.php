@@ -127,6 +127,8 @@ class AdminPageController extends Controller
 
 
         $reports = DeploymentReport::with('report_images')->latest()->get();
+
+        // dd($reports);
         
         
         return view('admin_dashboard.reports',[
@@ -134,11 +136,18 @@ class AdminPageController extends Controller
         ]);
     }
 
-    public function report()
+    public function report($report_id)
     {
+
+        $report = DeploymentReport::with('report_images')->where('id', $report_id)->first();
+
         
         
-        return view('admin_dashboard.report');
+        
+        return view('admin_dashboard.report',[
+            'report' => $report,
+        
+        ]);
     }
 
     public function staff_records()

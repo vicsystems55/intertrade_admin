@@ -27,7 +27,7 @@ class CreateDeploymentReportsTable extends Migration
             $table->string('functional_state')->nullable();
             $table->string('temp_at_update')->nullable();
             $table->date('date_submitted')->nullable();
-            $table->date('units')->nullable();
+            $table->integer('units')->nullable();
             $table->longText('remark')->nullable();
             $table->string('report_code');
             $table->string('status')->default('not submitted');

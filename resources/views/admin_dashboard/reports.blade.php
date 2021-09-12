@@ -10,7 +10,7 @@
 
        <div class="card">
            <div class="card-body">
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -18,7 +18,8 @@
                         <th>Site Name</th>
                         <th>Model</th>
                         <th>Unit</th>
-                        <th></th>
+                        <th>Status</th>
+                        <th>Date Submitted</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -38,7 +39,7 @@
                         </td>
                         <td>
                             <span>
-                                {{$report->site}}
+                                {{$report->site_name}}
                             </span>
     
                         </td>
@@ -49,10 +50,24 @@
                         </td>
     
                         <td>
-                            <span class="badge pill">
+                            <span class="">
+                                {{$report->units}}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
                                 {{$report->status}}
                             </span>
                         </td>
+
+                        <td>
+                            <span>
+                                {{\Carbon\Carbon::parse($report->date_submitted)->format('d M, Y')}}
+                            </span>
+                        </td>
+
+                        
                         <td>
                             <a href="{{route('admin.report', $report->id)}}" class="btn btn-primary btn-sm shadow">view details</a>
                         </td>
