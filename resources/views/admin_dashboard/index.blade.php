@@ -26,22 +26,26 @@
             </div>
             </div>
 
-            <div class="col">
-                <div class="card radius-10 border-start border-0 border-3 border-info">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary">Reports</p>
-                                <h4 class="my-1 text-info">{{$reports->count()}}</h4>
-                             
-                            </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
-                                <i class='lni file'></i>
+            <a href="{{route('admin.reports')}}" class="">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Reports</p>
+                                    <h4 class="my-1 text-info">{{$reports->count()}}</h4>
+                                 
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                    <i class='lni file'></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
+            </a>
+
+
             <div class="col">
             <div class="card radius-10 border-start border-0 border-3 border-danger">
                 <div class="card-body">
