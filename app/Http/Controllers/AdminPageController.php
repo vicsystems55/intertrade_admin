@@ -47,7 +47,7 @@ class AdminPageController extends Controller
 
         $users = User::latest()->get();
 
-        $reports = DeploymentReport::latest()->get();
+        $reports = DeploymentReport::where('status', 'submitted')->latest()->get();
 
 
         return view('admin_dashboard.index',[

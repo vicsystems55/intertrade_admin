@@ -16,7 +16,7 @@
                         <th>#</th>
                         <th>State</th>
                         <th>Site Name</th>
-                        <th>Model</th>
+                        <th>Serial Number</th>
                         <th>Unit</th>
                         <th>Status</th>
                         <th>Date Submitted</th>
@@ -45,7 +45,7 @@
                         </td>
                         <td>
                             <span>
-                                {{$report->model}}
+                                {{$report->ucc_serial_number}}
                             </span>
                         </td>
     
