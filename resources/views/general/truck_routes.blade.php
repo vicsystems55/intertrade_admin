@@ -52,14 +52,22 @@
                             <div class="col-sm py-2">
                                 <div class="card border-primary shadow radius-15">
                                     <div class="card-body">
-                                        <div class="float-en text-primary small">Take Off:<br>  <strong>Jan 10th 2019 8:30 AM</strong></div>
-                                        <div class="float-en text-success small">Drop Off:<br> <strong>Jan 10th 2019 8:30 AM</strong></div>
+                                        <div class="float-en text-primary small">Take Off:<br>  <strong>- - - </strong></div>
+                                        <div class="float-en text-success small">Drop Off:<br> <strong>- - -</strong></div>
                                         <div class="">
 
                                             <h4 class="card-titl text-primary">{{$trucka->deployments->facility_name}}</h4>
                                             <p class="card-text">{{$trucka->deployments->facility_address}}</p>
+
+                                            {{-- <h6 class="card-text ml-2">0 / {{$trucka->deployments->no_ucc}}</h6> --}}
                                             <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
-                                                {{$trucka->deployments->status}}
+                                               DELIVERED : 0
+                                            </span> 
+
+                                            /
+
+                                            <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
+                                                REQUIRED : {{$trucka->deployments->no_ucc}}
                                             </span>
 
                                             <a href="" class="{{Auth::user()->role=='admin'?'':'d-none'}}  btn btn-primary btn-sm">View Report</a>
