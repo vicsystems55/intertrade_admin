@@ -133,7 +133,7 @@ class AdminPageController extends Controller
     {
 
 
-        $reports = DeploymentReport::with('report_images')->latest()->get();
+        $reports = DeploymentReport::where('status', 'submitted')->with('report_images')->latest()->get();
 
         // dd($reports);
         
