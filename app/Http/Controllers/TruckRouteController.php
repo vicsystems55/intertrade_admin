@@ -27,7 +27,7 @@ class TruckRouteController extends Controller
         # code...
 
         $request->validate([
-            'deployment_id' => 'required|unique:truck_routes',
+            // 'deployment_id' => 'required|unique:truck_routes',
             // 'driver_assigned' => 'required|unique:truck_routes',
             // 'amount' => 'required|numeric|min:99700|between:0,99.99',
             // 'number_of_accounts' => 'required|numeric|min:1|max:15',

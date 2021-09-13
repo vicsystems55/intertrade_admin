@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card table-responsive">
             <div class="card-body">
 
 
