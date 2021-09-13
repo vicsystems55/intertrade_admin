@@ -31,12 +31,12 @@
                                             @csrf
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email Address</label>
-												<input type="email" name="email" class="form-control" id="inputEmailAddress" placeholder="Email Address" value="ukiaghe@intertradeltd.biz">
+												<input type="email" name="email" class="form-control" id="inputEmailAddress" placeholder="Email Address" value="{{old('email')}}">
 											</div>
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" name="password" class="form-control border-end-0" id="inputChoosePassword" value="Intertrade_admin2@2021" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+													<input type="password" name="password" class="form-control border-end-0" id="inputChoosePassword" value="" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 												</div>
 											</div>
 											<div class="col-md-6">
