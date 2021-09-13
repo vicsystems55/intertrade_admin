@@ -144,6 +144,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
 
     Route::get('/reports', [SuperAdminPageController::class, 'reports'])->name('superadmin.report');
 
+    Route::get('/create_report', [SuperAdminPageController::class, 'create_report'])->name('superadmin.create_report');
+
 
 
 });

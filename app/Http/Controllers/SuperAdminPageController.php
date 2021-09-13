@@ -26,7 +26,13 @@ use App\Models\AccountSubHead;
 
 use App\Models\AccountMapping;
 
+use App\Models\ReportImage;
+
+use App\Models\DeploymentReport;
+
 use Carbon\Carbon;
+
+use Session;
 
 use Auth;
 
@@ -185,6 +191,72 @@ class SuperAdminPageController extends Controller
 
             'projects' => $projects
 
+        ]);
+    }
+
+    public function reports()
+    {
+
+
+        $reports = DeploymentReport::where('status', 'test')->with('report_images')->latest()->get();
+
+        // dd($reports);
+        
+        
+        return view('superadmin_dashboard.reports',[
+            'reports' => $reports
+        ]);
+    }
+
+    public function report($report_id)
+    {
+
+        $report = DeploymentReport::with('report_images')->where('id', $report_id)->first();
+
+        
+        
+        
+        return view('superadmin_dashboard.report',[
+            'report' => $report,
+        
+        ]);
+    }
+
+    public function create_report()
+    {
+        $user_id = Auth::user()->id;
+
+        // check if session exist with listing code
+
+
+        $report = DeploymentReport::where('report_code', Session::get('report_code'))->where('reporter_id', $user_id)->first();
+
+        if (Session::get('report_code') && $report) {
+            # code...
+
+            // dd(Session::get('listing_code'));
+            
+        }else{
+
+           session([
+                'report_code' => rand(11100,99999)
+            ]);
+
+            $report = DeploymentReport::create([
+                'report_code' => Session::get('report_code'),
+                'reporter_id' => $user_id,
+                'status' => 'pending'
+            ]);
+
+            // dd($vehicle_listing);
+
+        }
+
+        $deployments = Deployment::latest()->get();
+
+
+        return view('superadmin_dashboard.create_report',[
+            'deployments' => $deployments 
         ]);
     }
 }
