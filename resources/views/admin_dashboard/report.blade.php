@@ -108,7 +108,7 @@
 
                 <div class="col-md-4 ext-center">
 
-                    <img style="height: 200px; object-fit: cover;" src="{{config('app.url')}}report_images/{{$image->img_path}}" alt="">
+                    <img style="height: 200px; object-fit: cover;" src="{{config('app.url')}}{{$image->img_path}}" alt="">
 
 
                 </div>

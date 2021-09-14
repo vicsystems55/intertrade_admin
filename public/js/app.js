@@ -2400,7 +2400,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use((vue_file_agent__WEBPACK_IMPORTE
   props: ['appurl', 'reportcode'],
   methods: {
     getPic: function getPic(img) {
-      return this.appurl + 'report_images/' + img;
+      return this.appurl + img;
     },
     get_images: function get_images() {
       var _this = this;

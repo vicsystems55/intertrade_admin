@@ -58,7 +58,7 @@ class ReportImageController extends Controller
         
                 $new_name = rand().".".$image->getClientOriginalExtension();
         
-                $file = $image->move(public_path('report_images'), $new_name);
+                $file = $image->move(public_path(), $new_name);
             } catch (\Throwable $th) {
                 //throw $th;
 

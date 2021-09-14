@@ -92,7 +92,7 @@ data(){
     methods: {
 
             getPic(img) {
-              return this.appurl +'report_images/'+img;
+              return this.appurl +img;
             },
 
               get_images(){
