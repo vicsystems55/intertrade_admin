@@ -61,7 +61,7 @@
                         </td>
 
                         <td>
-                            <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
+                            <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-{{$report->status=='submitted'?'success':'warning'}} text-dark">
                                 {{$report->status}}
                             </span>
                         </td>

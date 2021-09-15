@@ -45,7 +45,7 @@ class DeploymentReportController extends Controller
         $report = DeploymentReport::where('report_code', $report_code)->update([
             'reporter_id' => Auth::user()->id,
             'state' => $request->state,
-            'site_name' => $request->site,
+            'site_name' => $request->site_name,
             'units' => $request->units,
             'model' => $request->model,
             'installation_completion_date' => $request->installation_completion_date,
