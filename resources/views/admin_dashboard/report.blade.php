@@ -18,6 +18,7 @@
                         Report By: 
                     </td>
                     <th>
+                      
                         {{$report->reporters->name}}
                     </th>
                 </tr>

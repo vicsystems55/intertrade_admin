@@ -234,6 +234,8 @@ Route::post('/create_deployment_zone', [DeploymentController::class, 'create_dep
 
 Route::post('/upload_pix', [ReportImageController::class, 'store'])->name('upload_pix');
 
+Route::post('/delete_pix', [ReportImageController::class, 'delete'])->name('delete.upload_pix');
+
 // all get
 
 

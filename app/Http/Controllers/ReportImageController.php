@@ -108,4 +108,21 @@ class ReportImageController extends Controller
         
 
     }
+
+    public function delete(Request $request)            
+    {
+        # code...
+
+        try {
+            //code...
+
+            $delete = ReportImage::where('id', $request->img_id)->delete();
+
+            return $delete;
+        } catch (\Throwable $th) {
+            //throw $th;
+            
+            return $th;
+        }
+    }
 }

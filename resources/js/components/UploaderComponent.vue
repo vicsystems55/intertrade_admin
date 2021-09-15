@@ -7,7 +7,9 @@
 
             <div >
                           <img style="height: 230px; width: 230px; object-fit: cover; border-radius: 20px;" class="shadow" :src="getPic(image.img_path)" >
-                          <button type="button" class="btn btn-danger btn-sm" style="position: absolute;  margin-top: 2px; margin-left: -50px; width: 45px; height: 45px; border-radius: 50%;" >X</button>   
+                          <button
+                            @click="deletePix(image.id)"
+                           type="button" class="btn btn-danger btn-sm" style="position: absolute;  margin-top: 2px; margin-left: -50px; width: 45px; height: 45px; border-radius: 50%;" >X.</button>   
 
             </div>
             
@@ -59,10 +61,14 @@
 import Vue from 'vue';
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+import VueToastify from "vue-toastify";
+Vue.use(VueToastify);
 
 
 
-Vue.use(VueFileAgent);
+Vue.use(VueFileAgent,{
+  theme: "light"
+});
 
 export default {
 
@@ -124,7 +130,43 @@ data(){
 
       },
 
-      shout(){
+      deletePix(img_id){
+
+        
+
+        
+                    axios.post(this.appurl+'delete_pix',{
+                        img_id: img_id,
+                        // date: this.date,
+                        // file_upload: this.newfile_name,
+                        // text_report: this.outputData.blocks,
+                    
+
+                    }).then((response)=>(
+                    // this.loading = false,
+
+
+                   console.log(response),
+
+                    this.get_images(),
+
+                    this.$vToastify.success({
+                      body: "Picture Removed",
+                      title: " ",
+                      theme: "light",
+                      hideProgressbar: true,
+                      
+                    }),
+
+
+                    
+
+                    console.log(response)
+                    //  this.results = response.data
+
+                )).catch(function (error) {
+                        console.log(error);
+                });
           
       },
 
