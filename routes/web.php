@@ -195,6 +195,10 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
 
     Route::get('/reports', [DriverPageController::class, 'reports'])->name('driver.reports');
 
+    Route::get('/create_report', [DriverPageController::class, 'create_report'])->name('driver.create_report');
+
+    Route::get('/report/{report_id}', [DriverPageController::class, 'report'])->name('driver.report');
+
 
 });
 
@@ -228,11 +232,15 @@ Route::post('/create_staff_account', [StaffRecordController::class, 'create_staf
 
 Route::post('/create_report', [DeploymentReportController::class, 'create_report'])->name('create_report');
 
+Route::post('/update_report', [DeploymentReportController::class, 'update_report'])->name('update_report');
+
 Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
 
 Route::post('/create_deployment_zone', [DeploymentController::class, 'create_deployment_zone'])->name('create_deployment_zone');
 
 Route::post('/upload_pix', [ReportImageController::class, 'store'])->name('upload_pix');
+
+Route::post('/upload_pixx', [ReportImageController::class, 'update'])->name('upload_pixx');
 
 Route::post('/delete_pix', [ReportImageController::class, 'delete'])->name('delete.upload_pix');
 
@@ -241,6 +249,8 @@ Route::post('/delete_pix', [ReportImageController::class, 'delete'])->name('dele
 
 
 Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('get_images');
+
+Route::get('/get_imagesx', [ReportImageController::class, 'get_imagesx'])->name('get_images');
 
 
 

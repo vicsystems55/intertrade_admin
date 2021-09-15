@@ -2413,8 +2413,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_file_agent__WEBPACK_IMPORTE
     get_images: function get_images() {
       var _this = this;
 
-      axios.get(this.appurl + 'get_images', {// cbo_id: this.cbo_id,
-        // date: this.date,
+      axios.get(this.appurl + 'get_images', {// date: this.date,
         // file_upload: this.newfile_name,
         // text_report: this.outputData.blocks,
       }).then(function (response) {
@@ -2499,6 +2498,201 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_file_agent__WEBPACK_IMPORTE
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderxComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderxComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_file_agent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-file-agent */ "./node_modules/vue-file-agent/dist/vue-file-agent.umd.js");
+/* harmony import */ var vue_file_agent__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_file_agent__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_file_agent_dist_vue_file_agent_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-file-agent/dist/vue-file-agent.css */ "./node_modules/vue-file-agent/dist/vue-file-agent.css");
+/* harmony import */ var vue_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-toastify */ "./node_modules/vue-toastify/dist/vue-toastify.umd.min.js");
+/* harmony import */ var vue_toastify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_toastify__WEBPACK_IMPORTED_MODULE_2__);
+/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_toastify__WEBPACK_IMPORTED_MODULE_2___default()));
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_file_agent__WEBPACK_IMPORTED_MODULE_0___default()), {
+  theme: "light"
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      categories: [],
+      images: [],
+      subtypes: [],
+      loading: false,
+      baseURL: process.env.MIX_API_URL,
+      fileRecords: [],
+      uploadUrl: this.appurl + 'upload_pixx',
+      uploadHeaders: {
+        'X-Test-Header': 'vue-file-agent',
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      fileRecordsForUpload: [] // maintain an upload queue
+
+    };
+  },
+  props: ['appurl', 'reportcode', 'reportcodex'],
+  methods: {
+    getPic: function getPic(img) {
+      return this.appurl + img;
+    },
+    get_images: function get_images() {
+      var _this = this;
+
+      axios.get(this.appurl + 'get_imagesx?report_code=' + this.reportcodex, {// date: this.date,
+        // file_upload: this.newfile_name,
+        // text_report: this.outputData.blocks,
+      }).then(function (response) {
+        return (// this.loading = false,
+          _this.images = response.data, console.log(response) //  this.results = response.data
+
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    deletePix: function deletePix(img_id) {
+      var _this2 = this;
+
+      axios.post(this.appurl + 'delete_pix', {
+        img_id: img_id // date: this.date,
+        // file_upload: this.newfile_name,
+        // text_report: this.outputData.blocks,
+
+      }).then(function (response) {
+        return (// this.loading = false,
+          console.log(response), _this2.get_images(), _this2.$vToastify.success({
+            body: "Picture Removed",
+            title: " ",
+            theme: "light",
+            hideProgressbar: true
+          }), console.log(response) //  this.results = response.data
+
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    onUpload: function onUpload(responses) {
+      console.log(responses[0]); // alert(responses[0]);
+
+      this.get_images(); //   console.log(responses[0].data);
+    },
+    uploadFiles: function uploadFiles() {
+      // Using the default uploader. You may use another uploader instead.
+      this.$refs.vueFileAgent.upload(this.uploadUrl + '?report_code=' + this.reportcodex, this.uploadHeaders, this.fileRecordsForUpload);
+      this.fileRecordsForUpload = [];
+    },
+    deleteUploadedFile: function deleteUploadedFile(fileRecord) {
+      // Using the default uploader. You may use another uploader instead.
+      this.$refs.vueFileAgent.deleteUpload(this.uploadUrl, this.uploadHeaders, fileRecord);
+    },
+    filesSelected: function filesSelected(fileRecordsNewlySelected) {
+      var validFileRecords = fileRecordsNewlySelected.filter(function (fileRecord) {
+        return !fileRecord.error;
+      });
+      this.fileRecordsForUpload = this.fileRecordsForUpload.concat(validFileRecords);
+    },
+    onBeforeDelete: function onBeforeDelete(fileRecord) {
+      var i = this.fileRecordsForUpload.indexOf(fileRecord);
+
+      if (i !== -1) {
+        // queued file, not yet uploaded. Just remove from the arrays
+        this.fileRecordsForUpload.splice(i, 1);
+        var k = this.fileRecords.indexOf(fileRecord);
+        if (k !== -1) this.fileRecords.splice(k, 1);
+      } else {
+        if (confirm('Are you sure you want to delete?')) {
+          this.$refs.vueFileAgent.deleteFileRecord(fileRecord); // will trigger 'delete' event
+        }
+      }
+    },
+    fileDeleted: function fileDeleted(fileRecord) {
+      var i = this.fileRecordsForUpload.indexOf(fileRecord);
+
+      if (i !== -1) {
+        this.fileRecordsForUpload.splice(i, 1);
+      } else {
+        this.deleteUploadedFile(fileRecord);
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.get_images();
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -2526,6 +2720,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('map-component', __webpack_require__(/*! ./components/MapComponent.vue */ "./resources/js/components/MapComponent.vue")["default"]);
 Vue.component('uploader-component', __webpack_require__(/*! ./components/UploaderComponent.vue */ "./resources/js/components/UploaderComponent.vue")["default"]);
+Vue.component('uploaderx-component', __webpack_require__(/*! ./components/UploaderxComponent.vue */ "./resources/js/components/UploaderxComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -42114,6 +42309,45 @@ component.options.__file = "resources/js/components/UploaderComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/UploaderxComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/UploaderxComponent.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _UploaderxComponent_vue_vue_type_template_id_31088f04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UploaderxComponent.vue?vue&type=template&id=31088f04& */ "./resources/js/components/UploaderxComponent.vue?vue&type=template&id=31088f04&");
+/* harmony import */ var _UploaderxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UploaderxComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/UploaderxComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UploaderxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UploaderxComponent_vue_vue_type_template_id_31088f04___WEBPACK_IMPORTED_MODULE_0__.render,
+  _UploaderxComponent_vue_vue_type_template_id_31088f04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/UploaderxComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -42159,6 +42393,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UploaderComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/UploaderxComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/UploaderxComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UploaderxComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderxComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -42384,6 +42634,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderComponent_vue_vue_type_template_id_465f17d4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderComponent_vue_vue_type_template_id_465f17d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UploaderComponent.vue?vue&type=template&id=465f17d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderComponent.vue?vue&type=template&id=465f17d4&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/UploaderxComponent.vue?vue&type=template&id=31088f04&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/UploaderxComponent.vue?vue&type=template&id=31088f04& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderxComponent_vue_vue_type_template_id_31088f04___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderxComponent_vue_vue_type_template_id_31088f04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploaderxComponent_vue_vue_type_template_id_31088f04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UploaderxComponent.vue?vue&type=template&id=31088f04& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderxComponent.vue?vue&type=template&id=31088f04&");
 
 
 /***/ }),
@@ -42862,7 +43129,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("X.")]
+              [_vm._v("x")]
             )
           ])
         ])
@@ -42872,7 +43139,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "col-md-6 mx-auto" },
+      { staticClass: "col-md-12 mx-auto" },
       [
         _c("h4", { staticClass: "text-center" }, [_vm._v("Upload Images")]),
         _vm._v(" "),
@@ -42919,7 +43186,145 @@ var render = function() {
           "button",
           {
             staticClass:
-              "btn btn-outline-secondary btn-block col-md-6 mx-auto mt-2",
+              "btn btn-outline-secondary btn-block col-md-6 mx-auto text-center mt-2",
+            attrs: { disabled: !_vm.fileRecordsForUpload.length },
+            on: {
+              click: function($event) {
+                return _vm.uploadFiles()
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n  Upload " +
+                _vm._s(_vm.fileRecordsForUpload.length) +
+                " files\n"
+            )
+          ]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderxComponent.vue?vue&type=template&id=31088f04&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploaderxComponent.vue?vue&type=template&id=31088f04& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-lg-12 mx-auto" }, [
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.images, function(image) {
+        return _c("div", { key: image.id, staticClass: "col-md-4 p-3" }, [
+          _c("div", [
+            _c("img", {
+              staticClass: "shadow",
+              staticStyle: {
+                height: "230px",
+                width: "230px",
+                "object-fit": "cover",
+                "border-radius": "20px"
+              },
+              attrs: { src: _vm.getPic(image.img_path) }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger btn-sm",
+                staticStyle: {
+                  position: "absolute",
+                  "margin-top": "2px",
+                  "margin-left": "-50px",
+                  width: "45px",
+                  height: "45px",
+                  "border-radius": "50%"
+                },
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.deletePix(image.id)
+                  }
+                }
+              },
+              [_vm._v("x")]
+            )
+          ])
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "col-md-12 mx-auto" },
+      [
+        _c("h4", { staticClass: "text-center" }, [_vm._v("Upload Images")]),
+        _vm._v(" "),
+        _c("VueFileAgent", {
+          ref: "vueFileAgent",
+          attrs: {
+            theme: "grid",
+            multiple: true,
+            deletable: true,
+            meta: true,
+            accept: "image/*,.zip",
+            maxSize: "10MB",
+            maxFiles: 14,
+            helpText: "Choose images or zip files",
+            errorText: {
+              type: "Invalid file type. Only images or zip Allowed",
+              size: "Files should not exceed 10MB in size"
+            }
+          },
+          on: {
+            select: function($event) {
+              return _vm.filesSelected($event)
+            },
+            beforedelete: function($event) {
+              return _vm.onBeforeDelete($event)
+            },
+            delete: function($event) {
+              return _vm.fileDeleted($event)
+            },
+            upload: function($event) {
+              return _vm.onUpload($event)
+            }
+          },
+          model: {
+            value: _vm.fileRecords,
+            callback: function($$v) {
+              _vm.fileRecords = $$v
+            },
+            expression: "fileRecords"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "btn btn-outline-secondary btn-block col-md-6 mx-auto text-center mt-2",
             attrs: { disabled: !_vm.fileRecordsForUpload.length },
             on: {
               click: function($event) {

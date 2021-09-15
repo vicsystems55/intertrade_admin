@@ -39,6 +39,9 @@
 	<link rel="stylesheet" href="{{config('app.url')}}assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="{{config('app.url')}}assets/css/header-colors.css" />
 
+	<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>InterTrade Admin</title>
 </head>

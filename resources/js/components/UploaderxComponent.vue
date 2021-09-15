@@ -81,7 +81,7 @@ data(){
         baseURL: process.env.MIX_API_URL,
 
         fileRecords: [],
-        uploadUrl: this.appurl +'upload_pix',
+        uploadUrl: this.appurl +'upload_pixx',
         uploadHeaders: { 
             'X-Test-Header': 'vue-file-agent',
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -93,7 +93,7 @@ data(){
 },
 
 
-    props: ['appurl', 'reportcode'],
+    props: ['appurl', 'reportcode', 'reportcodex'],
 
     methods: {
 
@@ -102,8 +102,10 @@ data(){
             },
 
               get_images(){
+
+             
               
-                    axios.get(this.appurl+'get_images',{
+                    axios.get(this.appurl+'get_imagesx?report_code='+this.reportcodex,{
                       
                         // date: this.date,
                         // file_upload: this.newfile_name,
@@ -184,7 +186,7 @@ data(){
         },
       uploadFiles: function () {
         // Using the default uploader. You may use another uploader instead.
-        this.$refs.vueFileAgent.upload(this.uploadUrl, this.uploadHeaders, this.fileRecordsForUpload);
+        this.$refs.vueFileAgent.upload(this.uploadUrl+'?report_code='+this.reportcodex, this.uploadHeaders, this.fileRecordsForUpload);
         this.fileRecordsForUpload = [];
       },
       deleteUploadedFile: function (fileRecord) {

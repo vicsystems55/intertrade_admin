@@ -126,7 +126,7 @@ class DriverPageController extends Controller
         ]);
     }
 
-    public function reports()
+    public function create_report()
     {
         $user_id = Auth::user()->id;
 
@@ -159,7 +159,7 @@ class DriverPageController extends Controller
         $deployments = Deployment::latest()->get();
 
 
-        return view('driver_dashboard.reports',[
+        return view('driver_dashboard.create_report',[
             'deployments' => $deployments 
         ]);
     }
@@ -205,4 +205,35 @@ class DriverPageController extends Controller
             'project' => $project
         ]);
     }
+
+    public function reports()
+    {
+        $user_id = Auth::user()->id;
+
+        $reports = DeploymentReport::where('reporter_id', $user_id )->where('status', 'submitted')->with('report_images')->with('reporters')->latest()->get();
+
+        // dd($reports);
+
+        
+        
+        return view('driver_dashboard.reports',[
+            'reports' => $reports
+        ]);
+    }
+
+    public function report($report_id)
+    {
+
+        $report = DeploymentReport::with('report_images')->with('reporters')->where('id', $report_id)->first();
+
+        
+        $deployments = Deployment::latest()->get();
+        
+        return view('driver_dashboard.report',[
+            'report' => $report,
+            'deployments' => $deployments
+        
+        ]);
+    }
+
 }
