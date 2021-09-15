@@ -9,7 +9,7 @@
         <h6>{{$report->state}}</h6>
         <h4>{{$report->site_name}}</h4>
 
-        <h4>Report</h4>
+        {{-- <h4>Report</h4> --}}
 
         <table class="table table-striped">
             <thead>
@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td>
-                        model: 
+                        Model: 
                     </td>
                     <th>
                         {{$report->model}}
@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td>
-                        installation_completion_date: 
+                        Installation Completion Date: 
                     </td>
                     <th>
                         {{$report->installation_completion_date}}
@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
                     <td>
-                        ucc_serial_number: 
+                        UCC Serial Number(s): 
                     </td>
                     <th>
                         {{$report->ucc_serial_number}}
@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
                     <td>
-                        rtmd_number: 
+                        RTM Number: 
                     </td>
                     <th>
                         {{$report->rtmd_number}}
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td>
-                        functional_state: 
+                        Functional State: 
                     </td>
                     <th>
                         {{$report->functional_state}}
@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <td>
-                        temp_at_update: 
+                        Temperature at Update: 
                     </td>
                     <th>
                         {{$report->temp_at_update}}
@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <td>
-                        date_submitted: 
+                        Date Submitted: 
                     </td>
                     <th>
                         {{$report->date_submitted}}
@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <td>
-                        units: 
+                        Number of units: 
                     </td>
                     <th>
                         {{$report->units}}
@@ -87,7 +87,7 @@
                 </tr>
                 <tr>
                     <td>
-                        remark: 
+                        Remark: 
                     </td>
                     <th>
                         {{$report->remark}}
