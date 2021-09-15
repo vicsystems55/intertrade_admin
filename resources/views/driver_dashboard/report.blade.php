@@ -133,7 +133,7 @@
 
 
         <div class="col-md-6 mx-auto p-5">
-            <button type="submit" class="btn btn-primary shadow col-md-10 mx-auto btn-lg">SUBMIT REPORT</button>
+            <button type="submit" class="btn btn-primary shadow col-md-10 mx-auto btn-lg">UPDATE REPORT</button>
         </div>
 
     </form>
