@@ -21,6 +21,8 @@ class DeploymentReportController extends Controller
     public function create_report(Request $request)
     {
 
+        // dd($request->all());
+
         
             $request->validate([
 

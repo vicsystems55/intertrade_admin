@@ -32,7 +32,7 @@
                     <div class="form-group mb-3">
                         <label for="">Deployment State</label>
                         <select name="state" id="" class="form-control">
-                            <option value="">Select State</option>
+                            <option value="">--Select State--</option>
 
                             @foreach ($deployments as $state)
                                 <option value="{{$state->state}}">{{$state->state}}</option>
@@ -45,7 +45,7 @@
 
                     <div class="form-group mb-3">
                         <label for="">Site Name:</label>
-                        <select name="site" id="" class="form-control">
+                        <select name="site_name" id="" class="form-control">
                             <option value="">Select Site</option>
                             
                             @foreach ($deployments as $site)
@@ -78,13 +78,13 @@
                 <div class="col-md-6">
 
                     <div class="form-group mb-3">
-                        <label for="">UCC Serial Number:</label>
-                        <input name="model" name="ucc_serial_number" type="text" class="form-control" placeholder="UCC Serial Number">
+                        <label for="">UCC Serial Number(s):</label>
+                        <input name="ucc_serial_number" type="text" class="form-control" placeholder="UCC Serial Number">
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="">RTM Number:</label>
-                        <input name="model" name="rtmd_number" type="text" class="form-control" placeholder="RTM Number">
+                        <input name="rtmd_number" type="text" class="form-control" placeholder="RTM Number">
                     </div>
 
                     <div class="form-group mb-3">

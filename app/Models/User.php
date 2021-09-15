@@ -44,4 +44,10 @@ class User extends Authenticatable
 
         return $this->hasMany('App\Models\TruckRoute', 'driver_assigned', 'id');
     }
+
+    public function deployment_reports()
+    {
+            
+        return $this->hasMany('App\Models\DeploymentReport', 'reporter_id', 'id');
+    }
 }

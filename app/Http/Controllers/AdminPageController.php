@@ -47,7 +47,9 @@ class AdminPageController extends Controller
 
         $users = User::latest()->get();
 
-        $reports = DeploymentReport::where('status', 'submitted')->latest()->get();
+        $reports = DeploymentReport::with('reporters')->where('status', 'submitted')->latest()->get();
+
+        // dd($reports);
 
 
         return view('admin_dashboard.index',[
@@ -133,7 +135,7 @@ class AdminPageController extends Controller
     {
 
 
-        $reports = DeploymentReport::where('status', 'submitted')->with('report_images')->latest()->get();
+        $reports = DeploymentReport::where('status', 'submitted')->with('report_images')->with('reporters')->latest()->get();
 
         // dd($reports);
 

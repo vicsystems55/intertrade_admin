@@ -17,4 +17,11 @@ class DeploymentReport extends Model
         
         return $this->hasMany('App\Models\ReportImage', 'report_id', 'id');
     }
+
+    public function reporters()
+    {
+            
+
+        return $this->belongsTo('App\Models\User', 'reporter_id', 'id');
+    }
 }

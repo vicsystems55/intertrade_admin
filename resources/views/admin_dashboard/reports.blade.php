@@ -8,13 +8,14 @@
 
         <h4>Daily Reports</h4>
 
-       <div class="card">
+       <div class="card table-responsive">
            <div class="card-body">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>State</th>
+                        <th>Report By</th>
                         <th>Site Name</th>
                         <th>Serial Number</th>
                         <th>Unit</th>
@@ -32,10 +33,16 @@
                             {{$loop->iteration}}
     
                         </td>
+
+                       
                         <td>
                             <span>
                                 {{$report->state}}
                             </span>
+                        </td>
+
+                        <td>
+                            {{$report->reporters->name}}
                         </td>
                         <td>
                             <span>
