@@ -136,6 +136,7 @@ class AdminPageController extends Controller
         $reports = DeploymentReport::where('status', 'submitted')->with('report_images')->latest()->get();
 
         // dd($reports);
+
         
         
         return view('admin_dashboard.reports',[
