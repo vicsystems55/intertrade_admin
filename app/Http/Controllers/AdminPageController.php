@@ -149,7 +149,7 @@ class AdminPageController extends Controller
     public function report($report_id)
     {
 
-        $report = DeploymentReport::with('report_images')->where('id', $report_id)->first();
+        $report = DeploymentReport::with('report_images')->with('reporters')->where('id', $report_id)->first();
 
         
         

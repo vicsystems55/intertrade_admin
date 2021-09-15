@@ -14,10 +14,11 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>State</th>
                         <th>Report By</th>
+                        <th>State</th>
+                        
                         <th>Site Name</th>
-                        <th>Serial Number</th>
+                       
                         <th>Unit</th>
                         <th>Status</th>
                         <th>Date Submitted</th>
@@ -34,6 +35,10 @@
     
                         </td>
 
+                        <td>
+                            {{$report->reporters->name}}
+                        </td>
+
                        
                         <td>
                             <span>
@@ -41,19 +46,12 @@
                             </span>
                         </td>
 
-                        <td>
-                            {{$report->reporters->name}}
-                        </td>
+                      
                         <td>
                             <span>
                                 {{$report->site_name}}
                             </span>
     
-                        </td>
-                        <td>
-                            <span>
-                                {{$report->ucc_serial_number}}
-                            </span>
                         </td>
     
                         <td>

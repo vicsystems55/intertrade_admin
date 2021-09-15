@@ -15,6 +15,14 @@
             <thead>
                 <tr>
                     <td>
+                        Report By: 
+                    </td>
+                    <th>
+                        {{$report->reporters->name}}
+                    </th>
+                </tr>
+                <tr>
+                    <td>
                         model: 
                     </td>
                     <th>
