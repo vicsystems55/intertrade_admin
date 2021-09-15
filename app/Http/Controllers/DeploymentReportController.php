@@ -23,6 +23,14 @@ class DeploymentReportController extends Controller
 
         
             $request->validate([
+
+                    'state' => 'required',
+                    'site_name' => 'required',
+                    'units' => 'required',
+                    'model' => 'required',
+                    'installation_completion_date' => 'required',
+                    'ucc_serial_number' => 'required',
+
                 // 'date_submitted' => 'required|unique:deployment_reports',
                 // 'amount' => 'required|numeric|min:99700|between:0,99.99',
                 // 'number_of_accounts' => 'required|numeric|min:1|max:15',
