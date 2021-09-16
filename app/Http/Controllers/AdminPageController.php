@@ -41,7 +41,9 @@ class AdminPageController extends Controller
 
         $projects = Project::latest()->get();
 
-        $deployments = Deployment::where('status', 'delivered')->latest()->get();
+        $deployments = Deployment::latest()->get();
+
+        $successful_deployments = Deployment::where('status', 'success')->latest()->get();
 
         $inventories = Inventory::latest()->get();
 
@@ -55,6 +57,7 @@ class AdminPageController extends Controller
         return view('admin_dashboard.index',[
             'projects' => $projects,
             'deployments' => $deployments,
+            'successful_deployments' => $successful_deployments,
             'inventories' => $inventories,
             'users' => $users,
             'reports' => $reports
