@@ -54,11 +54,15 @@
                             <div>
                                 <p class="mb-0 text-secondary">Delivery Rate</p>
                                 <h4 class="my-1 text-success">
-                                    {{(
+                                    {{number_format(
+                                    (
+                                        (
                                         $successful_deployments->count()
                                         /
                                         $deployments->count()
-                                    )*100}}%
+                                    )*100
+                                    ),2
+                                    )}}%
                                 </h4>
                                
                             </div>

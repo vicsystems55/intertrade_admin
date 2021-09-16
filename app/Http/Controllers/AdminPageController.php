@@ -43,7 +43,7 @@ class AdminPageController extends Controller
 
         $deployments = Deployment::latest()->get();
 
-        $successful_deployments = Deployment::where('status', 'success')->latest()->get();
+        $successful_deployments = Deployment::where('status', 'delivered')->latest()->get();
 
         $inventories = Inventory::latest()->get();
 

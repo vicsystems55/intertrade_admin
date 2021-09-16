@@ -42,12 +42,12 @@
 
 
                        @forelse ($deployments as $deployment)
-                       <div class="card">
+                       <div class="card {{$deployment->status=='delivered'?'border border-success':''}}">
                         <div class="card-body">
 
                       <table class="table">
                         <tr>
-                            <td>State: </td>
+                            <td style="background-color: orange;">State: </td>
                             <td>
                             <span style="font-weight: bold;" class="font-weight-bold">
                                 {{$deployment->state}}
@@ -85,7 +85,7 @@
                             <tr>
                                 <td>Delivery Status: </td>
                                 <td>
-                                <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill bg-warning text-dark">
+                                <span style="" class=" badge rounded-pill bg-{{$deployment->status=='delivered'?'success':'warning'}} text-{{$deployment->status=='delivered'?'white':'dark'}}">
                                     {{$deployment->status}}
                                 </span>
                                 </td>
