@@ -25,6 +25,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "laravel-echo": "^1.11.2",
+        "pusher-js": "^7.0.3",
         "vue-file-agent": "^1.7.3",
         "vue-js-modal": "^2.0.1",
         "vue-toastify": "^1.8.0",

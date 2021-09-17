@@ -70,7 +70,7 @@
                                                 REQUIRED : {{$trucka->deployments->no_ucc}}
                                             </span>
 
-                                            <a href="" class="{{Auth::user()->role=='admin'?'':'d-none'}}  btn btn-primary btn-sm">View Report</a>
+                                            {{-- <a href="" class="{{Auth::user()->role=='admin'?'':'d-none'}}  btn btn-primary btn-sm">View Report</a> --}}
 
                                         </div>
                                        
@@ -125,15 +125,23 @@
                         <div class="row g-0">
         
                             <div class="col-sm py-2">
-                                <div class="card border-primary shadow radius-15">
+                                <div class="card border-primary shadow radius-15 {{$trucka->deployments->status=='delivered'?'border border-success':''}}">
                                     <div class="card-body">
-                                        <div class="float-en text-primary small">Take Off:<br>  <strong>Jan 10th 2019 8:30 AM</strong></div>
-                                        <div class="float-en text-success small">Drop Off:<br> <strong>Jan 10th 2019 8:30 AM</strong></div>
+                                        <div class="float-en text-primary small">Take Off:<br>  --- </div>
+                                        <div class="float-en text-success small">Drop Off:<br> --- </div>
                                         <div class="">
 
                                             <h4 class="card-titl text-primary">{{$truckb->deployments->facility_name}}</h4>
                                             <p class="card-text">{{$truckb->deployments->facility_address}}</p>
-                                            <p class="card-text text-danger">{{$trucka->deployments->status}}</p>
+                                            <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill text-dark bg-{{$trucka->deployments->status=='delivered'?'success':'warning'}} ">
+                                                DELIVERED : 0
+                                             </span> 
+ 
+                                             /
+ 
+                                             <span style="font-weight: bold;" class="font-weight-bold badge rounded-pill text-dark bg-{{$trucka->deployments->status=='delivered'?'success':'warning'}} ">
+                                                 REQUIRED : {{$trucka->deployments->no_ucc}}
+                                             </span>
 
                                         </div>
                                        
@@ -151,7 +159,7 @@
                                     <!--spacer-->
 
                                    
-                                        <img src="{{$truckb->drivers->avatar}}" style="height: 90px;" class="shadow rounded rounded-circle" alt=""> <br>
+                                        <img src="{{$truckb->drivers->avatar}}" style="height: 50px;" class="shadow rounded rounded-circle" alt=""> <br>
 
                                         <p style="font-weight: bold" class="mt-2" >Driver: <br> {{$truckb->drivers->name}}</p>
                                 </div>

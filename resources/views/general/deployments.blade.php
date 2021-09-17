@@ -45,9 +45,9 @@
                        <div class="card {{$deployment->status=='delivered'?'border border-success':''}}">
                         <div class="card-body">
 
-                      <table class="table">
+                      <table class="table table-striped">
                         <tr>
-                            <td style="background-color: orange;">State: </td>
+                            <td style="width: 230px;">State: </td>
                             <td>
                             <span style="font-weight: bold;" class="font-weight-bold">
                                 {{$deployment->state}}

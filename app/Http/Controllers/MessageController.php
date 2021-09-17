@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 
+use App\Events\SmartMessageEvent;
+
 use Auth;
 
 use Illuminate\Http\Request;
@@ -24,6 +26,8 @@ class MessageController extends Controller
             'fr_om' => Auth::user()->id
 
         ]);
+
+        broadcast(new SmartMessageEvent($message));
 
         return back()->with('message', 'Message Sent');
     }

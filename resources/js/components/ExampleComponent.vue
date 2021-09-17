@@ -139,6 +139,8 @@ Vue.use(VModal)
 
         },
         mounted() {
+
+            
             
             console.log('Component mounted.');
             this.get_account_maps();

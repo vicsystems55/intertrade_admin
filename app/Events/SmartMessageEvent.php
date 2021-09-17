@@ -9,6 +9,8 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+
 
 class SmartMessageEvent
 {
@@ -19,9 +21,13 @@ class SmartMessageEvent
      *
      * @return void
      */
-    public function __construct()
+
+    public $message;
+    
+    public function __construct($message)
     {
         //
+        $this->message = $message;
     }
 
     /**
@@ -29,8 +35,17 @@ class SmartMessageEvent
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
+    // public function broadcastOn()
+    // {
+    //     return new PrivateChannel('channel-name');
+    // }
+
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('newTask');
+    }
+    
+    public function broadcastAs(){
+        return 'task-created';
     }
 }

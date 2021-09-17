@@ -146,14 +146,14 @@
 
                 <div class="col-{{$loop->first?'12 mx-auto':'4'}} text-center">
 
-                    <div class="card p-1 text-center mx-auto">
+                    <div class="card p-1 text-center mx-auto {{$loop->first?'d-none':'4'}}">
 
                         <img class="img-fluid" style="text-align: center; height: 300px; width: 300px; object-fit: cover;" src="{{config('app.url')}}{{$image->img_path}}" alt="">
                         
 
                     </div>
                     @if ($loop->first)
-                    <h6><strong>DELIVERY NOTE</strong></h6>
+                    
                     @endif
 
                 </div>

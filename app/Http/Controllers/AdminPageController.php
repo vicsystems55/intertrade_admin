@@ -30,6 +30,8 @@ use App\Models\DeploymentReport;
 
 use App\Models\ReportImage;
 
+use Illuminate\Support\Facades\Http;
+
 use Auth;
 
 class AdminPageController extends Controller
