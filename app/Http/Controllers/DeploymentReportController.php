@@ -43,6 +43,7 @@ class DeploymentReportController extends Controller
         $report_code = Session::get('report_code');
         
         $report = DeploymentReport::where('report_code', $report_code)->update([
+            'report_type' => $request->report_type,
             'reporter_id' => Auth::user()->id,
             'state' => $request->state,
             'site_name' => $request->site_name,
@@ -114,6 +115,7 @@ class DeploymentReportController extends Controller
         $report_code = $request->report_code;
         
         $report = DeploymentReport::where('report_code', $report_code)->update([
+            'report_type' => $request->report_type,
             'reporter_id' => Auth::user()->id,
             'state' => $request->state,
             'site_name' => $request->site_name,

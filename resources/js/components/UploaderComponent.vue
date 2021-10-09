@@ -228,7 +228,7 @@ data(){
      alert('welcome channel');
 
         window.Echo.channel("newTask").listen(".task-created", e => {
-                  console.log(e);
+                  alert('yeah');
         });
              
         

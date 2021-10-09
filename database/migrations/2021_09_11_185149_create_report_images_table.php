@@ -17,6 +17,7 @@ class CreateReportImagesTable extends Migration
             $table->id();
             $table->bigInteger('report_id')->unsigned();
             $table->string('img_path');
+            $table->string('custom_name')->nullable();
             $table->string('status')->default('active');
             $table->foreign('report_id')->references('id')->on('deployment_reports');
             $table->timestamps();

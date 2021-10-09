@@ -36,67 +36,96 @@
                     {{Auth::user()->role=='superadmin'?'':'d-none'}}
                     btn btn-primary shadow col-md-5">Add New</a>
                 </div>
+
+                <div class="row">
+
+                    @forelse ($deployments as $deployment)
+
+                        <div class="col-md-4">
+                            <div style="height: 250px;" class="card {{$deployment->status=='delivered'?'border border-success':''}}">
+                                <div class="card-body">
+        
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <td style="width: 120px;">State: </td>
+                                            <td>
+                                            <span style="font-weight: bold;" class="font-weight-bold">
+                                                {{$deployment->state}}
+                                            </span>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td>Facility Name: </td>
+                                            <td>
+                                            <span style="font-weight: bold;" class="font-weight-bold" title="{{$deployment->facility_name}}">
+                                                {{$deployment->facility_name}}
+                                            </span>
+                                            </td>
+                                            </tr>
+                                        
+                                        
+                                            {{-- <tr>
+                                            <td>Contact Number: </td>
+                                            <td>
+                                            <span style="font-weight: bold;" class="font-weight-bold" title="{{$deployment->contact_email}}">
+                                                {{$deployment->contact_number}}
+                                            </span>
+                                            </td>
+                                            </tr> --}}
+                                        
+                                            {{-- <tr>
+                                            <td>Number of UCCs: </td>
+                                            <td>
+                                            <span style="font-weight: bold;" class="font-weight-bold">
+                                                {{$deployment->no_ucc}}
+                                            </span>
+                                            </td>
+                                            </tr> --}}
+        
+                                            <tr>
+                                                <td>Delivery Status: </td>
+                                                <td>
+                                                <span style="" class=" badge rounded-pill bg-{{$deployment->status=='delivered'?'success':'warning'}} text-{{$deployment->status=='delivered'?'white':'dark'}}">
+                                                    {{$deployment->status}}
+                                                </span>
+                                                </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Installation Status: </td>
+                                                    <td>
+                                                    <span style="" class=" badge rounded-pill bg-{{$deployment->status=='delivered'?'success':'warning'}} text-{{$deployment->status=='delivered'?'white':'dark'}}">
+                                                       not installed
+                                                    </span>
+                                                    </td>
+                                                    </tr>
+                                    </table>
+
+                                    <div class="row">
+                                        <div class="col-6 text-center">
+                                            <a href="" class="btn btn-primary btn-block btn-sm shadow">Deployment</a>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <a href="" class="btn btn-primary btn-block btn-sm shadow">Installation</a>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                   
+               @empty
+
+
+
+                </div>
             
 
                   
 
 
-                       @forelse ($deployments as $deployment)
-                       <div class="card {{$deployment->status=='delivered'?'border border-success':''}}">
-                        <div class="card-body">
-
-                      <table class="table table-striped">
-                        <tr>
-                            <td style="width: 230px;">State: </td>
-                            <td>
-                            <span style="font-weight: bold;" class="font-weight-bold">
-                                {{$deployment->state}}
-                            </span>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td>Facility Address: </td>
-                            <td>
-                            <span style="font-weight: bold;" class="font-weight-bold" title="{{$deployment->facility_name}}">
-                                {{$deployment->facility_address}}
-                            </span>
-                            </td>
-                            </tr>
-                           
-                           
-                            <tr>
-                            <td>Contact Number: </td>
-                            <td>
-                            <span style="font-weight: bold;" class="font-weight-bold" title="{{$deployment->contact_email}}">
-                                {{$deployment->contact_number}}
-                            </span>
-                            </td>
-                            </tr>
-                           
-                            <tr>
-                            <td>Number of UCCs: </td>
-                            <td>
-                            <span style="font-weight: bold;" class="font-weight-bold">
-                                {{$deployment->no_ucc}}
-                            </span>
-                            </td>
-                            </tr>
-
-                            <tr>
-                                <td>Delivery Status: </td>
-                                <td>
-                                <span style="" class=" badge rounded-pill bg-{{$deployment->status=='delivered'?'success':'warning'}} text-{{$deployment->status=='delivered'?'white':'dark'}}">
-                                    {{$deployment->status}}
-                                </span>
-                                </td>
-                                </tr>
-                      </table>
-                            
-                            
-                        </div>
-                    </div>
-                           
-                       @empty
+                    
 
                         <h6>No Delivery data...</h6>
                            

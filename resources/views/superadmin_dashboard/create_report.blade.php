@@ -49,7 +49,7 @@
                             <option value="">Select Site</option>
                             
                             @foreach ($deployments as $site)
-                                <option value="{{$site->facility_address}}">{{$site->facility_address}}</option>
+                                <option value="{{$site->facility_name}}">{{$site->facility_name}}</option>
                             @endforeach
 
 

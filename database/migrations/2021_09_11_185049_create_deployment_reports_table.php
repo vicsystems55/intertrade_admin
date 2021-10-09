@@ -23,6 +23,7 @@ class CreateDeploymentReportsTable extends Migration
             $table->string('model')->nullable();
             $table->string('installation_completion_date')->nullable();
             $table->string('ucc_serial_number')->nullable();
+            $table->integer('staff_trained')->nullable();
             $table->string('rtmd_number')->nullable();
             $table->string('functional_state')->nullable();
             $table->string('temp_at_update')->nullable();

@@ -133,7 +133,7 @@ class DriverPageController extends Controller
         // check if session exist with listing code
 
 
-        $report = DeploymentReport::where('report_code', Session::get('report_code'))->where('reporter_id', $user_id)->first();
+        $report = DeploymentReport::where('status', 'not delivered')->where('report_code', Session::get('report_code'))->where('reporter_id', $user_id)->first();
 
         if (Session::get('report_code') && $report) {
             # code...

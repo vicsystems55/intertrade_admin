@@ -30,7 +30,10 @@ use App\Models\DeploymentReport;
 
 use App\Models\ReportImage;
 
+
+
 use Illuminate\Support\Facades\Http;
+
 
 use Auth;
 
@@ -100,6 +103,10 @@ class AdminPageController extends Controller
 
     public function notifications()
     {
+
+      return event(new \App\Events\SmartMessageEvent('Someone'));
+
+        dd($event);
 
         $notifications = Notification::where('user_id', Auth::user()->id)->get();
 

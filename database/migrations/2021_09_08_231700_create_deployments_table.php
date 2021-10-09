@@ -18,6 +18,9 @@ class CreateDeploymentsTable extends Migration
 
             $table->bigInteger('project_id')->unsigned();
 
+            
+            $table->string('report_type')->nullable();
+
             $table->string('site_type')->nullable();
             $table->string('state')->nullable();
             $table->string('district')->nullable();

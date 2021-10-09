@@ -54,6 +54,16 @@
         </a>
     </li>
 
+    
+    <li>
+        <a href="{{route('technician.create_report')}}">
+            <div class="parent-icon"><i class='bx bx-pen'></i>
+            </div>
+            <div class="menu-title">Create Report</div>
+        </a>
+    </li>
+
+
 
 
     <li>

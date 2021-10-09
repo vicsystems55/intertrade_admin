@@ -30,6 +30,8 @@ use App\Models\ReportImage;
 
 use App\Models\DeploymentReport;
 
+use App\Models\InstallationSchedule;
+
 use Carbon\Carbon;
 
 use Session;
@@ -39,6 +41,14 @@ use Auth;
 class SuperAdminPageController extends Controller
 {
     //
+
+    public function spo_reports()
+    {
+        
+        
+
+        return view('genral');
+    }
 
     public function index()
     {
@@ -158,6 +168,51 @@ class SuperAdminPageController extends Controller
             'users' => $users,
         ]);
     }
+
+    public function create_installation_schedule()
+    {
+
+
+        $deployments = Deployment::latest()->get();
+
+        $inventories = Inventory::latest()->get();
+
+        $users = User::where('role', 'technician')->get();
+
+
+        
+        return view('superadmin_dashboard.create_installation_schedule',[
+            'deployments' => $deployments,
+            'inventories' => $inventories,
+            'users' => $users,
+        ]);
+    }
+
+    public function installation_schedule(Request $request)
+    {
+        
+
+        $key = $request->technician_assigned??'';
+
+
+        $deployments = Deployment::latest()->get();
+
+        $installation_schedules = InstallationSchedule::where('technician_assigned','Like', '%'.$key.'%')->with('deployments')->with('technicians')->orderBy('technician_assigned', 'asc')->latest()->get();
+
+        $users = User::where('role', 'technician')->get();
+
+        // dd($installation_schedules);
+
+
+        
+        return view('general.installation_schedule',[
+            'deployments' => $deployments,
+            'installation_schedules' => $installation_schedules,
+            'users' => $users,
+        ]);
+    }
+
+
 
     public function truck_routes()
     {

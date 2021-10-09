@@ -80,6 +80,14 @@
     </li>
 
     <li>
+        <a href="{{route('superadmin.installation_schedule')}}">
+            <div class="parent-icon"><i class='bx bx-book'></i>
+            </div>
+            <div class="menu-title">Installation Schedule</div>
+        </a>
+    </li>
+
+    <li>
         <a href="{{route('superadmin.inventories')}}">
             <div class="parent-icon"><i class='bx bx-buildings'></i>
             </div>

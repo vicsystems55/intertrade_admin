@@ -14,6 +14,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\StaffRecordController;
 use App\Http\Controllers\ReportImageController;
 use App\Http\Controllers\DeploymentReportController;
+use App\Http\Controllers\InstallationScheduleController;
+
 
 
 
@@ -96,6 +98,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function(){
 
     Route::get('/truck_routes', [AdminPageController::class, 'truck_routes'])->name('admin.truck_routes');
 
+    Route::get('/installation_schedule', [AdminPageController::class, 'installation_schedule'])->name('admin.installation_schedule');
+
     Route::get('/create_truck_route', [AdminPageController::class, 'create_truck_route'])->name('admin.create_truck_route');
 
 });
@@ -110,6 +114,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function(){
 
     Route::get('/reports', [TechnicianPageController::class, 'reports'])->name('technician.report');
 
+    Route::get('/create_report', [TechnicianPageController::class, 'create_report'])->name('technician.create_report');
+
 
 
 });
@@ -117,6 +123,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function(){
 Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
 
     Route::get('/', [SuperAdminPageController::class, 'index'])->name('superadmin');
+
+    Route::get('/spo_reports', [SuperAdminPageController::class, 'spo_reports'])->name('superadmin.spo_reports');
 
     Route::get('/notifications', [SuperAdminPageController::class, 'notifications'])->name('superadmin.notifications');
 
@@ -139,6 +147,10 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
     Route::get('/messages', [SuperAdminPageController::class, 'messages'])->name('superadmin.messages');
 
     Route::get('/truck_routes', [SuperAdminPageController::class, 'truck_routes'])->name('superadmin.truck_routes');
+
+    Route::get('/installation_schedule', [SuperAdminPageController::class, 'installation_schedule'])->name('superadmin.installation_schedule');
+
+    Route::get('/create_installation_schedule', [SuperAdminPageController::class, 'create_installation_schedule'])->name('superadmin.create_installation_schedule');
 
     Route::get('/create_truck_route', [SuperAdminPageController::class, 'create_truck_route'])->name('superadmin.create_truck_route');
 
@@ -222,11 +234,15 @@ Auth::routes();
 
 // all post
 
+Route::group(['middleware' => ['auth']], function(){
+
 Route::post('/map_account', [AccountMappingController::class, 'map_account'])->name('map_account');
 
 Route::post('/send_message', [MessageController::class, 'send_message'])->name('send_message');
 
 Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_route'])->name('create_truck_route');
+
+Route::post('/create_installation_schedule', [InstallationScheduleController::class, 'create_installation_schedule'])->name('create_installation_schedule');
 
 Route::post('/create_staff_account', [StaffRecordController::class, 'create_staff_account'])->name('create_staff_account');
 
@@ -243,6 +259,7 @@ Route::post('/upload_pix', [ReportImageController::class, 'store'])->name('uploa
 Route::post('/upload_pixx', [ReportImageController::class, 'update'])->name('upload_pixx');
 
 Route::post('/delete_pix', [ReportImageController::class, 'delete'])->name('delete.upload_pix');
+});
 
 // all get
 

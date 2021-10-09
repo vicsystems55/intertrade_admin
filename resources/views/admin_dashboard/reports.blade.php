@@ -15,12 +15,14 @@
                     <tr>
                         <th>#</th>
                         <th>Drivers Name</th>
+                        <th>Report Type</th>
                         <th>State</th>
                         
                         <th>Facility</th>
                        
                         <th>Unit</th>
                         <th>Status</th>
+                        <th>Serial Number</th>
                         <th>Date Submitted</th>
                         <th></th>
                     </tr>
@@ -37,6 +39,9 @@
 
                         <td>
                             {{$report->reporters->name}}
+                        </td>
+                        <td>
+                            {{$report->report_type??'Deployment Report'}}
                         </td>
 
                        
@@ -66,6 +71,11 @@
                             </span>
                         </td>
 
+                        <td style="word-wrap: break-word;" >
+                            <span style=" word-wrap: break-word; height: 300px;">
+                                {{substr($report->ucc_serial_number,0,30).'...'}}
+                            </span>
+                        </td>
                         <td>
                             <span>
                                 {{\Carbon\Carbon::parse($report->date_submitted)->format('d M, Y')}}

@@ -68,6 +68,16 @@
             <div class="menu-title">Truck Routes</div>
            </a>
     </li>
+
+    <li>
+        <a href="{{route('admin.installation_schedule')}}">
+            <div class="parent-icon"><i class='bx bx-book'></i>
+            </div>
+            <div class="menu-title">Installation Schedule</div>
+        </a>
+    </li>
+
+
     <li class="menu-label">Management</li>
     <li>
         <a href="{{route('admin.staff_records')}}">

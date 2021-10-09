@@ -2494,7 +2494,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_file_agent__WEBPACK_IMPORTE
   mounted: function mounted() {
     alert('welcome channel');
     window.Echo.channel("newTask").listen(".task-created", function (e) {
-      console.log(e);
+      alert('yeah');
     });
     this.get_images();
   }
