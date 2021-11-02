@@ -228,7 +228,14 @@ data(){
      alert('welcome channel');
 
         window.Echo.channel("newTask").listen(".task-created", e => {
-                  alert('yeah');
+
+                      this.$vToastify.success({
+                      body: "You have a new message",
+                      title: " ",
+                      theme: "light",
+                      hideProgressbar: true,
+                      
+                    })
         });
              
         

@@ -20,7 +20,7 @@
                      Plot 798, Jahi Fct. Abuja <br>
                      enquiry@intertradeltd.biz
                  </p>
-                <p class="text-center font-weight-bold">{{$report->report_type=='installation_report'?'Insatllation Report':'Insatllation Report'}} Report</p>
+                <p class="text-center font-weight-bold">{{$report->report_type=='installation_report'?'Insatllation':'Insatllation'}} Report</p>
                {{$report->site_name}} <br>
                 {{$report->state}}</p>
                 <hr class="border border-dark container">
@@ -73,22 +73,22 @@
                             {{$report->rtmd_number??'---'}}
                         </th>
                     </tr>
-                    {{-- <tr>
+                    <tr>
                         <td>
                             Functional State: 
                         </td>
                         <th>
                             {{$report->functional_state}}
                         </th>
-                    </tr> --}}
-                     {{-- <tr>
+                    </tr>
+                     <tr>
                         <td>
                             Temperature at Update: 
                         </td>
                         <th>
                             {{$report->temp_at_update}}
                         </th>
-                    </tr> --}}
+                    </tr>
                     <tr>
                         <td>
                             Date Installed: 

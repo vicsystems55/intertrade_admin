@@ -104,9 +104,9 @@ class AdminPageController extends Controller
     public function notifications()
     {
 
-      return event(new \App\Events\SmartMessageEvent('Someone'));
+      event(new \App\Events\SmartMessageEvent('newTask'));
 
-        dd($event);
+        // dd($event);
 
         $notifications = Notification::where('user_id', Auth::user()->id)->get();
 

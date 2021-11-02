@@ -42,7 +42,7 @@ class SmartMessageEvent implements ShouldBroadcastNow
 
     public function broadcastOn()
     {
-        return new Channel('newTask');
+        return new Channel($this->message);
     }
     
     public function broadcastAs(){

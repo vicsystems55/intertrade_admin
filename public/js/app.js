@@ -2492,9 +2492,16 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_file_agent__WEBPACK_IMPORTE
     }
   },
   mounted: function mounted() {
+    var _this3 = this;
+
     alert('welcome channel');
     window.Echo.channel("newTask").listen(".task-created", function (e) {
-      alert('yeah');
+      _this3.$vToastify.success({
+        body: "You have a new message",
+        title: " ",
+        theme: "light",
+        hideProgressbar: true
+      });
     });
     this.get_images();
   }
