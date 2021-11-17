@@ -50,6 +50,7 @@
                                <option value="technician">Technician</option>
                                <option value="driver">Driver</option>
                                <option value="secretary">Secretary</option>
+                               <option value="accounts">Accountant</option>
                            </select>
                        </div>
            

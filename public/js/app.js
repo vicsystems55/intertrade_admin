@@ -2244,6 +2244,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49199,13 +49207,26 @@ var render = function() {
     {
       ref: "mapRef",
       staticStyle: { "min-height": "500px" },
-      attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "hybrid" }
+      attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "terrain" }
     },
     [
       _vm._l(_vm.markers, function(m, index) {
         return _c("GmapMarker", {
           key: index,
-          attrs: { position: m.position, clickable: true, draggable: true },
+          attrs: {
+            options: {
+              zoomControl: true,
+              mapTypeControl: true,
+              scaleControl: false,
+              streetViewControl: true,
+              rotateControl: false,
+              fullscreenControl: true,
+              disableDefaultUi: false
+            },
+            position: m.position,
+            clickable: true,
+            draggable: true
+          },
           on: {
             click: function($event) {
               _vm.center = m.position
@@ -49217,21 +49238,14 @@ var render = function() {
       _c("GmapMarker", {
         ref: "myMarker",
         attrs: {
-          position: _vm.google && new _vm.google.maps.LatLng(11.99591, 8.55032)
+          position: _vm.google && new _vm.google.maps.LatLng(11.95576, 8.6597)
         }
       }),
       _vm._v(" "),
       _c("GmapMarker", {
         ref: "myMarker",
         attrs: {
-          position: _vm.google && new _vm.google.maps.LatLng(11.98963, 8.53408)
-        }
-      }),
-      _vm._v(" "),
-      _c("GmapMarker", {
-        ref: "myMarker",
-        attrs: {
-          position: _vm.google && new _vm.google.maps.LatLng(7.14414, 3.24324)
+          position: _vm.google && new _vm.google.maps.LatLng(12.33761, 8.63453)
         }
       })
     ],

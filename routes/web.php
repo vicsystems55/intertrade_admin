@@ -15,6 +15,7 @@ use App\Http\Controllers\StaffRecordController;
 use App\Http\Controllers\ReportImageController;
 use App\Http\Controllers\DeploymentReportController;
 use App\Http\Controllers\InstallationScheduleController;
+use App\Http\Controllers\RequisitionController;
 
 
 
@@ -168,17 +169,10 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
 
 Route::group(['middleware' => ['auth'],  'prefix' => 'accounts'], function(){
 
-    Route::get('/', [AccountPageController::class, 'index'])->name('accounts');
+    
+    Route::get('/{page_name}', [AccountPageController::class, 'index']);
 
-    Route::get('/notifications', [AccountPageController::class, 'notifications'])->name('accounts.notifications');
-
-    Route::get('/coaccount', [AccountPageController::class, 'coaccount'])->name('accounts.coaccounts');
-
-    Route::get('/vouchers', [AccountPageController::class, 'vouchers'])->name('accounts.vouchers');
-
-    Route::get('/reports', [AccountPageController::class, 'index'])->name('accounts.reports');
-
-
+    Route::get('/{page_name}/{id}', [AccountPageController::class, 'details']);
 
 });
 
@@ -271,4 +265,4 @@ Route::get('/get_imagesx', [ReportImageController::class, 'get_imagesx'])->name(
 
 
 
-
+// Route::post('/create_requistion_request', [RequisitionController::class, 'create_requisition'])->name('create_requisition_request')->middleware('auth');

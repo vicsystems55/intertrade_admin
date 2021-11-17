@@ -4,10 +4,19 @@
 <GmapMap ref="mapRef"
   :center="{lat:10, lng:10}"
   :zoom="7"
-  map-type-id="hybrid"
+  map-type-id="terrain"
   style="min-height: 500px"
 >
   <GmapMarker
+   :options="{
+   zoomControl: true,
+   mapTypeControl: true,
+   scaleControl: false,
+   streetViewControl: true,
+   rotateControl: false,
+   fullscreenControl: true,
+   disableDefaultUi: false
+ }"
     :key="index"
     v-for="(m, index) in markers"
     :position="m.position"
@@ -17,13 +26,12 @@
   />
 
     <GmapMarker ref="myMarker"
-    :position="google && new google.maps.LatLng(11.995910, 8.550320)" />
+    :position="google && new google.maps.LatLng(11.95576, 8.6597)" />
 
     <GmapMarker ref="myMarker"
-    :position="google && new google.maps.LatLng(11.989630, 8.534080)" />
+    :position="google && new google.maps.LatLng(12.33761, 8.63453)" />
 
-    <GmapMarker ref="myMarker"
-    :position="google && new google.maps.LatLng(7.144140, 3.243240)" />
+
 
     
 </GmapMap>

@@ -38,7 +38,7 @@
     </li>
     <li class="menu-label">UI Elements</li> -->
     <li>
-        <a href="{{route('accounts')}}">
+        <a href="{{url('/accounts/index', 3)}}">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
             <div class="menu-title">Dashboard</div>
@@ -47,7 +47,7 @@
 
     <li class="menu-label">Operations</li>
     <li>
-     <a href="{{route('accounts.coaccounts')}}">
+     <a href="/accounts/coaccounts">
          <div class="parent-icon"><i class='bx bx-cog'></i>
          </div>
          <div class="menu-title">Chart of Accounts</div>
@@ -55,10 +55,18 @@
     </li>
 
     <li>
-        <a href="{{route('accounts.vouchers')}}">
+        <a href="/accounts/vouchers">
             <div class="parent-icon"><i class='bx bx-cog'></i>
             </div>
             <div class="menu-title">Vouchers</div>
+           </a>
+       </li>
+
+       <li>
+        <a href="/accounts/requisitions">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Requisitions</div>
            </a>
        </li>
     <li class="menu-label">Management</li>
@@ -115,3 +123,5 @@
     
     
 </ul>
+
+@include('general.requisition_form')

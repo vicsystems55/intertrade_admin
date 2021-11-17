@@ -10,41 +10,55 @@ use App\Models\AccountSubHead;
 
 use App\Models\AccountMapping;
 
+use App\Models\User;
+
+use App\Models\Notification;
+
+use App\Models\Requisition;
+
 class AccountPageController extends Controller
 {
     //
 
-    public function index()
-    {
-        
-        
-        return view('accounts_dashboard.index');
-    }
-
-    public function coaccount()
+    public function index($page)
     {
 
-        $account_heads = AccountHead::latest()->get();
+    // return $page;
 
-        $account_sub_heads = AccountSubHead::latest()->get();
 
-        $account_mapings = AccountMapping::with('heads')->with('subheads')->latest()->get();
+        $users = User::latest()->get();
 
+        $notifications = Notification::latest()->get();
+
+        $requisitions = Requisition::latest()->get();
         
         
-        return view('accounts_dashboard.coaccount',[
-            'account_heads' => $account_heads,
-            'account_sub_heads' => $account_sub_heads,
-            'account_mapings' => $account_mapings,
+        return view('accounts_dashboard.'.$page,[
+            'notifications' => $notifications,
+            'users' => $users,
+            'requisitions' => $requisitions
         ]);
     }
 
-    public function vouchers()
+    public function details($page, $id)
     {
+
+    // return $page;
+
+
+        $users = User::latest()->get();
+
+        $notifications = Notification::latest()->get();
         
         
-        return view('accounts_dashboard.vouchers');
+        return view('accounts_dashboard.'.$page,[
+            'notifications' => $notifications,
+            'users' => $users
+        ]);
     }
 
+    
+
+   
     
 }

@@ -86,3 +86,5 @@
     
     
 </ul>
+
+@include('general.requisition_form')
