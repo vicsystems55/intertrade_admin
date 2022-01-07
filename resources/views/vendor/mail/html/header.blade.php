@@ -4,7 +4,7 @@
 @if (trim($slot) === 'TPSA')
 <img src="{{config('app.url')}}tpsa/logo.png" class="logo" alt="TPSA">
 @else
-{{ $slot }}
+
 @endif
 </a>
 </td>
