@@ -1,6 +1,6 @@
 @component('mail::message')
 
-<img src="{{ $data['logo'] }}" alt="well">
+{{-- <img src="" alt="well"> --}}
 
 <h3> Hello  </h3>
 
