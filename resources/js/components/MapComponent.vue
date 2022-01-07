@@ -4,7 +4,7 @@
 <GmapMap ref="mapRef"
   :center="{lat:10, lng:10}"
   :zoom="7"
-  map-type-id="terrain"
+  map-type-id="hybrid"
   style="min-height: 500px"
 >
   <GmapMarker
@@ -25,11 +25,7 @@
     @click="center=m.position"
   />
 
-    <GmapMarker ref="myMarker"
-    :position="google && new google.maps.LatLng(11.95576, 8.6597)" />
 
-    <GmapMarker ref="myMarker"
-    :position="google && new google.maps.LatLng(12.33761, 8.63453)" />
 
 
 
@@ -55,8 +51,8 @@ Vue.use(VModal)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyArJU6PfFHaaDQhMFMp__tw8ICGa3MIerc',
-    libraries: 'places', // This is required if you use the Autocomplete plugin
+    key: 'AIzaSyBvRJFvJDwqyb-WGgLbkXrkz7Dvqi11Df0',
+    libraries: 'visualization', // This is required if you use the Autocomplete plugin
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'
     // (as you require)
@@ -87,7 +83,17 @@ Vue.use(VueGoogleMaps, {
             return {
                 account_maps: [],
                 key: '',
-                my_maps: [] 
+                my_maps: [],
+                markers: [
+                  {position: 
+                    { lat: 12.74836, lng: 11.91998 }, 
+                  icon:{
+                    url: 'https://cdn-icons.flaticon.com/png/512/3743/premium/3743809.png?token=exp=1637248430~hmac=23bf85b6524b1108a2428f3ac0e1bd54',
+                    }
+                  }
+                  
+                  ]
+                  
             }
         },
 

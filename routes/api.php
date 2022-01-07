@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RequisitionController;
 
+use App\Http\Controllers\TpsaNotificationController;
+
+
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,3 +28,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/create_requistion_request', [RequisitionController::class, 'create_requisition']);
+
+Route::post('/notify_email', [TpsaNotificationController::class, 'notify_email']);

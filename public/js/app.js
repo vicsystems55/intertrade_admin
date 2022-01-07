@@ -2248,10 +2248,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -2259,8 +2255,8 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use((vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default()));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__, {
   load: {
-    key: 'AIzaSyArJU6PfFHaaDQhMFMp__tw8ICGa3MIerc',
-    libraries: 'places' // This is required if you use the Autocomplete plugin
+    key: 'AIzaSyBvRJFvJDwqyb-WGgLbkXrkz7Dvqi11Df0',
+    libraries: 'visualization' // This is required if you use the Autocomplete plugin
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'
     // (as you require)
@@ -2284,7 +2280,16 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORT
     return {
       account_maps: [],
       key: '',
-      my_maps: []
+      my_maps: [],
+      markers: [{
+        position: {
+          lat: 12.74836,
+          lng: 11.91998
+        },
+        icon: {
+          url: 'https://cdn-icons.flaticon.com/png/512/3743/premium/3743809.png?token=exp=1637248430~hmac=23bf85b6524b1108a2428f3ac0e1bd54'
+        }
+      }]
     };
   },
   props: ['appurl', 'listingcode'],
@@ -49207,49 +49212,33 @@ var render = function() {
     {
       ref: "mapRef",
       staticStyle: { "min-height": "500px" },
-      attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "terrain" }
+      attrs: { center: { lat: 10, lng: 10 }, zoom: 7, "map-type-id": "hybrid" }
     },
-    [
-      _vm._l(_vm.markers, function(m, index) {
-        return _c("GmapMarker", {
-          key: index,
-          attrs: {
-            options: {
-              zoomControl: true,
-              mapTypeControl: true,
-              scaleControl: false,
-              streetViewControl: true,
-              rotateControl: false,
-              fullscreenControl: true,
-              disableDefaultUi: false
-            },
-            position: m.position,
-            clickable: true,
-            draggable: true
+    _vm._l(_vm.markers, function(m, index) {
+      return _c("GmapMarker", {
+        key: index,
+        attrs: {
+          options: {
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: false,
+            streetViewControl: true,
+            rotateControl: false,
+            fullscreenControl: true,
+            disableDefaultUi: false
           },
-          on: {
-            click: function($event) {
-              _vm.center = m.position
-            }
+          position: m.position,
+          clickable: true,
+          draggable: true
+        },
+        on: {
+          click: function($event) {
+            _vm.center = m.position
           }
-        })
-      }),
-      _vm._v(" "),
-      _c("GmapMarker", {
-        ref: "myMarker",
-        attrs: {
-          position: _vm.google && new _vm.google.maps.LatLng(11.95576, 8.6597)
-        }
-      }),
-      _vm._v(" "),
-      _c("GmapMarker", {
-        ref: "myMarker",
-        attrs: {
-          position: _vm.google && new _vm.google.maps.LatLng(12.33761, 8.63453)
         }
       })
-    ],
-    2
+    }),
+    1
   )
 }
 var staticRenderFns = []
