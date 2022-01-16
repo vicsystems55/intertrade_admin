@@ -275,6 +275,14 @@ class AdminPageController extends Controller
         ]);
     }
 
+    public function ucc_update()
+    {
+        # code...
+
+
+        return redirect('https://docs.google.com/spreadsheets/d/1TQn_KI1BcH2KxAEvQmKqcJgwLPAKWF0X8zegOQ0RP1E/edit#gid=0');
+    }
+
 
 
 }

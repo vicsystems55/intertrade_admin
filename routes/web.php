@@ -263,6 +263,6 @@ Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('g
 
 Route::get('/get_imagesx', [ReportImageController::class, 'get_imagesx'])->name('get_images');
 
-
+Route::get('/UCC_UPDATE', [AdminPageController::class, 'ucc_update'])->name('ucc_update');
 
 // Route::post('/create_requistion_request', [RequisitionController::class, 'create_requisition'])->name('create_requisition_request')->middleware('auth');
