@@ -2,41 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+use Carbon\Carbon;
 
 use App\Models\User;
 
-use App\Models\TruckRoute;
+use App\Models\Stock;
+
+use App\Models\Invoice;
+
+use App\Models\Message;
+
+use App\Models\Project;
 
 use App\Models\Inventory;
 
 use App\Models\Deployment;
 
-use App\Models\Notification;
-
-use App\Models\Message;
-
-use App\Models\Stock;
-
-use App\Models\Project;
+use App\Models\TruckRoute;
 
 use App\Models\AccountHead;
 
-use App\Models\AccountSubHead;
+use App\Models\ReportImage;
+
+use App\Models\Notification;
+
+use Illuminate\Http\Request;
 
 use App\Models\AccountMapping;
 
-use App\Models\ReportImage;
+use App\Models\AccountSubHead;
 
 use App\Models\DeploymentReport;
-
 use App\Models\InstallationSchedule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-use Carbon\Carbon;
 
-use Session;
-
-use Auth;
 
 class SuperAdminPageController extends Controller
 {
@@ -82,6 +84,13 @@ class SuperAdminPageController extends Controller
         
         
         return view('superadmin_dashboard.create_staff');
+    }
+
+    public function pos()
+    {
+        $invoices = Invoice::with('invoice_line.product')->get();
+        
+        return view('superadmin_dashboard.pos', compact(['invoices']));
     }
 
     public function notifications()

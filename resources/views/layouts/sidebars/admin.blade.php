@@ -61,6 +61,8 @@
            </a>
     </li>
 
+
+
     <li>
         <a href="{{route('admin.truck_routes')}}">
             <div class="parent-icon"><i class='bx bx-cog'></i>

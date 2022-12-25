@@ -57,11 +57,9 @@ Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider']
 
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
 
-
-
 // Admin
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function(){
+Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function () {
 
     Route::get('/', [AdminPageController::class, 'index'])->name('admin');
 
@@ -95,6 +93,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function(){
 
     Route::get('/deployments', [AdminPageController::class, 'deployments'])->name('admin.deployments');
 
+
+
     Route::get('/deployment/{deployment_id}', [AdminPageController::class, 'deployment'])->name('admin.deployment');
 
     Route::get('/truck_routes', [AdminPageController::class, 'truck_routes'])->name('admin.truck_routes');
@@ -102,12 +102,11 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function(){
     Route::get('/installation_schedule', [AdminPageController::class, 'installation_schedule'])->name('admin.installation_schedule');
 
     Route::get('/create_truck_route', [AdminPageController::class, 'create_truck_route'])->name('admin.create_truck_route');
-
 });
 
 // Technicians
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function(){
+Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function () {
 
     Route::get('/', [TechnicianPageController::class, 'index'])->name('technician');
 
@@ -116,12 +115,9 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function(){
     Route::get('/reports', [TechnicianPageController::class, 'reports'])->name('technician.report');
 
     Route::get('/create_report', [TechnicianPageController::class, 'create_report'])->name('technician.create_report');
-
-
-
 });
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
+Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function () {
 
     Route::get('/', [SuperAdminPageController::class, 'index'])->name('superadmin');
 
@@ -138,6 +134,8 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
     Route::get('/deployments', [SuperAdminPageController::class, 'deployments'])->name('superadmin.deployments');
 
     Route::get('/deployment', [SuperAdminPageController::class, 'deployment'])->name('superadmin.deployment');
+
+    Route::get('/pos', [SuperAdminPageController::class, 'pos'])->name('superadmin.pos');
 
     Route::get('/create_deployment', [SuperAdminPageController::class, 'create_deployment'])->name('superadmin.create_deployment');
 
@@ -158,28 +156,21 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function(){
     Route::get('/reports', [SuperAdminPageController::class, 'reports'])->name('superadmin.report');
 
     Route::get('/create_report', [SuperAdminPageController::class, 'create_report'])->name('superadmin.create_report');
-
-
-
 });
-
-
 
 // Accounts
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'accounts'], function(){
+Route::group(['middleware' => ['auth'],  'prefix' => 'accounts'], function () {
 
-    
+
     Route::get('/{page_name}', [AccountPageController::class, 'index']);
 
     Route::get('/{page_name}/{id}', [AccountPageController::class, 'details']);
-
 });
-
 
 // Drivers
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
+Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function () {
 
     Route::get('/', [DriverPageController::class, 'index'])->name('driver');
 
@@ -204,21 +195,16 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function(){
     Route::get('/create_report', [DriverPageController::class, 'create_report'])->name('driver.create_report');
 
     Route::get('/report/{report_id}', [DriverPageController::class, 'report'])->name('driver.report');
-
-
 });
 
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'secretary'], function(){
+Route::group(['middleware' => ['auth'],  'prefix' => 'secretary'], function () {
 
     Route::get('/', [SecretaryPageController::class, 'index'])->name('secretary');
 
     Route::get('/notifications', [SecretaryPageController::class, 'notifications'])->name('secretary.notifications');
 
     Route::get('/reports', [SecretaryPageController::class, 'index'])->name('secretary.reports');
-
-
-
 });
 
 Auth::routes();
@@ -228,31 +214,31 @@ Auth::routes();
 
 // all post
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function () {
 
-Route::post('/map_account', [AccountMappingController::class, 'map_account'])->name('map_account');
+    Route::post('/map_account', [AccountMappingController::class, 'map_account'])->name('map_account');
 
-Route::post('/send_message', [MessageController::class, 'send_message'])->name('send_message');
+    Route::post('/send_message', [MessageController::class, 'send_message'])->name('send_message');
 
-Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_route'])->name('create_truck_route');
+    Route::post('/create_truck_route', [TruckRouteController::class, 'create_truck_route'])->name('create_truck_route');
 
-Route::post('/create_installation_schedule', [InstallationScheduleController::class, 'create_installation_schedule'])->name('create_installation_schedule');
+    Route::post('/create_installation_schedule', [InstallationScheduleController::class, 'create_installation_schedule'])->name('create_installation_schedule');
 
-Route::post('/create_staff_account', [StaffRecordController::class, 'create_staff_account'])->name('create_staff_account');
+    Route::post('/create_staff_account', [StaffRecordController::class, 'create_staff_account'])->name('create_staff_account');
 
-Route::post('/create_report', [DeploymentReportController::class, 'create_report'])->name('create_report');
+    Route::post('/create_report', [DeploymentReportController::class, 'create_report'])->name('create_report');
 
-Route::post('/update_report', [DeploymentReportController::class, 'update_report'])->name('update_report');
+    Route::post('/update_report', [DeploymentReportController::class, 'update_report'])->name('update_report');
 
-Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
+    Route::post('/account_maps', [AccountMappingController::class, 'accounts_map'])->name('accounts_map');
 
-Route::post('/create_deployment_zone', [DeploymentController::class, 'create_deployment_zone'])->name('create_deployment_zone');
+    Route::post('/create_deployment_zone', [DeploymentController::class, 'create_deployment_zone'])->name('create_deployment_zone');
 
-Route::post('/upload_pix', [ReportImageController::class, 'store'])->name('upload_pix');
+    Route::post('/upload_pix', [ReportImageController::class, 'store'])->name('upload_pix');
 
-Route::post('/upload_pixx', [ReportImageController::class, 'update'])->name('upload_pixx');
+    Route::post('/upload_pixx', [ReportImageController::class, 'update'])->name('upload_pixx');
 
-Route::post('/delete_pix', [ReportImageController::class, 'delete'])->name('delete.upload_pix');
+    Route::post('/delete_pix', [ReportImageController::class, 'delete'])->name('delete.upload_pix');
 });
 
 // all get

@@ -1,150 +1,316 @@
 <template>
-    
+
     <div class="">
 
-    
+        <div class=" ">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 ">
+                        <div class="">
+                            <h6>Stock</h6>
+                            <div style="height: 400px; overflow: scroll;" class="c">
 
-            <modal name="example" 
-                :width="400"
-                :height="500"
-                
-                :scrollable="true"
-            >
+                                <div class="row">
+                                    <div v-for="product in products" :key="product.id" class="col-md-4">
+                                        <div class="card" style="width: 220px;">
+                                            <img :src="product.featured_image" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ product.name }}</h6>
+                                                <p class="card-text">{{ product.description }}</p>
+                                                <button @click="addProduct(product.id)" class="btn btn-primary btn-sm col-12">Add +</button>
+                                            </div>
+                                        </div>
 
-            <div class="container py-3">
+                                    </div>
+                                </div>
 
-                         <h4 class="text-center">InterTrade Limited</h4>
 
-                <div class="p-5">
-                    <input type="text" class="form-control" placeholder="Search..." v-model="key" @keyup="get_account_maps()">
-                </div>
 
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>Head</th>
-                        <th>Subhead</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-
-                
-
-                    <tr v-for="map in account_maps" :key="map.id">
-                        <td>{{map.heads.title}}</td>
-                        <td>
-
-                            <div class="custom-control custom-checkbox">
-                            <input v-model="my_maps" v-bind:value="map.id" type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">{{map.subheads.title}}</label>
                             </div>
 
-                        </td>
+                        </div>
 
-                    </tr>
+                    </div>
+                    <div class="col-md-4 ">
+                        <h6>Record Sale</h6>
+                        <div class="card card-body">
+
+                            <div style="max-height: 320px; overflow: scroll;" class="">
+
+                                <div class="form-group mb-3">
+                                    <label for="">Select Customer</label>
+                                    <select name="" id="" class="form-control">
+                                        <option value="">Customer 1</option>
+                                        <option value="">Customer 1</option>
+
+                                        <option value="">Customer 1</option>
 
 
-                </tbody>
-                    
+                                    </select>
+                                </div>
+
+                                <div v-for="line in invoice.invoice_line" :key="line.id"  class="inln">
+                                    <div class="row">
+                                    <div class="col-8">
+                                        <h6> {{line.product.name}}</h6>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control form-control-sm">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        N 23,000
+                                    </div>
+                                </div>
+                                <hr>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary col-12">Submit</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <h4>Invoices</h4>
+
+        <div class="card table-responsive">
+            <div class="card-body">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>Invoice Code</th>
+                            <th>Total Amount</th>
+                            <th>Created by</th>
+                            <th>Date</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr v-for="inv in invoices" :key="inv.id">
+                            <td>{{inv.invoice_code}}</td>
+                            <td>{{ inv.discount_amount}}</td>
+                            <td>{{ inv.created_at}}</td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+
 
                 </table>
 
-
-                <div class="form-group text-center">   
-
-                        <button @click="create_my_voucher()" class="btn btn-primary ">Create</button>
-
-                </div>
-
-
-
             </div>
+        </div>
 
-       
 
-         
-         
-         
-         
-         
-         
-         </modal>
-
-         <div class="form-group text-center">
-
-            <button class="btn btn-primary" @click="generate_voucher()">Generate Voucher</button>
-
-         </div>
 
     </div>
 
-         
-   
+
+
 </template>
 
 <script>
 
-import VModal from 'vue-js-modal'
-Vue.use(VModal)
-    export default {
+
+export default {
 
 
 
-        data() {
-            return {
-                account_maps: [],
-                key: '',
-                my_maps: [] 
-            }
+    data() {
+        return {
+            account_maps: [],
+            key: '',
+            my_maps: [],
+            products: [],
+            invoice: '',
+            invoices: [],
+            current_invoice_code: null
+        }
+    },
+
+
+    props: ['appurl', 'userid'],
+
+    methods: {
+        generate_voucher() {
+
+
         },
 
+        addProduct(productId){
 
-          props: ['appurl', 'listingcode'],
+            axios.post(this.appurl + 'api/invoices', {
+                    invoice_id: this.invoice.id,
+                    product_id: productId,
+                    type: 'add-product'
+                    // date: this.date,
+                    // file_upload: this.newfile_name,
+                    // text_report: this.outputData.blocks,
 
-        methods: {
-            generate_voucher(){
-
-                 this.$modal.show('example')
-            },
-
-            create_my_voucher(){
-                alert('created');
-            },
-
-            get_account_maps(){
-
-             
-
-                    axios.post(this.appurl+'account_maps',{
-                        key: this.key,
-                        // date: this.date,
-                        // file_upload: this.newfile_name,
-                        // text_report: this.outputData.blocks,
-                    
-                    }).then((response)=>(
+                }).then((response) => (
                     // this.loading = false,
 
-                    this.account_maps = response.data,
+                    this.invoice = response.data,
 
-                    console.log(response)
+                    console.log(response),
+
+                    this.getInvoice()
                     //  this.results = response.data
 
                 )).catch(function (error) {
-                        console.log(error);
+                    console.log(error);
                 });
 
-         }
 
 
         },
-        mounted() {
 
-            
-            
-            console.log('Component mounted.');
-            this.get_account_maps();
-           
+        createInvoice() {
+
+
+            if (localStorage.getItem('current_invoice_code')) {
+
+                alert('has');
+
+                this.getInvoice();
+
+            } else {
+
+                localStorage.setItem('current_invoice_code', Date.now());
+
+                this.current_invoice_code = localStorage.getItem('current_invoice_code');
+
+                alert('created')
+
+                axios.post(this.appurl + 'api/invoices', {
+                    invoice_code: this.current_invoice_code,
+                    userid: this.userid
+                    // date: this.date,
+                    // file_upload: this.newfile_name,
+                    // text_report: this.outputData.blocks,
+
+                }).then((response) => (
+                    // this.loading = false,
+
+                    this.invoice = response.data,
+
+                    console.log(response),
+
+                    this.getInvoice()
+                    //  this.results = response.data
+
+                )).catch(function (error) {
+                    console.log(error);
+                });
+
+            }
+
+
+
+        },
+
+        getInvoice() {
+            axios({
+                method: "get",
+                url: this.appurl + 'api/invoices',
+                params: {
+                    invoice_code: localStorage.getItem('current_invoice_code'),
+
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                },
+
+            }).then((response) => (
+                // this.loading = false,
+
+                this.invoice = response.data,
+
+                console.log(response)
+                //  this.results = response.data
+
+            )).catch(function (error) {
+                console.log(error);
+            });
+        },
+
+        getProducts() {
+
+
+
+            axios.get(this.appurl + 'api/products', {
+                key: this.key,
+                // date: this.date,
+                // file_upload: this.newfile_name,
+                // text_report: this.outputData.blocks,
+
+            }).then((response) => (
+                // this.loading = false,
+
+                this.products = response.data,
+
+                console.log(response)
+                //  this.results = response.data
+
+            )).catch(function (error) {
+                console.log(error);
+            });
+
+        },
+        getInvoices(){
+            axios({
+                method: "get",
+                url: this.appurl + 'api/invoices',
+                params: {
+                    type: 'all',
+
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                },
+
+            }).then((response) => (
+                // this.loading = false,
+
+                this.invoices = response.data,
+
+                console.log(response)
+                //  this.results = response.data
+
+            )).catch(function (error) {
+                console.log(error);
+            });
         }
+
+
+    },
+    mounted() {
+
+
+
+
+
+        console.log('Component mounted.');
+        this.getProducts();
+        this.createInvoice();
+        this.getInvoices();
+
     }
+}
 </script>

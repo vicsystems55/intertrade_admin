@@ -2065,8 +2065,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2152,35 +2150,161 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-Vue.use((vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default()));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       account_maps: [],
       key: '',
-      my_maps: []
+      my_maps: [],
+      products: [],
+      invoice: '',
+      invoices: [],
+      current_invoice_code: null
     };
   },
-  props: ['appurl', 'listingcode'],
+  props: ['appurl', 'userid'],
   methods: {
-    generate_voucher: function generate_voucher() {
-      this.$modal.show('example');
-    },
-    create_my_voucher: function create_my_voucher() {
-      alert('created');
-    },
-    get_account_maps: function get_account_maps() {
+    generate_voucher: function generate_voucher() {},
+    addProduct: function addProduct(productId) {
       var _this = this;
 
-      axios.post(this.appurl + 'account_maps', {
+      axios.post(this.appurl + 'api/invoices', {
+        invoice_id: this.invoice.id,
+        product_id: productId,
+        type: 'add-product' // date: this.date,
+        // file_upload: this.newfile_name,
+        // text_report: this.outputData.blocks,
+
+      }).then(function (response) {
+        return (// this.loading = false,
+          _this.invoice = response.data, console.log(response), _this.getInvoice() //  this.results = response.data
+
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createInvoice: function createInvoice() {
+      var _this2 = this;
+
+      if (localStorage.getItem('current_invoice_code')) {
+        alert('has');
+        this.getInvoice();
+      } else {
+        localStorage.setItem('current_invoice_code', Date.now());
+        this.current_invoice_code = localStorage.getItem('current_invoice_code');
+        alert('created');
+        axios.post(this.appurl + 'api/invoices', {
+          invoice_code: this.current_invoice_code,
+          userid: this.userid // date: this.date,
+          // file_upload: this.newfile_name,
+          // text_report: this.outputData.blocks,
+
+        }).then(function (response) {
+          return (// this.loading = false,
+            _this2.invoice = response.data, console.log(response), _this2.getInvoice() //  this.results = response.data
+
+          );
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    getInvoice: function getInvoice() {
+      var _this3 = this;
+
+      axios({
+        method: "get",
+        url: this.appurl + 'api/invoices',
+        params: {
+          invoice_code: localStorage.getItem('current_invoice_code')
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return (// this.loading = false,
+          _this3.invoice = response.data, console.log(response) //  this.results = response.data
+
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getProducts: function getProducts() {
+      var _this4 = this;
+
+      axios.get(this.appurl + 'api/products', {
         key: this.key // date: this.date,
         // file_upload: this.newfile_name,
         // text_report: this.outputData.blocks,
 
       }).then(function (response) {
         return (// this.loading = false,
-          _this.account_maps = response.data, console.log(response) //  this.results = response.data
+          _this4.products = response.data, console.log(response) //  this.results = response.data
+
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getInvoices: function getInvoices() {
+      var _this5 = this;
+
+      axios({
+        method: "get",
+        url: this.appurl + 'api/invoices',
+        params: {
+          type: 'all'
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return (// this.loading = false,
+          _this5.invoices = response.data, console.log(response) //  this.results = response.data
 
         );
       })["catch"](function (error) {
@@ -2190,7 +2314,9 @@ Vue.use((vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default()));
   },
   mounted: function mounted() {
     console.log('Component mounted.');
-    this.get_account_maps();
+    this.getProducts();
+    this.createInvoice();
+    this.getInvoices();
   }
 });
 
@@ -49029,162 +49155,205 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {},
-    [
-      _c(
-        "modal",
-        {
-          attrs: { name: "example", width: 400, height: 500, scrollable: true }
-        },
-        [
-          _c("div", { staticClass: "container py-3" }, [
-            _c("h4", { staticClass: "text-center" }, [
-              _vm._v("InterTrade Limited")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "p-5" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.key,
-                    expression: "key"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Search..." },
-                domProps: { value: _vm.key },
-                on: {
-                  keyup: function($event) {
-                    return _vm.get_account_maps()
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.key = $event.target.value
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("table", { staticClass: "table" }, [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", [_vm._v("Head")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Subhead")])
-                ])
-              ]),
+  return _c("div", {}, [
+    _c("div", { staticClass: " " }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-8 " }, [
+            _c("div", {}, [
+              _c("h6", [_vm._v("Stock")]),
               _vm._v(" "),
               _c(
-                "tbody",
-                _vm._l(_vm.account_maps, function(map) {
-                  return _c("tr", { key: map.id }, [
-                    _c("td", [_vm._v(_vm._s(map.heads.title))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
+                "div",
+                {
+                  staticClass: "c",
+                  staticStyle: { height: "400px", overflow: "scroll" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    _vm._l(_vm.products, function(product) {
+                      return _c(
                         "div",
-                        { staticClass: "custom-control custom-checkbox" },
+                        { key: product.id, staticClass: "col-md-4" },
                         [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.my_maps,
-                                expression: "my_maps"
-                              }
-                            ],
-                            staticClass: "custom-control-input",
-                            attrs: { type: "checkbox", id: "customCheck1" },
-                            domProps: {
-                              value: map.id,
-                              checked: Array.isArray(_vm.my_maps)
-                                ? _vm._i(_vm.my_maps, map.id) > -1
-                                : _vm.my_maps
-                            },
-                            on: {
-                              change: function($event) {
-                                var $$a = _vm.my_maps,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = map.id,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 && (_vm.my_maps = $$a.concat([$$v]))
-                                  } else {
-                                    $$i > -1 &&
-                                      (_vm.my_maps = $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1)))
-                                  }
-                                } else {
-                                  _vm.my_maps = $$c
-                                }
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
                           _c(
-                            "label",
+                            "div",
                             {
-                              staticClass: "custom-control-label",
-                              attrs: { for: "customCheck1" }
+                              staticClass: "card",
+                              staticStyle: { width: "220px" }
                             },
-                            [_vm._v(_vm._s(map.subheads.title))]
+                            [
+                              _c("img", {
+                                staticClass: "card-img-top",
+                                attrs: {
+                                  src: product.featured_image,
+                                  alt: "..."
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "card-body" }, [
+                                _c("h6", { staticClass: "card-title" }, [
+                                  _vm._v(_vm._s(product.name))
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "card-text" }, [
+                                  _vm._v(_vm._s(product.description))
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-primary btn-sm col-12",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addProduct(product.id)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Add +")]
+                                )
+                              ])
+                            ]
                           )
                         ]
                       )
-                    ])
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group text-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary ",
-                  on: {
-                    click: function($event) {
-                      return _vm.create_my_voucher()
-                    }
-                  }
-                },
-                [_vm._v("Create")]
+                    }),
+                    0
+                  )
+                ]
               )
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4 " }, [
+            _c("h6", [_vm._v("Record Sale")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card card-body" }, [
+              _c(
+                "div",
+                { staticStyle: { "max-height": "320px", overflow: "scroll" } },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.invoice.invoice_line, function(line) {
+                    return _c("div", { key: line.id, staticClass: "inln" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-8" }, [
+                          _c("h6", [_vm._v(" " + _vm._s(line.product.name))]),
+                          _vm._v(" "),
+                          _vm._m(1, true)
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-4" }, [
+                          _vm._v(
+                            "\n                                    N 23,000\n                                "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("hr")
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group text-center" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            on: {
-              click: function($event) {
-                return _vm.generate_voucher()
-              }
-            }
-          },
-          [_vm._v("Generate Voucher")]
-        )
+        ])
       ])
-    ],
-    1
-  )
+    ]),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Invoices")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card table-responsive" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.invoices, function(inv) {
+              return _c("tr", { key: inv.id }, [
+                _c("td", [_vm._v(_vm._s(inv.invoice_code))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(inv.discount_amount))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(inv.created_at))]),
+                _vm._v(" "),
+                _c("td")
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group mb-3" }, [
+      _c("label", { attrs: { for: "" } }, [_vm._v("Select Customer")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        { staticClass: "form-control", attrs: { name: "", id: "" } },
+        [
+          _c("option", { attrs: { value: "" } }, [_vm._v("Customer 1")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "" } }, [_vm._v("Customer 1")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "" } }, [_vm._v("Customer 1")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "number" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-primary col-12" }, [
+        _vm._v("Submit")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Invoice Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created by")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

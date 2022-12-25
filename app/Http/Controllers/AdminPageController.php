@@ -2,40 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\User;
 
-use App\Models\TruckRoute;
+use App\Models\Stock;
+
+use App\Models\Message;
+
+use App\Models\Project;
 
 use App\Models\Inventory;
 
 use App\Models\Deployment;
 
-use App\Models\Notification;
-
-use App\Models\Message;
-
-use App\Models\Stock;
-
-use App\Models\Project;
+use App\Models\TruckRoute;
 
 use App\Models\AccountHead;
 
-use App\Models\AccountSubHead;
+use App\Models\ReportImage;
+
+use App\Models\Notification;
+
+use Illuminate\Http\Request;
 
 use App\Models\AccountMapping;
 
+use App\Models\AccountSubHead;
+
 use App\Models\DeploymentReport;
 
-use App\Models\ReportImage;
 
 
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 
-use Auth;
+
 
 class AdminPageController extends Controller
 {
@@ -100,6 +101,8 @@ class AdminPageController extends Controller
             'users' => $users
         ]);
     }
+
+
 
     public function notifications()
     {
@@ -274,6 +277,8 @@ class AdminPageController extends Controller
             
         ]);
     }
+
+    
 
     public function ucc_update()
     {

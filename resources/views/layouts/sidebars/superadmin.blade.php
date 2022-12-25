@@ -96,6 +96,14 @@
     </li>
 
     <li>
+        <a href="{{route('superadmin.pos')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">POS</div>
+           </a>
+    </li>
+
+    <li>
         <a href="{{route('superadmin.notifications')}}">
             <div class="parent-icon"><i class='bx bx-bell'></i>
             </div>
