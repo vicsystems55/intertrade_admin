@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         //
 
-        return Product::all();
+        return Product::withSum('stock', 'quantity')->get();
     }
 
     /**

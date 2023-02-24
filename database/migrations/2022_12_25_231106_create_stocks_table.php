@@ -17,6 +17,19 @@ class CreateStocksTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->integer('quantity')->default(0);
+            $table->foreignId('manufacturer_id')->nullable();
+            $table->foreignId('supplier_id')->nullable();
+            $table->foreignId('invoice_id')->nullable();
+            $table->string('type')->default('in');
+
+            $table->string('status')->default('active');
+
+            $table->bigInteger('received_by')->unsigned()->nullable();
+            $table->foreign('received_by')->references('id')->on('users');
+
+            $table->string('date_received');
+
+
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ use App\Models\Message;
 
 use App\Models\Project;
 
+use App\Models\Customer;
+
 use App\Models\Inventory;
 
 use App\Models\Deployment;
@@ -32,7 +34,7 @@ use Illuminate\Http\Request;
 use App\Models\AccountMapping;
 
 use App\Models\AccountSubHead;
-
+use App\Models\CashRequest;
 use App\Models\DeploymentReport;
 use App\Models\InstallationSchedule;
 use Illuminate\Support\Facades\Auth;
@@ -77,6 +79,31 @@ class SuperAdminPageController extends Controller
         return view('superadmin_dashboard.staff_record',[
             'user' => $user
         ]);
+    }
+
+    public function customer()
+    {
+        $customers = Customer::all();
+        
+        return view('superadmin_dashboard.customer', compact('customers'));
+    }
+
+    public function cash_request()
+    {
+        $cash_requests = CashRequest::with('requestby')->get();
+
+        // return $cash_requests;
+        
+        return view('superadmin_dashboard.cash_request', compact('cash_requests'));
+    }
+
+    public function cash_request_details($id)
+    {
+        $cash_request = CashRequest::with('requestby')->find($id);
+
+        // return $cash_requests;
+        
+        return view('superadmin_dashboard.cash_request_details', compact('cash_request'));
     }
 
     public function create_staff()

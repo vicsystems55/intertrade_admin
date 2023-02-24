@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Product;
 use App\Models\InvoiceLine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,17 @@ use App\Http\Requests\UpdateInvoiceRequest;
 
 class InvoiceController extends Controller
 {
+
+    public function invoice($invoice_code)
+    {
+        # code...
+
+        $invoice = Invoice::with(['invoice_line.product', 'customer'])->where('invoice_code', $invoice_code)->first();
+
+        // return $invoice;
+
+        return view('reports.invoice', compact('invoice'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,14 +36,17 @@ class InvoiceController extends Controller
         if ($request->type == 'all') {
             # code...
 
-            return Invoice::with('invoice_line.product')->get();
+            return Invoice::latest()->with('invoice_line.product')->get();
 
 
 
         }
         try {
             //code...
+
+            // return $request->all();
             return Invoice::with('invoice_line.product')->where('invoice_code', $request->invoice_code)->first();
+
         } catch (\Throwable $th) {
             //throw $th;
             return $th;
@@ -53,19 +68,36 @@ class InvoiceController extends Controller
 
         try {
             //code...
+            if ($request->type == 'delete') {
+                # code...
+
+                $invoice = Invoice::with('invoice_line')->where('invoice_code', $request->invoice_code)->first();
+
+                // return $invoice;
+
+                InvoiceLine::where('invoice_id', $invoice->id)->delete();
+
+                // $invoice->invoice_line->delete();
+        
+                return $invoice->delete();
+            }
 
             if ($request->type == 'add-product') {
                 # code...
+
+                // return $request->all();
+
+                $prdct = Product::find($request->product_id);
                 InvoiceLine::updateOrCreate([
                     'invoice_id' => $request->invoice_id,
                     'product_id' => $request->product_id,
 
                 ],[
                     'invoice_id' => $request->invoice_id,
-                    'description' => 'desc',
+                    'description' => $prdct->description,
                     'product_id' => $request->product_id,
                     'quantity' => 1,
-                    'amount' => 20000,
+                    'amount' => $prdct->price,
                     'discount_percent' => 0,
                     'discount_amount' => 0,
 
@@ -76,7 +108,10 @@ class InvoiceController extends Controller
                 // please refactor add amount to invoice
 
                 Invoice::find($request->invoice_id)->update([
-                    'discount_amount' => $invoice_sum
+                    'total_amount' => $invoice_sum,
+                    
+
+
                 ]);
                 
             }else{
@@ -129,8 +164,19 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(Invoice $invoice_code)
     {
-        //
+        //r
+
+        $invoice = Invoice::with('invoice_line')->where('invoice_code', $invoice_code)->first();
+
+        $invoice->invoice_line->delete();
+
+        return $invoice->delete();
+
+
+        
+
+        
     }
 }

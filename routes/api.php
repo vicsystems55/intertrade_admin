@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
@@ -12,9 +13,11 @@ use App\Http\Controllers\TpsaNotificationController;
 
 use App\Http\Controllers\InvoiceController;
 
+use App\Http\Controllers\InvoiceLineController;
 
+use App\Http\Controllers\CustomerController;
 
-
+use App\Http\Controllers\CashRequestController;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +42,11 @@ Route::post('/create_requistion_request', [RequisitionController::class, 'create
 
 Route::resource('products', ProductController::class, ['name' => 'products']);
 
+Route::resource('customers', CustomerController::class, ['name' => 'cus']);
+
+
 Route::resource('invoices', InvoiceController::class, ['name' => 'invoices']);
+
+Route::resource('invoice_lines', InvoiceLineController::class, ['name' => 'invoice_line']);
 
 Route::post('/notify_email', [TpsaNotificationController::class, 'notify_email']);

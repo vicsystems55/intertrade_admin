@@ -6,7 +6,7 @@
     <div class="page-content">
         <div class="p-2"></div>
 
-        <h4>POS</h4>
+        <h4>Sales Point</h4>
 
         <example-component appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"></example-component>
 

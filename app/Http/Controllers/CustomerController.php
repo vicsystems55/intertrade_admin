@@ -16,6 +16,10 @@ class CustomerController extends Controller
     public function index()
     {
         //
+
+        return Customer::all();
+
+        
     }
 
     /**
@@ -27,6 +31,12 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         //
+
+        
+
+        $customer = Customer::create($request->all());
+
+        return back()->with('cusMsg', 'Customer Created');
     }
 
     /**

@@ -22,7 +22,18 @@ class CreateInvoicesTable extends Migration
             $table->string('status')->nullable();
             $table->string('payment_type')->nullable();
             $table->string('bank_details')->nullable();
+
+            $table->string('bank_name')->nullable();
+
+
+            $table->string('account_name')->nullable();
+
+
+            $table->string('account_no')->nullable();
+
             $table->integer('discount_percent')->nullable();
+            $table->integer('total_amount')->default(0);
+
             $table->integer('discount_amount')->nullable();
    
             $table->foreign('generated_by')->references('id')->on('users');

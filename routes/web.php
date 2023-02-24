@@ -1,21 +1,42 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminPageController;
-use App\Http\Controllers\TechnicianPageController;
-use App\Http\Controllers\DriverPageController;
-use App\Http\Controllers\ChooseRoleController;
-use App\Http\Controllers\SuperAdminPageController;
-use App\Http\Controllers\AccountPageController;
-use App\Http\Controllers\AccountMappingController;
-use App\Http\Controllers\TruckRouteController;
-use App\Http\Controllers\DeploymentController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\StaffRecordController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminPageController;
+use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\ChooseRoleController;
+use App\Http\Controllers\DeploymentController;
+use App\Http\Controllers\DriverPageController;
+use App\Http\Controllers\TruckRouteController;
+use App\Http\Controllers\AccountPageController;
+use App\Http\Controllers\CashRequestController;
 use App\Http\Controllers\ReportImageController;
-use App\Http\Controllers\DeploymentReportController;
-use App\Http\Controllers\InstallationScheduleController;
 use App\Http\Controllers\RequisitionController;
+use App\Http\Controllers\StaffRecordController;
+use App\Http\Controllers\ClientProjectController;
+use App\Http\Controllers\SecretaryPageController;
+use App\Http\Controllers\AccountMappingController;
+use App\Http\Controllers\SuperAdminPageController;
+use App\Http\Controllers\TechnicianPageController;
+use App\Http\Controllers\MilestoneReportController;
+use App\Http\Controllers\DeploymentReportController;
+use App\Http\Controllers\FilemanagerController;
+use App\Http\Controllers\ProjectMilestoneController;
+use App\Http\Controllers\InstallationScheduleController;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -131,6 +152,12 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function () 
 
     Route::get('/create_staff', [SuperAdminPageController::class, 'create_staff'])->name('superadmin.create_staff');
 
+    Route::get('/customer', [SuperAdminPageController::class, 'customer'])->name('superadmin.customer');
+
+    Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->name('superadmin.cash_request');
+
+    Route::get('/cash_request_details/{id}', [SuperAdminPageController::class, 'cash_request_details'])->name('cash_request_details');
+
     Route::get('/deployments', [SuperAdminPageController::class, 'deployments'])->name('superadmin.deployments');
 
     Route::get('/deployment', [SuperAdminPageController::class, 'deployment'])->name('superadmin.deployment');
@@ -243,6 +270,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 // all get
 
+Route::get('/media', [FilemanagerController::class, 'media'])->name('media');
 
 
 Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('get_images');
@@ -250,5 +278,30 @@ Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('g
 Route::get('/get_imagesx', [ReportImageController::class, 'get_imagesx'])->name('get_images');
 
 Route::get('/UCC_UPDATE', [AdminPageController::class, 'ucc_update'])->name('ucc_update');
+
+Route::resource('/customers', CustomerController::class, ['name' => 'customers']);
+
+Route::resource('cash_request', CashRequestController::class, ['name' => 'cash_request']);
+
+Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->name('cash_request');
+
+Route::get('/cash_request_details/{id}', [SuperAdminPageController::class, 'cash_request_details'])->name('cash_request_details');
+
+Route::get('/invoice/{invoice_code}', [InvoiceController::class, 'invoice'])->name('invoice.view');
+
+
+
+
+Route::resource('/clientProjects', ClientProjectController::class, ['name' => 'clientProjects'])->middleware('auth');
+
+Route::resource('/projectMilestones', ProjectMilestoneController::class, ['name' => 'projectMilestones'])->middleware('auth');
+
+Route::resource('/milestoneReports', MilestoneReportController::class, ['name' => 'milestoneReports'])->middleware('auth');
+
+Route::resource('/stockManagement', StockController::class, ['name' => 'stockManagement'])->middleware('auth');
+
+
+
+
 
 // Route::post('/create_requistion_request', [RequisitionController::class, 'create_requisition'])->name('create_requisition_request')->middleware('auth');

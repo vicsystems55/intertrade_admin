@@ -30,6 +30,7 @@
         "vue-file-agent": "^1.7.3",
         "vue-js-modal": "^2.0.1",
         "vue-toastify": "^1.8.0",
+        "numeral": "^2.0.6",
         "vue2-google-maps": "^0.10.7",
         "vuejs-google-maps": "^0.2.0"
     }

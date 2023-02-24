@@ -21,6 +21,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '5.5KVA Inverter',
+                'price' => 1500000,
                 'description' => 'Old Batch',
                 'type' => '5.5kva',
                 'model' => '0000',
@@ -30,6 +31,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '5.5KVA Inverter',
+                'price' => 1500000,
                 'description' => 'New Batch',
                 'type' => '5.5kva',
                 'model' => '0000',
@@ -39,6 +41,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '5KVA Inverter',
+                'price' => 1000000,
                 'description' => 'HHS',
                 'type' => '5kva',
                 'model' => '0000',
@@ -48,6 +51,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '6KVA Inverter',
+                'price' => 1800000,
                 'description' => '6KVA Inverter',
                 'type' => '6kva',
                 'model' => '0000',
@@ -57,6 +61,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '10KVA Inverter',
+                'price' => 2500000,
                 'description' => '10KVA Inverter',
                 'type' => '10kva',
                 'model' => '0000',
@@ -66,6 +71,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '2KVA Inverter',
+                'price' => 1000000,
                 'description' => '2KVA Inverter',
                 'type' => '2kva',
                 'model' => '0000',
@@ -75,6 +81,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '1.4KVA Inverter',
+                'price' => 800000,
                 'description' => '1.4KVA Inverter',
                 'type' => '1.4kva',
                 'model' => '0000',
@@ -84,6 +91,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 1,
                 'name' => '3KVA Inverter',
+                'price' => 1100000,
                 'description' => '3KVA Inverter',
                 'type' => '3kva',
                 'model' => '0000',
@@ -93,6 +101,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 2,
                 'name' => '450 Watts Panel',
+                'price' => 900000,
                 'description' => '450 Watts Panel',
                 'type' => '450 Watts Panel',
                 'model' => '0000',
@@ -102,6 +111,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 2,
                 'name' => '280 Watts Panel',
+                'price' => 800000,
                 'description' => '280 Watts Panel',
                 'type' => '280 Watts Panel',
                 'model' => '0000',
@@ -111,6 +121,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 2,
                 'name' => '310 Watts Panel',
+                'price' => 900000,
                 'description' => '310 Watts Panel',
                 'type' => '310 Watts Panel',
                 'model' => '0000',
@@ -120,6 +131,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 2,
                 'name' => '380 Watts Panel',
+                'price' => 90000,
                 'description' => '380 Watts Panel',
                 'type' => '380 Watts Panel',
                 'model' => '0000',
@@ -129,6 +141,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 3,
                 'name' => 'Infrared Thermometer',
+                'price' => 70000,
                 'description' => 'Infrared Thermometer',
                 'type' => 'Infrared Thermometer',
                 'model' => '0000',
@@ -138,6 +151,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HTC-240',
+                'price' => 2000000,
                 'description' => 'New Batch',
                 'type' => 'HTC-240',
                 'model' => '0000',
@@ -147,6 +161,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HTC-240',
+                'price' => 1800000,
                 'description' => 'Old Batch',
                 'type' => 'HTC-240',
                 'model' => '0000',
@@ -156,6 +171,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HTC-112',
+                'price' => 2000000,
                 'description' => 'HTC-112',
                 'type' => 'HTC-112',
                 'model' => '0000',
@@ -165,6 +181,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HTC-110',
+                'price' => 2500000,
                 'description' => 'HTC-110',
                 'type' => 'HTC-110',
                 'model' => '0000',
@@ -174,6 +191,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HTCD-90',
+                'price' => 2100000,
                 'description' => 'HTCD-90',
                 'type' => 'HTCD-90',
                 'model' => '0000',
@@ -183,6 +201,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HBC-150',
+                'price' => 1200000,
                 'description' => 'HBC-150',
                 'type' => 'HBC-150',
                 'model' => '0000',
@@ -192,6 +211,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HBC-240',
+                'price' => 1800000,
                 'description' => 'HBC-240',
                 'type' => 'HBC-240',
                 'model' => '0000',
@@ -201,6 +221,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HBC-286',
+                'price' => 1400000,
                 'description' => 'HBC-286',
                 'type' => 'HBC-286',
                 'model' => '0000',
@@ -210,6 +231,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HBC-260',
+                'price' => 1300000,
                 'description' => 'HBC-260',
                 'type' => 'HBC-260',
                 'model' => '0000',
@@ -219,6 +241,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'HTCD-160',
+                'price' => 1400000,
                 'description' => 'HTCD-160',
                 'type' => 'HTCD-160',
                 'model' => '0000',
@@ -228,6 +251,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'VACCINE BOXES',
+                'price' => 1600000,
                 'description' => 'VACCINE BOXES',
                 'type' => 'VACCINE BOXES',
                 'model' => '0000',
@@ -237,6 +261,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 4,
                 'name' => 'VACCINE CARRIERS',
+                'price' => 1700000,
                 'description' => 'VACCINE CARRIERS',
                 'type' => 'VACCINE CARRIERS',
                 'model' => '0000',
@@ -246,6 +271,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 5,
                 'name' => 'MDF728',
+                'price' => 1900000,
                 'description' => 'MDF728',
                 'type' => 'MDF728',
                 'model' => '0000',
@@ -255,6 +281,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 5,
                 'name' => 'DW-86L728D',
+                'price' => 1100000,
                 'description' => 'DW-86L728D',
                 'type' => 'DW-86L728D',
                 'model' => '0000',
@@ -264,6 +291,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 5,
                 'name' => 'DW-86L628E',
+                'price' => 1400000,
                 'description' => 'DW-86L628E',
                 'type' => 'DW-86L628E',
                 'model' => '0000',
@@ -273,6 +301,7 @@ class ProductSeeder extends Seeder
             [
                 'product_category_id' => 6,
                 'name' => 'Safety Boxes',
+                'price' => 34000,
                 'description' => 'Safety Boxes',
                 'type' => 'Safety Boxes',
                 'model' => '0000',

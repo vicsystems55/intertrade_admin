@@ -11,4 +11,17 @@ class Product extends Model
 
     protected $guarded = [];
 
+
+    public function stock()
+    {
+        
+        return $this->hasMany(Stock::class);
+    }
+
+    public function stock_sum()
+    {
+        
+        return $this->hasMany(Stock::class)->sum('quantity');
+    }
+
 }

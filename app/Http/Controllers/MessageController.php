@@ -6,8 +6,6 @@ use App\Models\Message;
 
 use App\Events\SmartMessageEvent;
 
-use Auth;
-
 use Illuminate\Http\Request;
 
 class MessageController extends Controller

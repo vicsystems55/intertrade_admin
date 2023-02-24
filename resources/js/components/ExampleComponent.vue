@@ -6,18 +6,29 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8 ">
-                        <div class="">
-                            <h6>Stock</h6>
-                            <div style="height: 400px; overflow: scroll;" class="c">
+                      
+                       
+                            <div style="height: 450px; overflow-y: scroll; overflow-x: hidden;" class="p-2">
 
                                 <div class="row">
-                                    <div v-for="product in products" :key="product.id" class="col-md-4">
-                                        <div class="card" style="width: 220px;">
-                                            <img :src="product.featured_image" class="card-img-top" alt="...">
+                                    <div v-for="product in products" :key="product.id"
+                                        class="col-lg-4 col-md-6 mx-auto">
+                                        <div class="card" style="min-width: 200px;">
+                                            <img style="height: 200px;" :src="product.featured_image" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <h6 class="card-title">{{ product.name }}</h6>
                                                 <p class="card-text">{{ product.description }}</p>
-                                                <button @click="addProduct(product.id)" class="btn btn-primary btn-sm col-12">Add +</button>
+                                                <p v-if="product.stock_sum_quantity">In stock: {{product.stock_sum_quantity }}</p>
+                                                <p v-else>In stock: 0</p>
+                                                <p>N {{ format(product.price) }}</p>
+                                                <button
+                                                v-if="product.stock_sum_quantity"
+                                                @click="addProduct(product.id)"
+                                                    class="btn btn-primary btn-sm col-12">Add +</button>
+
+                                                    <button 
+                                                    v-else
+                                                    class="btn btn-primary btn-sm col-12" disabled>Add +</button>
                                             </div>
                                         </div>
 
@@ -29,47 +40,113 @@
 
                             </div>
 
-                        </div>
+                        
 
                     </div>
                     <div class="col-md-4 ">
                         <h6>Record Sale</h6>
-                        <div class="card card-body">
+                        <div class="card card-bod">
+                            
 
-                            <div style="max-height: 320px; overflow: scroll;" class="">
+                            <div style="height: 320px; overflow-y: auto;" class="p-2">
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 p-2 mb-3">
                                     <label for="">Select Customer</label>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Customer 1</option>
-                                        <option value="">Customer 1</option>
+                                    <select v-model="selCustomer" id="" class="form-control">
 
-                                        <option value="">Customer 1</option>
+                                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
+                                      
 
 
                                     </select>
                                 </div>
 
-                                <div v-for="line in invoice.invoice_line" :key="line.id"  class="inln">
-                                    <div class="row">
-                                    <div class="col-8">
-                                        <h6> {{line.product.name}}</h6>
-                                        <div class="form-group">
-                                            <input type="number" class="form-control form-control-sm">
+                                <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2">
+                                    <div class="row ">
+                                        <div class="col-12">
+                                            <div class="d-flex justify-content-between">
+                                                <div  class="c ">
+                                                    <h6 style="font-weight: bold;">
+                                                       {{key + 1 }}. {{ line.product.name }}
+                                                    </h6>
+
+                                                </div>
+                                                <div class="r ">
+                                                    <span @click="removeInvoiceLine(line.id)"  class="btn pt-0 text-danger">remove</span>
+
+                                                </div>
+                                            </div>
 
                                         </div>
+                                        <div class="col-12">
+                                            <input type="hidden" name="" v-model="lineIds[key]">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <label for="price">Price</label>
+                                                        <input type="number" class="form-control form-control-sm"
+                                                            v-model="linePrice[key]">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="quantity">Quantity</label>
+                                                      
+                                                            <input type="number" class="form-control form-control-sm"
+                                                     
+                                                            v-model="lineQuantity[key]" >
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group py-2">
+                                            <label for="desc">Description</label>
+                                            <textarea class="form-control" v-model="lineDescription[key]" rows="3"></textarea>
+                                        </div>
                                     </div>
-                                    <div class="col-4">
-                                        N 23,000
-                                    </div>
+
                                 </div>
-                                <hr>
+
+                                <div class="form-group mb-3 p-2 mb-3">
+                                    <label for="">Select Type</label>
+                                    <select v-model="invoice_type" id="" class="form-control">
+                                        <option >Invoice</option>
+                                        <option >Quotation</option>
+                                        <option >Pro forma Invoice</option>
+                                        <option :value="'receipt'">Receipt</option>
+
+
+                                    </select>
                                 </div>
+
+                                <div class="form-group mb-3 p-2 mb-3">
+                                    <label for="">Status</label>
+                                    <select v-model="payment_status" id="" class="form-control">
+                                        <option >Paid</option>
+                                        <option >Unpaid</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3 p-2 mb-3">
+                                    <label for="">Bank Name</label>
+                                  <input type="text" v-model="bank_name" class="form-control">
+                                  <label for="">Account Name</label>
+                                  <input type="text" v-model="account_name" class="form-control">
+                                  <label for="">Account No.</label>
+                                  <input type="text" v-model="account_no" class="form-control">
+                                </div>
+
+
 
 
                             </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary col-12">Submit</button>
+                            <div class="form-group p-2">
+                                <button @click="generateInvoice()" class="btn btn-primary col-12">Submit</button>
+                            </div>
+
+                            <div class="form-group p-2">
+                                <button @click="resetInvoice()" class="btn btn-danger col-12">Reset</button>
                             </div>
 
                         </div>
@@ -90,7 +167,8 @@
                         <tr>
                             <th>Invoice Code</th>
                             <th>Total Amount</th>
-                            <th>Created by</th>
+                            <th>Type</th>
+                            <th>Created at</th>
                             <th>Date</th>
                         </tr>
 
@@ -99,10 +177,14 @@
                     <tbody>
 
                         <tr v-for="inv in invoices" :key="inv.id">
-                            <td>{{inv.invoice_code}}</td>
-                            <td>{{ inv.discount_amount}}</td>
-                            <td>{{ inv.created_at}}</td>
-                            <td></td>
+                            <td>{{ inv.invoice_code }}</td>
+                            <td>N {{ format(inv.total_amount) }}</td>
+                            <td>{{ inv.invoice_type }}</td>
+                            <td>{{ inv.created_at }}</td>
+
+                            <td>
+                                <a :href="'/invoice/' + inv.invoice_code" class="btn btn-primary">view invoice</a>
+                            </td>
                         </tr>
 
                     </tbody>
@@ -136,7 +218,20 @@ export default {
             products: [],
             invoice: '',
             invoices: [],
-            current_invoice_code: null
+            current_invoice_code: null,
+            lineIds: [],
+            lineQuantity:[],
+            lineDescription: [],
+            linePrice: [],
+
+            customers: [],
+            selCustomer: '',
+            invoice_type: '',
+            payment_status: 'Unpaid',
+
+            bank_name: 'UBA',
+            account_name: 'InterTrade Ltd.',
+            account_no: '22002288220'
         }
     },
 
@@ -144,34 +239,100 @@ export default {
     props: ['appurl', 'userid'],
 
     methods: {
-        generate_voucher() {
+
+        format(value){
+            var numeral = require('numeral');
+
+            return numeral(value).format('N 0,0.00')
+        },
+
+
+        generateInvoice() {
+
+            if (this.selCustomer == null) {
+                alert('Please select a customer')
+            }
+
+
+            // console.log(this.lineQuantity)
+
+            // var desc = [];
+
+            // desc = document.getElementById('quantity').value
+
+            // console.log(desc);
+
+            axios({
+                method: "post",
+                url: this.appurl + 'api/invoice_lines',
+                params: {
+                    lineIds: this.lineIds,
+                    lineDescription: this.lineDescription,
+                    lineQuantity: this.lineQuantity,
+                    linePrice: this.linePrice,
+                    type: 'update-line',
+                    invoice_id: this.invoice.id,
+
+                    customer_id: this.selCustomer,
+                    invoice_type: this.invoice_type,
+
+                    bank_name: this.bank_name,
+                    account_name: this.account_name,
+                    account_no: this.account_no
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                },
+
+            }).then((response) => (
+                // this.loading = false,
+
+
+                console.log(response),
+
+                this.resetInvoice(),
+
+                window.open(this.appurl+'invoice/'+this.invoice.invoice_code, '_blank')
+
+
+
+              
+                //  this.results = response.data
+
+            )).catch(function (error) {
+                console.log(error);
+            });
 
 
         },
 
-        addProduct(productId){
+        addProduct(productId) {
+
+            //alert(this.invoice.id)
 
             axios.post(this.appurl + 'api/invoices', {
-                    invoice_id: this.invoice.id,
-                    product_id: productId,
-                    type: 'add-product'
-                    // date: this.date,
-                    // file_upload: this.newfile_name,
-                    // text_report: this.outputData.blocks,
+                invoice_id: this.invoice.id,
+                product_id: productId,
+                type: 'add-product'
+                // date: this.date,
+                // file_upload: this.newfile_name,
+                // text_report: this.outputData.blocks,
 
-                }).then((response) => (
-                    // this.loading = false,
+            }).then((response) => (
+                // this.loading = false,
 
-                    this.invoice = response.data,
+                this.invoice = response.data,
 
-                    console.log(response),
+                console.log(response),
 
-                    this.getInvoice()
-                    //  this.results = response.data
+                this.getInvoice()
+                //  this.results = response.data
 
-                )).catch(function (error) {
-                    console.log(error);
-                });
+            )).catch(function (error) {
+                console.log(error);
+            });
 
 
 
@@ -182,7 +343,7 @@ export default {
 
             if (localStorage.getItem('current_invoice_code')) {
 
-                alert('has');
+                // alert('has');
 
                 this.getInvoice();
 
@@ -192,7 +353,7 @@ export default {
 
                 this.current_invoice_code = localStorage.getItem('current_invoice_code');
 
-                alert('created')
+                //alert('created')
 
                 axios.post(this.appurl + 'api/invoices', {
                     invoice_code: this.current_invoice_code,
@@ -238,9 +399,26 @@ export default {
             }).then((response) => (
                 // this.loading = false,
 
+                //alert('reveic curent invoice'),
+
                 this.invoice = response.data,
 
+                this.lineQuantity = response.data.invoice_line.map(line => line.quantity),
+                console.log(this.lineQuantity),
+
+                this.lineDescription = response.data.invoice_line.map(line => line.description),
+                console.log(this.lineDescription),
+
+                this.lineIds = response.data.invoice_line.map(line => line.id),
+                console.log(this.lineIds),
+
+                this.linePrice = response.data.invoice_line.map(line => line.product.price),
+                console.log(this.linePrice),
+        
                 console.log(response)
+
+                //alert('this.invoice')
+
                 //  this.results = response.data
 
             )).catch(function (error) {
@@ -271,7 +449,8 @@ export default {
             });
 
         },
-        getInvoices(){
+
+        getInvoices() {
             axios({
                 method: "get",
                 url: this.appurl + 'api/invoices',
@@ -296,7 +475,100 @@ export default {
             )).catch(function (error) {
                 console.log(error);
             });
+        },
+
+        resetInvoice() {
+
+           
+
+
+
+            // axios({
+            //     method: "post",
+            //     url: this.appurl + 'api/invoices',
+            //     params: {
+            //         invoice_code: localStorage.getItem('current_invoice_code'),
+            //         type: 'delete'
+
+            //     },
+            //     headers: {
+            //         'Access-Control-Allow-Origin': '*',
+            //         'Content-type': 'application/json',
+            //         'Accept': 'application/json',
+            //     },
+
+            // }).then((response) => (
+            //     // this.loading = false,
+
+            //     //alert('reveic curent invoice'),
+
+            //     // this.invoice = response.data,
+            //     console.log(response)
+
+            //     //alert('this.invoice')
+
+            //     //  this.results = response.data
+
+            // )).catch(function (error) {
+            //     console.log(error);
+            // });
+
+            localStorage.removeItem('current_invoice_code');
+
+            this.createInvoice()
+
+        },
+
+        removeInvoiceLine(invoiceLineId) {
+
+            axios({
+                method: "post",
+                url: this.appurl + 'api/invoice_lines',
+                params: {
+                    invoice_line_id: invoiceLineId,
+                    type: 'remove-item'
+
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                },
+
+            }).then((response) => (
+                // this.loading = false,
+
+                //alert('reveic curent invoice'),
+
+                // this.invoice = response.data,
+                console.log(response),
+                this.getInvoice()
+
+                //alert('this.invoice')
+
+                //  this.results = response.data
+
+            )).catch(function (error) {
+                console.log(error);
+            });
+
+        },
+
+        getCustomers(){
+            axios({
+                method: "get",
+                url: this.appurl + 'api/customers',
+
+            }).then((response)=>{
+
+                this.customers = response.data,
+
+                console.log(response)
+
+            })
         }
+
+
 
 
     },
@@ -310,6 +582,7 @@ export default {
         this.getProducts();
         this.createInvoice();
         this.getInvoices();
+        this.getCustomers();
 
     }
 }

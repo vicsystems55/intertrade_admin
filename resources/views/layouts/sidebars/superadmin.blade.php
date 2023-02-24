@@ -1,4 +1,4 @@
-<ul class="metismenu" id="menu">
+<ul class="metismenu mt-2" id="menu">
     <!-- <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon"><i class='bx bx-home-circle'></i>
@@ -48,58 +48,74 @@
     </li>
 
     <li>
+        <a href="{{route('superadmin.customer')}}">
+            <div class="parent-icon"><i class='lni lni-users'></i>
+            </div>
+            <div class="menu-title">Customer Records</div>
+        </a>
+    </li>
+
+    {{-- <li>
         <a href="#">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
             <div class="menu-title">Reports</div>
         </a>
-    </li>
+    </li> --}}
 
     <li>
-        <a href="{{route('superadmin.projects')}}">
+        <a href="{{route('clientProjects.index')}}">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
             <div class="menu-title">Projects</div>
         </a>
     </li>
 
-    <li>
+    {{-- <li>
         <a href="{{route('superadmin.deployments')}}">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
             <div class="menu-title">Deployments</div>
         </a>
-    </li>
+    </li> --}}
 
-    <li>
+    {{-- <li>
         <a href="{{route('superadmin.truck_routes')}}">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
             <div class="menu-title">Truck Routes</div>
         </a>
-    </li>
+    </li> --}}
 
-    <li>
+    {{-- <li>
         <a href="{{route('superadmin.installation_schedule')}}">
             <div class="parent-icon"><i class='bx bx-book'></i>
             </div>
             <div class="menu-title">Installation Schedule</div>
         </a>
+    </li> --}}
+
+    <li>
+        <a href="{{route('stockManagement.index')}}">
+            <div class="parent-icon"><i class='bx bx-buildings'></i>
+            </div>
+            <div class="menu-title">Stock Management</div>
+        </a>
     </li>
 
     <li>
-        <a href="{{route('superadmin.inventories')}}">
-            <div class="parent-icon"><i class='bx bx-buildings'></i>
+        <a href="{{route('cash_request')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
             </div>
-            <div class="menu-title">Inventory</div>
-        </a>
+            <div class="menu-title">Cash Request</div>
+           </a>
     </li>
 
     <li>
         <a href="{{route('superadmin.pos')}}">
             <div class="parent-icon"><i class='bx bx-cog'></i>
             </div>
-            <div class="menu-title">POS</div>
+            <div class="menu-title">Sales Point</div>
            </a>
     </li>
 

@@ -21,6 +21,7 @@ class CreateInvoiceLinesTable extends Migration
             $table->foreignId('product_id');
             $table->integer('quantity');
             $table->integer('amount');
+            $table->integer('total_amount')->default(0);
             $table->integer('discount_percent');
             $table->integer('discount_amount');
 
