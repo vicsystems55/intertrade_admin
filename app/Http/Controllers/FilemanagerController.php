@@ -43,7 +43,6 @@ class FilemanagerController extends Controller
     {
         # code...
 
-        $filesize = ($request->file('media')->getSize());
 
         $request->validate([
             'email' => 'required|exists:users,email',
@@ -53,26 +52,31 @@ class FilemanagerController extends Controller
 
         ]);
 
-        $doc = $request->file('media');
+        foreach ($request->media as $doc) {
+            # code...
+            // $doc = $request->file('media');
+        $filesize = ($doc->getSize());
 
-        $new_name = rand().".".$doc->getClientOriginalExtension();
 
-        $file1 = $doc->move(public_path('media_bank'), $new_name);
+            $new_name = rand().".".$doc->getClientOriginalExtension();
 
-        $mediaFile = MediaBank::create([
-            'url' => asset('media_bank').'/'.$new_name,
-            'name' => $request->name,
-            'description' => $request->description,
-            'status' => 'active',
-            'type' => $request->file('media')->getClientMimeType(),
-            'size' => $filesize,
-            'uploaded_by' => User::where('email',$request->email)->first()->id,
-        ]);
+            $file1 = $doc->move(public_path('media_bank'), $new_name);
 
-        MediaBankCategory::create([
-            'media_bank_id' => $mediaFile->id,
-            'media_category_id' => $request->media_category,
-        ]);
+            $mediaFile = MediaBank::create([
+                'url' => asset('media_bank').'/'.$new_name,
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => 'active',
+                'type' => $doc->getClientMimeType(),
+                'size' => $filesize,
+                'uploaded_by' => User::where('email',$request->email)->first()->id,
+            ]);
+
+            MediaBankCategory::create([
+                'media_bank_id' => $mediaFile->id,
+                'media_category_id' => $request->media_category,
+            ]);
+        }
 
 
 

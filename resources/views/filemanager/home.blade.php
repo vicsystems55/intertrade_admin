@@ -92,7 +92,7 @@
                    </div>
                    <div class="form-group">
                     <label for="exampleFormControlFile1">Upload file(s)</label>
-                    <input type="file" name="media" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" name="media[]" class="form-control-file" id="exampleFormControlFile1" multiple>
                   </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block btn-lg" type="submit">Upload</button>
