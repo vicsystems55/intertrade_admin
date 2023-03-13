@@ -272,6 +272,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/media', [FilemanagerController::class, 'media'])->name('media');
 
+Route::get('/media/category/{id}', [FilemanagerController::class, 'mediaCategory'])->name('media.category');
+
+
+Route::post('/upload-media', [FilemanagerController::class, 'uploadMedia'])->name('upload-media');
+
+
 
 Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('get_images');
 

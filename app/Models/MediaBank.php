@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class MediaBank extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function uploadedBy()
+    {
+
+        return $this->belongsTo(User::class, 'uploaded_by', 'id');
+    }
+
 }
