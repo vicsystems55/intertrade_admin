@@ -36,7 +36,7 @@
                     <img style="height: 220px; object-fit: cover;" src="{{asset('media_bank/file.png')}}" alt=""> <br>
                     @endif
 
-
+                    <a href="{{$media->mediaFiles->url}}" download="">download</a>
                     {{$media->mediaFiles->name}} <br>
                     {{number_format($media->mediaFiles->size/1000024,2)}}MB <br>
                     <span class="text-muted font-italics">{{$media->mediaFiles->uploadedBy->name}}</span>
