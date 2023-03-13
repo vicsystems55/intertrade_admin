@@ -79,6 +79,21 @@ class FilemanagerController extends Controller
 
 
 
-        return $request->all();
+        return redirect('/media/category/'.$request->media_category);
+    }
+
+    public function removeMedia(Request $request)
+    {
+        # code...
+
+        // return $request->all();
+
+        MediaBankCategory::where('media_bank_id', $request->mediaId)->first()->delete();
+
+        MediaBank::find($request->mediaId)->delete();
+
+
+
+        return redirect('/media/category/'.$request->categoryID)->with('msg', 'File Removed!!');
     }
 }

@@ -23,6 +23,10 @@
 
 
        <div class="container">
+        @if(Session::has('msg'))
+<p class="alert alert-danger">{{ Session::get('msg') }}</p>
+@endif
+
 
         <div class="row">
 
@@ -36,10 +40,21 @@
                     <img style="height: 220px; object-fit: cover;" src="{{asset('media_bank/file.png')}}" alt=""> <br>
                     @endif
 
-                    <a href="{{$media->mediaFiles->url}}" download="">download</a>
+                    <a href="{{$media->mediaFiles->url}}" download="">download</a><br>
+
+
+
                     {{$media->mediaFiles->name}} <br>
                     {{number_format($media->mediaFiles->size/1000024,2)}}MB <br>
                     <span class="text-muted font-italics">{{$media->mediaFiles->uploadedBy->name}}</span>
+                    <form  method="post" action="{{route('media.delete')}}">
+                        @csrf
+                        <input type="hidden" name="mediaId" value="{{$media->mediaFiles->id}}">
+                        <input type="hidden" name="categoryID" value="{{$media_category->id}}">
+
+                        <button class="text-danger btn" type="submit"  >delete</button>
+
+                    </form>
                 </div>
             </div>
 
