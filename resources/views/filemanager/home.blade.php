@@ -105,7 +105,7 @@
 
         <div class="mt-3">
 
-            <div class="card  card-body">
+            <div class="card  card-body d-none">
                 <table class="table">
                     <thead>
                         <tr>
