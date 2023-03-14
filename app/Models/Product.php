@@ -14,14 +14,20 @@ class Product extends Model
 
     public function stock()
     {
-        
+
         return $this->hasMany(Stock::class);
     }
 
     public function stock_sum()
     {
-        
+
         return $this->hasMany(Stock::class)->sum('quantity');
+    }
+
+    public function category()
+    {
+
+        return $this->belongsTo(ProductCategory::class, 'product_category_id', 'id');
     }
 
 }

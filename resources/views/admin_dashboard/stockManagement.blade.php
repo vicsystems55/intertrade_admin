@@ -6,7 +6,6 @@
 <div class="page-content">
     <div class="p-3"></div>
     <h4>Stock Management</h4>
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
         <div class="col">
         <div class="card radius-10 border-start border-0 border-3 border-info">
@@ -14,7 +13,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <p class="mb-0 text-secondary">Orders</p>
-                        <h4 class="my-1 text-info">4805</h4>
+                        <h4 class="my-1 text-info">{{$orders->count()}}</h4>
                         <p class="mb-0 font-13">+2.5% from last week</p>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
@@ -24,13 +23,13 @@
         </div>
         </div>
         <div class="col">
-        <div class="card radius-10 border-start border-0 border-3 border-danger">
+        <div class="card radius-10 border-start border-0 border-3 border-success">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
                         <p class="mb-0 text-secondary">Total Sales</p>
-                        <h4 class="my-1 text-danger">$ {{number_format(($total)/800,2)}} </h4>
-                        <p class="mb-0 font-13">N {{number_format(($total),2)}} (Rate: N 800.00)</p>
+                        <h4 class="my-1 text-success">N {{number_format(($total/1000),2)}} k </h4>
+                        <p class="mb-0 font-13">N {{number_format(($total),2)}} </p>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
                     </div>
@@ -59,7 +58,7 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Customers</p>
-                            <h4 class="my-1 text-warning">8.4K</h4>
+                            <h4 class="my-1 text-warning">{{$customers->count()}}</h4>
                             <p class="mb-0 font-13">+8.4% from last week</p>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
@@ -67,7 +66,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div><!--end row-->
 
     <h6>View List</h6>
@@ -90,7 +89,7 @@
     </div>
 
     @foreach ($products as $product)
-        
+
     <div class="py-1">
         <div class="card">
             <div class="card-body">
@@ -122,10 +121,10 @@
 
     </div>
 
-  
 
- 
-   
+
+
+
 </div>
-    
+
 @endsection

@@ -7,8 +7,10 @@ use App\Models\User;
 use App\Models\Stock;
 use App\Models\Invoice;
 use App\Models\Product;
+use App\Models\Customer;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Auth;
 
 class StockController extends Controller
@@ -27,7 +29,11 @@ class StockController extends Controller
 
         $total = Invoice::whereIn('id', $stocks->pluck('invoice_id'))->get()->sum('total_amount');
 
-        
+        $orders = Invoice::where('customer_id','!=',null)->get();
+
+        $customers = Customer::get();
+
+
 
         // return $total;
 
@@ -35,7 +41,7 @@ class StockController extends Controller
 
         // return $products;
 
-        return view('admin_dashboard.stockManagement', compact(['products','stocks', 'total']));
+        return view('admin_dashboard.stockManagement', compact(['products','stocks', 'total', 'orders', 'customers']));
     }
 
     /**
@@ -47,7 +53,12 @@ class StockController extends Controller
     {
         //
 
-        $products = Product::all();
+        $products = Product::with('category')->get();
+
+        $productCategories = ProductCategory::get();
+
+
+        // return $products;
 
         $users = User::all();
 
@@ -55,7 +66,7 @@ class StockController extends Controller
 
         // return $stocks;
 
-        return view('admin_dashboard.createStock', compact(['stocks', 'products', 'users']));
+        return view('admin_dashboard.createStock', compact(['stocks', 'products', 'users', 'productCategories']));
     }
 
     /**

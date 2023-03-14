@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
@@ -29,6 +31,16 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+        $doc = $request->file('excelDoc');
+
+        $new_name = rand().".".$doc->getClientOriginalExtension();
+
+        $file1 = $doc->move(public_path('uploaded_excel'), $new_name);
+
+        Excel::import(new ProductsImport, asset('uploaded_excel/'.$new_name));
+
+
+
     }
 
     /**
@@ -40,6 +52,10 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+
+
+
+        Excel::import(new SiteImport, 'sites.xlsx');
     }
 
     /**

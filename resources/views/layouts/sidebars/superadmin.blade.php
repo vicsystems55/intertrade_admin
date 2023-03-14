@@ -5,7 +5,7 @@
             </div>
             <div class="menu-title">Dashboard</div>
         </a>
-        
+
     </li> -->
     <!-- <li>
         <a href="javascript:;" class="has-arrow">
@@ -32,7 +32,7 @@
     </li>
     <li class="menu-label">UI Elements</li> -->
     <li>
-        <a href="#">
+        <a href="/superadmin">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
             <div class="menu-title">Dashboard</div>
@@ -137,7 +137,7 @@
 
 
 
-   
-    
-    
+
+
+
 </ul>

@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            
+
             <h4>{{$project->title}}</h4>
             <h6>{{$project->code}}</h6>
 
@@ -44,7 +44,7 @@
                         <div class="col-md-4">
                             <div style="height: 250px;" class="card {{$deployment->status=='delivered'?'border border-success':''}}">
                                 <div class="card-body">
-        
+
                                     <table class="table table-striped">
                                         <tr>
                                             <td style="width: 120px;">State: </td>
@@ -62,8 +62,8 @@
                                             </span>
                                             </td>
                                             </tr>
-                                        
-                                        
+
+
                                             {{-- <tr>
                                             <td>Contact Number: </td>
                                             <td>
@@ -72,7 +72,7 @@
                                             </span>
                                             </td>
                                             </tr> --}}
-                                        
+
                                             {{-- <tr>
                                             <td>Number of UCCs: </td>
                                             <td>
@@ -81,7 +81,7 @@
                                             </span>
                                             </td>
                                             </tr> --}}
-        
+
                                             <tr>
                                                 <td>Delivery Status: </td>
                                                 <td>
@@ -109,37 +109,37 @@
                                             <a href="" class="btn btn-primary btn-block btn-sm shadow">Installation</a>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                             </div>
                         </div>
-                   
+
                @empty
 
 
 
                 </div>
-            
-
-                  
 
 
-                    
+
+
+
+
 
                         <h6>No Delivery data...</h6>
-                           
+
                        @endforelse
 
-                  
+
             </div>
         </div>
     </div>
 
 
-    
+
 
 
 </div>
-    
+
 @endsection

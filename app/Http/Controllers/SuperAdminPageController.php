@@ -13,6 +13,8 @@ use App\Models\Invoice;
 
 use App\Models\Message;
 
+use App\Models\Product;
+
 use App\Models\Project;
 
 use App\Models\Customer;
@@ -25,16 +27,15 @@ use App\Models\TruckRoute;
 
 use App\Models\AccountHead;
 
+use App\Models\CashRequest;
+
 use App\Models\ReportImage;
 
 use App\Models\Notification;
 
 use Illuminate\Http\Request;
-
 use App\Models\AccountMapping;
-
 use App\Models\AccountSubHead;
-use App\Models\CashRequest;
 use App\Models\DeploymentReport;
 use App\Models\InstallationSchedule;
 use Illuminate\Support\Facades\Auth;
@@ -48,25 +49,42 @@ class SuperAdminPageController extends Controller
 
     public function spo_reports()
     {
-        
-        
+
+
 
         return view('genral');
     }
 
     public function index()
     {
-        
-        
-        return view('superadmin_dashboard.index');
+
+        $stocks = Stock::where('invoice_id', '!=', null )->with(['invoice','receiver'])->get();
+
+        $total = Invoice::whereIn('id', $stocks->pluck('invoice_id'))->get()->sum('total_amount');
+
+
+
+        // return $total;
+
+        $orders = Invoice::where('customer_id','!=',null)->get();
+
+        // return $orders;
+
+        $products = Product::has('stock')->with('stock')->get();
+
+        $customers = Customer::get();
+
+
+
+        return view('superadmin_dashboard.index',compact(['products','stocks', 'total', 'orders', 'customers']));
     }
 
     public function staff_records()
     {
 
         $users = User::latest()->get();
-        
-        
+
+
         return view('superadmin_dashboard.staff_records',[
             'users' => $users
         ]);
@@ -75,7 +93,7 @@ class SuperAdminPageController extends Controller
     public function staff_record($user_id)
     {
         $user = User::where('id', $user_id)->first();
-        
+
         return view('superadmin_dashboard.staff_record',[
             'user' => $user
         ]);
@@ -84,7 +102,7 @@ class SuperAdminPageController extends Controller
     public function customer()
     {
         $customers = Customer::all();
-        
+
         return view('superadmin_dashboard.customer', compact('customers'));
     }
 
@@ -93,7 +111,7 @@ class SuperAdminPageController extends Controller
         $cash_requests = CashRequest::with('requestby')->get();
 
         // return $cash_requests;
-        
+
         return view('superadmin_dashboard.cash_request', compact('cash_requests'));
     }
 
@@ -102,21 +120,21 @@ class SuperAdminPageController extends Controller
         $cash_request = CashRequest::with('requestby')->find($id);
 
         // return $cash_requests;
-        
+
         return view('superadmin_dashboard.cash_request_details', compact('cash_request'));
     }
 
     public function create_staff()
     {
-        
-        
+
+
         return view('superadmin_dashboard.create_staff');
     }
 
     public function pos()
     {
         $invoices = Invoice::with('invoice_line.product')->get();
-        
+
         return view('superadmin_dashboard.pos', compact(['invoices']));
     }
 
@@ -128,8 +146,8 @@ class SuperAdminPageController extends Controller
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'
         ]);
-        
-        
+
+
         return view('general.notifications',[
             'notifications' => $notifications
         ]);
@@ -141,8 +159,8 @@ class SuperAdminPageController extends Controller
         $messages = Message::with('fr_oms')->where('t_o', Auth::user()->id)->latest()->get();
 
         $users = User::latest()->get();
-        
-        
+
+
         return view('general.messages',[
             'messages' => $messages,
             'users' => $users
@@ -155,8 +173,8 @@ class SuperAdminPageController extends Controller
          $project = Project::where('id', 1)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('general.deployments',[
 
             'deployments' => $deployments,
@@ -169,7 +187,7 @@ class SuperAdminPageController extends Controller
     {
 
         $deployments = Deployment::latest()->get();
-        
+
         return view('superadmin_dashboard.create_deployment',[
             'deployments' => $deployments
         ]);
@@ -179,8 +197,8 @@ class SuperAdminPageController extends Controller
     {
 
         $deployment = Deployment::where('id', $deployment_id)->first();
-        
-        
+
+
         return view('general.deployment',[
             'deployment' => $deployment
         ]);
@@ -197,7 +215,7 @@ class SuperAdminPageController extends Controller
         $users = User::where('role', 'driver')->get();
 
 
-        
+
         return view('superadmin_dashboard.create_truck_route',[
             'deployments' => $deployments,
             'inventories' => $inventories,
@@ -216,7 +234,7 @@ class SuperAdminPageController extends Controller
         $users = User::where('role', 'technician')->get();
 
 
-        
+
         return view('superadmin_dashboard.create_installation_schedule',[
             'deployments' => $deployments,
             'inventories' => $inventories,
@@ -226,7 +244,7 @@ class SuperAdminPageController extends Controller
 
     public function installation_schedule(Request $request)
     {
-        
+
 
         $key = $request->technician_assigned??'';
 
@@ -240,7 +258,7 @@ class SuperAdminPageController extends Controller
         // dd($installation_schedules);
 
 
-        
+
         return view('general.installation_schedule',[
             'deployments' => $deployments,
             'installation_schedules' => $installation_schedules,
@@ -256,8 +274,8 @@ class SuperAdminPageController extends Controller
         $trucka_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 1)->get();
 
         $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->get();
-        
-        
+
+
         return view('general.truck_routes',[
             'trucka_routes' => $trucka_routes,
             'truckb_routes' => $truckb_routes,
@@ -267,7 +285,7 @@ class SuperAdminPageController extends Controller
     public function inventories()
     {
         $inventories = Inventory::latest()->get();
-                
+
         return view('admin_dashboard.inventories',[
             'inventories' => $inventories,
         ]);
@@ -277,7 +295,7 @@ class SuperAdminPageController extends Controller
     {
 
         $projects = Project::latest()->get();
-        
+
         return view('admin_dashboard.projects',[
 
             'projects' => $projects
@@ -292,8 +310,8 @@ class SuperAdminPageController extends Controller
         $reports = DeploymentReport::where('status', 'test')->with('report_images')->latest()->get();
 
         // dd($reports);
-        
-        
+
+
         return view('superadmin_dashboard.reports',[
             'reports' => $reports
         ]);
@@ -304,12 +322,12 @@ class SuperAdminPageController extends Controller
 
         $report = DeploymentReport::with('report_images')->where('id', $report_id)->first();
 
-        
-        
-        
+
+
+
         return view('superadmin_dashboard.report',[
             'report' => $report,
-        
+
         ]);
     }
 
@@ -326,7 +344,7 @@ class SuperAdminPageController extends Controller
             # code...
 
             // dd(Session::get('listing_code'));
-            
+
         }else{
 
            session([
@@ -347,7 +365,7 @@ class SuperAdminPageController extends Controller
 
 
         return view('superadmin_dashboard.create_report',[
-            'deployments' => $deployments 
+            'deployments' => $deployments
         ]);
     }
 }
