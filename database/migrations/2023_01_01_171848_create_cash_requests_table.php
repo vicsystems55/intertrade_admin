@@ -16,11 +16,11 @@ class CreateCashRequestsTable extends Migration
         Schema::create('cash_requests', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('request_by')->unsigned();
-            $table->bigInteger('approved_by')->unsigned()->nullalbe();
+            $table->bigInteger('approved_by')->unsigned()->nullable();
             $table->integer('amount_requested');
-            $table->integer('amount_approved')->nullalbe();
-            $table->integer('amount_refunded')->nullalbe();
-            $table->string('date_required')->nullalbe();
+            $table->integer('amount_approved')->nullable();
+            $table->integer('amount_refunded')->nullable();
+            $table->string('date_required')->nullable();
             $table->string('status')->default('pending');
             $table->string('title');
             $table->text('description');
