@@ -129,8 +129,12 @@
 
     </div>
 
-    <div class="card">
+    <products-component  appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"  ></products-component>
+
+    {{-- <div class="card">
         <div class="card-body">
+
+
 
             <table class="table">
                 <thead>
@@ -147,16 +151,24 @@
                 <tbody>
                     @foreach ($products as $product)
 
+
                     <tr>
-                        <td>{{$loop->iteration}}</td>
+
+
+                        <td>
+
+                            {{$loop->iteration}}</td>
                         <td>
                             <img src="{{$product->featured_image}}" style="height: 45px" alt="">
                         </td>
+
+
                         <td>
-                            <input type="text" class="form-control form-control-sm" value="{{$product->name}}">
+                            <input type="text" class="form-control form-control-sm" name="productName{{$product->id}}" value="{{$product->name}}">
                             </td>
                         <td>
-                            <select name="product_id" id="" class="form-control form-control-sm" >
+
+                            <select name="productCategory{{$product->id}}" id="" class="form-control form-control-sm" >
                                 @foreach ($productCategories as $productCategory)
 
                                 <option value="{{$productCategory->id}}" {{$product->category->id == $productCategory->id?'selected':''}} >{{$productCategory->name}}</option>
@@ -164,19 +176,25 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control form-control-sm" value="{{number_format($product->price,2 )}}">
+                            <input type="text" name="productPrice{{$product->id}}" class="form-control form-control-sm" value="{{number_format($product->price,2 )}}">
                         </td>
                         <td>
-                            <button class="btn btn-secondary  btn-sm">update</button>
-                        </td>
+
+                            <button type="submit" class="btn btn-secondary  btn-sm">update</button>
+                            </td>
+
+
+
                     </tr>
+
+
 
                     @endforeach
                 </tbody>
             </table>
 
         </div>
-    </div>
+    </div> --}}
 </div>
 
 

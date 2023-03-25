@@ -2,25 +2,26 @@
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\ProductController;
-
-use App\Http\Controllers\RequisitionController;
-
-
-use App\Http\Controllers\TpsaNotificationController;
 
 use App\Http\Controllers\InvoiceController;
 
-use App\Http\Controllers\InvoiceLineController;
+
+use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\CashRequestController;
 
+use App\Http\Controllers\InvoiceLineController;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RequisitionController;
+
+
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\TpsaNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,9 @@ Route::post('/create_requistion_request', [RequisitionController::class, 'create
 
 Route::resource('products', ProductController::class, ['name' => 'products']);
 
-Route::resource('customers', CustomerController::class, ['name' => 'cus']);
+Route::resource('product-category', ProductCategoryController::class, ['name' => 'products.categories']);
 
+Route::resource('customers', CustomerController::class, ['name' => 'cus']);
 
 Route::resource('invoices', InvoiceController::class, ['name' => 'invoices']);
 

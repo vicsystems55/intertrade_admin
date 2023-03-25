@@ -5,12 +5,12 @@
     @if(Auth::user()->role == 'superadmin')
 
     <html lang="en" class="semi-dark">
-    @else 
+    @else
     <html lang="en" class="">
-    
+
     @endif
 
-@else 
+@else
 <html lang="en" class="">
 @endauth
 <html lang="en" class="">
@@ -41,8 +41,8 @@
 
 	<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
 	<link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
-<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" integrity="sha512-u7ppO4TLg4v6EY8yQ6T6d66inT0daGyTodAi6ycbw9+/AU8KMLAF7Z7YGKPMRA96v7t+c7O1s6YCTGkok6p9ZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>InterTrade Admin</title>
 </head>
@@ -57,7 +57,8 @@
 					<img src="{{config('app.url')}}assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
-					<h4 class="logo-text">InterTrade</h4>
+
+					<h4 class="logo-text">InterTrade <i class="fad fa-spinner fa-spin"></i></h4>
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
@@ -71,7 +72,7 @@
 
                 @include('layouts.sidebars.superadmin')
 
-                
+
             @elseif(Auth::user()->role == 'admin')
 
                 @include('layouts.sidebars.admin')
@@ -96,10 +97,10 @@
 
                  @include('layouts.sidebars.accounts')
 
-            
+
         @endif
-			
-            
+
+
 
 
 			<!--end navigation-->
@@ -112,7 +113,7 @@
 		<div class="page-wrapper">
 			@yield('content')
 
-           
+
 		<!--end page wrapper -->
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>
@@ -123,9 +124,10 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-    
+    </div>
 
-	
+    <script src="{{asset('js/app.js')}}"></script>
+
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="{{config('app.url')}}assets/js/bootstrap.bundle.min.js"></script>
@@ -138,7 +140,7 @@
     <script src="{{config('app.url')}}assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="{{config('app.url')}}assets/plugins/chartjs/js/Chart.min.js"></script>
 	<script src="{{config('app.url')}}assets/plugins/chartjs/js/Chart.extension.js"></script>
-	<script src="assets/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
+
 	<!--Morris JavaScript -->
 	<script src="{{config('app.url')}}assets/plugins/raphael/raphael-min.js"></script>
 	<script src="{{config('app.url')}}assets/plugins/morris/js/morris.js"></script>
@@ -147,21 +149,15 @@
 	<script src="{{config('app.url')}}assets/js/app.js"></script>
 
 
-	
-    <script src="{{asset('js/app.js')}}"></script>
-
-	
-
-
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
-
 	<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
-
 	<script>
 		var editor = new FroalaEditor('#example');
 	</script>
 	@yield('script-content')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/js/all.min.js" integrity="sha512-/J1T4RfwfHmP/1jDH9L/1Ax51Q21YCvMJq/ynj11hTEBwguvGJ2L72yVirJn1YQWHeZx+aIi1y5zgRueUdYn1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{-- <script src="{{asset('js/app.js')}}"></script> --}}
 
 
 </body>

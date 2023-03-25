@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreProductRequest;
@@ -43,6 +44,13 @@ class ProductController extends Controller
 
     }
 
+    public function updateProduct(Request $request)
+    {
+
+
+        return $request->all();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -68,6 +76,16 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         //
+
+        $product->update([
+            'name' => $request->productName,
+            'description' => $request->productDescription,
+            'product_category_id' => $request->productCategory,
+            'price' => $request->productPrice,
+
+        ]);
+
+        return $product;
     }
 
     /**

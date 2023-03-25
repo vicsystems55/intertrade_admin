@@ -21,11 +21,13 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('map-component', require('./components/MapComponent.vue').default);
+// Vue.component('map-component', require('./components/MapComponent.vue').default);
 
 Vue.component('uploader-component', require('./components/UploaderComponent.vue').default);
 
 Vue.component('uploaderx-component', require('./components/UploaderxComponent.vue').default);
+
+Vue.component('products-component', require('./components/ProductsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
