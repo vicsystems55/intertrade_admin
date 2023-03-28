@@ -6,8 +6,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8 ">
-                      
-                       
+
+
                             <div style="height: 450px; overflow-y: scroll; overflow-x: hidden;" class="p-2">
 
                                 <div class="row">
@@ -26,7 +26,7 @@
                                                 @click="addProduct(product.id)"
                                                     class="btn btn-primary btn-sm col-12">Add +</button>
 
-                                                    <button 
+                                                    <button
                                                     v-else
                                                     class="btn btn-primary btn-sm col-12" disabled>Add +</button>
                                             </div>
@@ -40,13 +40,13 @@
 
                             </div>
 
-                        
+
 
                     </div>
                     <div class="col-md-4 ">
                         <h6>Record Sale</h6>
                         <div class="card card-bod">
-                            
+
 
                             <div style="height: 320px; overflow-y: auto;" class="p-2">
 
@@ -55,7 +55,7 @@
                                     <select v-model="selCustomer" id="" class="form-control">
 
                                         <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
-                                      
+
 
 
                                     </select>
@@ -89,9 +89,9 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="quantity">Quantity</label>
-                                                      
+
                                                             <input type="number" class="form-control form-control-sm"
-                                                     
+
                                                             v-model="lineQuantity[key]" >
 
                                                     </div>
@@ -156,6 +156,70 @@
 
             </div>
         </div>
+
+
+        <h4>Sales Records</h4>
+
+        <div class="card table-responsive">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control form-control-sm" placeholder="search...">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-md-12 py-3">
+                        <button class="btn btn-primary">search</button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Customer
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                No of items
+                            </th>
+                            <th>
+                               Total Amount
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr v-for="sale in invoices" :key="sale.id">
+                            <td>{{ sale.customer?sale.customer.company_name:'u' }}</td>
+                            <td>
+                                <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{ line.product.name }},</span>
+                              </td>
+                            <td>{{( sale.invoice_line).length }}</td>
+
+                            <td>NGN {{ format(sale.total_amount) }}</td>
+                            <td>{{new Date(sale.created_at ).toLocaleDateString()}}</td>
+                            <td>{{ sale.invoice_type }}</td>
+
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
 
         <h4>Invoices</h4>
 
@@ -298,7 +362,7 @@ export default {
 
 
 
-              
+
                 //  this.results = response.data
 
             )).catch(function (error) {
@@ -414,7 +478,7 @@ export default {
 
                 this.linePrice = response.data.invoice_line.map(line => line.product.price),
                 console.log(this.linePrice),
-        
+
                 console.log(response)
 
                 //alert('this.invoice')
@@ -479,7 +543,7 @@ export default {
 
         resetInvoice() {
 
-           
+
 
 
 

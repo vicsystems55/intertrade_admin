@@ -2270,6 +2270,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2546,6 +2610,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50202,12 +50279,62 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
+    _c("h4", [_vm._v("Sales Records")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card table-responsive" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.invoices, function(sale) {
+              return _c("tr", { key: sale.id }, [
+                _c("td", [
+                  _vm._v(
+                    _vm._s(sale.customer ? sale.customer.company_name : "u")
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(sale.invoice_line, function(line) {
+                    return _c(
+                      "span",
+                      { key: line.id, staticClass: "text-black " },
+                      [_vm._v(_vm._s(line.product.name) + ",")]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(sale.invoice_line.length))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v("NGN " + _vm._s(_vm.format(sale.total_amount)))
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(new Date(sale.created_at).toLocaleDateString()))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(sale.invoice_type))])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("h4", [_vm._v("Invoices")]),
     _vm._v(" "),
     _c("div", { staticClass: "card table-responsive" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("table", { staticClass: "table" }, [
-          _vm._m(0),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "tbody",
@@ -50241,6 +50368,70 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", placeholder: "search..." }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "date" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12 py-3" }, [
+        _c("button", { staticClass: "btn btn-primary" }, [_vm._v("search")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [
+          _vm._v(
+            "\n                            Customer\n                        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                            Description\n                        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                            No of items\n                        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                           Total Amount\n                        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("\n                            Date\n                        ")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("\n                            Type\n                        ")
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50325,7 +50516,7 @@ var render = function() {
                 "select",
                 {
                   staticClass: "form-control form-control-sm",
-                  attrs: { name: "", id: "productCategory" + product.id }
+                  attrs: { id: "productCategory" + product.id }
                 },
                 _vm._l(_vm.productsCategories, function(productCategory) {
                   return _c(
@@ -50340,7 +50531,7 @@ var render = function() {
                             : false
                       }
                     },
-                    [_vm._v(_vm._s(productCategory.name))]
+                    [_vm._v("\n\n    " + _vm._s(productCategory.name) + "\n\n")]
                   )
                 }),
                 0
@@ -50367,7 +50558,11 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                     Update\n                    ")]
+                [
+                  _vm._v(
+                    "\n                        Update\n                    "
+                  )
+                ]
               )
             ])
           ])

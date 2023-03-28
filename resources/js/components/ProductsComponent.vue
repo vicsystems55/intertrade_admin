@@ -37,12 +37,25 @@
                     </td>
 
                     <td>
-                        <select name="" :id="'productCategory' + product.id" class="form-control form-control-sm">
-                            <option v-for="productCategory in productsCategories" :key="productCategory.id"
-                                :value="productCategory.id"
-                                :selected="product.product_category_id == productCategory.id ? true : false">{{
-                                    productCategory.name }}</option>
-                        </select>
+    <select
+
+    :id="'productCategory' + product.id"
+
+    class="form-control form-control-sm">
+
+    <option v-for="productCategory in productsCategories"
+
+        :key="productCategory.id"
+
+        :value="productCategory.id"
+
+        :selected="product.product_category_id == productCategory.id ? true : false">
+
+        {{productCategory.name }}
+
+    </option>
+
+    </select>
 
                     </td>
 
@@ -53,9 +66,9 @@
                     </td>
                     <td>
 
-                        <button  @click=updateProduct(product.id) class="btn btn-info btn-sm"
+                        <button @click=updateProduct(product.id) class="btn btn-info btn-sm"
                             :id="'productBtn' + product.id">
-                         Update
+                            Update
                         </button>
                     </td>
 
@@ -143,17 +156,17 @@ export default {
 
             this.loading = true
 
-            let productName = document.getElementById('productName'+pId).value;
-            let productDescription = document.getElementById('productDescription'+pId).value;
-            let productCategory = document.getElementById('productCategory'+pId).value;
-            let productPrice = document.getElementById('productPrice'+pId).value;
+            let productName = document.getElementById('productName' + pId).value;
+            let productDescription = document.getElementById('productDescription' + pId).value;
+            let productCategory = document.getElementById('productCategory' + pId).value;
+            let productPrice = document.getElementById('productPrice' + pId).value;
 
-            document.getElementById('productBtn'+pId).textContent = 'updating...';
+            document.getElementById('productBtn' + pId).textContent = 'updating...';
 
             axios({
                 url: this.appurl + 'api/products/' + pId,
                 method: 'put',
-                data:{
+                data: {
                     productName: productName,
                     productDescription: productDescription,
                     productCategory: productCategory,
@@ -161,25 +174,25 @@ export default {
 
                 }
             })
-            .then((response) => (
-                // this.loading = false,
+                .then((response) => (
+                    // this.loading = false,
 
-                document.getElementById('productBtn'+pId).textContent = 'done',
-
-
-                this.getProducts(),
-
-                console.log(response)
-                //  this.results = response.data
-
-            )).catch(function (error) {
-
-                this.loading = false,
+                    document.getElementById('productBtn' + pId).textContent = 'done',
 
 
+                    this.getProducts(),
 
-                    console.log(error);
-            });
+                    console.log(response)
+                    //  this.results = response.data
+
+                )).catch(function (error) {
+
+                    this.loading = false,
+
+
+
+                        console.log(error);
+                });
 
 
         }

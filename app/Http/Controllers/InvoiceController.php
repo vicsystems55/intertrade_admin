@@ -36,7 +36,7 @@ class InvoiceController extends Controller
         if ($request->type == 'all') {
             # code...
 
-            return Invoice::latest()->with('invoice_line.product')->get();
+            return Invoice::latest()->with('invoice_line.product')->with('customer')->get();
 
 
 
@@ -53,7 +53,7 @@ class InvoiceController extends Controller
         }
 
 
-    
+
     }
 
     /**
@@ -78,7 +78,7 @@ class InvoiceController extends Controller
                 InvoiceLine::where('invoice_id', $invoice->id)->delete();
 
                 // $invoice->invoice_line->delete();
-        
+
                 return $invoice->delete();
             }
 
@@ -109,17 +109,17 @@ class InvoiceController extends Controller
 
                 Invoice::find($request->invoice_id)->update([
                     'total_amount' => $invoice_sum,
-                    
+
 
 
                 ]);
-                
+
             }else{
 
                 return Invoice::create([
                     'invoice_code' => $request->invoice_code,
                     'generated_by' => $request->userid
-        
+
                 ]);
             }
 
@@ -143,7 +143,7 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         //
-        
+
     }
 
     /**
@@ -175,8 +175,8 @@ class InvoiceController extends Controller
         return $invoice->delete();
 
 
-        
 
-        
+
+
     }
 }
