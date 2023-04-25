@@ -152,7 +152,7 @@ export default {
 
         },
 
-        updateProduct(pId) {
+        async updateProduct(pId) {
 
             this.loading = true
 
@@ -163,7 +163,7 @@ export default {
 
             document.getElementById('productBtn' + pId).textContent = 'updating...';
 
-            axios({
+           await axios({
                 url: this.appurl + 'api/products/' + pId,
                 method: 'put',
                 data: {
@@ -180,7 +180,7 @@ export default {
                     document.getElementById('productBtn' + pId).textContent = 'done',
 
 
-                    this.getProducts(),
+                    // this.getProducts(),
 
                     console.log(response)
                     //  this.results = response.data
