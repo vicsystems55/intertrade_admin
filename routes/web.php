@@ -27,21 +27,7 @@ use App\Http\Controllers\MilestoneReportController;
 use App\Http\Controllers\DeploymentReportController;
 use App\Http\Controllers\ProjectMilestoneController;
 use App\Http\Controllers\InstallationScheduleController;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -311,6 +297,11 @@ Route::resource('/projectMilestones', ProjectMilestoneController::class, ['name'
 Route::resource('/milestoneReports', MilestoneReportController::class, ['name' => 'milestoneReports'])->middleware('auth');
 
 Route::resource('/stockManagement', StockController::class, ['name' => 'stockManagement'])->middleware('auth');
+
+Route::get('/projects-reports', [PageController::class, 'project_reports']);
+
+Route::get('/projects', [PageController::class, 'projects']);
+
 
 
 

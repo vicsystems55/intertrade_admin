@@ -16,6 +16,10 @@ class CreateMediaBanksTable extends Migration
         Schema::create('media_banks', function (Blueprint $table) {
             $table->id();
             $table->string('url');
+            $table->string('download_url')->nullable();
+            $table->string('location')->nullable();
+            $table->foreignId('project_id')->nullable();
+
             $table->string('name');
             $table->string('description');
             $table->string('status');

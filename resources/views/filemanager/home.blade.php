@@ -86,6 +86,21 @@
                         @endforeach
                        </select>
                    </div> --}}
+
+                   <div class="form-group">
+                    <label for="">Select Project:</label>
+                    <select name="project_id" id="" class="form-control">
+                        @foreach ($projects as $project)
+                        <option value="{{$project->id}}">{{$project->title}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Location:</label>
+                        <input type="text" name="location" class="form-control" placeholder="Enter location">
+                    </div>
+
                    <div class="form-group">
                     <label for="">Select Category:</label>
                     <select name="media_category" id="" class="form-control">

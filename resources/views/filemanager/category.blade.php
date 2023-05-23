@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>File manager</title>
   </head>
   <body>
@@ -18,7 +19,7 @@
 
         <a href="/media" class="text-center btn btn-primary">Back to Library</a>
 
-           <div class="display-4">{{$media_category->name}}</div>
+           <div class="display-4 py-3" style="font-size: 180%;">{{$media_category->name}}</div>
        </div>
 
 
@@ -31,28 +32,50 @@
         <div class="row">
 
             @foreach ($media_category->mediaCategory as $media)
-            <div class="col-md-4">
-                <div class="card card-body m-1">
+            <div class="col-md-3">
+                <div class="card card-body m-1 p-1">
+                    <a style="position: absolute; top: 0; left: 0;" class="btn btn-primary" href="{{$media->mediaFiles->download_url??$media->mediaFiles->download_url}}" download=""><i class="fa-solid fa-download"></i></a>
 
-                    @if ($media->mediaFiles->url)
-                    <img style="height: 220px; object-fit: cover;" src="{{$media->mediaFiles->url}}" alt=""> <br>
+
+
+                    @if ($media->mediaFiles->type == 'video/mp4')
+
+                    <video  controls>
+                        <source src="{{$media->mediaFiles->url}}" type="video/mp4">
+                        <source src="{{$media->mediaFiles->url}}" type="video/ogg">
+
+                      </video>
+
+
+
                     @else
-                    <img style="height: 220px; object-fit: cover;" src="{{asset('media_bank/file.png')}}" alt=""> <br>
+
+                    @if($media->mediaFiles->url)
+                    <img style="height: 220px; object-fit: cover;" src="{{$media->mediaFiles->url}}" alt="">
+                    @else
+                    <img style="height: 220px; object-fit: cover;" src="{{asset('media_bank/file.png')}}" alt="">
                     @endif
 
-                    <a href="{{$media->mediaFiles->url}}" download="">download</a><br>
 
 
 
-                    {{$media->mediaFiles->name}} <br>
-                    {{number_format($media->mediaFiles->size/1000024,2)}}MB <br>
-                    <span class="text-muted font-italics">{{$media->mediaFiles->uploadedBy->name}}</span>
+                    @endif
+
+
+
+
+
+              <div class="" style="font-size: 9pt;">
+                {{$media->mediaFiles->name}} <br>
+                {{number_format($media->mediaFiles->size/1000024,2)}}MB <br>
+                <span class="text-muted font-italics">{{$media->mediaFiles->uploadedBy->name}}</span>
+              </div>
                     <form  method="post" action="{{route('media.delete')}}">
                         @csrf
                         <input type="hidden" name="mediaId" value="{{$media->mediaFiles->id}}">
                         <input type="hidden" name="categoryID" value="{{$media_category->id}}">
 
-                        <button class="text-danger btn" type="submit"  >delete</button>
+                        <button style="position: absolute; top: 0; right: 0;" class="text-white btn btn-danger " type="submit"  >x</button>
 
                     </form>
                 </div>
@@ -66,7 +89,7 @@
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
