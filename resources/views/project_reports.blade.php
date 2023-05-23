@@ -280,12 +280,20 @@
 					<div class="">
 						<div class="container py-2">
 							<h2 class="font-weight-light text-center text-muted py-3">
-                                <div class="form-group col-md-4 mx-auto">
+                                <div class="form-group d-flex jusity-content-start col-md-4 mx-auto">
                                     <select name="" id="" class="form-control">
                                         <option value="">All Locations</option>
-                                        <option value="">location 2</option>
-                                        <option value="">location 3</option>
+                                        @foreach ($media_assets->unique('location') as $location)
+                                        <option value="{{$location->location}}">{{$location->location}}</option>
+
+                                        @endforeach
+
                                     </select>
+                                    <button class="btn btn-primary">Search</button>
+
+
+                                </div>
+                                <div class="form-group text-center">
                                 </div>
                             </h2>
 							<!-- timeline item 1 -->
