@@ -11,15 +11,16 @@ use App\Http\Controllers\InvoiceController;
 
 use App\Http\Controllers\ProductController;
 
+use App\Http\Controllers\ProjectController;
+
 use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\CashRequestController;
 
 use App\Http\Controllers\InvoiceLineController;
 
+
 use App\Http\Controllers\RequisitionController;
-
-
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\TpsaNotificationController;
 
@@ -52,3 +53,6 @@ Route::resource('invoices', InvoiceController::class, ['name' => 'invoices']);
 Route::resource('invoice_lines', InvoiceLineController::class, ['name' => 'invoice_line']);
 
 Route::post('/notify_email', [TpsaNotificationController::class, 'notify_email']);
+
+Route::get('/update_project_admin', [ProjectController::class, 'update_project_admin']);
+

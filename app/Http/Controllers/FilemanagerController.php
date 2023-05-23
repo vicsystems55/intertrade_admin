@@ -51,6 +51,8 @@ class FilemanagerController extends Controller
 
         $request->validate([
             'email' => 'required|exists:users,email',
+            'description' => 'required',
+
             // 'amount' => 'required|numeric|min:99700|between:0,99.99',
             // 'number_of_accounts' => 'required|numeric|min:1|max:15',
             // 'featured_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:50000',

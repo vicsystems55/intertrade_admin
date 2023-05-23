@@ -286,7 +286,7 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h6>Benin Project</h6>
+                                        <h6>PHCs Solar Electricity Supply - Delta State</h6>
                                         <a href="/projects-reports?id=2">view details</a>
                                     </div>
                                 </div>

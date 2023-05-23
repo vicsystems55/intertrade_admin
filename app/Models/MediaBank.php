@@ -17,4 +17,12 @@ class MediaBank extends Model
         return $this->belongsTo(User::class, 'uploaded_by', 'id');
     }
 
+    public function project()
+    {
+
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+
+
 }
