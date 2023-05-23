@@ -34,7 +34,7 @@
             @foreach ($media_category->mediaCategory as $media)
             <div class="col-md-3">
                 <div class="card card-body m-1 p-1">
-                    <a style="position: absolute; top: 0; left: 0;" class="btn btn-primary" href="{{$media->mediaFiles->download_url??asset('media_bank/file.png')}}" download=""><i class="fa-solid fa-download"></i></a>
+                    <a style="position: absolute; top: 0; left: 0;" class="btn btn-primary" href="{{$media->mediaFiles->url}}" download=""><i class="fa-solid fa-download"></i></a>
 
 
 
@@ -51,7 +51,7 @@
                     @else
 
                     @if($media->mediaFiles->url)
-                    <img style="height: 220px; object-fit: cover;" src="{{$media->mediaFiles->url}}" alt="">
+                    <img style="height: 220px; object-fit: cover;" src="{{$media->mediaFiles->download_url??asset('media_bank/file.png')}}" alt="">
                     @else
                     <img style="height: 220px; object-fit: cover;" src="{{asset('media_bank/file.png')}}" alt="">
                     @endif
