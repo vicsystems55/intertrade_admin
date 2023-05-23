@@ -34,7 +34,7 @@
             @foreach ($media_category->mediaCategory as $media)
             <div class="col-md-3">
                 <div class="card card-body m-1 p-1">
-                    <a style="position: absolute; top: 0; left: 0;" class="btn btn-primary" href="{{$media->mediaFiles->download_url??$media->mediaFiles->download_url}}" download=""><i class="fa-solid fa-download"></i></a>
+                    <a style="position: absolute; top: 0; left: 0;" class="btn btn-primary" href="{{$media->mediaFiles->download_url??asset('media_bank/file.png')}}" download=""><i class="fa-solid fa-download"></i></a>
 
 
 
