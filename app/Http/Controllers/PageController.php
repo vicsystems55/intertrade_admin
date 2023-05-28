@@ -27,7 +27,9 @@ class PageController extends Controller
 
         for ($i=0; $i < $daysInMonth; $i++) {
             # code...
-            $day_report = DB::table('media_banks')->where('project_id', $request->id)->whereDay('created_at', $i)->get();
+            $day_report = DB::table('media_banks')
+            ->where('project_id', $request->id)
+            ->whereDay('created_at', $i)->get();
             array_push($days_reports, $day_report);
 
         }
