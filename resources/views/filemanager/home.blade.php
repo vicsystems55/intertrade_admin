@@ -91,6 +91,7 @@
                     <label for="">Select Project:</label>
                     <select name="project_id" id="" class="form-control">
                         @foreach ($projects as $project)
+                        <option value="">None</option>
                         <option value="{{$project->id}}">{{$project->title}}</option>
                         @endforeach
                     </select>
