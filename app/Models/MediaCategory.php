@@ -14,7 +14,7 @@ class MediaCategory extends Model
     public function mediaCategory()
     {
 
-        return $this->hasMany(MediaBankCategory::class);
+        return $this->hasMany(MediaBankCategory::class)->latest();
     }
 
 }

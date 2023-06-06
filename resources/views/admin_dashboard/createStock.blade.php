@@ -27,6 +27,12 @@
                         <label for="product">Manufacturer</label>
                         <select name="manufacturer_id" id="" class="form-control">
                             <option value="1">Haier Biomedical</option>
+                            <option value="2">SMK Technologies</option>
+                            <option value="3">OPZV</option>
+                            <option value="4">RITAR</option>
+                            <option value="5">SCHUTTEN SOLAR</option>
+                            <option value="6">R-LFP</option>
+
                         </select>
                     </div>
 
@@ -34,6 +40,11 @@
                         <label for="supplier">Supplier</label>
                         <select name="supplier_id" id="" class="form-control">
                             <option value="1">Haier Biomedical</option>
+                            <option value="2">SMK Technologies</option>
+                            <option value="3">OPZV</option>
+                            <option value="4">RITAR</option>
+                            <option value="5">SCHUTTEN SOLAR</option>
+                            <option value="6">R-LFP</option>
                         </select>
                     </div>
 
