@@ -20,7 +20,7 @@ class ProjectUpdateMail extends Mailable
     {
         //
 
-        $this->data = $data
+        $this->data = $data;
     }
 
     /**
@@ -30,6 +30,9 @@ class ProjectUpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.project_update');
+        return $this->view('mails.project_update', [
+            'data' => $this->data
+        ])->subject('New Project Update')
+        ->from('support@intertradeltd.biz','InterTrade Work Tool');
     }
 }

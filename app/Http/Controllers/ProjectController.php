@@ -29,7 +29,7 @@ class ProjectController extends Controller
 
         $latest_update = MediaBank::with('uploadedBy')->whereIn('id', $latest_update->pluck(['id']))->get();
 
-        return $latest_update;
+        // return $latest_update;
 
         if ($latest_update->count() > 0) {
             # code...
@@ -37,7 +37,7 @@ class ProjectController extends Controller
 
         $data = [
 
-            
+
 
 
 

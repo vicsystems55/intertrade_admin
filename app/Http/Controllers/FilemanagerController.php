@@ -8,7 +8,9 @@ use App\Models\Project;
 use App\Models\MediaBank;
 use Illuminate\Http\Request;
 use App\Models\MediaCategory;
+use App\Mail\ProjectUpdateMail;
 use App\Models\MediaBankCategory;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -133,6 +135,20 @@ class FilemanagerController extends Controller
 
             # code...
             // $doc = $request->file('media');
+
+        }
+
+        if ($request->project_id) {
+            # code...
+
+            $data=[
+                'project_title' => Project::find($request->project_id)->title??'Project 1',
+                'uploadedBy' => User::where('email',$request->email)->first()->name
+            ];
+
+            Mail::to('victor@intertradeltd.biz')->send(new ProjectUpdateMail($data));
+
+            Mail::to('tejiri@intertradeltd.biz')->send(new ProjectUpdateMail($data));
 
         }
 
