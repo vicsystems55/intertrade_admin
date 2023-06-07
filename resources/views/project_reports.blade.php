@@ -343,7 +343,7 @@
                                                         <br>
                                                         {{-- <span>{{$media->name}}</span> --}}
 
-                                                        <span class="bg-info" style="position: absolute; top: 0; left: 0;"> <i class="bx bx-download"></i></span>
+                                                        <a href="{{$media->download_url}}"><span class="bg-info" style="position: absolute; top: 0; left: 0;"> <i class="bx bx-download"></i></span></a>
                                                         <span class="bg-danger" style="position: absolute; top: 0; right: 0;"><i class="bx bx-x-circle"></i></span>
                                                     </div>
 
