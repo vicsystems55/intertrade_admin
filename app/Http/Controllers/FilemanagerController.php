@@ -138,8 +138,12 @@ class FilemanagerController extends Controller
 
         }
 
+
         if ($request->project_id) {
             # code...
+
+        try {
+            //code...
 
             $data=[
                 'project_title' => Project::find($request->project_id)->title??'Project 1',
@@ -149,6 +153,12 @@ class FilemanagerController extends Controller
             Mail::to('victor@intertradeltd.biz')->send(new ProjectUpdateMail($data));
 
             Mail::to('tejiri@intertradeltd.biz')->send(new ProjectUpdateMail($data));
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+
 
         }
 
