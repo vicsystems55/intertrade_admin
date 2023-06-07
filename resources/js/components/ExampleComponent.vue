@@ -50,16 +50,6 @@
 
                             <div style="height: 320px; overflow-y: auto;" class="p-2">
 
-                                <div class="form-group mb-3 p-2 mb-3">
-                                    <label for="">Select Customer</label>
-                                    <select v-model="selCustomer" id="" class="form-control">
-
-                                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
-
-
-
-                                    </select>
-                                </div>
 
                                 <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2">
                                     <div class="row ">
@@ -102,16 +92,34 @@
                                         </div>
                                         <div class="form-group py-2">
                                             <label for="desc">Description</label>
-                                            <textarea class="form-control" v-model="lineDescription[key]" rows="3"></textarea>
+                                            <textarea class="form-control" v-model="lineDescription[key]" rows="1"></textarea>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <div class="form-group mb-3 p-2 mb-3">
+
+                                <hr>
+
+                                <div class="form-group p-1 ">
+                                    <label for="">Select Customer <span class="text-danger">*</span></label>
+                                    <select v-model="selCustomer" id="" class="form-control">
+                                        <option value="">-Pick a customer-</option>
+                                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
+
+
+
+                                    </select>
+                                </div>
+
+
+
+                                <div class="form-group p-1">
                                     <label for="">Select Type</label>
-                                    <select v-model="invoice_type" id="" class="form-control">
-                                        <option >Invoice</option>
+                                    <select v-model="invoice_type" id="" class="form-control ">
+
+
+                                        <option value="">Invoice</option>
                                         <option >Quotation</option>
                                         <option >Pro forma Invoice</option>
                                         <option :value="'receipt'">Receipt</option>
@@ -120,7 +128,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group mb-3 p-2 mb-3">
+                                <div class="form-group p-1">
                                     <label for="">Status</label>
                                     <select v-model="payment_status" id="" class="form-control">
                                         <option >Paid</option>
@@ -128,7 +136,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group mb-3 p-2 mb-3">
+                                <div class="form-group p-1">
                                     <label for="">Bank Name</label>
                                   <input type="text" v-model="bank_name" class="form-control">
                                   <label for="">Account Name</label>
@@ -391,8 +399,10 @@ export default {
 
                 console.log(response),
 
-                this.getInvoice()
+                this.getInvoice(),
                 //  this.results = response.data
+
+                alert('Prduct Added to list.')
 
             )).catch(function (error) {
                 console.log(error);
