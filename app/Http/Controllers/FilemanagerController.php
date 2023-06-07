@@ -145,6 +145,8 @@ class FilemanagerController extends Controller
         // try {
             //code...
 
+            
+
             $data=[
                 'project_title' => Project::find($request->project_id)->title??'Project 1',
                 'uploadedBy' => User::where('email',$request->email)->first()->name
