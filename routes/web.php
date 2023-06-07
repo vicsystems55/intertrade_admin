@@ -302,6 +302,10 @@ Route::get('/projects-reports', [PageController::class, 'project_reports']);
 
 Route::get('/projects', [PageController::class, 'projects']);
 
+// emailing invoice to customer
+Route::post('/mail-invoice', [InvoiceController::class, 'mail_invoice']);
+
+
 
 
 

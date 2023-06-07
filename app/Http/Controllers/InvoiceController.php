@@ -13,6 +13,16 @@ use App\Http\Requests\UpdateInvoiceRequest;
 class InvoiceController extends Controller
 {
 
+    public function mail_invoice(Request $request)
+    {
+        # code...
+
+        
+
+
+        return back()->with('msg', 'Invoice has been mailed');
+    }
+
     public function invoice($invoice_code)
     {
         # code...
