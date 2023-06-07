@@ -295,7 +295,7 @@
 							 <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h6>Benini Project - Edo State</h6>
+                                        <h6>Benin Project - Edo State</h6>
                                         <a href="/projects-reports?id=3">view details</a>
                                     </div>
                                 </div>
