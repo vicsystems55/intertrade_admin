@@ -142,7 +142,7 @@ class FilemanagerController extends Controller
         if ($request->project_id) {
             # code...
 
-        // try {
+        try {
             //code...
 
             $data=[
@@ -154,9 +154,9 @@ class FilemanagerController extends Controller
 
             Mail::to('tejiri@intertradeltd.biz')->send(new ProjectUpdateMail($data));
 
-        // } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             //throw $th;
-        // }
+        }
 
 
 
