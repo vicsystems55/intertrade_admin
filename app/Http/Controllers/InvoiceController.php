@@ -17,7 +17,7 @@ class InvoiceController extends Controller
     {
         # code...
 
-        
+
 
 
         return back()->with('msg', 'Invoice has been mailed');
@@ -46,7 +46,7 @@ class InvoiceController extends Controller
         if ($request->type == 'all') {
             # code...
 
-            return Invoice::latest()->with('invoice_line.product')->with('customer')->get();
+            return Invoice::latest()->with('invoice_line.product')->where('total_amount','>',0)->with('customer')->get();
 
 
 

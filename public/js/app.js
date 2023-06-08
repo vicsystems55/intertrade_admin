@@ -2353,6 +2353,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2388,6 +2391,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.selCustomer == null) {
         alert('Please select a customer');
+      }
+
+      if (this.invoice_type == null) {
+        alert('Please document type');
       } // console.log(this.lineQuantity)
       // var desc = [];
       // desc = document.getElementById('quantity').value
@@ -2605,6 +2612,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this8.customers = response.data, console.log(response);
       });
+    },
+    getCustomer: function getCustomer() {
+      return this.selCustomer;
     }
   },
   mounted: function mounted() {
@@ -50916,6 +50926,68 @@ var render = function() {
                   staticStyle: { height: "320px", "overflow-y": "auto" }
                 },
                 [
+                  _c("div", { staticClass: "form-group p-1 " }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selCustomer,
+                            expression: "selCustomer"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.selCustomer = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            _vm.getCustomer
+                          ]
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("-Pick a customer-")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.customers, function(customer) {
+                          return _c(
+                            "option",
+                            {
+                              key: customer.id,
+                              domProps: { value: customer.id }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(customer.company_name) +
+                                  " " +
+                                  _vm._s(customer.conact_person_name)
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
                   _vm._l(_vm.invoice.invoice_line, function(line, key) {
                     return _c(
                       "div",
@@ -51094,68 +51166,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group p-1 " }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selCustomer,
-                            expression: "selCustomer"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.selCustomer = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("-Pick a customer-")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.customers, function(customer) {
-                          return _c(
-                            "option",
-                            {
-                              key: customer.id,
-                              domProps: { value: customer.id }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(customer.company_name) +
-                                  " " +
-                                  _vm._s(customer.conact_person_name)
-                              )
-                            ]
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "form-group p-1" }, [
-                    _c("label", { attrs: { for: "" } }, [
-                      _vm._v("Select Type")
-                    ]),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -51362,10 +51374,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card table-responsive" }, [
       _c("div", { staticClass: "card-body" }, [
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c("table", { staticClass: "table" }, [
-          _vm._m(2),
+          _vm._m(3),
           _vm._v(" "),
           _c(
             "tbody",
@@ -51413,7 +51425,7 @@ var render = function() {
     _c("div", { staticClass: "card table-responsive" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("table", { staticClass: "table" }, [
-          _vm._m(3),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "tbody",
@@ -51453,6 +51465,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
       _vm._v("Select Customer "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("Select Type "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

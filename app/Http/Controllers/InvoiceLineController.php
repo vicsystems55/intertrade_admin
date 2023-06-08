@@ -35,19 +35,19 @@ class InvoiceLineController extends Controller
         if ($request->type == 'update-line') {
             # code...
 
-            try {
+
                 //code...
-                for ($i=0; $i < count($request->lineIds); $i++) { 
+                for ($i=0; $i < count($request->lineIds); $i++) {
                     # code...
                     $invoice_line = InvoiceLine::find($request->lineIds[$i]);
-    
+
                     $invoice_line->update([
                         'description' => $request->lineDescription[$i],
                         'quantity' => $request->lineQuantity[$i],
                         'amount' => $request->linePrice[$i],
                         'total_amount' => $request->lineQuantity[$i] * $request->linePrice[$i]
 
-    
+
                     ]);
 
 
@@ -72,19 +72,19 @@ class InvoiceLineController extends Controller
 
 
                     # code...
-                
+
                         # code...
                         foreach ($genInvoice->invoice_line as $invoice_line ) {
 
                             if (Stock::where('product_id', $invoice_line->product_id)->first()) {
-                            
+
                             Stock::create([
                                 'product_id' => $invoice_line->product_id,
                                 'quantity' => ($invoice_line->quantity)*(-1),
                                 'invoice_id' => $request->invoice_id,
                                 'type' => 'out',
                                 'date_received' => Carbon::now()
-                                
+
                             ]);
                         }
                     }
@@ -93,13 +93,8 @@ class InvoiceLineController extends Controller
 
                 }
 
-            } catch (\Throwable $th) {
-                //throw $th;
 
-                return $th;
-            }
 
-            
 
             return $request->all();
         }

@@ -39,9 +39,29 @@ class StockController extends Controller
 
         $products = Product::has('stock')->with('stock')->get();
 
-        // return $products;
+        $total_stock = [];
 
-        return view('admin_dashboard.stockManagement', compact(['products','stocks', 'total', 'orders', 'customers']));
+        foreach ($products as $product) {
+            # code...
+
+            $product_quantity = Stock::where('product_id', $product->id)->get()->sum('quantity');
+
+            $productStockSum = $product->price * $product_quantity;
+
+            array_push($total_stock, $productStockSum);
+
+
+
+        }
+
+        $total_stock = array_sum($total_stock);
+
+
+
+
+        // return $products_in_stock;
+
+        return view('admin_dashboard.stockManagement', compact(['products','stocks', 'total', 'orders', 'customers', 'total_stock']));
     }
 
     /**

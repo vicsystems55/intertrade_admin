@@ -28,8 +28,8 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <p class="mb-0 text-secondary">Total Sales</p>
-                        <h4 class="my-1 text-success">N {{number_format(($total/1000),2)}} k </h4>
-                        <p class="mb-0 font-13">N {{number_format(($total),2)}} </p>
+                        <h4 title="N {{number_format(($total),2)}}" class="my-1 text-success">N {{number_format(($total),2)}} </h4>
+                        <p class="mb-0 font-13">-4.5% from last week</p>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
                     </div>
@@ -37,13 +37,13 @@
             </div>
         </div>
         </div>
-        <div class="col d-none">
+        <div class="col ">
             <div class="card radius-10 border-start border-0 border-3 border-success">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Bounce Rate</p>
-                            <h4 class="my-1 text-success">34.6%</h4>
+                            <p class="mb-0 text-secondary">Total Stock</p>
+                            <h4 class="my-1 text-success">N {{ Str::limit(number_format($total_stock, 2), 20)}}</h4>
                             <p class="mb-0 font-13">-4.5% from last week</p>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
@@ -71,20 +71,30 @@
 
     <h6>View List</h6>
 
+    <div class=" py-2 d-flex justify-content-end">
+        <button class="btn btn-outline-primary btn-sm float-right">Export PDF</button>
+        <button class="btn btn-outline-primary btn-sm float-right">Export EXCEL</button>
+
+    </div>
+
     <div class="card p-1">
         <div class="row">
             <div class="col-2">
                 <h6 class="text-muted">Status</h6>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <h6 class="text-muted">Products</h6>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <h6 class="text-muted">In stock</h6>
             </div>
-            <div class="col-3">
-                <h6 class="text-muted">Price</h6>
+            <div class="col-2">
+                <h6 class="text-muted">Unit Price </h6>
             </div>
+            <div class="col-2">
+                <h6 class="text-muted">Total Price </h6>
+            </div>
+
         </div>
     </div>
 
@@ -97,21 +107,60 @@
                     <div class="col-2">
                         <img src="{{$product->featured_image}}" style="height: 50px;" alt="">
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <h6>{{$product->name}}</h6>
                         <p>In Stock</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <h6>{{$product->stock->where('type', 'out')->sum('quantity') * (-1)}}/{{$product->stock->where('type', 'in')->sum('quantity')}}</h6>
                     </div>
-                    <div class="col-3">
-                        <h6>N {{number_format($product->price, 2)}}</h6>
+                    <div class="col-2">
+                        <h6>N {{number_format($product->price, 2)}}
+
+
+                        </h6>
+                    </div>
+
+                    <div class="col-2">
+                        <h6>
+
+                        N {{number_format($product->stock->sum('quantity') * $product->price, 2)}}
+                        </h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     @endforeach
+
+    <div class="py-1">
+        <div class="card bg-primary">
+            <div class="card-body">
+                <div class="row d-flex align-items-center">
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-2">
+                        <h6 class="text-white">Total: </h6>
+                    </div>
+
+                    <div class="col-2">
+                        <h6 class="text-white">
+
+                        N {{number_format($total_stock, 2)}}
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

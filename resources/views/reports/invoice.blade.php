@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Laralink">
   <!-- Site Title -->
-  <title>General Purpose Invoice-3</title>
+  <title>InterTrade | Invoice</title>
   <link rel="stylesheet" href="{{asset('invoice')}}/assets/css/style.css">
 </head>
 

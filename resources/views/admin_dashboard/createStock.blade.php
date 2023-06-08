@@ -67,10 +67,10 @@
                         <label for="received_by">Received By</label>
                         <select name="received_by" id="" class="form-control">
                             <option value="{{Auth::user()->id}}">Me</option>
-                            @foreach ($users as $user)
+                            {{-- @foreach ($users as $user)
                             <option value="{{$user->id}}">{{$user->name}}</option>
 
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -97,8 +97,8 @@
                                 <th>#</th>
                                 <th>Product</th>
                                 <th>Quanity</th>
-                                <th>Received By</th>
-                                <th>Date Received</th>
+                                <th>Recorder</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
 
@@ -110,9 +110,9 @@
                                 <td>{{$stock->quantity}}</td>
                                 <td>
 
-                                    <img style="height: 20px;" src="{{$stock->receiver->avatar}}" alt="">
+                                    <img style="height: 20px;" src="{{$stock->receiver->avatar}}" alt=""><br>
                                     {{$stock->receiver->name??''}}</td>
-                                <td>{{\Carbon\Carbon::parse($stock->date_received)->diffForHumans()}}</td>
+                                <td>{{\Carbon\Carbon::parse($stock->created_at)->diffForHumans()}}</td>
                             </tr>
 
                             @endforeach

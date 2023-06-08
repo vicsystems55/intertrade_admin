@@ -51,6 +51,20 @@
                             <div style="height: 320px; overflow-y: auto;" class="p-2">
 
 
+                                <div class="form-group p-1 ">
+                                    <label for="">Select Customer <span class="text-danger">*</span></label>
+                                    <select v-model="selCustomer" @change="getCustomer" class="form-control">
+                                        <option value="">-Pick a customer-</option>
+                                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
+
+
+
+                                    </select>
+                                </div>
+
+                                <hr>
+
+
                                 <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2">
                                     <div class="row ">
                                         <div class="col-12">
@@ -101,21 +115,10 @@
 
                                 <hr>
 
-                                <div class="form-group p-1 ">
-                                    <label for="">Select Customer <span class="text-danger">*</span></label>
-                                    <select v-model="selCustomer" id="" class="form-control">
-                                        <option value="">-Pick a customer-</option>
-                                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
-
-
-
-                                    </select>
-                                </div>
-
 
 
                                 <div class="form-group p-1">
-                                    <label for="">Select Type</label>
+                                    <label for="">Select Type <span class="text-danger">*</span> </label>
                                     <select v-model="invoice_type" id="" class="form-control ">
 
 
@@ -324,6 +327,12 @@ export default {
             if (this.selCustomer == null) {
                 alert('Please select a customer')
             }
+
+
+            if (this.invoice_type == null) {
+                alert('Please document type')
+            }
+
 
 
             // console.log(this.lineQuantity)
@@ -640,6 +649,10 @@ export default {
                 console.log(response)
 
             })
+        },
+
+        getCustomer(){
+           return this.selCustomer;
         }
 
 
