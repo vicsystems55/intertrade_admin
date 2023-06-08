@@ -39,7 +39,7 @@
             <div class="tm_invoice_left">
               <p class="tm_mb2"><b class="tm_primary_color">Invoice To:</b></p>
               <p>
-                {{$invoice->customer->company_name}} <br>
+                {{$invoice->customer->company_name??''}} <br>
                {{$invoice->customer->address}}<br>
                {{$invoice->customer->business_email}}
               </p>

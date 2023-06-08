@@ -111,7 +111,7 @@ class ProjectController extends Controller
 
         }else{
 
-            if ($reportLine->delivery_status == 'not delivered') {
+            if ($reportLine->installation_status == 'not installed') {
                 # code...
 
                 $projectReport = ProjectReport::find($request->id)->update([
