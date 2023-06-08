@@ -28,7 +28,7 @@
 
 <body>
 	<!--wrapper-->
-	<div class="wrapper">
+	<div class="wrapper" id="app">
 		<!--sidebar wrapper -->
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
@@ -265,17 +265,20 @@
 					<div class="ms-auto">
 						<div class="btn-group">
 							<button type="button" class="btn btn-primary">Export Report</button>
-							{{-- <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span> --}}
+							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
 							</button>
-							{{-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-								<a class="dropdown-item" href="javascript:;">Another action</a>
-								<a class="dropdown-item" href="javascript:;">Something else here</a>
-								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
-							</div> --}}
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+                                {{-- <a class="dropdown-item" href="javascript:;">Action</a> --}}
+								<a class="dropdown-item" href="javascript:;">PDF</a>
+								<a class="dropdown-item" href="javascript:;">Excel</a>
+
+							</div>
 						</div>
 					</div>
 				</div>
 				<!--end breadcrumb-->
+
+
 				<div class="">
 					<div class="">
 						<div class="container py-2">
@@ -297,7 +300,7 @@
                                 </div>
                             </h2>
 							<!-- timeline item 1 -->
-
+                            <project-reports appurl="{{config('app.url')}}" project_id="{{request()->get('project_id')}}"></project-reports>
 
 
                             @foreach ($days_reports as $report)
@@ -404,6 +407,8 @@
 
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
+    <script src="{{asset('js/app.js')}}"></script>
+
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 	<!--plugins-->
 	<script src="assets/js/jquery.min.js"></script>

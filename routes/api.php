@@ -56,3 +56,11 @@ Route::post('/notify_email', [TpsaNotificationController::class, 'notify_email']
 
 Route::get('/update_project_admin', [ProjectController::class, 'update_project_admin']);
 
+Route::get('/project-reports', [ProjectController::class, 'project_reports']);
+
+Route::post('/update-report-line', [ProjectController::class, 'update_report_line']);
+
+
+
+
+

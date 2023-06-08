@@ -29,6 +29,9 @@ Vue.component('uploaderx-component', require('./components/UploaderxComponent.vu
 
 Vue.component('products-component', require('./components/ProductsComponent.vue').default);
 
+Vue.component('project-reports', require('./components/ProjectReports.vue').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
