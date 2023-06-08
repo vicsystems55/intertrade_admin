@@ -28,6 +28,7 @@ use App\Http\Controllers\DeploymentReportController;
 use App\Http\Controllers\ProjectMilestoneController;
 use App\Http\Controllers\InstallationScheduleController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -304,6 +305,11 @@ Route::get('/projects', [PageController::class, 'projects']);
 
 // emailing invoice to customer
 Route::post('/mail-invoice', [InvoiceController::class, 'mail_invoice']);
+
+Route::get('/export-excel', [ProjectController::class, 'export_excel']);
+
+
+
 
 
 

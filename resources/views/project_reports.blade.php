@@ -270,7 +270,7 @@
 							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
                                 {{-- <a class="dropdown-item" href="javascript:;">Action</a> --}}
 								<a class="dropdown-item" href="javascript:;">PDF</a>
-								<a class="dropdown-item" href="javascript:;">Excel</a>
+								<a class="dropdown-item" href="/export-excel">Excel</a>
 
 							</div>
 						</div>

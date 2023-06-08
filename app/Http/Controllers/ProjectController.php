@@ -6,10 +6,12 @@ use Carbon\Carbon;
 use App\Models\Project;
 use App\Models\MediaBank;
 use Illuminate\Http\Request;
-use App\Mail\ProjectUpdateMail;
 use App\Models\ProjectReport;
+use App\Mail\ProjectUpdateMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Exports\ProjectReportExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectController extends Controller
 {
@@ -128,6 +130,17 @@ class ProjectController extends Controller
             }
 
         }
+
+    }
+
+    public function export_excel(Request $request)
+    {
+        # code...
+
+        return Excel::download(new ProjectReportExport, 'Project Reports.xlsx');
+
+
+
 
     }
 }
