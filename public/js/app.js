@@ -2076,6 +2076,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2371,12 +2379,13 @@ __webpack_require__.r(__webpack_exports__);
       lineDescription: [],
       linePrice: [],
       customers: [],
-      selCustomer: '',
-      invoice_type: '',
+      selCustomer: null,
+      invoice_type: null,
       payment_status: 'Unpaid',
       bank_name: 'UBA',
       account_name: 'InterTrade Ltd.',
-      account_no: '22002288220'
+      account_no: '22002288220',
+      generating: false
     };
   },
   props: ['appurl', 'userid'],
@@ -2389,47 +2398,74 @@ __webpack_require__.r(__webpack_exports__);
     generateInvoice: function generateInvoice() {
       var _this = this;
 
-      if (this.selCustomer == null) {
-        alert('Please select a customer');
-      }
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                alert(_this.selCustomer);
 
-      if (this.invoice_type == null) {
-        alert('Please document type');
-      } // console.log(this.lineQuantity)
-      // var desc = [];
-      // desc = document.getElementById('quantity').value
-      // console.log(desc);
+                if (!(_this.selCustomer == null)) {
+                  _context.next = 3;
+                  break;
+                }
 
+                return _context.abrupt("return", alert('Please select a customer'));
 
-      axios({
-        method: "post",
-        url: this.appurl + 'api/invoice_lines',
-        params: {
-          lineIds: this.lineIds,
-          lineDescription: this.lineDescription,
-          lineQuantity: this.lineQuantity,
-          linePrice: this.linePrice,
-          type: 'update-line',
-          invoice_id: this.invoice.id,
-          customer_id: this.selCustomer,
-          invoice_type: this.invoice_type,
-          bank_name: this.bank_name,
-          account_name: this.account_name,
-          account_no: this.account_no
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }).then(function (response) {
-        return (// this.loading = false,
-          console.log(response), _this.resetInvoice(), window.open(_this.appurl + 'invoice/' + _this.invoice.invoice_code, '_blank') //  this.results = response.data
+              case 3:
+                if (!(_this.invoice_type == null)) {
+                  _context.next = 5;
+                  break;
+                }
 
-        );
-      })["catch"](function (error) {
-        console.log(error);
-      });
+                return _context.abrupt("return", alert('Please document type'));
+
+              case 5:
+                _this.generating = true; // console.log(this.lineQuantity)
+                // var desc = [];
+                // desc = document.getElementById('quantity').value
+                // console.log(desc);
+
+                axios({
+                  method: "post",
+                  url: _this.appurl + 'api/invoice_lines',
+                  params: {
+                    lineIds: _this.lineIds,
+                    lineDescription: _this.lineDescription,
+                    lineQuantity: _this.lineQuantity,
+                    linePrice: _this.linePrice,
+                    type: 'update-line',
+                    invoice_id: _this.invoice.id,
+                    customer_id: _this.selCustomer,
+                    invoice_type: _this.invoice_type,
+                    bank_name: _this.bank_name,
+                    account_name: _this.account_name,
+                    account_no: _this.account_no,
+                    user_id: _this.userid
+                  },
+                  headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                  }
+                }).then(function (response) {
+                  return (// this.loading = false,
+                    // alert('no'),
+                    _this.generating = false, console.log(response), _this.resetInvoice(), window.open(_this.appurl + 'invoice/' + _this.invoice.invoice_code, '_blank') //  this.results = response.data
+
+                  );
+                })["catch"](function (err) {
+                  // console.log(error);
+                  _this.generating = false;
+                });
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     addProduct: function addProduct(productId) {
       var _this2 = this;
@@ -51199,13 +51235,19 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
+                        _c("option", { domProps: { value: "Invoice" } }, [
                           _vm._v("Invoice")
                         ]),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Quotation")]),
+                        _c("option", { domProps: { value: "Quotation" } }, [
+                          _vm._v("Quotation")
+                        ]),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Pro forma Invoice")]),
+                        _c(
+                          "option",
+                          { domProps: { value: "Pro forma Invoice" } },
+                          [_vm._v("Pro forma Invoice")]
+                        ),
                         _vm._v(" "),
                         _c("option", { domProps: { value: "receipt" } }, [
                           _vm._v("Receipt")
@@ -51346,7 +51388,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Submit")]
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm.generating == true ? "Generating..." : "Submit"
+                      )
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),

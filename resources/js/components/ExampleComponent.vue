@@ -122,9 +122,9 @@
                                     <select v-model="invoice_type" id="" class="form-control ">
 
 
-                                        <option value="">Invoice</option>
-                                        <option >Quotation</option>
-                                        <option >Pro forma Invoice</option>
+                                        <option :value="'Invoice'">Invoice</option>
+                                        <option :value="'Quotation'">Quotation</option>
+                                        <option :value="'Pro forma Invoice'">Pro forma Invoice</option>
                                         <option :value="'receipt'">Receipt</option>
 
 
@@ -153,7 +153,7 @@
 
                             </div>
                             <div class="form-group p-2">
-                                <button @click="generateInvoice()" class="btn btn-primary col-12">Submit</button>
+                                <button @click="generateInvoice()" class="btn btn-primary col-12">{{generating==true?'Generating...':'Submit'}}</button>
                             </div>
 
                             <div class="form-group p-2">
@@ -300,13 +300,14 @@ export default {
             linePrice: [],
 
             customers: [],
-            selCustomer: '',
-            invoice_type: '',
+            selCustomer: null,
+            invoice_type: null,
             payment_status: 'Unpaid',
 
             bank_name: 'UBA',
             account_name: 'InterTrade Ltd.',
-            account_no: '22002288220'
+            account_no: '22002288220',
+            generating: false
         }
     },
 
@@ -322,16 +323,20 @@ export default {
         },
 
 
-        generateInvoice() {
+       async generateInvoice() {
+            alert(this.selCustomer)
+
+
 
             if (this.selCustomer == null) {
-                alert('Please select a customer')
+                return alert('Please select a customer')
             }
 
 
             if (this.invoice_type == null) {
-                alert('Please document type')
+                return alert('Please document type')
             }
+            this.generating = true
 
 
 
@@ -359,7 +364,8 @@ export default {
 
                     bank_name: this.bank_name,
                     account_name: this.account_name,
-                    account_no: this.account_no
+                    account_no: this.account_no,
+                    user_id: this.userid
                 },
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -369,6 +375,10 @@ export default {
 
             }).then((response) => (
                 // this.loading = false,
+
+                // alert('no'),
+
+                this.generating = false,
 
 
                 console.log(response),
@@ -382,8 +392,14 @@ export default {
 
                 //  this.results = response.data
 
-            )).catch(function (error) {
-                console.log(error);
+            )).catch((err)=> {
+
+
+
+                // console.log(error);
+                this.generating = false
+
+
             });
 
 
@@ -652,7 +668,7 @@ export default {
         },
 
         getCustomer(){
-           return this.selCustomer;
+        return this.selCustomer;
         }
 
 

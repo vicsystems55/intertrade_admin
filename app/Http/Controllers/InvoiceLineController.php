@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Stock;
 use App\Models\Invoice;
+use App\Models\Customer;
 use App\Models\InvoiceLine;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AccountNotificationMail;
 use App\Http\Requests\StoreInvoiceLineRequest;
 use App\Http\Requests\UpdateInvoiceLineRequest;
-use App\Models\Stock;
-use Carbon\Carbon;
+
 
 class InvoiceLineController extends Controller
 {
@@ -53,7 +58,7 @@ class InvoiceLineController extends Controller
 
                 }
 
-                Invoice::find($request->invoice_id)->update([
+                $updatedInvoice = Invoice::find($request->invoice_id)->update([
                     'total_amount' => InvoiceLine::where('invoice_id', $request->invoice_id)->get()->sum('total_amount'),
                     'bank_name' => $request->bank_name,
                     'account_name' => $request->account_name,
@@ -92,6 +97,29 @@ class InvoiceLineController extends Controller
 
 
                 }
+
+                try {
+                    //code...
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+
+
+                $data=[
+
+                    'total_amount' => $genInvoice->total_amount,
+                    'doc_type' => $genInvoice->invoice_type,
+                    'customer_name' => Customer::find($request->customer_id)->contact_person_name,
+                    'report_by' => User::find($request->user_id)->name
+
+
+                ];
+
+
+            Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+
+
 
 
 
