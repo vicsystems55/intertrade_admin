@@ -44,17 +44,17 @@
 
                     </div>
                     <div class="col-md-4 ">
-                        <h6>Record Sale</h6>
                         <div class="card card-bod">
+                            <h6 class="pt-3 px-3">Record Sale</h6>
 
 
-                            <div style="height: 320px; overflow-y: auto;" class="p-2">
+                            <div style="height: 320px; overflow-y: auto;" class="px-5">
 
 
                                 <div class="form-group p-1 ">
                                     <label for="">Select Customer <span class="text-danger">*</span></label>
                                     <select v-model="selCustomer" @change="getCustomer" class="form-control">
-                                        <option value="">-Pick a customer-</option>
+                                        <option :value="'Please select customer'"  >-Pick a customer-</option>
                                         <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
 
 
@@ -65,7 +65,7 @@
                                 <hr>
 
 
-                                <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2">
+                                <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2 border border-primary">
                                     <div class="row ">
                                         <div class="col-12">
                                             <div class="d-flex justify-content-between">
@@ -76,7 +76,7 @@
 
                                                 </div>
                                                 <div class="r ">
-                                                    <span @click="removeInvoiceLine(line.id)"  class="btn pt-0 text-danger">remove</span>
+                                                    <span @click="removeInvoiceLine(line.id)"  class="btn p-0 px-1 text-white h6 bg-danger">x</span>
 
                                                 </div>
                                             </div>
@@ -113,6 +113,8 @@
                                 </div>
 
 
+
+
                                 <hr>
 
 
@@ -137,6 +139,13 @@
                                         <option >Paid</option>
                                         <option >Unpaid</option>
                                     </select>
+                                </div>
+
+                                <div class="form-group p-1 py-2">
+                                    <input class="form-check-input" v-model="vat_included" type="checkbox"  id="flexCheckDefault">
+                                    <label class="form-check-label text-danger" for="flexCheckDefault">
+                                        VAT Included
+                                    </label>
                                 </div>
 
                                 <div class="form-group p-1">
@@ -298,10 +307,10 @@ export default {
             lineQuantity:[],
             lineDescription: [],
             linePrice: [],
-
+            vat_included: false,
             customers: [],
-            selCustomer: null,
-            invoice_type: null,
+            selCustomer: 'Please select customer',
+            invoice_type: 'Invoice',
             payment_status: 'Unpaid',
 
             bank_name: 'UBA',
@@ -322,9 +331,10 @@ export default {
             return numeral(value).format('N 0,0.00')
         },
 
-
        async generateInvoice() {
-            alert(this.selCustomer)
+            // alert(this.selCustomer)
+
+
 
 
 
@@ -361,6 +371,7 @@ export default {
 
                     customer_id: this.selCustomer,
                     invoice_type: this.invoice_type,
+                    vat_included: this.vat_included,
 
                     bank_name: this.bank_name,
                     account_name: this.account_name,
@@ -501,6 +512,8 @@ export default {
                 //alert('reveic curent invoice'),
 
                 this.invoice = response.data,
+
+
 
                 this.lineQuantity = response.data.invoice_line.map(line => line.quantity),
                 console.log(this.lineQuantity),
@@ -670,16 +683,8 @@ export default {
         getCustomer(){
         return this.selCustomer;
         }
-
-
-
-
     },
     mounted() {
-
-
-
-
 
         console.log('Component mounted.');
         this.getProducts();

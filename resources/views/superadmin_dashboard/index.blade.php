@@ -30,7 +30,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <p class="mb-0 text-secondary">Total Sales</p>
-                        <h4 class="my-1 text-success">N {{number_format(($total/1000),2)}} k </h4>
+                        <h4 class="my-1 text-success">N {{number_format(($total),2)}}  </h4>
                         <p class="mb-0 font-13">N {{number_format(($total),2)}} </p>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
@@ -71,7 +71,18 @@
         </div>
     </div><!--end row-->
 
-         <div class="row">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="chart3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+         <div class="row d-none">
         <div class="col-12 col-lg-8 col-xl-8">
           <div class="card radius-10">
             <div class="card-header bg-transparent">
@@ -120,5 +131,13 @@
 </div>
 
 
+
+@endsection
+
+
+@section('script-content')
+
+<script src="{{config('app.url')}}assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+<script src="{{config('app.url')}}assets/plugins/apexcharts-bundle/js/apex-custom.js"></script>
 
 @endsection

@@ -58,7 +58,7 @@
 				</div>
 				<div>
 
-					<h4 class="logo-text">InterTrade <i class="fad fa-spinner fa-spin"></i></h4>
+					<h6 class="logo-text ">InterTrade Ltd.</h6>
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>

@@ -32,7 +32,7 @@
 
           </div>
           <div class="modal-footer">
-   
+
             <button type="submit" class="btn btn-primary shadow">Submit</button>
           </div>
         </form>
@@ -41,5 +41,5 @@
     </div>
   </div>
 <footer class="page-footer">
-    <p class="mb-0">Copyright © 2021. InterTrade.</p>
+    <p class="mb-0">Copyright © {{\Carbon\Carbon::now()->format('Y')}}. vicSystems Technologies Ltd.</p>
 </footer>

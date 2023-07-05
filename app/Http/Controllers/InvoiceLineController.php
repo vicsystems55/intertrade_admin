@@ -40,6 +40,8 @@ class InvoiceLineController extends Controller
         if ($request->type == 'update-line') {
             # code...
 
+            // return $request->vat_included;
+
 
                 //code...
                 for ($i=0; $i < count($request->lineIds); $i++) {
@@ -52,7 +54,6 @@ class InvoiceLineController extends Controller
                         'amount' => $request->linePrice[$i],
                         'total_amount' => $request->lineQuantity[$i] * $request->linePrice[$i]
 
-
                     ]);
 
 
@@ -64,6 +65,7 @@ class InvoiceLineController extends Controller
                     'account_name' => $request->account_name,
                     'status' => $request->payment_status,
                     'account_no' => $request->account_no,
+                    'vat_included' => $request->vat_included,
                     'invoice_type' => $request->invoice_type,
                     'customer_id' => $request->customer_id
                 ]);
@@ -73,30 +75,30 @@ class InvoiceLineController extends Controller
 
 
 
-                if ($genInvoice->invoice_type == 'receipt') {
+if ($genInvoice->invoice_type == 'receipt') {
 
 
-                    # code...
+    # code...
 
-                        # code...
-                        foreach ($genInvoice->invoice_line as $invoice_line ) {
+        # code...
+        foreach ($genInvoice->invoice_line as $invoice_line ) {
 
-                            if (Stock::where('product_id', $invoice_line->product_id)->first()) {
+            if (Stock::where('product_id', $invoice_line->product_id)->first()) {
 
-                            Stock::create([
-                                'product_id' => $invoice_line->product_id,
-                                'quantity' => ($invoice_line->quantity)*(-1),
-                                'invoice_id' => $request->invoice_id,
-                                'type' => 'out',
-                                'date_received' => Carbon::now()
+            Stock::create([
+                'product_id' => $invoice_line->product_id,
+                'quantity' => ($invoice_line->quantity)*(-1),
+                'invoice_id' => $request->invoice_id,
+                'type' => 'out',
+                'date_received' => Carbon::now()
 
-                            ]);
-                        }
-                    }
+            ]);
+        }
+    }
 
 
 
-                }
+}
 
                 try {
                     //code...

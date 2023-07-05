@@ -31,11 +31,14 @@ class CreateInvoicesTable extends Migration
 
             $table->string('account_no')->nullable();
 
+            $table->boolean('vat_included')->default(0);
+
             $table->integer('discount_percent')->nullable();
+
             $table->integer('total_amount')->default(0);
 
             $table->integer('discount_amount')->nullable();
-   
+
             $table->foreign('generated_by')->references('id')->on('users');
 
             $table->timestamps();

@@ -60,16 +60,11 @@ class ProjectController extends Controller
     {
         # code...
 
-
-
-
         $reports = ProjectReport::where('project_id', $request->project_id)->get();
 
         $delivered_count = ProjectReport::where('project_id', $request->project_id)->where('delivery_status', 'delivered')->get()->count();
 
         $installation_count = ProjectReport::where('project_id', $request->project_id)->where('installation_status', 'installed')->get()->count();
-
-
 
         return [
             'reports' => $reports,

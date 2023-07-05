@@ -2364,6 +2364,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2378,9 +2387,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       lineQuantity: [],
       lineDescription: [],
       linePrice: [],
+      vat_included: false,
       customers: [],
-      selCustomer: null,
-      invoice_type: null,
+      selCustomer: 'Please select customer',
+      invoice_type: 'Invoice',
       payment_status: 'Unpaid',
       bank_name: 'UBA',
       account_name: 'InterTrade Ltd.',
@@ -2403,24 +2413,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                alert(_this.selCustomer);
-
                 if (!(_this.selCustomer == null)) {
-                  _context.next = 3;
+                  _context.next = 2;
                   break;
                 }
 
                 return _context.abrupt("return", alert('Please select a customer'));
 
-              case 3:
+              case 2:
                 if (!(_this.invoice_type == null)) {
-                  _context.next = 5;
+                  _context.next = 4;
                   break;
                 }
 
                 return _context.abrupt("return", alert('Please document type'));
 
-              case 5:
+              case 4:
                 _this.generating = true; // console.log(this.lineQuantity)
                 // var desc = [];
                 // desc = document.getElementById('quantity').value
@@ -2438,6 +2446,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     invoice_id: _this.invoice.id,
                     customer_id: _this.selCustomer,
                     invoice_type: _this.invoice_type,
+                    vat_included: _this.vat_included,
                     bank_name: _this.bank_name,
                     account_name: _this.account_name,
                     account_no: _this.account_no,
@@ -2459,7 +2468,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.generating = false;
                 });
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -50952,13 +50961,13 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-4 " }, [
-            _c("h6", [_vm._v("Record Sale")]),
-            _vm._v(" "),
             _c("div", { staticClass: "card card-bod" }, [
+              _c("h6", { staticClass: "pt-3 px-3" }, [_vm._v("Record Sale")]),
+              _vm._v(" "),
               _c(
                 "div",
                 {
-                  staticClass: "p-2",
+                  staticClass: "px-5",
                   staticStyle: { height: "320px", "overflow-y": "auto" }
                 },
                 [
@@ -50997,9 +51006,11 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("-Pick a customer-")
-                        ]),
+                        _c(
+                          "option",
+                          { domProps: { value: "Please select customer" } },
+                          [_vm._v("-Pick a customer-")]
+                        ),
                         _vm._v(" "),
                         _vm._l(_vm.customers, function(customer) {
                           return _c(
@@ -51027,7 +51038,11 @@ var render = function() {
                   _vm._l(_vm.invoice.invoice_line, function(line, key) {
                     return _c(
                       "div",
-                      { key: line.id, staticClass: "card border mb-2 p-2" },
+                      {
+                        key: line.id,
+                        staticClass:
+                          "card border mb-2 p-2 border border-primary"
+                      },
                       [
                         _c("div", { staticClass: "row " }, [
                           _c("div", { staticClass: "col-12" }, [
@@ -51055,14 +51070,15 @@ var render = function() {
                                   _c(
                                     "span",
                                     {
-                                      staticClass: "btn pt-0 text-danger",
+                                      staticClass:
+                                        "btn p-0 px-1 text-white h6 bg-danger",
                                       on: {
                                         click: function($event) {
                                           return _vm.removeInvoiceLine(line.id)
                                         }
                                       }
                                     },
-                                    [_vm._v("remove")]
+                                    [_vm._v("x")]
                                   )
                                 ])
                               ]
@@ -51292,6 +51308,60 @@ var render = function() {
                         _c("option", [_vm._v("Paid")]),
                         _vm._v(" "),
                         _c("option", [_vm._v("Unpaid")])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group p-1 py-2" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.vat_included,
+                          expression: "vat_included"
+                        }
+                      ],
+                      staticClass: "form-check-input",
+                      attrs: { type: "checkbox", id: "flexCheckDefault" },
+                      domProps: {
+                        checked: Array.isArray(_vm.vat_included)
+                          ? _vm._i(_vm.vat_included, null) > -1
+                          : _vm.vat_included
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.vat_included,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.vat_included = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.vat_included = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.vat_included = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-check-label text-danger",
+                        attrs: { for: "flexCheckDefault" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    VAT Included\n                                "
+                        )
                       ]
                     )
                   ]),
