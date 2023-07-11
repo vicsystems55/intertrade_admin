@@ -220,7 +220,7 @@
 
                     <tbody>
                         <tr v-for="sale in invoices" :key="sale.id">
-                            <td>{{ sale.customer?sale.customer.company_name:'u' }}</td>
+                            <td><a :href="'/invoice/' + sale.invoice_code" class="">{{ sale.customer?sale.customer.company_name:'u' }}    </a></td>
                             <td>
                                 <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{ line.product.name }},</span>
                               </td>
@@ -229,6 +229,8 @@
                             <td>NGN {{ format(sale.total_amount) }}</td>
                             <td>{{new Date(sale.created_at ).toLocaleDateString()}}</td>
                             <td>{{ sale.invoice_type }}</td>
+
+
 
 
 

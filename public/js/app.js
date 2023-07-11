@@ -2373,6 +2373,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -51503,8 +51505,16 @@ var render = function() {
             _vm._l(_vm.invoices, function(sale) {
               return _c("tr", { key: sale.id }, [
                 _c("td", [
-                  _vm._v(
-                    _vm._s(sale.customer ? sale.customer.company_name : "u")
+                  _c(
+                    "a",
+                    { attrs: { href: "/invoice/" + sale.invoice_code } },
+                    [
+                      _vm._v(
+                        _vm._s(
+                          sale.customer ? sale.customer.company_name : "u"
+                        ) + "    "
+                      )
+                    ]
                   )
                 ]),
                 _vm._v(" "),
