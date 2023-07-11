@@ -70,8 +70,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart1"), options);
 	chart.render();
-	
-	
+
+
 	// chart 2
 	var optionsLine = {
 		chart: {
@@ -139,56 +139,80 @@ $(function () {
 	}
 	var chartLine = new ApexCharts(document.querySelector('#chart2'), optionsLine);
 	chartLine.render();
-	
-	
+
+
 	// chart 3
-	var options = {
-		series: [{
-			name: 'series1',
-			data: [31, 40, 68, 31, 92, 55, 100]
-		}, {
-			name: 'series2',
-			data: [11, 82, 45, 80, 34, 52, 41]
-		}],
-		chart: {
-			foreColor: '#9ba7b2',
-			height: 360,
-			type: 'area',
-			zoom: {
-				enabled: false
-			},
-			toolbar: {
-				show: true
-			},
-		},
-		colors: ["#0d6efd", '#f41127'],
-		title: {
-			text: 'Area Chart',
-			align: 'left',
-			style: {
-				fontSize: "16px",
-				color: '#666'
-			}
-		},
-		dataLabels: {
-			enabled: false
-		},
-		stroke: {
-			curve: 'smooth'
-		},
-		xaxis: {
-			type: 'datetime',
-			categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-		},
-		tooltip: {
-			x: {
-				format: 'dd/MM/yy HH:mm'
-			},
-		},
-	};
-	var chart = new ApexCharts(document.querySelector("#chart3"), options);
-	chart.render();
-	
+    fetch('/api/sales-records')
+    .then(res => res.json())
+    .then(res => {
+
+
+        console.log(res)
+
+        var options = {
+            series: [{
+                name: 'Sales',
+                data: res,
+            },
+            // {
+            // 	name: 'series2',
+            // 	data: [11, 82, 45, 80, 34, 52, 41]
+            // }
+        ],
+        yaxis: {
+            labels: {
+              formatter: function (value) {
+                // Add commas and currency symbol prefix
+                const formattedValue = "N" + parseFloat(value).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                return formattedValue;
+              },
+            },
+          },
+            chart: {
+                foreColor: '#9ba7b2',
+                height: 400,
+                type: 'area',
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: true
+                },
+            },
+            colors: ["#f41127","#0d6efd" ],
+            title: {
+                text: 'Monthy Sales Report',
+                align: 'left',
+                style: {
+                    fontSize: "16px",
+                    color: '#666'
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                // type: 'datetime',
+                categories: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+            },
+            tooltip: {
+                x: {
+                    format: 'dd/MM/yy HH:mm'
+                },
+            },
+        };
+        var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        chart.render();
+
+    }).catch(error=>{
+        alert(error)
+        console.log(error)
+    })
+
+
 	// chart 4
 	var options = {
 		series: [{
@@ -250,8 +274,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart4"), options);
 	chart.render();
-	
-	
+
+
 	// chart 5
 	var options = {
 		series: [{
@@ -279,8 +303,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart5"), options);
 	chart.render();
-	
-	
+
+
 	// chart 6
 	var options = {
 		series: [{
@@ -338,8 +362,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart6"), options);
 	chart.render();
-	
-	
+
+
 	// chart 7
 	var options = {
 		series: [{
@@ -416,8 +440,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart7"), options);
 	chart.render();
-	
-	
+
+
 	// chart 8
 	var options = {
 		series: [44, 55, 13, 43, 22],
@@ -442,8 +466,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart8"), options);
 	chart.render();
-	
-	
+
+
 	// chart 9
 	var options = {
 		series: [44, 55, 41, 17, 15],
@@ -467,8 +491,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart9"), options);
 	chart.render();
-	
-	
+
+
 	// chart 10
 	var options = {
 		series: [{
@@ -511,8 +535,8 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart10"), options);
 	chart.render();
-	
-	
+
+
 	// chart 11
 	var options = {
 		series: [{
@@ -573,11 +597,11 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart11"), options);
 	chart.render();
-	
-	
-	
+
+
+
 	// chart 12
-	
+
 	var options = {
           series: [70],
           chart: {
@@ -597,11 +621,11 @@ $(function () {
 
         var chart = new ApexCharts(document.querySelector("#chart12"), options);
         chart.render();
-		
-		
-		
+
+
+
 	// chart 13
-	
+
 	var options = {
           series: [44, 55, 67, 83],
           chart: {
@@ -635,8 +659,8 @@ $(function () {
 
         var chart = new ApexCharts(document.querySelector("#chart13"), options);
         chart.render();
-		
-		
-	
-	
+
+
+
+
 });

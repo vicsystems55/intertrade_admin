@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\InvoiceLine;
@@ -12,6 +13,22 @@ use App\Http\Requests\UpdateInvoiceRequest;
 
 class InvoiceController extends Controller
 {
+
+    public function salesRecords() {
+
+        $monthly_sales = [];
+
+        for ($i=0; $i < 12; $i++) {
+            # code...
+            $month_count = Invoice::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
+
+            array_push($monthly_sales, $month_count);
+
+        }
+
+        return $monthly_sales;
+
+    }
 
     public function mail_invoice(Request $request)
     {

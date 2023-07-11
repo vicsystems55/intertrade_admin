@@ -60,6 +60,9 @@ Route::get('/project-reports', [ProjectController::class, 'project_reports']);
 
 Route::post('/update-report-line', [ProjectController::class, 'update_report_line']);
 
+// fetch sales records
+Route::get('/sales-records', [InvoiceController::class, 'salesRecords']);
+
 
 
 

@@ -120,6 +120,11 @@ if ($genInvoice->invoice_type == 'receipt') {
 
             Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
+            Mail::to('felix@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+            Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+
 
 
 
