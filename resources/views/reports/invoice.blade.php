@@ -53,6 +53,9 @@
               </p>
             </div>
           </div>
+
+          @if ($invoice->invoice_type != 'receipt')
+
           <div class="tm_table tm_style1">
             <div class="">
               <div style="min-height: 320px;" class="tm_table_responsive">
@@ -133,13 +136,76 @@
               <div class="tm_left_footer"></div>
               <div class="tm_right_footer">
                 <div class="tm_sig tm_text_center">
-                  <img style="width: 150px;" src="{{asset('invoice')}}/assets/img/sign.png" alt="Sign">
+                  {{-- <img style="width: 150px;" src="{{asset('invoice')}}/assets/img/sign.png" alt="Sign"> --}}
                   <p class="tm_m0 tm_ternary_color">...</p>
                   <p class="tm_m0 tm_f16 tm_primary_color">Management</p>
                 </div>
               </div>
             </div>
           </div>
+
+          @else
+
+          <div class="tm_invoice_footer tm_border_top tm_mb15 tm_m0_md">
+            <div class="tm_left_footer">
+              <p class="tm_mb2"><b class="tm_primary_color">Payment info:</b></p>
+              <p class="tm_m0">{{$invoice->bank_name}} </p>
+              <p class="tm_m0">{{$invoice->account_name}} </p>
+
+
+              <p class="tm_m0">{{$invoice->account_no}} </p>
+
+
+            </div>
+            <div class="tm_right_footer">
+              <table class="tm_mb15">
+                <tbody>
+                  <tr class="tm_gray_bg ">
+                    <td class="tm_width_3 tm_primary_color tm_bold">Subtotal</td>
+                    <td class="tm_width_3 tm_primary_color tm_bold tm_text_right"> N{{number_format($invoice->total_amount, 2)}}</td>
+                  </tr>
+                  {{-- {{$invoice->vat_included}} --}}
+
+                  @if ($invoice->vat_included == 'true')
+
+                  <tr class="tm_gray_bg">
+                    <td class="tm_width_3 tm_primary_color">Tax <span class="tm_ternary_color">(7.5%)</span></td>
+                    <td class="tm_width_3 tm_primary_color tm_text_right">N{{number_format($invoice->total_amount * 0.075, 2)}}</td>
+                  </tr>
+                  <tr class="tm_accent_bg">
+                    <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Grand Total	</td>
+                    <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
+
+                      N{{number_format($invoice->total_amount * 1.075, 2)}}
+                    </td>
+                  </tr>
+                  @else
+
+                  <tr class="tm_accent_bg">
+                      <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Grand Total	</td>
+                      <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
+
+                        N{{number_format($invoice->total_amount, 2)}}
+                      </td>
+                    </tr>
+                  @endif
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tm_invoice_footer tm_type1">
+            <div class="tm_left_footer"></div>
+            <div class="tm_right_footer">
+              <div class="tm_sig tm_text_center">
+                {{-- <img style="width: 150px;" src="{{asset('invoice')}}/assets/img/sign.png" alt="Sign"> --}}
+                <p class="tm_m0 tm_ternary_color">...</p>
+                <p class="tm_m0 tm_f16 tm_primary_color">Management</p>
+              </div>
+            </div>
+          </div>
+
+          @endif
+
           <div class="tm_note tm_text_center tm_font_style_normal">
             <hr class="tm_mb15">
             {{-- <p class="tm_mb2"><b class="tm_primary_color">Terms & Conditions:</b></p>
