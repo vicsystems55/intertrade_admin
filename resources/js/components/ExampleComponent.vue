@@ -629,6 +629,8 @@ export default {
 
             this.createInvoice()
 
+            alert('Invoice Refreshed!!')
+
         },
 
         removeInvoiceLine(invoiceLineId) {

@@ -28,7 +28,7 @@
             <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
           </div>
           <div class="tm_invoice_info tm_mb25">
-            {{-- <div class="tm_card_note tm_mobile_hide"><b class="tm_primary_color">Payment Method: </b>Paypal, Western Union</div> --}}
+            <div class="tm_card_note tm_mobile_hide"></div>
             <div class="tm_invoice_info_list tm_white_color">
               <p class="tm_invoice_number tm_m0">Invoice No: <b>#{{$invoice->invoice_code}}</b></p>
               <p class="tm_invoice_date tm_m0">Date: <b>01.07.2022</b></p>

@@ -2620,6 +2620,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // });
       localStorage.removeItem('current_invoice_code');
       this.createInvoice();
+      alert('Invoice Refreshed!!');
     },
     removeInvoiceLine: function removeInvoiceLine(invoiceLineId) {
       var _this7 = this;
