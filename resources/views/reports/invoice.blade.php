@@ -216,7 +216,7 @@
       <div class="tm_invoice_btns tm_hide_print">
         <a href="javascript:window.print()" class="tm_invoice_btn tm_color1">
             <span class="tm_btn_icon">
-                <img width="75" height="75" src="https://img.icons8.com/carbon-copy/75/new-post.png" alt="new-post"/>
+                <img width="32" height="32" src="https://img.icons8.com/carbon-copy/75/new-post.png" alt="new-post"/>
             </span>
             <span class="tm_btn_text">Email Client</span>
           </a>
@@ -232,6 +232,12 @@
           </span>
           <span class="tm_btn_text">Download</span>
         </button>
+        <a href="javascript:window.print()" class="tm_invoice_btn tm_color1">
+            <span class="tm_btn_icon">
+                <img width="32" height="32" src="https://img.icons8.com/pastel-glyph/32/card-accepted.png" alt="card-accepted"/>
+            </span>
+            <span class="tm_btn_text">Mark as paid.</span>
+          </a>
       </div>
     </div>
   </div>

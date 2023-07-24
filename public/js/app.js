@@ -2461,11 +2461,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     'Accept': 'application/json'
                   }
                 }).then(function (response) {
-                  return (// this.loading = false,
-                    // alert('no'),
-                    _this.generating = false, console.log(response), _this.resetInvoice(), window.open(_this.appurl + 'invoice/' + _this.invoice.invoice_code, '_blank') //  this.results = response.data
+                  // this.loading = false,
+                  // alert('no'),
+                  console.log(response);
 
-                  );
+                  _this.resetInvoice();
+
+                  _this.generating = false;
+                  return window.open(_this.appurl + 'invoice/' + _this.invoice.invoice_code, '_blank'); //  this.results = response.data
                 })["catch"](function (err) {
                   // console.log(error);
                   _this.generating = false;
@@ -2633,7 +2636,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this7.createInvoice();
 
               case 3:
-                alert('Invoice Refreshed!!');
+                console.log('Invoice Refreshed!!');
 
               case 4:
               case "end":

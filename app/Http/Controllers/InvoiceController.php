@@ -18,7 +18,7 @@ class InvoiceController extends Controller
 
         $monthly_sales = [];
 
-        for ($i=0; $i < 11; $i++) {
+        for ($i=1; $i < 13; $i++) {
             # code...
             $month_count = Invoice::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
 

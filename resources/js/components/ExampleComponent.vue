@@ -386,26 +386,28 @@ export default {
                     'Accept': 'application/json',
                 },
 
-            }).then((response) => (
+            }).then((response) => {
                 // this.loading = false,
 
                 // alert('no'),
 
-                this.generating = false,
 
 
-                console.log(response),
+                console.log(response)
 
-                this.resetInvoice(),
+                this.resetInvoice()
 
-                window.open(this.appurl+'invoice/'+this.invoice.invoice_code, '_blank')
+                this.generating = false
+
+
+                return window.open(this.appurl+'invoice/'+this.invoice.invoice_code, '_blank')
 
 
 
 
                 //  this.results = response.data
 
-            )).catch((err)=> {
+            }).catch((err)=> {
 
 
 
@@ -631,7 +633,7 @@ export default {
 
             await this.createInvoice()
 
-            alert('Invoice Refreshed!!')
+            console.log('Invoice Refreshed!!')
 
         },
 

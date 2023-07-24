@@ -70,6 +70,21 @@ class InvoiceLineController extends Controller
 
             $genInvoice = Invoice::with('invoice_line')->find($request->invoice_id);
 
+            $data = [
+
+                'total_amount' => $genInvoice->total_amount,
+                'doc_type' => $genInvoice->invoice_type,
+                'customer_name' => Customer::find($request->customer_id)->contact_person_name,
+                'report_by' => User::find($request->user_id)->name,
+                'link' => config('app.url').'invoice/'.$genInvoice->invoice_code
+
+
+            ];
+
+            Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+
 
 
 
@@ -102,7 +117,9 @@ class InvoiceLineController extends Controller
                         'total_amount' => $genInvoice->total_amount,
                         'doc_type' => $genInvoice->invoice_type,
                         'customer_name' => Customer::find($request->customer_id)->contact_person_name,
-                        'report_by' => User::find($request->user_id)->name
+                        'report_by' => User::find($request->user_id)->name,
+                        'link' => config('app.url').'invoice/'.$genInvoice->invoice_code
+
 
 
                     ];
