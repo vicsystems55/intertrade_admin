@@ -50921,7 +50921,10 @@ var render = function() {
                           [
                             _c("img", {
                               staticClass: "card-img-top",
-                              staticStyle: { height: "200px" },
+                              staticStyle: {
+                                height: "200px",
+                                "max-width": "200px"
+                              },
                               attrs: { src: product.featured_image, alt: "..." }
                             }),
                             _vm._v(" "),

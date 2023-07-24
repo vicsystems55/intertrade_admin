@@ -14,7 +14,7 @@
                                     <div v-for="product in products" :key="product.id"
                                         class="col-lg-4 col-md-6 mx-auto">
                                         <div class="card" style="min-width: 200px;">
-                                            <img style="height: 200px;" :src="product.featured_image" class="card-img-top" alt="...">
+                                            <img style="height: 200px; max-width:200px;" :src="product.featured_image" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <h6 class="card-title">{{ product.name }}</h6>
                                                 <p class="card-text">{{ product.description }}</p>
