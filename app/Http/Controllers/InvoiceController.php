@@ -17,16 +17,27 @@ class InvoiceController extends Controller
     public function salesRecords() {
 
         $monthly_sales = [];
+        $monthly_orders = [];
+
 
         for ($i=1; $i < 13; $i++) {
             # code...
-            $month_count = Invoice::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
+            $month_count = Invoice::where('invoice_type', 'receipt')->whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
+
+            $month_orders_count = Invoice::where('invoice_type', '!=', 'receipt')->whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
+
 
             array_push($monthly_sales, $month_count);
+            array_push($monthly_orders, $month_orders_count);
+
 
         }
 
-        return $monthly_sales;
+        return $data=[
+            'sales' => $monthly_sales,
+            'orders' => $monthly_orders
+
+        ];
 
     }
 

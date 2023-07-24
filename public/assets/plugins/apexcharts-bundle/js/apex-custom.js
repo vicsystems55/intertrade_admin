@@ -145,19 +145,19 @@ $(function () {
     fetch('/api/sales-records')
     .then(res => res.json())
     .then(res => {
-       
+
 
         console.log(res)
 
         var options = {
             series: [{
                 name: 'Sales',
-                data: res,
+                data: res.sales,
             },
-            // {
-            // 	name: 'series2',
-            // 	data: [11, 82, 45, 80, 34, 52, 41]
-            // }
+            {
+            	name: 'Orders',
+            	data: res.orders
+            }
         ],
         yaxis: {
             labels: {
@@ -181,7 +181,7 @@ $(function () {
             },
             colors: ["#f41127","#0d6efd" ],
             title: {
-                text: 'Monthy Sales Report',
+                text: 'Monthy Report',
                 align: 'left',
                 style: {
                     fontSize: "16px",

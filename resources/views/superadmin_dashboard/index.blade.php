@@ -73,10 +73,10 @@
 
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="card">
+        <div class="col-md-12 ">
+            <div class="card overflow-auto">
                 <div class="card-body">
-                    <div id="chart3"></div>
+                    <div style="min-width: 500px;" id="chart3"></div>
                 </div>
             </div>
         </div>
