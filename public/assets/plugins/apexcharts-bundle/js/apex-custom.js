@@ -145,7 +145,7 @@ $(function () {
     fetch('/api/sales-records')
     .then(res => res.json())
     .then(res => {
-
+       
 
         console.log(res)
 

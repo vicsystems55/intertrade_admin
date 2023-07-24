@@ -63,7 +63,7 @@ class InvoiceController extends Controller
         if ($request->type == 'all') {
             # code...
 
-            return Invoice::latest()->with('invoice_line.product')->where('total_amount','>',0)->with('customer')->get();
+            return Invoice::latest()->with('invoice_line.product')->where('customer_id', '!=',null)->where('total_amount','>',0)->with('customer')->get();
 
 
 

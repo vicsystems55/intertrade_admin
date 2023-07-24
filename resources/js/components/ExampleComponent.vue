@@ -360,7 +360,7 @@ export default {
 
             // console.log(desc);
 
-            axios({
+           await axios({
                 method: "post",
                 url: this.appurl + 'api/invoice_lines',
                 params: {
@@ -591,7 +591,7 @@ export default {
             });
         },
 
-        resetInvoice() {
+        async resetInvoice() {
 
 
 
@@ -629,7 +629,7 @@ export default {
 
             localStorage.removeItem('current_invoice_code');
 
-            this.createInvoice()
+            await this.createInvoice()
 
             alert('Invoice Refreshed!!')
 

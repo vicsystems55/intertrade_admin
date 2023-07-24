@@ -2436,7 +2436,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // desc = document.getElementById('quantity').value
                 // console.log(desc);
 
-                axios({
+                _context.next = 7;
+                return axios({
                   method: "post",
                   url: _this.appurl + 'api/invoice_lines',
                   params: {
@@ -2470,7 +2471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.generating = false;
                 });
 
-              case 6:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -2598,34 +2599,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     resetInvoice: function resetInvoice() {
-      // axios({
-      //     method: "post",
-      //     url: this.appurl + 'api/invoices',
-      //     params: {
-      //         invoice_code: localStorage.getItem('current_invoice_code'),
-      //         type: 'delete'
-      //     },
-      //     headers: {
-      //         'Access-Control-Allow-Origin': '*',
-      //         'Content-type': 'application/json',
-      //         'Accept': 'application/json',
-      //     },
-      // }).then((response) => (
-      //     // this.loading = false,
-      //     //alert('reveic curent invoice'),
-      //     // this.invoice = response.data,
-      //     console.log(response)
-      //     //alert('this.invoice')
-      //     //  this.results = response.data
-      // )).catch(function (error) {
-      //     console.log(error);
-      // });
-      localStorage.removeItem('current_invoice_code');
-      this.createInvoice();
-      alert('Invoice Refreshed!!');
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                // axios({
+                //     method: "post",
+                //     url: this.appurl + 'api/invoices',
+                //     params: {
+                //         invoice_code: localStorage.getItem('current_invoice_code'),
+                //         type: 'delete'
+                //     },
+                //     headers: {
+                //         'Access-Control-Allow-Origin': '*',
+                //         'Content-type': 'application/json',
+                //         'Accept': 'application/json',
+                //     },
+                // }).then((response) => (
+                //     // this.loading = false,
+                //     //alert('reveic curent invoice'),
+                //     // this.invoice = response.data,
+                //     console.log(response)
+                //     //alert('this.invoice')
+                //     //  this.results = response.data
+                // )).catch(function (error) {
+                //     console.log(error);
+                // });
+                localStorage.removeItem('current_invoice_code');
+                _context2.next = 3;
+                return _this7.createInvoice();
+
+              case 3:
+                alert('Invoice Refreshed!!');
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     removeInvoiceLine: function removeInvoiceLine(invoiceLineId) {
-      var _this7 = this;
+      var _this8 = this;
 
       axios({
         method: "post",
@@ -2643,7 +2662,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return (// this.loading = false,
           //alert('reveic curent invoice'),
           // this.invoice = response.data,
-          console.log(response), _this7.getInvoice() //alert('this.invoice')
+          console.log(response), _this8.getInvoice() //alert('this.invoice')
           //  this.results = response.data
 
         );
@@ -2652,13 +2671,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     getCustomers: function getCustomers() {
-      var _this8 = this;
+      var _this9 = this;
 
       axios({
         method: "get",
         url: this.appurl + 'api/customers'
       }).then(function (response) {
-        _this8.customers = response.data, console.log(response);
+        _this9.customers = response.data, console.log(response);
       });
     },
     getCustomer: function getCustomer() {
