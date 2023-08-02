@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Imports\ProductsImport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -21,6 +23,42 @@ class ProductController extends Controller
         //
 
         return Product::withSum('stock', 'quantity')->get();
+    }
+
+    public function create_product(Request $request){
+
+        $doc = $request->file('product_image');
+
+        $new_name = rand().".".$doc->getClientOriginalExtension();
+
+        $file1 = $doc->move(('products'), $new_name);
+
+        $product = Product::create([
+            'product_category_id' => $request->product_category_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'type' => $request->type,
+            'color' => $request->color,
+            'dimension' => $request->dimension,
+            'other_description' => $request->other_description,
+            'model' => $request->model,
+            'serial_number' => $request->serial_number,
+            'featured_image' => '/products/'.$new_name,
+        ]);
+
+        Notification::create([
+            'user_id' => Auth::user()->id,
+            'title' => 'New Product Alert',
+            'body' => 'A new product has been added to the store'
+        ]);
+
+
+
+        return back()->with('msg2', 'New product regisered successfully.');
+
+
+
     }
 
     /**

@@ -270,6 +270,7 @@ Route::post('/upload-media', [FilemanagerController::class, 'uploadMedia'])->nam
 Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('update-product');
 
 
+Route::post('/create-product', [ProductController::class, 'create_product']);
 
 
 Route::get('/get_images', [ReportImageController::class, 'get_images'])->name('get_images');
@@ -307,6 +308,11 @@ Route::get('/projects', [PageController::class, 'projects']);
 Route::post('/mail-invoice', [InvoiceController::class, 'mail_invoice']);
 
 Route::get('/export-excel', [ProjectController::class, 'export_excel']);
+
+
+
+
+
 
 
 

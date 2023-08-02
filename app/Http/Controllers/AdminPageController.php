@@ -73,7 +73,7 @@ class AdminPageController extends Controller
     public function inventories()
     {
         $inventories = Inventory::latest()->get();
-                
+
         return view('admin_dashboard.inventories',[
             'inventories' => $inventories,
         ]);
@@ -82,7 +82,7 @@ class AdminPageController extends Controller
     public function inventory($inventory_id)
     {
         $inventory = Inventory::where('id', $inventory_id)->first();
-        
+
         return view('admin_dashboard.inventory',[
             'inventory' => $inventory
         ]);
@@ -94,8 +94,8 @@ class AdminPageController extends Controller
         $messages = Message::with('fr_oms')->where('t_o', Auth::user()->id)->latest()->get();
 
         $users = User::latest()->get();
-        
-        
+
+
         return view('general.messages',[
             'messages' => $messages,
             'users' => $users
@@ -111,38 +111,39 @@ class AdminPageController extends Controller
 
         // dd($event);
 
-        $notifications = Notification::where('user_id', Auth::user()->id)->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->latest()->get();
+        
 
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'
         ]);
-        
-        
+
+
         return view('general.notifications',[
 
             'notifications' => $notifications
-            
+
         ]);
     }
 
     public function orders()
     {
-        
-        
+
+
         return view('admin_dashboard.orders');
     }
 
     public function order($order_id)
     {
-        
-        
+
+
         return view('admin_dashboard.order');
     }
 
     public function profile()
     {
-        
-        
+
+
         return view('admin_dashboard.profile');
     }
 
@@ -154,8 +155,8 @@ class AdminPageController extends Controller
 
         // dd($reports);
 
-        
-        
+
+
         return view('admin_dashboard.reports',[
             'reports' => $reports
         ]);
@@ -166,19 +167,19 @@ class AdminPageController extends Controller
 
         $report = DeploymentReport::with('report_images')->with('reporters')->where('id', $report_id)->first();
 
-        
-        
-        
+
+
+
         return view('admin_dashboard.report',[
             'report' => $report,
-        
+
         ]);
     }
 
     public function staff_records()
     {
         $users = User::latest()->get();
-        
+
         return view('admin_dashboard.staff_records',[
             'users' => $users
         ]);
@@ -187,8 +188,8 @@ class AdminPageController extends Controller
     public function staff_record($user_id)
     {
         $user = User::where('id', $user_id)->first();
-        
-        
+
+
         return view('admin_dashboard.staff_record',[
             'user' => $user
         ]);
@@ -198,7 +199,7 @@ class AdminPageController extends Controller
     {
 
         $projects = Project::latest()->get();
-        
+
         return view('admin_dashboard.projects',[
 
             'projects' => $projects
@@ -212,8 +213,8 @@ class AdminPageController extends Controller
         $project = Project::where('id', $project_id)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('admin_dashboard.project',[
             'project' => $project,
             'deployments' => $deployments
@@ -227,8 +228,8 @@ class AdminPageController extends Controller
         $project = Project::where('id', 1)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('general.deployments',[
 
             'deployments' => $deployments,
@@ -240,13 +241,13 @@ class AdminPageController extends Controller
     {
 
         $deployment = Deployment::where('id', $deployment_id)->first();
-        
-        
+
+
         return view('general.deployment',[
             'deployment' => $deployment
         ]);
     }
-    
+
     public function truck_routes()
     {
 
@@ -255,8 +256,8 @@ class AdminPageController extends Controller
         $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->get();
 
         // dd($trucka_routes);
-        
-        
+
+
         return view('general.truck_routes',[
 
             'trucka_routes' => $trucka_routes,
@@ -269,16 +270,16 @@ class AdminPageController extends Controller
     {
 
         $truck_routes = TruckRoute::where('id', $truck_route_id)->latest()->first();
-        
-        
+
+
         return view('general.truck_route',[
 
             'truck_routes' => $truck_routes
-            
+
         ]);
     }
 
-    
+
 
     public function ucc_update()
     {
