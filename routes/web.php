@@ -287,7 +287,7 @@ Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->
 
 Route::get('/cash_request_details/{id}', [SuperAdminPageController::class, 'cash_request_details'])->name('cash_request_details');
 
-Route::get('/invoice/{invoice_code}', [InvoiceController::class, 'invoice'])->name('invoice.view');
+Route::get('/invoice/{invoice_id}', [InvoiceController::class, 'invoice'])->name('invoice.view');
 
 
 

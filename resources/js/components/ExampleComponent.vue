@@ -127,7 +127,7 @@
                                         <option :value="'Invoice'">Invoice</option>
                                         <option :value="'Quotation'">Quotation</option>
                                         <option :value="'Pro forma Invoice'">Pro forma Invoice</option>
-                                        <option :value="'receipt'">Receipt</option>
+                                        <!-- <option :value="'receipt'">Receipt</option> -->
 
 
                                     </select>
@@ -145,6 +145,13 @@
                                     <input class="form-check-input" v-model="vat_included" type="checkbox"  id="flexCheckDefault">
                                     <label class="form-check-label text-danger" for="flexCheckDefault">
                                         VAT Included
+                                    </label>
+                                </div>
+
+                                <div class="form-group p-1 py-2">
+                                    <input class="form-check-input" v-model="generate_receipt" type="checkbox"  id="flexCheckDefault2">
+                                    <label class="form-check-label text-danger" for="flexCheckDefault2">
+                                        Generate Receipt
                                     </label>
                                 </div>
 
@@ -220,7 +227,7 @@
 
                     <tbody>
                         <tr v-for="sale in invoices" :key="sale.id">
-                            <td><a :href="'/invoice/' + sale.invoice_code" class="">{{ sale.customer?sale.customer.company_name:'u' }}    </a></td>
+                            <td><a :href="'/invoice/' + sale.id" class="">{{ sale.customer?sale.customer.company_name:'u' }}    </a></td>
                             <td>
                                 <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{ line.product.name }},</span>
                               </td>
@@ -269,7 +276,15 @@
                             <td>{{ inv.created_at }}</td>
 
                             <td>
-                                <a :href="'/invoice/' + inv.invoice_code" class="btn btn-primary">view invoice</a>
+
+                                <a v-if="inv.invoice_type == 'receipt'" href="">
+                                    <a :href="'/invoice/' + inv.id" class="btn btn-success">view {{inv.invoice_type}}</a>
+                                </a>
+                                <a v-else href="">
+
+                                    <a :href="'/invoice/' + inv.id" class="btn btn-primary">view {{inv.invoice_type}}</a>
+                                </a>
+                                <!-- <a :href="'/invoice/' + inv.id" class="btn btn-warning">view {{inv.invoice_type}}</a> -->
                             </td>
                         </tr>
 
@@ -310,6 +325,7 @@ export default {
             lineDescription: [],
             linePrice: [],
             vat_included: false,
+            generate_receipt: false,
             customers: [],
             selCustomer: 'Please select customer',
             invoice_type: 'Invoice',
@@ -334,7 +350,9 @@ export default {
         },
 
        async generateInvoice() {
-            // alert(this.selCustomer)
+        //    return alert(this.generate_receipt)
+
+
 
 
 
@@ -374,6 +392,8 @@ export default {
                     customer_id: this.selCustomer,
                     invoice_type: this.invoice_type,
                     vat_included: this.vat_included,
+                    generate_receipt: this.generate_receipt,
+
 
                     bank_name: this.bank_name,
                     account_name: this.account_name,

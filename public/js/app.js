@@ -2375,6 +2375,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2390,6 +2405,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       lineDescription: [],
       linePrice: [],
       vat_included: false,
+      generate_receipt: false,
       customers: [],
       selCustomer: 'Please select customer',
       invoice_type: 'Invoice',
@@ -2450,6 +2466,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     customer_id: _this.selCustomer,
                     invoice_type: _this.invoice_type,
                     vat_included: _this.vat_included,
+                    generate_receipt: _this.generate_receipt,
                     bank_name: _this.bank_name,
                     account_name: _this.account_name,
                     account_no: _this.account_no,
@@ -51291,11 +51308,7 @@ var render = function() {
                           "option",
                           { domProps: { value: "Pro forma Invoice" } },
                           [_vm._v("Pro forma Invoice")]
-                        ),
-                        _vm._v(" "),
-                        _c("option", { domProps: { value: "receipt" } }, [
-                          _vm._v("Receipt")
-                        ])
+                        )
                       ]
                     )
                   ]),
@@ -51389,6 +51402,61 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                                    VAT Included\n                                "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group p-1 py-2" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.generate_receipt,
+                          expression: "generate_receipt"
+                        }
+                      ],
+                      staticClass: "form-check-input",
+                      attrs: { type: "checkbox", id: "flexCheckDefault2" },
+                      domProps: {
+                        checked: Array.isArray(_vm.generate_receipt)
+                          ? _vm._i(_vm.generate_receipt, null) > -1
+                          : _vm.generate_receipt
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.generate_receipt,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                (_vm.generate_receipt = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.generate_receipt = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.generate_receipt = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-check-label text-danger",
+                        attrs: { for: "flexCheckDefault2" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    Generate Receipt\n                                "
                         )
                       ]
                     )
@@ -51530,17 +51598,12 @@ var render = function() {
             _vm._l(_vm.invoices, function(sale) {
               return _c("tr", { key: sale.id }, [
                 _c("td", [
-                  _c(
-                    "a",
-                    { attrs: { href: "/invoice/" + sale.invoice_code } },
-                    [
-                      _vm._v(
-                        _vm._s(
-                          sale.customer ? sale.customer.company_name : "u"
-                        ) + "    "
-                      )
-                    ]
-                  )
+                  _c("a", { attrs: { href: "/invoice/" + sale.id } }, [
+                    _vm._v(
+                      _vm._s(sale.customer ? sale.customer.company_name : "u") +
+                        "    "
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
@@ -51594,14 +51657,27 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(inv.created_at))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { href: "/invoice/" + inv.invoice_code }
-                    },
-                    [_vm._v("view invoice")]
-                  )
+                  inv.invoice_type == "receipt"
+                    ? _c("a", { attrs: { href: "" } }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { href: "/invoice/" + inv.id }
+                          },
+                          [_vm._v("view " + _vm._s(inv.invoice_type))]
+                        )
+                      ])
+                    : _c("a", { attrs: { href: "" } }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { href: "/invoice/" + inv.id }
+                          },
+                          [_vm._v("view " + _vm._s(inv.invoice_type))]
+                        )
+                      ])
                 ])
               ])
             }),

@@ -91,7 +91,7 @@ class InvoiceLineController extends Controller
 
 
 
-            if ($genInvoice->invoice_type == 'receipt') {
+            if ($genInvoice->invoice_type == 'receiptx') {
 
 
                 # code...
@@ -145,6 +145,82 @@ class InvoiceLineController extends Controller
                 }
             }
 
+
+            if ($request->generate_receipt == true) {
+                # code...
+
+                                # code...
+
+                # code...
+                foreach ($genInvoice->invoice_line as $invoice_line) {
+
+                    if (Stock::where('product_id', $invoice_line->product_id)->first()) {
+
+                        Stock::create([
+                            'product_id' => $invoice_line->product_id,
+                            'quantity' => ($invoice_line->quantity) * (-1),
+                            'invoice_id' => $request->invoice_id,
+                            'type' => 'out',
+                            'date_received' => Carbon::now()
+
+                        ]);
+                    }
+                }
+
+
+                // register the same invoice duplicate as receipt
+
+                Invoice::create([
+                    'invoice_code' => $genInvoice->invoice_code,
+                    'generated_by' => $genInvoice->generated_by,
+                    'customer_id' => $genInvoice->customer_id,
+                    'invoice_type' => 'receipt',
+                    'status' => $genInvoice->status,
+                    'payment_type' => $genInvoice->payment_type,
+                    'bank_details' => $genInvoice->bank_details,
+                    'bank_name' => $genInvoice->bank_name,
+                    'account_name' => $genInvoice->account_name,
+                    'account_no' => $genInvoice->account_no,
+                    'vat_included' => $genInvoice->vat_included,
+                    'discount_percent' => $genInvoice->discount_percent,
+                    'total_amount' => $genInvoice->total_amount,
+                    'discount_amount' => $genInvoice->discount_amount,
+                ]);
+
+                try {
+                    //code...
+
+                    $data = [
+
+                        'total_amount' => $genInvoice->total_amount,
+                        'doc_type' => 'receipt',
+                        'customer_name' => Customer::find($request->customer_id)->contact_person_name,
+                        'report_by' => User::find($request->user_id)->name,
+                        'link' => config('app.url').'invoice/'.$genInvoice->invoice_code
+
+
+
+                    ];
+
+
+                    Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+                    Mail::to('felix@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+                    Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+                    Mail::to('ogedegbeejiro@intertradeltd.biz')->send(new AccountNotificationMail($data));
+
+
+
+                } catch (\Throwable $th) {
+                    //throw $th;
+
+
+                }
+
+
+            }
 
 
 

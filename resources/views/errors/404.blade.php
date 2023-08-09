@@ -29,7 +29,7 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent1">
-				
+
 				</div>
 			</div>
 		</nav>
@@ -44,7 +44,7 @@
 								<p>Looks like you are lost!
 									<br>May be you are not connected to the internet!</p>
 								<div class="mt-5">	<a href="javascript:;" class="btn btn-lg btn-primary px-md-5 radius-30">Go Home</a>
-									<a href="javascript:;" class="btn btn-lg btn-outline-dark ms-3 px-md-5 radius-30">Back</a>
+									<a href="{{redirect()->back()}}" class="btn btn-lg btn-outline-dark ms-3 px-md-5 radius-30">Back</a>
 								</div>
 							</div>
 						</div>

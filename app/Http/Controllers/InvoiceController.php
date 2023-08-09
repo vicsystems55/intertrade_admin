@@ -51,11 +51,11 @@ class InvoiceController extends Controller
         return back()->with('msg', 'Invoice has been mailed');
     }
 
-    public function invoice($invoice_code)
+    public function invoice($invoice_id)
     {
         # code...
 
-        $invoice = Invoice::with(['invoice_line.product', 'customer'])->where('invoice_code', $invoice_code)->first();
+        $invoice = Invoice::with(['invoice_line.product', 'customer'])->where('id', $invoice_id)->first();
 
         // return $invoice;
 

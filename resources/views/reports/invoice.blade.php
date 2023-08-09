@@ -53,7 +53,7 @@
               </p>
             </div>
           </div>
-
+{{$invoice->invoice_type}}
           @if ($invoice->invoice_type != 'receipt')
 
           <div class="tm_table tm_style1">
