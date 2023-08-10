@@ -350,7 +350,10 @@ export default {
         },
 
        async generateInvoice() {
-        //    return alert(this.generate_receipt)
+        //  alert(this.generate_receipt)
+
+        //  alert(this.selCustomer)
+
 
 
 

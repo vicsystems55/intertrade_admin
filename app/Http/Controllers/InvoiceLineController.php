@@ -82,9 +82,9 @@ class InvoiceLineController extends Controller
 
             ];
 
-            Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            // Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
             // Mail::to('felix@intertradeltd.biz')->send(new AccountNotificationMail($data));
-            Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            // Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
             // Mail::to('ogedegbeejiro@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
 
@@ -147,7 +147,7 @@ class InvoiceLineController extends Controller
             }
 
 
-            if ($request->generate_receipt == true) {
+            if ($request->generate_receipt === true) {
                 # code...
 
                                 # code...
@@ -204,11 +204,11 @@ class InvoiceLineController extends Controller
                     ];
 
 
-                    Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
+                    Mail::to('victor@intertradeltd.biz')->cc(['victorasuquob@gmail.com'])->send(new AccountNotificationMail($data));
 
                     // Mail::to('felix@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
-                    Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
+                    // Mail::to('ojomargret@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
                     // Mail::to('ogedegbeejiro@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
