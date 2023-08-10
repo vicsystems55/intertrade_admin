@@ -15,6 +15,11 @@
 
 <body>
   <div class="tm_container">
+
+    @if(Session::has('msg'))
+        <p class="alert alert-info">{{ Session::get('msg') }}</p>
+    @endif
+
     <div class="tm_invoice_wrap">
       <div class="tm_invoice tm_style1 tm_type1" id="tm_download_section">
         <div class="tm_invoice_in">
@@ -53,7 +58,7 @@
               </p>
             </div>
           </div>
-{{$invoice->invoice_type}}
+
           @if ($invoice->invoice_type != 'receipt')
 
           <div class="tm_table tm_style1">
@@ -146,6 +151,13 @@
 
           @else
 
+          <div style="padding:10px, 0; font-weight: bold;" class="">
+
+            Description: Payment for {{$invoice_description??''}}
+          </div>
+
+
+
           <div class="tm_invoice_footer tm_border_top tm_mb15 tm_m0_md">
             <div class="tm_left_footer">
               <p class="tm_mb2"><b class="tm_primary_color">Payment info:</b></p>
@@ -232,12 +244,22 @@
           </span>
           <span class="tm_btn_text">Download</span>
         </button>
-        <a href="javascript:window.print()" class="tm_invoice_btn tm_color1">
+        @auth
+
+        @if (!$has_receipt)
+        <form action="/mark-as-paid" method="post">
+            @csrf
+            <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
+        <button type="submit" class="tm_invoice_btn tm_color1">
             <span class="tm_btn_icon">
                 <img width="32" height="32" src="https://img.icons8.com/pastel-glyph/32/card-accepted.png" alt="card-accepted"/>
             </span>
             <span class="tm_btn_text">Mark as paid.</span>
-          </a>
+        </button>
+        </form>
+
+        @endif
+        @endauth
       </div>
     </div>
   </div>

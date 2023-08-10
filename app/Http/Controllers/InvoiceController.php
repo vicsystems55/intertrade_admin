@@ -57,9 +57,33 @@ class InvoiceController extends Controller
 
         $invoice = Invoice::with(['invoice_line.product', 'customer'])->where('id', $invoice_id)->first();
 
-        // return $invoice;
+        if ($invoice == null) {
+            # code...
 
-        return view('reports.invoice', compact('invoice'));
+        $invoice = Invoice::with(['invoice_line.product', 'customer'])->where('invoice_code', $invoice_id)->first();
+
+        }
+
+        $invoice_descriptionx = Invoice::with('invoice_line')->where('invoice_code', $invoice->invoice_code)->where('invoice_type', 'invoice')->first();
+        $description = [];
+        $has_receipt = Invoice::where('invoice_type', 'receipt')->where('invoice_code', $invoice->invoice_code)->first()?true:false;
+
+        try {
+            //code...
+            foreach ($invoice_descriptionx->invoice_line as $desc ) {
+                # code...
+                array_push($description, $desc->description);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        // return $description;
+        $invoice_description = implode(',',$description);
+
+        // return $invoice_description;
+
+        return view('reports.invoice', compact('invoice', 'invoice_description', 'has_receipt'));
     }
     /**
      * Display a listing of the resource.

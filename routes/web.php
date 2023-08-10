@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\SocialiteController;
@@ -15,6 +17,7 @@ use App\Http\Controllers\TruckRouteController;
 use App\Http\Controllers\AccountPageController;
 use App\Http\Controllers\CashRequestController;
 use App\Http\Controllers\FilemanagerController;
+use App\Http\Controllers\InvoiceLineController;
 use App\Http\Controllers\ReportImageController;
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\StaffRecordController;
@@ -27,8 +30,6 @@ use App\Http\Controllers\MilestoneReportController;
 use App\Http\Controllers\DeploymentReportController;
 use App\Http\Controllers\ProjectMilestoneController;
 use App\Http\Controllers\InstallationScheduleController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -306,6 +307,9 @@ Route::get('/projects', [PageController::class, 'projects']);
 
 // emailing invoice to customer
 Route::post('/mail-invoice', [InvoiceController::class, 'mail_invoice']);
+
+Route::post('/mark-as-paid', [InvoiceLineController::class, 'mark_as_paid'])->middleware('auth');
+
 
 Route::get('/export-excel', [ProjectController::class, 'export_excel']);
 

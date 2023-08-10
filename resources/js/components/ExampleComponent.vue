@@ -420,7 +420,7 @@ export default {
                 this.generating = false
 
 
-                return window.open(this.appurl+'invoice/'+this.invoice.invoice_code, '_blank')
+                return window.open(this.appurl+'invoice/'+this.invoice.id, '_blank')
 
 
 

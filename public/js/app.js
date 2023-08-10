@@ -2485,7 +2485,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.resetInvoice();
 
                   _this.generating = false;
-                  return window.open(_this.appurl + 'invoice/' + _this.invoice.invoice_code, '_blank'); //  this.results = response.data
+                  return window.open(_this.appurl + 'invoice/' + _this.invoice.id, '_blank'); //  this.results = response.data
                 })["catch"](function (err) {
                   // console.log(error);
                   _this.generating = false;
