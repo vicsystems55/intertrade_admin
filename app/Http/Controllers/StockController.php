@@ -8,10 +8,12 @@ use App\Models\Stock;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Exports\StockExport;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StockController extends Controller
 {
@@ -62,6 +64,12 @@ class StockController extends Controller
         // return $products_in_stock;
 
         return view('admin_dashboard.stockManagement', compact(['products','stocks', 'total', 'orders', 'customers', 'total_stock']));
+    }
+
+
+    public function export_stock(){
+
+        return Excel::download(new StockExport, Carbon::now()->format('d-m-y').'Stock Report.xlsx');
     }
 
     /**

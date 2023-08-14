@@ -8,9 +8,11 @@ use App\Models\Stock;
 use App\Models\Invoice;
 use App\Models\Customer;
 use App\Models\InvoiceLine;
+use App\Exports\SalesExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Mail\AccountNotificationMail;
 use App\Http\Requests\StoreInvoiceLineRequest;
 use App\Http\Requests\UpdateInvoiceLineRequest;
@@ -18,6 +20,10 @@ use App\Http\Requests\UpdateInvoiceLineRequest;
 
 class InvoiceLineController extends Controller
 {
+
+    public function export_sales(){
+        return Excel::download(new SalesExport, Carbon::now()->format('d-m-y').'-Sales Report.xlsx');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -147,7 +153,7 @@ class InvoiceLineController extends Controller
             }
 
 
-            if ($request->generate_receipt === true) {
+            if ($request->generate_receipt == 'true') {
                 # code...
 
                                 # code...

@@ -149,7 +149,7 @@
                                 </div>
 
                                 <div class="form-group p-1 py-2">
-                                    <input class="form-check-input" v-model="generate_receipt" type="checkbox"  id="flexCheckDefault2">
+                                    <input class="form-check-input" v-model="generate_receipt" :value="'true'" type="checkbox"  id="flexCheckDefault2">
                                     <label class="form-check-label text-danger" for="flexCheckDefault2">
                                         Generate Receipt
                                     </label>
@@ -184,8 +184,13 @@
             </div>
         </div>
 
+        <div class="d-flex justify-content-between py-3">
 
-        <h4>Sales Records</h4>
+                    <h4>Sales Records</h4>
+
+                    <a href="/export-sales" target="_blank" class="btn btn-primary">Export Sales Report</a>
+
+        </div>
 
         <div class="card table-responsive">
             <div class="card-body">
@@ -325,7 +330,7 @@ export default {
             lineDescription: [],
             linePrice: [],
             vat_included: false,
-            generate_receipt: false,
+            generate_receipt: 'false',
             customers: [],
             selCustomer: 'Please select customer',
             invoice_type: 'Invoice',

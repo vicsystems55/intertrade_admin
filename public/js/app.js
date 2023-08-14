@@ -2390,6 +2390,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2405,7 +2410,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       lineDescription: [],
       linePrice: [],
       vat_included: false,
-      generate_receipt: false,
+      generate_receipt: 'false',
       customers: [],
       selCustomer: 'Please select customer',
       invoice_type: 'Invoice',
@@ -51420,8 +51425,9 @@ var render = function() {
                       staticClass: "form-check-input",
                       attrs: { type: "checkbox", id: "flexCheckDefault2" },
                       domProps: {
+                        value: "true",
                         checked: Array.isArray(_vm.generate_receipt)
-                          ? _vm._i(_vm.generate_receipt, null) > -1
+                          ? _vm._i(_vm.generate_receipt, "true") > -1
                           : _vm.generate_receipt
                       },
                       on: {
@@ -51430,7 +51436,7 @@ var render = function() {
                             $$el = $event.target,
                             $$c = $$el.checked ? true : false
                           if (Array.isArray($$a)) {
-                            var $$v = null,
+                            var $$v = "true",
                               $$i = _vm._i($$a, $$v)
                             if ($$el.checked) {
                               $$i < 0 &&
@@ -51584,14 +51590,14 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("h4", [_vm._v("Sales Records")]),
+    _vm._m(2),
     _vm._v(" "),
     _c("div", { staticClass: "card table-responsive" }, [
       _c("div", { staticClass: "card-body" }, [
-        _vm._m(2),
+        _vm._m(3),
         _vm._v(" "),
         _c("table", { staticClass: "table" }, [
-          _vm._m(3),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "tbody",
@@ -51642,7 +51648,7 @@ var render = function() {
     _c("div", { staticClass: "card table-responsive" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("table", { staticClass: "table" }, [
-          _vm._m(4),
+          _vm._m(5),
           _vm._v(" "),
           _c(
             "tbody",
@@ -51705,6 +51711,23 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "" } }, [
       _vm._v("Select Type "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-between py-3" }, [
+      _c("h4", [_vm._v("Sales Records")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "/export-sales", target: "_blank" }
+        },
+        [_vm._v("Export Sales Report")]
+      )
     ])
   },
   function() {

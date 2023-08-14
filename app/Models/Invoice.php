@@ -13,13 +13,13 @@ class Invoice extends Model
 
     public function invoice_line()
     {
-            
+
         return $this->hasMany(InvoiceLine::class);
     }
 
     public function customer()
     {
-            
-        return $this->belongsTo(Customer::class);
+
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
 }

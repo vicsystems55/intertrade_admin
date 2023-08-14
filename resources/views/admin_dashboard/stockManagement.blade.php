@@ -73,7 +73,7 @@
 
     <div class=" py-2 d-flex justify-content-end">
         <button class="btn btn-outline-primary btn-sm float-right">Export PDF</button>
-        <button class="btn btn-outline-primary btn-sm float-right">Export EXCEL</button>
+        <a href="/export-stock" class="btn btn-outline-primary btn-sm float-right">Export EXCEL</a>
 
     </div>
 

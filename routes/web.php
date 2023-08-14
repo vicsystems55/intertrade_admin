@@ -313,6 +313,12 @@ Route::post('/mark-as-paid', [InvoiceLineController::class, 'mark_as_paid'])->mi
 
 Route::get('/export-excel', [ProjectController::class, 'export_excel']);
 
+Route::get('/export-stock', [StockController::class, 'export_stock']);
+
+Route::get('/export-sales', [InvoiceLineController::class, 'export_sales']);
+
+
+
 
 
 
