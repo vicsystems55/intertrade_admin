@@ -36,7 +36,7 @@
             <div class="tm_card_note tm_mobile_hide"></div>
             <div class="tm_invoice_info_list tm_white_color">
               <p class="tm_invoice_number tm_m0">Invoice No: <b>#{{$invoice->invoice_code}}</b></p>
-              <p class="tm_invoice_date tm_m0">Date: <b>{{\Carbon\Carbon::parse($invoice->created_at)->format('d-m-Y')}}</b></p>
+              <p class="tm_invoice_date tm_m0">Date: <b>{{\Carbon\Carbon::parse($invoice->updated_at)->format('d-m-Y')}}</b></p>
             </div>
             <div class="tm_invoice_seperator tm_accent_bg"></div>
           </div>
