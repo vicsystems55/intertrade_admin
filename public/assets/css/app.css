@@ -808,7 +808,7 @@ a {
 	color: #32393f;
   }
 
-  
+
   .w_chart canvas {
 	position: absolute;
 	top: 0;
@@ -1723,11 +1723,11 @@ a {
 .text-facebook{
 	color: #3b5998!important
  }
- 
+
  .text-twitter{
 	 color: #55acee!important
   }
- 
+
   .text-youtube{
 	 color: #e52d27!important
   }
@@ -2208,10 +2208,10 @@ input.search-control-2::placeholder {
 }
 
 .switcher-wrapper {
-	width: 280px;
+	width: 380px;
 	height: 100%;
 	position: fixed;
-	right: -280px;
+	right: -380px;
 	top: 0;
 	bottom: 0;
 	z-index: 16;

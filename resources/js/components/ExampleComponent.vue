@@ -2,56 +2,21 @@
 
     <div class="">
 
-        <div class=" ">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8 ">
+        <div  class="switcher-wrapper">
+            <div class="switcher-btn"> <i class="bx bx-cog bx-spin"></i>
+            </div>
+            <div class="switcher-body">
+                <div class="d-flex align-items-center">
+                    <h5 class="mb-0 text-uppercase">Record Sale</h5>
+                    <button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
+                </div>
+                <hr>
+
+                <div class=" ">
+                        <div class="car">
 
 
-                            <div style="height: 450px; overflow-y: scroll; overflow-x: hidden;" class="p-2">
-
-                                <div class="row">
-                                    <div v-for="product in products" :key="product.id"
-                                        class="col-lg-4 col-md-6 mx-auto">
-                                        <div class="card" style="min-width: 200px;">
-                                            <img style="height: 200px; max-width:200px;" :src="product.featured_image" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">{{ product.name }}</h6>
-                                                <p class="card-text">{{ product.description }}</p>
-                                                <p v-if="product.stock_sum_quantity">In stock: {{product.stock_sum_quantity }}</p>
-                                                <p v-else>In stock: 0</p>
-                                                <p>N {{ format(product.price) }}</p>
-                                                <button
-                                                v-if="product.stock_sum_quantity"
-                                                @click="addProduct(product.id)"
-                                                    class="btn btn-primary btn-sm col-12">Add +</button>
-
-                                                    <button
-                                                    v-else
-                                                    class="btn btn-primary btn-sm col-12" disabled>Add +</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
-
-
-
-                    </div>
-                    <div class="col-md-4 ">
-                        <div class="card card-bod">
-                            <h6 class="pt-3 px-3">Record Sale</h6>
-
-
-                            <div style="height: 320px; overflow-y: auto;" class="px-5">
-
-
-                                <div class="form-group p-1 ">
+                            <div class="form-group p-1 ">
                                     <label for="">Select Customer <span class="text-danger">*</span></label>
                                     <select v-model="selCustomer" @change="getCustomer" class="form-control">
                                         <option :value="'Please select customer'"  >-Pick a customer-</option>
@@ -63,6 +28,10 @@
                                 </div>
 
                                 <hr>
+
+                            <div style="height: 400px; overflow-y: auto;" class="">
+
+
 
 
                                 <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2 border border-primary">
@@ -179,6 +148,66 @@
                         </div>
 
                     </div>
+
+
+            </div>
+        </div>
+
+        <div class=" ">
+            <div class="container-fluid">
+
+                <div class="form-group col-md-6 py-2">
+                    <input type="text" class="form-control" placeholder="Search a product">
+                </div>
+
+                <div class="cat d-flex flex-wrap justify-content-start py-2">
+                    <button type="button" class="btn btn-primary m-1">Batteries <span class="badge bg-dark">4</span>
+										</button>
+                                        <button type="button" class="btn btn-secondary m-1">Inverters <span class="badge bg-dark">4</span>
+										</button>
+                                        <button type="button" class="btn btn-warning m-1">Solar Panels <span class="badge bg-dark">4</span>
+										</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+
+
+                            <div  class="p-2">
+
+                                <div class="row">
+                                    <div v-for="product in products" :key="product.id"
+                                        class="col-lg-3 col-md-4 mx-auto">
+                                        <div class="card" style="max-width: 300px;">
+                                            <img style="height: 200px; max-width:300px;" :src="product.featured_image" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ product.name }}</h6>
+                                                <p class="card-text">{{ product.description }}</p>
+                                                <p v-if="product.stock_sum_quantity">In stock: {{product.stock_sum_quantity }}</p>
+                                                <p v-else>In stock: 0</p>
+                                                <p>N {{ format(product.price) }}</p>
+                                                <button
+                                                v-if="product.stock_sum_quantity"
+                                                @click="addProduct(product.id)"
+                                                    class="btn btn-primary btn-sm col-12">Add +</button>
+
+                                                    <button
+                                                    v-else
+                                                    class="btn btn-primary btn-sm col-12" disabled>Add +</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                    </div>
+
                 </div>
 
             </div>
@@ -729,3 +758,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.switcher-wrapper{
+    /* width: 400px;
+    right: -384px; */
+}
+</style>

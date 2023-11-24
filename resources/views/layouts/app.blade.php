@@ -51,6 +51,8 @@
 	<!--wrapper-->
 	<div id="app" class="wrapper">
 		<!--sidebar wrapper -->
+
+  
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
