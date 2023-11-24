@@ -178,7 +178,7 @@
                                     <div v-for="product in products" :key="product.id"
                                         class="col-lg-3 col-md-4 mx-auto">
                                         <div class="card" style="max-width: 300px;">
-                                            <img style="height: 200px; max-width:300px;" :src="product.featured_image" class="card-img-top" alt="...">
+                                            <img style="max-height: 200px; max-width:300px; object-fit: cover;" :src="product.featured_image" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <h6 class="card-title">{{ product.name }}</h6>
                                                 <p class="card-text">{{ product.description }}</p>

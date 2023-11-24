@@ -3360,8 +3360,9 @@ var render = function render() {
     }, [_c("img", {
       staticClass: "card-img-top",
       staticStyle: {
-        height: "200px",
-        "max-width": "300px"
+        "max-height": "200px",
+        "max-width": "300px",
+        "object-fit": "cover"
       },
       attrs: {
         src: product.featured_image,
