@@ -32,6 +32,13 @@ Vue.component('products-component', require('./components/ProductsComponent.vue'
 
 Vue.component('project-reports', require('./components/ProjectReports.vue').default);
 
+Vue.component('admin-products-component', require('./components/admin/AdminProductsComponent.vue').default);
+
+Vue.component('product-categories-component', require('./components/admin/ProductCategoriesComponent.vue').default);
+
+Vue.component('file-manager-component', require('./components/admin/FileManagerComponent.vue').default);
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

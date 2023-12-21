@@ -368,4 +368,31 @@ class SuperAdminPageController extends Controller
             'deployments' => $deployments
         ]);
     }
+
+    // all products : admin page
+
+    public function all_products(){
+
+
+        return view('superadmin_dashboard.products');
+
+    }
+
+    public function product_categories(){
+
+        return view('superadmin_dashboard.product_categories');
+
+    }
+
+    public function file_manager(){
+
+        return view('superadmin_dashboard.file_manager');
+
+    }
+
+    public function settings(){
+
+        return view('superadmin_dashboard.settings');
+
+    }
 }

@@ -39,6 +39,9 @@
         </a>
     </li>
 
+    <li class="menu-label">Records</li>
+
+
     <li>
         <a href="{{route('superadmin.staff_records')}}">
             <div class="parent-icon"><i class='lni lni-users'></i>
@@ -95,6 +98,23 @@
         </a>
     </li> --}}
 
+    <li class="menu-label">Operations</li>
+
+     <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon"><i class="bx bx-category"></i>
+            </div>
+            <div class="menu-title">Products</div>
+        </a>
+        <ul>
+            <li> <a href="/admin/products"><i class="bx bx-right-arrow-alt"></i>Product Catalog</a>
+            </li>
+            <li> <a href="/admin/product-categories"><i class="bx bx-right-arrow-alt"></i>Product Categories</a>
+            </li>
+
+        </ul>
+    </li>
+
     <li>
         <a href="{{route('stockManagement.index')}}">
             <div class="parent-icon"><i class='bx bx-buildings'></i>
@@ -102,15 +122,6 @@
             <div class="menu-title">Stock Management</div>
         </a>
     </li>
-
-    <li>
-        <a href="{{route('cash_request')}}">
-            <div class="parent-icon"><i class='bx bx-cog'></i>
-            </div>
-            <div class="menu-title">Cash Request</div>
-           </a>
-    </li>
-
     <li>
         <a href="{{route('superadmin.pos')}}">
             <div class="parent-icon"><i class='bx bx-cog'></i>
@@ -118,6 +129,29 @@
             <div class="menu-title">Sales Point</div>
            </a>
     </li>
+    <li class="menu-label">Accounts</li>
+
+    <li>
+        <a href="{{route('cash_request')}}">
+            <div class="parent-icon"><i class='bx bx-money'></i>
+            </div>
+            <div class="menu-title">Cash Request</div>
+           </a>
+    </li>
+
+    <li class="menu-label">Data Center</li>
+
+    <li>
+        <a href="/admin/file-manager">
+            <div class="parent-icon"><i class='bx bx-folder-open'></i>
+            </div>
+            <div class="menu-title">File Manager</div>
+           </a>
+    </li>
+
+
+    <li class="menu-label">Activity Feed</li>
+
 
     <li>
         <a href="{{route('superadmin.notifications')}}">
@@ -132,6 +166,19 @@
             <div class="parent-icon"><i class='bx bx-message-alt-detail'></i>
             </div>
             <div class="menu-title">Messages</div>
+        </a>
+    </li>
+
+
+    <li class="menu-label">Control</li>
+
+
+
+    <li>
+        <a href="{{route('admin.settings')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Settings</div>
         </a>
     </li>
 

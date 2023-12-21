@@ -39,7 +39,16 @@ class ProductCategoryController extends Controller
     public function store(StoreProductCategoryRequest $request)
     {
         //
+
+        $productCategory = ProductCategory::create([
+            'name' => $request->name,
+            'featured_image' => '/default.png'
+        ]);
+
+        return $productCategory;
     }
+
+
 
     /**
      * Display the specified resource.
@@ -73,6 +82,12 @@ class ProductCategoryController extends Controller
     public function update(UpdateProductCategoryRequest $request, ProductCategory $productCategory)
     {
         //
+
+        $productCategory->update([
+            'name' => $request->productCategoryName
+        ]);
+
+        return $productCategory;
     }
 
     /**

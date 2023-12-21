@@ -19,7 +19,7 @@
                 <tr v-for="product, key in products" :key="product.id">
                     <td>{{ key + 1 }}</td>
                     <td>
-                        <img style="height: 90px; width: 90px; object-fit: cover;" :src="product.featured_image"
+                        <img style="height: 120px; width: 120px; object-fit: cover;" :src="product.featured_image"
                             class="card-img-top" alt="...">
 
                     </td>

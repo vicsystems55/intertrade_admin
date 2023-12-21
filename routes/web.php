@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminPageController;
+use App\Http\Controllers\AppUpdateController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\ChooseRoleController;
 use App\Http\Controllers\DeploymentController;
@@ -286,6 +287,15 @@ Route::resource('cash_request', CashRequestController::class, ['name' => 'cash_r
 
 Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->name('cash_request');
 
+
+Route::get('/admin/products', [SuperAdminPageController::class, 'all_products'])->name('admin.all_products')->middleware('auth');
+
+Route::get('/admin/product-categories', [SuperAdminPageController::class, 'product_categories'])->name('admin.product_categories')->middleware('auth');
+
+Route::get('/admin/file-manager', [SuperAdminPageController::class, 'file_manager'])->name('admin.file_manager')->middleware('auth');
+
+Route::get('/admin/settings', [SuperAdminPageController::class, 'settings'])->name('admin.settings')->middleware('auth');
+
 Route::get('/cash_request_details/{id}', [SuperAdminPageController::class, 'cash_request_details'])->name('cash_request_details');
 
 Route::get('/invoice/{invoice_id}', [InvoiceController::class, 'invoice'])->name('invoice.view');
@@ -316,6 +326,8 @@ Route::get('/export-excel', [ProjectController::class, 'export_excel']);
 Route::get('/export-stock', [StockController::class, 'export_stock']);
 
 Route::get('/export-sales', [InvoiceLineController::class, 'export_sales']);
+
+Route::post('/admin/update-app', [AppUpdateController::class, 'updateApp'])->middleware('auth');
 
 
 
