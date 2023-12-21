@@ -4268,14 +4268,19 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", {
+    staticClass: "page-content"
+  }, [_c("marquee", {
+    attrs: {
+      behavior: "",
+      direction: ""
+    }
+  }, [_vm._v("This page is under construction..")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "page-content"
-  }, [_c("div", {
     staticClass: "page-breadcrumb d-none d-sm-flex align-items-center mb-3"
   }, [_c("div", {
     staticClass: "breadcrumb-title pe-3"
@@ -4341,7 +4346,11 @@ var staticRenderFns = [function () {
     attrs: {
       href: "javascript:;"
     }
-  }, [_vm._v("Separated link")])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Separated link")])])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-12 col-lg-3"
@@ -4875,7 +4884,7 @@ var staticRenderFns = [function () {
     staticClass: "font-weight-bold text-success"
   }, [_vm._v("Review Checklist Template")])])]), _vm._v(" "), _c("td", [_vm._v("7 members")]), _vm._v(" "), _c("td", [_vm._v("Sep 8, 2019")]), _vm._v(" "), _c("td", [_c("i", {
     staticClass: "bx bx-dots-horizontal-rounded font-24"
-  })])])])])])])])])])]);
+  })])])])])])])])])]);
 }];
 render._withStripped = true;
 

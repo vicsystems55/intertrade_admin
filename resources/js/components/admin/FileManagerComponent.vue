@@ -1,6 +1,8 @@
 <template>
    <div class="page-content">
 				<!--breadcrumb-->
+
+                <marquee behavior="" direction="">This page is under construction..</marquee>
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 					<div class="breadcrumb-title pe-3">Applications</div>
 					<div class="ps-3">
