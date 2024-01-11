@@ -2431,7 +2431,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       products: [],
       productsCategories: [],
-      loading: false
+      loading: false,
+      selected_product_img: '',
+      selected_product_id: ''
     };
   },
   mounted: function mounted() {
@@ -2459,8 +2461,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(error);
       });
     },
-    getProductCategories: function getProductCategories() {
+    previewFile4: function previewFile4(event) {
       var _this2 = this;
+      // return console.log(event.target.dataset.productid)
+
+      if (event.target.files.length > 0) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById('previewImg');
+        preview.src = src;
+        // preview.style.display = "block";
+      }
+
+      this.selected_product_img = event.target.files[0];
+      var formData = new FormData();
+      formData.append('selected_product_img', this.selected_product_img);
+      formData.append('selected_product_id', event.target.dataset.productid);
+      axios({
+        url: this.appurl + 'api/update-product-image',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
+        },
+        method: 'post',
+        data: formData
+      }).then(function (res) {
+        _this2.loadingy = false;
+        console.log(res);
+      })["catch"](function (error) {
+        _this2.loadingy = false;
+        console.log(error);
+      });
+    },
+    getProductCategories: function getProductCategories() {
+      var _this3 = this;
       axios.get(this.appurl + 'api/product-category', {
         key: this.key
         // date: this.date,
@@ -2470,7 +2503,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return (
           // this.loading = false,
 
-          _this2.productsCategories = response.data, console.log(response)
+          _this3.productsCategories = response.data, console.log(response)
           //  this.results = response.data
         );
       })["catch"](function (error) {
@@ -2478,13 +2511,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     updateProduct: function updateProduct(pId) {
-      var _this3 = this;
+      var _this4 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var productName, productDescription, productCategory, productPrice;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _this3.loading = true;
+              _this4.loading = true;
               productName = document.getElementById('productName' + pId).value;
               productDescription = document.getElementById('productDescription' + pId).value;
               productCategory = document.getElementById('productCategory' + pId).value;
@@ -2492,7 +2525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               document.getElementById('productBtn' + pId).textContent = 'updating...';
               _context.next = 8;
               return axios({
-                url: _this3.appurl + 'api/products/' + pId,
+                url: _this4.appurl + 'api/products/' + pId,
                 method: 'put',
                 data: {
                   productName: productName,
@@ -3762,18 +3795,44 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.products, function (product, key) {
     return _c("tr", {
       key: product.id
-    }, [_c("td", [_vm._v(_vm._s(key + 1))]), _vm._v(" "), _c("td", [_c("img", {
-      staticClass: "card-img-top",
+    }, [_c("td", [_vm._v(_vm._s(key + 1))]), _vm._v(" "), _c("td", [product.featured_image ? _c("img", {
+      staticClass: "shadow",
       staticStyle: {
-        height: "120px",
-        width: "120px",
+        height: "100px",
+        width: "100px",
         "object-fit": "cover"
       },
       attrs: {
-        src: product.featured_image,
-        alt: "..."
+        id: "previewImg",
+        onclick: "document.getElementById('customFile').click()",
+        src: product.featured_image
       }
-    })]), _vm._v(" "), _c("td", [_c("input", {
+    }) : _c("img", {
+      staticClass: "shadow",
+      staticStyle: {
+        height: "100px",
+        width: "100px",
+        "object-fit": "cover"
+      },
+      attrs: {
+        id: "previewImg",
+        onclick: "document.getElementById('customFile').click()",
+        src: "https://www.lifewire.com/thmb/8MhWKwi4GEGiYRT6P56TBvyrkYA=/1326x1326/smart/filters:no_upscale()/cloud-upload-a30f385a928e44e199a62210d578375a.jpg"
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "text-center d-none"
+    }, [_c("input", {
+      ref: "file",
+      refInFor: true,
+      attrs: {
+        id: "customFile",
+        "data-productid": product.id,
+        type: "file"
+      },
+      on: {
+        change: _vm.previewFile4
+      }
+    })])]), _vm._v(" "), _c("td", [_c("input", {
       staticClass: "form-control form-control-sm",
       attrs: {
         type: "text",
@@ -3803,7 +3862,7 @@ var render = function render() {
           value: productCategory.id,
           selected: product.product_category_id == productCategory.id ? true : false
         }
-      }, [_vm._v("\n\n    " + _vm._s(productCategory.name) + "\n\n")]);
+      }, [_vm._v("\n\n                            " + _vm._s(productCategory.name) + "\n\n                        ")]);
     }), 0)]), _vm._v(" "), _c("td", [_c("input", {
       staticClass: "form-control form-control-sm",
       attrs: {

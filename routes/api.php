@@ -44,6 +44,11 @@ Route::post('/create_requistion_request', [RequisitionController::class, 'create
 
 Route::resource('products', ProductController::class, ['name' => 'products']);
 
+Route::post('update-product-image', [ProductController::class, 'updateProductImage']);
+
+
+
+
 Route::resource('product-category', ProductCategoryController::class, ['name' => 'products.categories']);
 
 Route::resource('customers', CustomerController::class, ['name' => 'cus']);

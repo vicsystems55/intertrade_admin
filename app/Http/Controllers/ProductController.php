@@ -136,4 +136,24 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    public function updateProductImage(Request $request){
+
+        // return $request->all();
+
+        $doc = $request->file('selected_product_img');
+
+        $new_name = rand().".".$doc->getClientOriginalExtension();
+
+        $file1 = $doc->move(('products'), $new_name);
+
+
+        $product = Product::find($request->selected_product_id)->update([
+            'featured_image' => '/products/'.$new_name,
+        ]);
+
+        return $product;
+
+    }
 }

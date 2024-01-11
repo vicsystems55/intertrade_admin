@@ -19,9 +19,24 @@
                 <tr v-for="product, key in products" :key="product.id">
                     <td>{{ key + 1 }}</td>
                     <td>
-                        <img style="height: 120px; width: 120px; object-fit: cover;" :src="product.featured_image"
-                            class="card-img-top" alt="...">
+                        <!-- <img style="height: 120px; width: 120px; object-fit: cover;" :src="product.featured_image"
+                            class="card-img-top border" alt="..."> -->
 
+                        <img v-if="product.featured_image" id="previewImg"
+                            onclick="document.getElementById('customFile').click()"
+                            style="height: 100px; width: 100px; object-fit: cover; " class="shadow"
+                            :src="product.featured_image">
+
+                        <img v-else id="previewImg" onclick="document.getElementById('customFile').click()"
+                            style="height: 100px; width: 100px; object-fit: cover; " class="shadow"
+                            :src="'https://www.lifewire.com/thmb/8MhWKwi4GEGiYRT6P56TBvyrkYA=/1326x1326/smart/filters:no_upscale()/cloud-upload-a30f385a928e44e199a62210d578375a.jpg'">
+
+                        <div class="text-center d-none">
+                            <input id="customFile" ref="file" :data-productid="product.id" type="file" @change="previewFile4">
+
+
+
+                        </div>
                     </td>
 
                     <td>
@@ -37,25 +52,17 @@
                     </td>
 
                     <td>
-    <select
+                        <select :id="'productCategory' + product.id" class="form-control form-control-sm">
 
-    :id="'productCategory' + product.id"
+                            <option v-for="productCategory in productsCategories" :key="productCategory.id"
+                                :value="productCategory.id"
+                                :selected="product.product_category_id == productCategory.id ? true : false">
 
-    class="form-control form-control-sm">
+                                {{ productCategory.name }}
 
-    <option v-for="productCategory in productsCategories"
+                            </option>
 
-        :key="productCategory.id"
-
-        :value="productCategory.id"
-
-        :selected="product.product_category_id == productCategory.id ? true : false">
-
-        {{productCategory.name }}
-
-    </option>
-
-    </select>
+                        </select>
 
                     </td>
 
@@ -89,7 +96,10 @@ export default {
 
             productsCategories: [],
 
-            loading: false
+            loading: false,
+
+            selected_product_img: '',
+            selected_product_id: '',
         }
     },
 
@@ -128,6 +138,45 @@ export default {
 
         },
 
+        previewFile4(event) {
+            // return console.log(event.target.dataset.productid)
+
+
+            if (event.target.files.length > 0) {
+                const src = URL.createObjectURL(event.target.files[0])
+                const preview = document.getElementById('previewImg')
+                preview.src = src
+                // preview.style.display = "block";
+            }
+
+            this.selected_product_img = event.target.files[0]
+
+            const formData = new FormData()
+            formData.append('selected_product_img', this.selected_product_img)
+            formData.append('selected_product_id', event.target.dataset.productid)
+
+
+
+            axios({
+                url: this.appurl + 'api/update-product-image',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+
+                },
+                method: 'post',
+                data: formData,
+            }).then(res => {
+                this.loadingy = false
+                console.log(res)
+
+            }).catch(error => {
+                this.loadingy = false
+
+                console.log(error)
+            })
+        },
+
         getProductCategories() {
 
 
@@ -163,7 +212,7 @@ export default {
 
             document.getElementById('productBtn' + pId).textContent = 'updating...';
 
-           await axios({
+            await axios({
                 url: this.appurl + 'api/products/' + pId,
                 method: 'put',
                 data: {
