@@ -104,10 +104,10 @@
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon"><i class="bx bx-category"></i>
             </div>
-            <div class="menu-title">Products <span class="badge bg-danger ">new</span></div>
+            <div class="menu-title">Products </div>
         </a>
         <ul>
-            <li> <a href="/admin/products"><i class="bx bx-right-arrow-alt"></i>Product Catalog  </a>
+            <li> <a href="/admin/products"><i class="bx bx-right-arrow-alt"></i>Product Catalog  <span class="badge bg-danger ">new</span></a>
             </li>
             <li> <a href="/admin/product-categories"><i class="bx bx-right-arrow-alt"></i>Product Categories  </a>
             </li>

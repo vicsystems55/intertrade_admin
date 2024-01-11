@@ -22,17 +22,17 @@
                         <!-- <img style="height: 120px; width: 120px; object-fit: cover;" :src="product.featured_image"
                             class="card-img-top border" alt="..."> -->
 
-                        <img v-if="product.featured_image" id="previewImg"
-                            onclick="document.getElementById('customFile').click()"
+                        <img v-if="product.featured_image" :id="product.id+'previewImg'"
+                            @click="selectImage(key)"
                             style="height: 100px; width: 100px; object-fit: cover; " class="shadow"
                             :src="product.featured_image">
 
-                        <img v-else id="previewImg" onclick="document.getElementById('customFile').click()"
+                        <img v-else :id="product.id+'previewImg'" @click="selectImage(key)"
                             style="height: 100px; width: 100px; object-fit: cover; " class="shadow"
                             :src="'https://www.lifewire.com/thmb/8MhWKwi4GEGiYRT6P56TBvyrkYA=/1326x1326/smart/filters:no_upscale()/cloud-upload-a30f385a928e44e199a62210d578375a.jpg'">
 
                         <div class="text-center d-none">
-                            <input id="customFile" ref="file" :data-productid="product.id" type="file" @change="previewFile4">
+                            <input :id="key+'customFile'" ref="file" :data-productid="product.id" type="file" @change="previewFile4">
 
 
 
@@ -114,6 +114,12 @@ export default {
     props: ['appurl', 'userid'],
 
     methods: {
+
+        selectImage(key){
+
+           (document.getElementById(key+'customFile')).click()
+
+        },
         getProducts() {
 
 
@@ -139,12 +145,14 @@ export default {
         },
 
         previewFile4(event) {
-            // return console.log(event.target.dataset.productid)
+            // return console.log(event.target.dataset);
+
+
 
 
             if (event.target.files.length > 0) {
                 const src = URL.createObjectURL(event.target.files[0])
-                const preview = document.getElementById('previewImg')
+                const preview = document.getElementById(event.target.dataset.productid+'previewImg')
                 preview.src = src
                 // preview.style.display = "block";
             }

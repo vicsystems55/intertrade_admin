@@ -2443,6 +2443,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   props: ['appurl', 'userid'],
   methods: {
+    selectImage: function selectImage(key) {
+      document.getElementById(key + 'customFile').click();
+    },
     getProducts: function getProducts() {
       var _this = this;
       axios.get(this.appurl + 'api/products', {
@@ -2463,11 +2466,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     previewFile4: function previewFile4(event) {
       var _this2 = this;
-      // return console.log(event.target.dataset.productid)
+      // return console.log(event.target.dataset);
 
       if (event.target.files.length > 0) {
         var src = URL.createObjectURL(event.target.files[0]);
-        var preview = document.getElementById('previewImg');
+        var preview = document.getElementById(event.target.dataset.productid + 'previewImg');
         preview.src = src;
         // preview.style.display = "block";
       }
@@ -3803,9 +3806,13 @@ var render = function render() {
         "object-fit": "cover"
       },
       attrs: {
-        id: "previewImg",
-        onclick: "document.getElementById('customFile').click()",
+        id: product.id + "previewImg",
         src: product.featured_image
+      },
+      on: {
+        click: function click($event) {
+          return _vm.selectImage(key);
+        }
       }
     }) : _c("img", {
       staticClass: "shadow",
@@ -3815,9 +3822,13 @@ var render = function render() {
         "object-fit": "cover"
       },
       attrs: {
-        id: "previewImg",
-        onclick: "document.getElementById('customFile').click()",
+        id: product.id + "previewImg",
         src: "https://www.lifewire.com/thmb/8MhWKwi4GEGiYRT6P56TBvyrkYA=/1326x1326/smart/filters:no_upscale()/cloud-upload-a30f385a928e44e199a62210d578375a.jpg"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.selectImage(key);
+        }
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "text-center d-none"
@@ -3825,7 +3836,7 @@ var render = function render() {
       ref: "file",
       refInFor: true,
       attrs: {
-        id: "customFile",
+        id: key + "customFile",
         "data-productid": product.id,
         type: "file"
       },
