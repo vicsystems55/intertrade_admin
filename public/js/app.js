@@ -2490,6 +2490,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }).then(function (res) {
         _this2.loadingy = false;
         console.log(res);
+        alert('Image Updated');
       })["catch"](function (error) {
         _this2.loadingy = false;
         console.log(error);

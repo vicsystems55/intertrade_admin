@@ -178,6 +178,8 @@ export default {
                 this.loadingy = false
                 console.log(res)
 
+                alert('Image Updated')
+
             }).catch(error => {
                 this.loadingy = false
 
