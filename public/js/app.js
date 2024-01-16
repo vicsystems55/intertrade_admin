@@ -5467,7 +5467,11 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("\n                            Customer\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Description\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            No of items\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Total Amount\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Date\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Type\n                        ")])])]);
+  return _c("thead", [_c("tr", [_c("th", {
+    staticStyle: {
+      wdith: "50px"
+    }
+  }, [_vm._v("\n                            Customer\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Description\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            No of items\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Total Amount\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Date\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Type\n                        ")])])]);
 }];
 render._withStripped = true;
 

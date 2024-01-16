@@ -26,7 +26,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
+                            <th style="wdith: 50px;">
                                 Customer
                             </th>
                             <th>
