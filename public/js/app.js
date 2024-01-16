@@ -5407,7 +5407,8 @@ var render = function render() {
       key: sale.id
     }, [_c("td", {
       staticStyle: {
-        width: "150px"
+        width: "50px",
+        background: "red"
       }
     }, [_c("a", {
       attrs: {
