@@ -38,6 +38,9 @@ Vue.component('product-categories-component', require('./components/admin/Produc
 
 Vue.component('file-manager-component', require('./components/admin/FileManagerComponent.vue').default);
 
+Vue.component('transactions-component', require('./components/admin/TransactionsComponent.vue').default);
+
+
 
 
 /**

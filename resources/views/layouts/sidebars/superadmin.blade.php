@@ -107,7 +107,7 @@
             <div class="menu-title">Products </div>
         </a>
         <ul>
-            <li> <a href="/admin/products"><i class="bx bx-right-arrow-alt"></i>Product Catalog  <span class="badge bg-danger ">new</span></a>
+            <li> <a href="/admin/products"><i class="bx bx-right-arrow-alt"></i>Product Catalog  </a>
             </li>
             <li> <a href="/admin/product-categories"><i class="bx bx-right-arrow-alt"></i>Product Categories  </a>
             </li>
@@ -127,6 +127,13 @@
             <div class="parent-icon"><i class='bx bx-cog'></i>
             </div>
             <div class="menu-title">Sales Point</div>
+           </a>
+    </li>
+    <li>
+        <a href="{{route('admin.transactions')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Transactions <span class="badge bg-danger ">new</span></div>
            </a>
     </li>
     <li class="menu-label">Accounts</li>

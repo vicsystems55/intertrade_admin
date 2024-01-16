@@ -2,217 +2,85 @@
 
     <div class="">
 
-        <div  class="switcher-wrapper">
-            <div class="switcher-btn"> <i class="bx bx-cog bx-spin"></i>
-            </div>
-            <div class="switcher-body">
-                <div class="d-flex align-items-center">
-                    <h5 class="mb-0 text-uppercase">Record Sale</h5>
-                    <button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
-                </div>
-                <hr>
 
-                <div class=" ">
-                        <div class="car">
-
-
-                            <div class="form-group p-1 ">
-                                    <label for="">Select Customer <span class="text-danger">*</span></label>
-                                    <select v-model="selCustomer" @change="getCustomer" class="form-control">
-                                        <option :value="'Please select customer'"  >-Pick a customer-</option>
-                                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.company_name}} {{ customer.conact_person_name }}</option>
-
-
-
-                                    </select>
-                                </div>
-
-                                <hr>
-
-                            <div style="height: 400px; overflow-y: auto;" class="">
-
-
-
-
-                                <div v-for="line,key in invoice.invoice_line" :key="line.id"  class="card border mb-2 p-2 border border-primary">
-                                    <div class="row ">
-                                        <div class="col-12">
-                                            <div class="d-flex justify-content-between">
-                                                <div  class="c ">
-                                                    <h6 style="font-weight: bold;">
-                                                       {{key + 1 }}. {{ line.product.name }}
-                                                    </h6>
-
-                                                </div>
-                                                <div class="r ">
-                                                    <span @click="removeInvoiceLine(line.id)"  class="btn p-0 px-1 text-white h6 bg-danger">x</span>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="hidden" name="" v-model="lineIds[key]">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <label for="price">Price</label>
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            v-model="linePrice[key]">
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <label for="quantity">Quantity</label>
-
-                                                            <input type="number" class="form-control form-control-sm"
-
-                                                            v-model="lineQuantity[key]" >
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group py-2">
-                                            <label for="desc">Description</label>
-                                            <textarea class="form-control" v-model="lineDescription[key]" rows="1"></textarea>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
-
-                                <hr>
-
-
-
-                                <div class="form-group p-1">
-                                    <label for="">Select Type <span class="text-danger">*</span> </label>
-                                    <select v-model="invoice_type" id="" class="form-control ">
-
-
-                                        <option :value="'Invoice'">Invoice</option>
-                                        <option :value="'Quotation'">Quotation</option>
-                                        <option :value="'Pro forma Invoice'">Pro forma Invoice</option>
-                                        <!-- <option :value="'receipt'">Receipt</option> -->
-
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group p-1">
-                                    <label for="">Status</label>
-                                    <select v-model="payment_status" id="" class="form-control">
-                                        <option >Paid</option>
-                                        <option >Unpaid</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group p-1 py-2">
-                                    <input class="form-check-input" v-model="vat_included" type="checkbox"  id="flexCheckDefault">
-                                    <label class="form-check-label text-danger" for="flexCheckDefault">
-                                        VAT Included
-                                    </label>
-                                </div>
-
-                                <div class="form-group p-1 py-2">
-                                    <input class="form-check-input" v-model="generate_receipt" :value="'true'" type="checkbox"  id="flexCheckDefault2">
-                                    <label class="form-check-label text-danger" for="flexCheckDefault2">
-                                        Generate Receipt
-                                    </label>
-                                </div>
-
-                                <div class="form-group p-1">
-                                    <label for="">Bank Name</label>
-                                  <input type="text" v-model="bank_name" class="form-control">
-                                  <label for="">Account Name</label>
-                                  <input type="text" v-model="account_name" class="form-control">
-                                  <label for="">Account No.</label>
-                                  <input type="text" v-model="account_no" class="form-control">
-                                </div>
-
-
-
-
-                            </div>
-                            <div class="form-group p-2">
-                                <button @click="generateInvoice()" class="btn btn-primary col-12">{{generating==true?'Generating...':'Submit'}}</button>
-                            </div>
-
-                            <div class="form-group p-2">
-                                <button @click="resetInvoice()" class="btn btn-danger col-12">Reset</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-            </div>
-        </div>
 
         <div class=" ">
-            <div class="container-fluid">
 
-                <div class="form-group col-md-6 py-2">
-                    <input type="text" class="form-control" placeholder="Search a product">
-                </div>
-
-                <div class="cat d-flex flex-wrap justify-content-start py-2">
-                    <button type="button" class="btn btn-primary m-1">Batteries <span class="badge bg-dark">4</span>
-										</button>
-                                        <button type="button" class="btn btn-secondary m-1">Inverters <span class="badge bg-dark">4</span>
-										</button>
-                                        <button type="button" class="btn btn-warning m-1">Solar Panels <span class="badge bg-dark">4</span>
-										</button>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 ">
-
-
-                            <div  class="p-2">
-
-                                <div class="row">
-                                    <div v-for="product in products" :key="product.id"
-                                        class="col-lg-3 col-md-4 mx-auto">
-                                        <div class="card" style="max-width: 300px;">
-                                            <img style="max-height: 200px; max-width:300px; object-fit: cover;" :src="product.featured_image" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">{{ product.name }}</h6>
-                                                <p class="card-text">{{ product.description }}</p>
-                                                <p v-if="product.stock_sum_quantity">In stock: {{product.stock_sum_quantity }}</p>
-                                                <p v-else>In stock: 0</p>
-                                                <p>N {{ format(product.price) }}</p>
-                                                <button
-                                                v-if="product.stock_sum_quantity"
-                                                @click="addProduct(product.id)"
-                                                    class="btn btn-primary btn-sm col-12">Add +</button>
-
-                                                    <button
-                                                    v-else
-                                                    class="btn btn-primary btn-sm col-12" disabled>Add +</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
-
-
-
-                    </div>
-
-                </div>
-
-            </div>
         </div>
 
+        <div class="d-flex justify-content-between py-3">
+
+                    <h4>Sales Records</h4>
+
+                    <a href="/export-sales" target="_blank" class="btn btn-primary">Export Sales Report</a>
+
+        </div>
+
+        <div class="card table-responsive">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control form-control-sm" placeholder="search...">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-md-12 py-3">
+                        <button class="btn btn-primary">search</button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Customer
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                No of items
+                            </th>
+                            <th>
+                               Total Amount
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr v-for="sale in invoices" :key="sale.id">
+                            <td><a :href="'/invoice/' + sale.id" class="">{{ sale.customer?sale.customer.company_name:'u' }}    </a></td>
+                            <td>
+                                <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{ line.product.name }},</span>
+                              </td>
+                            <td>{{( sale.invoice_line).length }}</td>
+
+                            <td>NGN {{ format(sale.total_amount) }}</td>
+                            <td>{{new Date(sale.created_at ).toLocaleDateString()}}</td>
+                            <td>
+                                <a :href="'/invoice/' + sale.id" class="btn btn-primary">
+                                    {{ sale.invoice_type }}
+                                </a>
+
+                            </td>
+
+
+
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
 

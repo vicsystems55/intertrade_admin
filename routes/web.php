@@ -292,6 +292,9 @@ Route::get('/admin/products', [SuperAdminPageController::class, 'all_products'])
 
 Route::get('/admin/product-categories', [SuperAdminPageController::class, 'product_categories'])->name('admin.product_categories')->middleware('auth');
 
+Route::get('/admin/transactions', [SuperAdminPageController::class, 'transactions'])->name('admin.transactions')->middleware('auth');
+
+
 Route::get('/admin/file-manager', [SuperAdminPageController::class, 'file_manager'])->name('admin.file_manager')->middleware('auth');
 
 Route::get('/admin/settings', [SuperAdminPageController::class, 'settings'])->name('admin.settings')->middleware('auth');

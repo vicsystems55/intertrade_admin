@@ -3118,6 +3118,363 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      account_maps: [],
+      key: '',
+      my_maps: [],
+      products: [],
+      invoice: '',
+      invoices: [],
+      current_invoice_code: null,
+      lineIds: [],
+      lineQuantity: [],
+      lineDescription: [],
+      linePrice: [],
+      vat_included: false,
+      generate_receipt: 'false',
+      customers: [],
+      selCustomer: 'Please select customer',
+      invoice_type: 'Invoice',
+      payment_status: 'Unpaid',
+      bank_name: 'UBA',
+      account_name: 'InterTrade Ltd.',
+      account_no: '22002288220',
+      generating: false
+    };
+  },
+  props: ['appurl', 'userid'],
+  methods: {
+    format: function format(value) {
+      var numeral = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
+      return numeral(value).format('N 0,0.00');
+    },
+    generateInvoice: function generateInvoice() {
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              if (!(_this.selCustomer == null)) {
+                _context.next = 2;
+                break;
+              }
+              return _context.abrupt("return", alert('Please select a customer'));
+            case 2:
+              if (!(_this.invoice_type == null)) {
+                _context.next = 4;
+                break;
+              }
+              return _context.abrupt("return", alert('Please document type'));
+            case 4:
+              _this.generating = true;
+
+              // console.log(this.lineQuantity)
+
+              // var desc = [];
+
+              // desc = document.getElementById('quantity').value
+
+              // console.log(desc);
+              _context.next = 7;
+              return axios({
+                method: "post",
+                url: _this.appurl + 'api/invoice_lines',
+                params: {
+                  lineIds: _this.lineIds,
+                  lineDescription: _this.lineDescription,
+                  lineQuantity: _this.lineQuantity,
+                  linePrice: _this.linePrice,
+                  type: 'update-line',
+                  invoice_id: _this.invoice.id,
+                  customer_id: _this.selCustomer,
+                  invoice_type: _this.invoice_type,
+                  vat_included: _this.vat_included,
+                  generate_receipt: _this.generate_receipt,
+                  bank_name: _this.bank_name,
+                  account_name: _this.account_name,
+                  account_no: _this.account_no,
+                  user_id: _this.userid
+                },
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Content-type': 'application/json',
+                  'Accept': 'application/json'
+                }
+              }).then(function (response) {
+                // this.loading = false,
+
+                // alert('no'),
+
+                console.log(response);
+                _this.resetInvoice();
+                _this.generating = false;
+                return window.open(_this.appurl + 'invoice/' + _this.invoice.id, '_blank');
+
+                //  this.results = response.data
+              })["catch"](function (err) {
+                // console.log(error);
+                _this.generating = false;
+              });
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    addProduct: function addProduct(productId) {
+      var _this2 = this;
+      //alert(this.invoice.id)
+
+      axios.post(this.appurl + 'api/invoices', {
+        invoice_id: this.invoice.id,
+        product_id: productId,
+        type: 'add-product'
+        // date: this.date,
+        // file_upload: this.newfile_name,
+        // text_report: this.outputData.blocks,
+      }).then(function (response) {
+        return (
+          // this.loading = false,
+
+          _this2.invoice = response.data, console.log(response), _this2.getInvoice(),
+          //  this.results = response.data
+
+          alert('Prduct Added to list.')
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createInvoice: function createInvoice() {
+      var _this3 = this;
+      if (localStorage.getItem('current_invoice_code')) {
+        // alert('has');
+
+        this.getInvoice();
+      } else {
+        localStorage.setItem('current_invoice_code', Date.now());
+        this.current_invoice_code = localStorage.getItem('current_invoice_code');
+
+        //alert('created')
+
+        axios.post(this.appurl + 'api/invoices', {
+          invoice_code: this.current_invoice_code,
+          userid: this.userid
+          // date: this.date,
+          // file_upload: this.newfile_name,
+          // text_report: this.outputData.blocks,
+        }).then(function (response) {
+          return (
+            // this.loading = false,
+
+            _this3.invoice = response.data, console.log(response), _this3.getInvoice()
+            //  this.results = response.data
+          );
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    getInvoice: function getInvoice() {
+      var _this4 = this;
+      axios({
+        method: "get",
+        url: this.appurl + 'api/invoices',
+        params: {
+          invoice_code: localStorage.getItem('current_invoice_code')
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return (
+          // this.loading = false,
+
+          //alert('reveic curent invoice'),
+
+          _this4.invoice = response.data, _this4.lineQuantity = response.data.invoice_line.map(function (line) {
+            return line.quantity;
+          }), console.log(_this4.lineQuantity), _this4.lineDescription = response.data.invoice_line.map(function (line) {
+            return line.description;
+          }), console.log(_this4.lineDescription), _this4.lineIds = response.data.invoice_line.map(function (line) {
+            return line.id;
+          }), console.log(_this4.lineIds), _this4.linePrice = response.data.invoice_line.map(function (line) {
+            return line.product.price;
+          }), console.log(_this4.linePrice), console.log(response)
+
+          //alert('this.invoice')
+
+          //  this.results = response.data
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getProducts: function getProducts() {
+      var _this5 = this;
+      axios.get(this.appurl + 'api/products', {
+        key: this.key
+        // date: this.date,
+        // file_upload: this.newfile_name,
+        // text_report: this.outputData.blocks,
+      }).then(function (response) {
+        return (
+          // this.loading = false,
+
+          _this5.products = response.data, console.log(response)
+          //  this.results = response.data
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getInvoices: function getInvoices() {
+      var _this6 = this;
+      axios({
+        method: "get",
+        url: this.appurl + 'api/invoices',
+        params: {
+          type: 'all'
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return (
+          // this.loading = false,
+
+          _this6.invoices = response.data, console.log(response)
+          //  this.results = response.data
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    resetInvoice: function resetInvoice() {
+      var _this7 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              // axios({
+              //     method: "post",
+              //     url: this.appurl + 'api/invoices',
+              //     params: {
+              //         invoice_code: localStorage.getItem('current_invoice_code'),
+              //         type: 'delete'
+
+              //     },
+              //     headers: {
+              //         'Access-Control-Allow-Origin': '*',
+              //         'Content-type': 'application/json',
+              //         'Accept': 'application/json',
+              //     },
+
+              // }).then((response) => (
+              //     // this.loading = false,
+
+              //     //alert('reveic curent invoice'),
+
+              //     // this.invoice = response.data,
+              //     console.log(response)
+
+              //     //alert('this.invoice')
+
+              //     //  this.results = response.data
+
+              // )).catch(function (error) {
+              //     console.log(error);
+              // });
+
+              localStorage.removeItem('current_invoice_code');
+              _context2.next = 3;
+              return _this7.createInvoice();
+            case 3:
+              console.log('Invoice Refreshed!!');
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
+    },
+    removeInvoiceLine: function removeInvoiceLine(invoiceLineId) {
+      var _this8 = this;
+      axios({
+        method: "post",
+        url: this.appurl + 'api/invoice_lines',
+        params: {
+          invoice_line_id: invoiceLineId,
+          type: 'remove-item'
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return (
+          // this.loading = false,
+
+          //alert('reveic curent invoice'),
+
+          // this.invoice = response.data,
+          console.log(response), _this8.getInvoice()
+
+          //alert('this.invoice')
+
+          //  this.results = response.data
+        );
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getCustomers: function getCustomers() {
+      var _this9 = this;
+      axios({
+        method: "get",
+        url: this.appurl + 'api/customers'
+      }).then(function (response) {
+        _this9.customers = response.data, console.log(response);
+      });
+    },
+    getCustomer: function getCustomer() {
+      return this.selCustomer;
+    }
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+    this.getProducts();
+    this.createInvoice();
+    this.getInvoices();
+    this.getCustomers();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&scoped=true":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&scoped=true ***!
@@ -3596,54 +3953,7 @@ var render = function render() {
         disabled: ""
       }
     }, [_vm._v("Add +")])])])]);
-  }), 0)])])])])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _c("div", {
-    staticClass: "card table-responsive"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_vm._m(7), _vm._v(" "), _c("table", {
-    staticClass: "table"
-  }, [_vm._m(8), _vm._v(" "), _c("tbody", _vm._l(_vm.invoices, function (sale) {
-    return _c("tr", {
-      key: sale.id
-    }, [_c("td", [_c("a", {
-      attrs: {
-        href: "/invoice/" + sale.id
-      }
-    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name : "u") + "    ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
-      return _c("span", {
-        key: line.id,
-        staticClass: "text-black"
-      }, [_vm._v(_vm._s(line.product.name) + ",")]);
-    }), 0), _vm._v(" "), _c("td", [_vm._v(_vm._s(sale.invoice_line.length))]), _vm._v(" "), _c("td", [_vm._v("NGN " + _vm._s(_vm.format(sale.total_amount)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(new Date(sale.created_at).toLocaleDateString()))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sale.invoice_type))])]);
-  }), 0)])])]), _vm._v(" "), _c("h4", [_vm._v("Invoices")]), _vm._v(" "), _c("div", {
-    staticClass: "card table-responsive"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("table", {
-    staticClass: "table"
-  }, [_vm._m(9), _vm._v(" "), _c("tbody", _vm._l(_vm.invoices, function (inv) {
-    return _c("tr", {
-      key: inv.id
-    }, [_c("td", [_vm._v(_vm._s(inv.invoice_code))]), _vm._v(" "), _c("td", [_vm._v("N " + _vm._s(_vm.format(inv.total_amount)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(inv.invoice_type))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(inv.created_at))]), _vm._v(" "), _c("td", [inv.invoice_type == "receipt" ? _c("a", {
-      attrs: {
-        href: ""
-      }
-    }, [_c("a", {
-      staticClass: "btn btn-success",
-      attrs: {
-        href: "/invoice/" + inv.id
-      }
-    }, [_vm._v("view " + _vm._s(inv.invoice_type))])]) : _c("a", {
-      attrs: {
-        href: ""
-      }
-    }, [_c("a", {
-      staticClass: "btn btn-primary",
-      attrs: {
-        href: "/invoice/" + inv.id
-      }
-    }, [_vm._v("view " + _vm._s(inv.invoice_type))])])])]);
-  }), 0)])])])]);
+  }), 0)])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -3726,51 +4036,6 @@ var staticRenderFns = [function () {
   }, [_vm._v("Solar Panels "), _c("span", {
     staticClass: "badge bg-dark"
   }, [_vm._v("4")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "d-flex justify-content-between py-3"
-  }, [_c("h4", [_vm._v("Sales Records")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      href: "/export-sales",
-      target: "_blank"
-    }
-  }, [_vm._v("Export Sales Report")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-6"
-  }, [_c("input", {
-    staticClass: "form-control form-control-sm",
-    attrs: {
-      type: "text",
-      placeholder: "search..."
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("input", {
-    staticClass: "form-control form-control-sm",
-    attrs: {
-      type: "date"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12 py-3"
-  }, [_c("button", {
-    staticClass: "btn btn-primary"
-  }, [_vm._v("search")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("\n                                Customer\n                            ")]), _vm._v(" "), _c("th", [_vm._v("\n                                Description\n                            ")]), _vm._v(" "), _c("th", [_vm._v("\n                                No of items\n                            ")]), _vm._v(" "), _c("th", [_vm._v("\n                               Total Amount\n                            ")]), _vm._v(" "), _c("th", [_vm._v("\n                                Date\n                            ")]), _vm._v(" "), _c("th", [_vm._v("\n                                Type\n                            ")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("Invoice Code")]), _vm._v(" "), _c("th", [_vm._v("Total Amount")]), _vm._v(" "), _c("th", [_vm._v("Type")]), _vm._v(" "), _c("th", [_vm._v("Created at")]), _vm._v(" "), _c("th", [_vm._v("Date")])])]);
 }];
 render._withStripped = true;
 
@@ -5116,6 +5381,96 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {}, [_c("div", {
+    staticClass: ""
+  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "card table-responsive"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._m(1), _vm._v(" "), _c("table", {
+    staticClass: "table"
+  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.invoices, function (sale) {
+    return _c("tr", {
+      key: sale.id
+    }, [_c("td", [_c("a", {
+      attrs: {
+        href: "/invoice/" + sale.id
+      }
+    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name : "u") + "    ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
+      return _c("span", {
+        key: line.id,
+        staticClass: "text-black"
+      }, [_vm._v(_vm._s(line.product.name) + ",")]);
+    }), 0), _vm._v(" "), _c("td", [_vm._v(_vm._s(sale.invoice_line.length))]), _vm._v(" "), _c("td", [_vm._v("NGN " + _vm._s(_vm.format(sale.total_amount)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(new Date(sale.created_at).toLocaleDateString()))]), _vm._v(" "), _c("td", [_c("a", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        href: "/invoice/" + sale.id
+      }
+    }, [_vm._v("\n                                " + _vm._s(sale.invoice_type) + "\n                            ")])])]);
+  }), 0)])])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "d-flex justify-content-between py-3"
+  }, [_c("h4", [_vm._v("Sales Records")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      href: "/export-sales",
+      target: "_blank"
+    }
+  }, [_vm._v("Export Sales Report")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("input", {
+    staticClass: "form-control form-control-sm",
+    attrs: {
+      type: "text",
+      placeholder: "search..."
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("input", {
+    staticClass: "form-control form-control-sm",
+    attrs: {
+      type: "date"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12 py-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary"
+  }, [_vm._v("search")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("\n                            Customer\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Description\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            No of items\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                           Total Amount\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Date\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Type\n                        ")])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -5153,6 +5508,7 @@ Vue.component('project-reports', (__webpack_require__(/*! ./components/ProjectRe
 Vue.component('admin-products-component', (__webpack_require__(/*! ./components/admin/AdminProductsComponent.vue */ "./resources/js/components/admin/AdminProductsComponent.vue")["default"]));
 Vue.component('product-categories-component', (__webpack_require__(/*! ./components/admin/ProductCategoriesComponent.vue */ "./resources/js/components/admin/ProductCategoriesComponent.vue")["default"]));
 Vue.component('file-manager-component', (__webpack_require__(/*! ./components/admin/FileManagerComponent.vue */ "./resources/js/components/admin/FileManagerComponent.vue")["default"]));
+Vue.component('transactions-component', (__webpack_require__(/*! ./components/admin/TransactionsComponent.vue */ "./resources/js/components/admin/TransactionsComponent.vue")["default"]));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -9698,6 +10054,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.switcher-wrapper[data-v-299e239e]{\n    /* width: 400px;\n    right: -384px; */\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.switcher-wrapper[data-v-545b694d]{\n    /* width: 400px;\n    right: -384px; */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -47959,6 +48339,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_style_index_0_id_545b694d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_style_index_0_id_545b694d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_style_index_0_id_545b694d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -51752,6 +52162,47 @@ component.options.__file = "resources/js/components/admin/ProductCategoriesCompo
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/TransactionsComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/admin/TransactionsComponent.vue ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TransactionsComponent_vue_vue_type_template_id_545b694d_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true */ "./resources/js/components/admin/TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true");
+/* harmony import */ var _TransactionsComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactionsComponent.vue?vue&type=script&lang=js */ "./resources/js/components/admin/TransactionsComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _TransactionsComponent_vue_vue_type_style_index_0_id_545b694d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css */ "./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TransactionsComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TransactionsComponent_vue_vue_type_template_id_545b694d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render,
+  _TransactionsComponent_vue_vue_type_template_id_545b694d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "545b694d",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/TransactionsComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js ***!
@@ -51877,6 +52328,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCategoriesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProductCategoriesComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ProductCategoriesComponent.vue?vue&type=script&lang=js");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCategoriesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/TransactionsComponent.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/TransactionsComponent.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TransactionsComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -52016,6 +52483,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_template_id_545b694d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_template_id_545b694d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_template_id_545b694d_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=template&id=545b694d&scoped=true");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=style&index=0&id=299e239e&scoped=true&lang=css":
 /*!**************************************************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=style&index=0&id=299e239e&scoped=true&lang=css ***!
@@ -52025,6 +52509,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_style_index_0_id_299e239e_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=style&index=0&id=299e239e&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=style&index=0&id=299e239e&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css ***!
+  \*************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_style_index_0_id_545b694d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/TransactionsComponent.vue?vue&type=style&index=0&id=545b694d&scoped=true&lang=css");
 
 
 /***/ }),

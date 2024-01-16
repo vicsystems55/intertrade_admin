@@ -384,6 +384,12 @@ class SuperAdminPageController extends Controller
 
     }
 
+    public function transactions(){
+
+        return view('superadmin_dashboard.transactions');
+
+    }
+
     public function file_manager(){
 
         return view('superadmin_dashboard.file_manager');
