@@ -5396,9 +5396,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {}, [_c("div", {
-    staticClass: ""
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  return _c("div", {}, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "card table-responsive"
   }, [_c("div", {
     staticClass: "card-body"
@@ -5408,10 +5406,13 @@ var render = function render() {
     return _c("tr", {
       key: sale.id
     }, [_c("td", [_c("a", {
+      staticStyle: {
+        width: "150px"
+      },
       attrs: {
         href: "/invoice/" + sale.id
       }
-    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name : "u") + "    ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
+    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name : "u") + "\n                            ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
       return _c("span", {
         key: line.id,
         staticClass: "text-black"
@@ -5464,7 +5465,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("\n                            Customer\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Description\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            No of items\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                           Total Amount\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Date\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Type\n                        ")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("\n                            Customer\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Description\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            No of items\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Total Amount\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Date\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Type\n                        ")])])]);
 }];
 render._withStripped = true;
 
@@ -10077,7 +10078,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.switcher-wrapper[data-v-545b694d]{\n    /* width: 400px;\n    right: -384px; */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.switcher-wrapper[data-v-545b694d] {\n    /* width: 400px;\n    right: -384px; */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

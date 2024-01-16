@@ -1,18 +1,12 @@
 <template>
-
     <div class="">
 
 
-
-        <div class=" ">
-
-        </div>
-
         <div class="d-flex justify-content-between py-3">
 
-                    <h4>Sales Records</h4>
+            <h4>Sales Records</h4>
 
-                    <a href="/export-sales" target="_blank" class="btn btn-primary">Export Sales Report</a>
+            <a href="/export-sales" target="_blank" class="btn btn-primary">Export Sales Report</a>
 
         </div>
 
@@ -42,7 +36,7 @@
                                 No of items
                             </th>
                             <th>
-                               Total Amount
+                                Total Amount
                             </th>
 
                             <th>
@@ -56,14 +50,16 @@
 
                     <tbody>
                         <tr v-for="sale in invoices" :key="sale.id">
-                            <td><a :href="'/invoice/' + sale.id" class="">{{ sale.customer?sale.customer.company_name:'u' }}    </a></td>
+                            <td><a :href="'/invoice/' + sale.id" class="" style="width: 150px;">{{ sale.customer ? sale.customer.company_name : 'u' }}
+                                </a></td>
                             <td>
-                                <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{ line.product.name }},</span>
-                              </td>
-                            <td>{{( sale.invoice_line).length }}</td>
+                                <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{
+                                    line.product.name }},</span>
+                            </td>
+                            <td>{{ (sale.invoice_line).length }}</td>
 
                             <td>NGN {{ format(sale.total_amount) }}</td>
-                            <td>{{new Date(sale.created_at ).toLocaleDateString()}}</td>
+                            <td>{{ new Date(sale.created_at).toLocaleDateString() }}</td>
                             <td>
                                 <a :href="'/invoice/' + sale.id" class="btn btn-primary">
                                     {{ sale.invoice_type }}
@@ -89,9 +85,6 @@
 
 
     </div>
-
-
-
 </template>
 
 <script>
@@ -111,7 +104,7 @@ export default {
             invoices: [],
             current_invoice_code: null,
             lineIds: [],
-            lineQuantity:[],
+            lineQuantity: [],
             lineDescription: [],
             linePrice: [],
             vat_included: false,
@@ -133,16 +126,16 @@ export default {
 
     methods: {
 
-        format(value){
+        format(value) {
             var numeral = require('numeral');
 
             return numeral(value).format('N 0,0.00')
         },
 
-       async generateInvoice() {
-        //  alert(this.generate_receipt)
+        async generateInvoice() {
+            //  alert(this.generate_receipt)
 
-        //  alert(this.selCustomer)
+            //  alert(this.selCustomer)
 
 
 
@@ -171,7 +164,7 @@ export default {
 
             // console.log(desc);
 
-           await axios({
+            await axios({
                 method: "post",
                 url: this.appurl + 'api/invoice_lines',
                 params: {
@@ -213,14 +206,14 @@ export default {
                 this.generating = false
 
 
-                return window.open(this.appurl+'invoice/'+this.invoice.id, '_blank')
+                return window.open(this.appurl + 'invoice/' + this.invoice.id, '_blank')
 
 
 
 
                 //  this.results = response.data
 
-            }).catch((err)=> {
+            }).catch((err) => {
 
 
 
@@ -485,22 +478,22 @@ export default {
 
         },
 
-        getCustomers(){
+        getCustomers() {
             axios({
                 method: "get",
                 url: this.appurl + 'api/customers',
 
-            }).then((response)=>{
+            }).then((response) => {
 
                 this.customers = response.data,
 
-                console.log(response)
+                    console.log(response)
 
             })
         },
 
-        getCustomer(){
-        return this.selCustomer;
+        getCustomer() {
+            return this.selCustomer;
         }
     },
     mounted() {
@@ -516,7 +509,7 @@ export default {
 </script>
 
 <style scoped>
-.switcher-wrapper{
+.switcher-wrapper {
     /* width: 400px;
     right: -384px; */
 }
