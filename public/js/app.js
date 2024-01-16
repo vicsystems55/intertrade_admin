@@ -5405,10 +5405,11 @@ var render = function render() {
   }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.invoices, function (sale) {
     return _c("tr", {
       key: sale.id
-    }, [_c("td", [_c("a", {
+    }, [_c("td", {
       staticStyle: {
         width: "150px"
-      },
+      }
+    }, [_c("a", {
       attrs: {
         href: "/invoice/" + sale.id
       }

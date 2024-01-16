@@ -50,7 +50,7 @@
 
                     <tbody>
                         <tr v-for="sale in invoices" :key="sale.id">
-                            <td><a :href="'/invoice/' + sale.id" class="" style="width: 150px;">{{ sale.customer ? sale.customer.company_name : 'u' }}
+                            <td style="width: 150px;"><a :href="'/invoice/' + sale.id" class="" >{{ sale.customer ? sale.customer.company_name : 'u' }}
                                 </a></td>
                             <td>
                                 <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{
