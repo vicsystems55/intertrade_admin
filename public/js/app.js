@@ -5407,14 +5407,13 @@ var render = function render() {
       key: sale.id
     }, [_c("td", {
       staticStyle: {
-        width: "50px",
-        background: "red"
+        width: "50px"
       }
     }, [_c("a", {
       attrs: {
         href: "/invoice/" + sale.id
       }
-    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name : "u") + "\n                            ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
+    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name.substring(0, 12) : "u") + "\n                            ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
       return _c("span", {
         key: line.id,
         staticClass: "text-black"
