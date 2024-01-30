@@ -21,6 +21,9 @@ class ChooseRoleController extends Controller
             elseif (Auth::user()->role =='technician') {
                 return redirect('/staff');
             }
+            elseif (Auth::user()->role =='staff') {
+                return redirect('/staff');
+            }
 
             elseif (Auth::user()->role =='driver') {
                 return redirect('/staff');
