@@ -52,7 +52,7 @@
 
     @if (Auth::user()->role == 'superadmin')
 
-    @else
+    @elseif(Auth::user()->email == 'grace@intertradeltd.biz')
 
     <li>
         <a href="{{route('admin.profile')}}">
