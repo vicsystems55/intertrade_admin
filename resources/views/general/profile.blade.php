@@ -46,6 +46,13 @@
 
                 </form>
 
+                @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <p class="alert alert-warning">{{$error}}</p>
+            @endforeach
+        @endif
+
+
 
 
                 <form action="{{ route('employeedata.update') }}" method="post">

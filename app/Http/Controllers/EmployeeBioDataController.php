@@ -13,6 +13,27 @@ class EmployeeBioDataController extends Controller
     public function store(Request $request){
 
 
+        $request->validate([
+            'state' => 'required',
+            'lga' => 'required',
+            'gender' => 'required',
+            'marital_status' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'ec_name' => 'required',
+            'ec_phone' => 'required',
+            'ec_address' => 'required',
+            'nok_name' => 'required',
+            'nok_phone' => 'required',
+            'nok_address' => 'required',
+            'date_employed' => 'required',
+            'position_held' => 'required',
+            'refree1_name' => 'required',
+            'refree1_phone' => 'required',
+            'refree1_address' => 'required',
+        ]);
+
+
 
         $employeeData = EmployeeBioData::updateOrCreate([
             'surname' => $request->surname,
@@ -68,7 +89,7 @@ class EmployeeBioDataController extends Controller
 
         $path = $passport_file->store('avatars', 'public');
 
-      
+
 
 
         User::find($request->user_id)->update([
