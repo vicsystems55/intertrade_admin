@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+use App\Models\State;
+
 use App\Models\Stock;
 
 use App\Models\Message;
@@ -28,10 +30,11 @@ use App\Models\AccountMapping;
 
 use App\Models\AccountSubHead;
 
+
+
+use App\Models\EmployeeBioData;
 use App\Models\DeploymentReport;
-
-
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -143,8 +146,25 @@ class AdminPageController extends Controller
     public function profile()
     {
 
+        $user = User::where('id', Auth::user()->id)->first();
 
-        return view('general.profile');
+        $employeeData = EmployeeBioData::where('user_id', $user->id)->first();
+
+        $states = State::get();
+
+        $lgas = DB::table('lgas')->get();
+
+
+        // return $states;
+
+
+
+        return view('general.profile',[
+            'user' => $user,
+            'employeeData' => $employeeData,
+            'states' => $states,
+            'lgas' => $lgas
+        ]);
     }
 
     public function reports()
