@@ -3142,6 +3142,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       products: [],
       invoice: '',
       invoices: [],
+      receipts: [],
       current_invoice_code: null,
       lineIds: [],
       lineQuantity: [],
@@ -3365,7 +3366,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return (
           // this.loading = false,
 
-          _this6.invoices = response.data, console.log(response)
+          _this6.invoices = response.data, _this6.invoices = _this6.invoices.filter(function (item) {
+            return item.invoice_type != 'receipt';
+          }), _this6.receipts = response.data.filter(function (item) {
+            return item.invoice_type == 'receipt';
+          }), console.log(_this6.receipts)
           //  this.results = response.data
         );
       })["catch"](function (error) {
@@ -5397,12 +5402,31 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {}, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "card table-responsive"
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("div", {
+    staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"
-  }, [_vm._m(1), _vm._v(" "), _c("table", {
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "tab-content",
+    attrs: {
+      id: "pills-tabContent"
+    }
+  }, [_c("div", {
+    staticClass: "tab-pane fade show active",
+    attrs: {
+      id: "primary-pills-home",
+      role: "tabpanel"
+    }
+  }, [_c("div", {
+    staticClass: "car table-responsive"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._m(2), _vm._v(" "), _c("table", {
     staticClass: "table"
-  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.invoices, function (sale) {
+  }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.invoices, function (sale) {
     return _c("tr", {
       key: sale.id
     }, [_c("td", {
@@ -5413,7 +5437,7 @@ var render = function render() {
       attrs: {
         href: "/invoice/" + sale.id
       }
-    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name.substring(0, 12) : "u") + "\n                            ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
+    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name.substring(0, 12) : "u") + "\n                                                    ")])]), _vm._v(" "), _c("td", _vm._l(sale.invoice_line, function (line) {
       return _c("span", {
         key: line.id,
         staticClass: "text-black"
@@ -5423,8 +5447,37 @@ var render = function render() {
       attrs: {
         href: "/invoice/" + sale.id
       }
-    }, [_vm._v("\n                                " + _vm._s(sale.invoice_type) + "\n                            ")])])]);
-  }), 0)])])])]);
+    }, [_vm._v("\n                                                        " + _vm._s(sale.invoice_type) + "\n                                                    ")])])]);
+  }), 0)])])])]), _vm._v(" "), _c("div", {
+    staticClass: "tab-pane fade",
+    attrs: {
+      id: "primary-pills-profile",
+      role: "tabpanel"
+    }
+  }, [_c("div", {
+    staticClass: "car table-responsive"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._m(4), _vm._v(" "), _c("table", {
+    staticClass: "table"
+  }, [_vm._m(5), _vm._v(" "), _c("tbody", _vm._l(_vm.receipts, function (sale) {
+    return _c("tr", {
+      key: sale.id
+    }, [_c("td", {
+      staticStyle: {
+        width: "50px"
+      }
+    }, [_c("a", {
+      attrs: {
+        href: "/invoice/" + sale.id
+      }
+    }, [_vm._v(_vm._s(sale.customer ? sale.customer.company_name.substring(0, 12) : "u") + "\n                                                    ")])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sale.invoice_code))]), _vm._v(" "), _c("td", [_vm._v("NGN " + _vm._s(_vm.format(sale.total_amount)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(new Date(sale.created_at).toLocaleDateString()))]), _vm._v(" "), _c("td", [_c("a", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        href: "/invoice/" + sale.id
+      }
+    }, [_vm._v("\n                                                        " + _vm._s(sale.invoice_type) + "\n                                                    ")])])]);
+  }), 0)])])])])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -5438,6 +5491,57 @@ var staticRenderFns = [function () {
       target: "_blank"
     }
   }, [_vm._v("Export Sales Report")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("ul", {
+    staticClass: "nav nav-pills mb-3",
+    attrs: {
+      role: "tablist"
+    }
+  }, [_c("li", {
+    staticClass: "nav-item",
+    attrs: {
+      role: "presentation"
+    }
+  }, [_c("a", {
+    staticClass: "nav-link active",
+    attrs: {
+      "data-bs-toggle": "pill",
+      href: "#primary-pills-home",
+      role: "tab",
+      "aria-selected": "true"
+    }
+  }, [_c("div", {
+    staticClass: "d-flex align-items-center"
+  }, [_c("div", {
+    staticClass: "tab-icon"
+  }, [_c("i", {
+    staticClass: "bx bx-home font-18 me-1"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "tab-title"
+  }, [_vm._v("Invoices")])])])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item",
+    attrs: {
+      role: "presentation"
+    }
+  }, [_c("a", {
+    staticClass: "nav-link",
+    attrs: {
+      "data-bs-toggle": "pill",
+      href: "#primary-pills-profile",
+      role: "tab",
+      "aria-selected": "false"
+    }
+  }, [_c("div", {
+    staticClass: "d-flex align-items-center"
+  }, [_c("div", {
+    staticClass: "tab-icon"
+  }, [_c("i", {
+    staticClass: "bx bx-user-pin font-18 me-1"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "tab-title"
+  }, [_vm._v("Receipts")])])])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -5470,7 +5574,40 @@ var staticRenderFns = [function () {
     staticStyle: {
       wdith: "50px"
     }
-  }, [_vm._v("\n                            Customer\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Description\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            No of items\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Total Amount\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Date\n                        ")]), _vm._v(" "), _c("th", [_vm._v("\n                            Type\n                        ")])])]);
+  }, [_vm._v("\n                                                    Customer\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Description\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    No of items\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Total Amount\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Date\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Type\n                                                ")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("input", {
+    staticClass: "form-control form-control-sm",
+    attrs: {
+      type: "text",
+      placeholder: "search..."
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("input", {
+    staticClass: "form-control form-control-sm",
+    attrs: {
+      type: "date"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12 py-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary"
+  }, [_vm._v("search")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", {
+    staticStyle: {
+      wdith: "50px"
+    }
+  }, [_vm._v("\n                                                    Customer\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("Invoice Code")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Total Amount\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Date\n                                                ")]), _vm._v(" "), _c("th", [_vm._v("\n                                                    Type\n                                                ")])])]);
 }];
 render._withStripped = true;
 
@@ -10083,7 +10220,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.switcher-wrapper[data-v-545b694d] {\n    /* width: 400px;\n    right: -384px; */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".switcher-wrapper[data-v-545b694d] {\n    /* width: 400px;\n    right: -384px; */\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

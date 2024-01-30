@@ -85,7 +85,10 @@
             <div class="col-3">
                 <h6 class="text-muted">Products</h6>
             </div>
-            <div class="col-2">
+            <div class="col-1">
+                <h6 class="text-muted">Sold</h6>
+            </div>
+            <div class="col-1">
                 <h6 class="text-muted">In stock</h6>
             </div>
             <div class="col-2">
@@ -111,8 +114,16 @@
                         <h6>{{$product->name}}</h6>
                         <p>In Stock</p>
                     </div>
-                    <div class="col-2">
-                        <h6>{{$product->stock->where('type', 'out')->sum('quantity') * (-1)}}/{{$product->stock->where('type', 'in')->sum('quantity')}}</h6>
+                    <div class="col-1">
+                        <h6 class="text-danger">{{$product->stock->where('type', 'out')->sum('quantity') * (-1)}}</h6>
+                    </div>
+                    <div class="col-1">
+                        <h6 class="text-success">{{
+
+                        $product->stock->where('type', 'in')->sum('quantity') + $product->stock->where('type', 'out')->sum('quantity')
+
+
+                        }}</h6>
                     </div>
                     <div class="col-2">
                         <h6>N {{number_format($product->price, 2)}}

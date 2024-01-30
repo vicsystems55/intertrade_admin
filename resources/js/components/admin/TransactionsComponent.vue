@@ -10,73 +10,191 @@
 
         </div>
 
-        <div class="card table-responsive">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control form-control-sm" placeholder="search...">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="date" class="form-control form-control-sm">
-                    </div>
-                    <div class="col-md-12 py-3">
-                        <button class="btn btn-primary">search</button>
+        <div class="row ">
+
+            <div class="col">
+
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-pills mb-3" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab"
+                                    aria-selected="true">
+                                    <div class="d-flex align-items-center">
+                                        <div class="tab-icon"><i class='bx bx-home font-18 me-1'></i>
+                                        </div>
+                                        <div class="tab-title">Invoices</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab"
+                                    aria-selected="false">
+                                    <div class="d-flex align-items-center">
+                                        <div class="tab-icon"><i class='bx bx-user-pin font-18 me-1'></i>
+                                        </div>
+                                        <div class="tab-title">Receipts</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="primary-pills-home" role="tabpanel">
+
+
+                                <div class="car table-responsive">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    placeholder="search...">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="date" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-md-12 py-3">
+                                                <button class="btn btn-primary">search</button>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="wdith: 50px;">
+                                                        Customer
+                                                    </th>
+                                                    <th>
+                                                        Description
+                                                    </th>
+                                                    <th>
+                                                        No of items
+                                                    </th>
+                                                    <th>
+                                                        Total Amount
+                                                    </th>
+
+                                                    <th>
+                                                        Date
+                                                    </th>
+                                                    <th>
+                                                        Type
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="sale in invoices" :key="sale.id">
+                                                    <td style="width: 50px;"><a :href="'/invoice/' + sale.id" class="">{{
+                                                        sale.customer ? (sale.customer.company_name).substring(0, 12) :
+                                                        'u' }}
+                                                        </a></td>
+                                                    <td>
+                                                        <span class="text-black " v-for="line in sale.invoice_line"
+                                                            :key="line.id">{{
+                                                                line.product.name }},</span>
+                                                    </td>
+                                                    <td>{{ (sale.invoice_line).length }}</td>
+
+                                                    <td>NGN {{ format(sale.total_amount) }}</td>
+                                                    <td>{{ new Date(sale.created_at).toLocaleDateString() }}</td>
+                                                    <td>
+                                                        <a :href="'/invoice/' + sale.id" class="btn btn-primary">
+                                                            {{ sale.invoice_type }}
+                                                        </a>
+
+                                                    </td>
+
+
+
+
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane fade" id="primary-pills-profile" role="tabpanel">
+
+                                <div class="car table-responsive">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    placeholder="search...">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="date" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-md-12 py-3">
+                                                <button class="btn btn-primary">search</button>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="wdith: 50px;">
+                                                        Customer
+                                                    </th>
+
+                                                    <th>Invoice Code</th>
+
+
+                                                    <th>
+                                                        Total Amount
+                                                    </th>
+
+                                                    <th>
+                                                        Date
+                                                    </th>
+                                                    <th>
+                                                        Type
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="sale in receipts" :key="sale.id">
+                                                    <td style="width: 50px;"><a :href="'/invoice/' + sale.id" class="">{{
+                                                        sale.customer ? (sale.customer.company_name).substring(0, 12) :
+                                                        'u' }}
+                                                        </a></td>
+
+                                                    <td>{{ sale.invoice_code }}</td>
+
+
+
+                                                    <td>NGN {{ format(sale.total_amount) }}</td>
+                                                    <td>{{ new Date(sale.created_at).toLocaleDateString() }}</td>
+                                                    <td>
+                                                        <a :href="'/invoice/' + sale.id" class="btn btn-primary">
+                                                            {{ sale.invoice_type }}
+                                                        </a>
+
+                                                    </td>
+
+
+
+
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="wdith: 50px;">
-                                Customer
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                            <th>
-                                No of items
-                            </th>
-                            <th>
-                                Total Amount
-                            </th>
-
-                            <th>
-                                Date
-                            </th>
-                            <th>
-                                Type
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr v-for="sale in invoices" :key="sale.id">
-                            <td style="width: 50px;"><a :href="'/invoice/' + sale.id" class="" >{{ sale.customer ? (sale.customer.company_name).substring(0, 12) : 'u' }}
-                                </a></td>
-                            <td>
-                                <span class="text-black " v-for="line in sale.invoice_line" :key="line.id">{{
-                                    line.product.name }},</span>
-                            </td>
-                            <td>{{ (sale.invoice_line).length }}</td>
-
-                            <td>NGN {{ format(sale.total_amount) }}</td>
-                            <td>{{ new Date(sale.created_at).toLocaleDateString() }}</td>
-                            <td>
-                                <a :href="'/invoice/' + sale.id" class="btn btn-primary">
-                                    {{ sale.invoice_type }}
-                                </a>
-
-                            </td>
-
-
-
-
-
-
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
+
+
 
 
 
@@ -102,6 +220,7 @@ export default {
             products: [],
             invoice: '',
             invoices: [],
+            receipts: [],
             current_invoice_code: null,
             lineIds: [],
             lineQuantity: [],
@@ -390,8 +509,16 @@ export default {
                 // this.loading = false,
 
                 this.invoices = response.data,
+                this.invoices = this.invoices.filter(item => item.invoice_type != 'receipt'),
 
-                console.log(response)
+
+
+
+                this.receipts = response.data.filter(item => item.invoice_type == 'receipt'),
+
+
+
+                console.log(this.receipts)
                 //  this.results = response.data
 
             )).catch(function (error) {
@@ -508,9 +635,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.switcher-wrapper {
+<style scoped>.switcher-wrapper {
     /* width: 400px;
     right: -384px; */
-}
-</style>
+}</style>

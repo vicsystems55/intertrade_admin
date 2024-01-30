@@ -12,7 +12,7 @@
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
                     <li class=" nav-item mobile-search-ico">
-                        
+
                     </li>
 
                     <?php
@@ -20,7 +20,7 @@
                         $notifications = \App\Models\Notification::where('user_id', Auth::user()->id)->where('status', 'unread')->latest()->get();
 
                     ?>
-                    
+
                     <li class="nav-item dropdown dropdown-large">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                              <span class="{{$notifications->count()>0?'':'d-none'}} alert-count">{{$notifications->count()}}</span>
@@ -44,14 +44,14 @@
                                             <h6 class="msg-name">{{$notification->title}}
                                                 <span class="msg-time float-end">{{$notification->created_at->diffForHumans()}}</span>
                                             </h6>
-                                          
+
                                         </div>
                                     </div>
                                 </a>
-                                    
+
                                 @endforeach
-                                
-                                
+
+
                             </div>
                             <a href="javascript:;">
                                 <div class="text-center msg-footer">View All Notifications</div>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                
+
                             </div>
                             <a href="javascript:;">
                                 <div class="text-center msg-footer">View All Messages</div>
@@ -94,7 +94,7 @@
             </div>
             <div class="user-box dropdown">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{Auth::user()->avatar}}" class="user-img" alt="user avatar">
+                    <img src="{{asset('avatars')}}/default.png" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         <p class="user-name mb-0">{{Auth::user()->name}}</p>
                         <p class="designattion mb-0">{{Auth::user()->role}}</p>
@@ -106,7 +106,7 @@
                     <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
                     </li>
 
-                    
+
                     <li>
                         <div class="dropdown-divider mb-0"></div>
                     </li>

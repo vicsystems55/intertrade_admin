@@ -35,6 +35,8 @@ class DriverPageController extends Controller
     {
 
 
+
+
         $user_id = Auth::user()->id;
 
         $projects = Project::latest()->get();
@@ -44,7 +46,7 @@ class DriverPageController extends Controller
         $truck_routes = TruckRoute::where('driver_assigned', $user_id)->latest()->get();
 
 
-        
+
         return view('driver_dashboard.index',[
             'projects' => $projects,
             'deployments' => $deployments,
@@ -62,13 +64,13 @@ class DriverPageController extends Controller
         $trucka_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 1)->get();
 
         $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->get();
-        
+
         return view('general.truck_routes',[
 
             'truck_routes' => $truck_routes,
             'trucka_routes' => $trucka_routes,
             'truckb_routes' => $truckb_routes,
-            
+
         ]);
     }
 
@@ -77,14 +79,14 @@ class DriverPageController extends Controller
     {
 
         $deployment = Deployment::where('id', $deployment_id)->first();
-        
+
         return view('general.deployment');
     }
 
     public function notifications()
     {
 
-        $notifications = Notification::where('user_id', Auth::user()->id)->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->paginate(10);
 
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'
@@ -94,7 +96,7 @@ class DriverPageController extends Controller
         $users = User::latest()->get();
 
 
-        
+
         return view('general.notifications',[
             'notifications' => $notifications,
             'users' => $users
@@ -107,12 +109,12 @@ class DriverPageController extends Controller
         $messages = Message::where('t_o', Auth::user()->id)->get();
         $users = User::latest()->get();
 
-        
+
         return view('general.messages',[
             'messages' => $messages,
             'users' => $users
 
-            
+
         ]);
     }
 
@@ -120,7 +122,7 @@ class DriverPageController extends Controller
     {
 
         $user = User::where('id', Auth::user()->id)->first();
-        
+
         return view('general.profile',[
             'user' => $user
         ]);
@@ -139,7 +141,7 @@ class DriverPageController extends Controller
             # code...
 
             // dd(Session::get('listing_code'));
-            
+
         }else{
 
            session([
@@ -160,7 +162,7 @@ class DriverPageController extends Controller
 
 
         return view('driver_dashboard.create_report',[
-            'deployments' => $deployments 
+            'deployments' => $deployments
         ]);
     }
 
@@ -169,7 +171,7 @@ class DriverPageController extends Controller
     {
 
         $projects = Project::latest()->get();
-        
+
         return view('general.projects',[
 
             'projects' => $projects
@@ -183,22 +185,22 @@ class DriverPageController extends Controller
         $project = Project::where('id', $project_id)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('general.project',[
             'project' => $project,
             'deployments' => $deployments
         ]);
     }
 
-    
+
     public function deployments()
     {
         $project = Project::where('id', 1)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('general.deployments',[
 
             'deployments' => $deployments,
@@ -214,8 +216,8 @@ class DriverPageController extends Controller
 
         // dd($reports);
 
-        
-        
+
+
         return view('driver_dashboard.reports',[
             'reports' => $reports
         ]);
@@ -226,13 +228,13 @@ class DriverPageController extends Controller
 
         $report = DeploymentReport::with('report_images')->with('reporters')->where('id', $report_id)->first();
 
-        
+
         $deployments = Deployment::latest()->get();
-        
+
         return view('driver_dashboard.report',[
             'report' => $report,
             'deployments' => $deployments
-        
+
         ]);
     }
 

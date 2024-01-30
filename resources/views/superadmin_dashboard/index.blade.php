@@ -9,36 +9,40 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+       <a href="{{route('admin.all_products')}}">
         <div class="col">
-        <div class="card radius-10 border-start border-0 border-3 border-info">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 text-secondary">Orders</p>
-                        <h4 class="my-1 text-info">{{$orders->count()}}</h4>
-                        <p class="mb-0 font-13">+2.5% from last week</p>
-                    </div>
-                    <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Products</p>
+                            <h4 class="my-1 text-info">{{$products->count()}}</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+            </div>
+       </a>
+      <a href="{{route('admin.transactions')}}">
         <div class="col">
-        <div class="card radius-10 border-start border-0 border-3 border-success">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 text-secondary">Total Sales</p>
-                        <h4 class="my-1 text-success">N {{number_format(($total),2)}}  </h4>
-                        <p class="mb-0 font-13">N {{number_format(($total),2)}} </p>
-                    </div>
-                    <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
+            <div class="card radius-10 border-start border-0 border-3 border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Sales</p>
+                            <h4 class="my-1 text-success">N {{number_format(($total),2)}}  </h4>
+                            <p class="mb-0 font-13">N {{number_format(($total),2)}} </p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+            </div>
+      </a>
         <div class="col d-none">
             <div class="card radius-10 border-start border-0 border-3 border-success">
                 <div class="card-body">
@@ -54,6 +58,7 @@
                 </div>
             </div>
         </div>
+       <a href="/admin/customer">
         <div class="col">
             <div class="card radius-10 border-start border-0 border-3 border-warning">
                 <div class="card-body">
@@ -69,6 +74,7 @@
                 </div>
             </div>
         </div>
+       </a>
     </div><!--end row-->
 
 

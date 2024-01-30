@@ -103,21 +103,23 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($stocks->where('type', 'in') as $stock)
+                            @foreach ($stocks as $stock)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$stock->product->name}}</td>
                                 <td>{{$stock->quantity}}</td>
                                 <td>
 
-                                    <img style="height: 20px;" src="{{$stock->receiver->avatar}}" alt=""><br>
+                                    <img style="height: 20px;" src="{{asset('storage')}}/{{$stock->receiver->avatar}}" alt=""><br>
                                     {{$stock->receiver->name??''}}</td>
-                                <td>{{\Carbon\Carbon::parse($stock->created_at)->diffForHumans()}}</td>
+                                <td>{{\Carbon\Carbon::parse($stock->created_at)}}</td>
                             </tr>
 
                             @endforeach
                         </tbody>
                     </table>
+
+                    {{ $stocks->render("pagination::bootstrap-4") }}
                 </div>
             </div>
         </div>
@@ -145,7 +147,7 @@
 
     </div>
 
-    <products-component  appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"  ></products-component>
+    {{-- <products-component  appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"  ></products-component> --}}
 
     {{-- <div class="card">
         <div class="card-body">

@@ -90,7 +90,7 @@ class StockController extends Controller
 
         $users = User::all();
 
-        $stocks = Stock::with('receiver')->get();
+        $stocks = Stock::with('receiver')->where('type', 'in')->paginate(30);
 
         // return $stocks;
 

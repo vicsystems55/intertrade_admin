@@ -2,30 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Auth;
 
+
+use Session;
 
 use App\Models\User;
 
-use App\Models\TruckRoute;
-
-use App\Models\Inventory;
-
-use App\Models\Deployment;
-
-use App\Models\Notification;
+use App\Models\State;
 
 use App\Models\Message;
 
 use App\Models\Project;
 
+use App\Models\Inventory;
+
+use App\Models\Deployment;
+
+use App\Models\TruckRoute;
+
 use App\Models\ReportImage;
+use App\Models\Notification;
+use Illuminate\Http\Request;
 
+use App\Models\EmployeeBioData;
 use App\Models\DeploymentReport;
-
-use Auth;
-
-use Session;
+use Illuminate\Support\Facades\DB;
 
 class TechnicianPageController extends Controller
 {
@@ -41,16 +43,22 @@ class TechnicianPageController extends Controller
 
         $deployments = Deployment::latest()->get();
 
+        $notifications = Notification::where('user_id', $user_id)->latest()->get()->take(4);
+
+
         $truck_routes = TruckRoute::where('driver_assigned', $user_id)->latest()->get();
 
 
-        
+
         return view('technician_dashboard.index',[
             'projects' => $projects,
             'deployments' => $deployments,
-            'truck_routes' => $truck_routes
+            'truck_routes' => $truck_routes,
+            'notifications' => $notifications
         ]);
     }
+
+
 
     public function truck_routes()
     {
@@ -62,13 +70,13 @@ class TechnicianPageController extends Controller
         $trucka_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 1)->get();
 
         $truckb_routes = TruckRoute::with('deployments')->with('drivers')->where('inventory_id', 2)->get();
-        
+
         return view('general.truck_routes',[
 
             'truck_routes' => $truck_routes,
             'trucka_routes' => $trucka_routes,
             'truckb_routes' => $truckb_routes,
-            
+
         ]);
     }
 
@@ -77,14 +85,14 @@ class TechnicianPageController extends Controller
     {
 
         $deployment = Deployment::where('id', $deployment_id)->first();
-        
+
         return view('general.deployment');
     }
 
     public function notifications()
     {
 
-        $notifications = Notification::where('user_id', Auth::user()->id)->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->paginate(10);
 
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'
@@ -94,7 +102,7 @@ class TechnicianPageController extends Controller
         $users = User::latest()->get();
 
 
-        
+
         return view('general.notifications',[
             'notifications' => $notifications,
             'users' => $users
@@ -107,12 +115,12 @@ class TechnicianPageController extends Controller
         $messages = Message::where('t_o', Auth::user()->id)->get();
         $users = User::latest()->get();
 
-        
+
         return view('general.messages',[
             'messages' => $messages,
             'users' => $users
 
-            
+
         ]);
     }
 
@@ -120,9 +128,23 @@ class TechnicianPageController extends Controller
     {
 
         $user = User::where('id', Auth::user()->id)->first();
-        
+
+        $employeeData = EmployeeBioData::where('user_id', $user->id)->first();
+
+        $states = State::get();
+
+        $lgas = DB::table('lgas')->get();
+
+
+        // return $states;
+
+
+
         return view('general.profile',[
-            'user' => $user
+            'user' => $user,
+            'employeeData' => $employeeData,
+            'states' => $states,
+            'lgas' => $lgas
         ]);
     }
 
@@ -139,7 +161,7 @@ class TechnicianPageController extends Controller
             # code...
 
             // dd(Session::get('listing_code'));
-            
+
         }else{
 
            session([
@@ -160,7 +182,7 @@ class TechnicianPageController extends Controller
 
 
         return view('technician_dashboard.create_report',[
-            'deployments' => $deployments 
+            'deployments' => $deployments
         ]);
     }
 
@@ -169,7 +191,7 @@ class TechnicianPageController extends Controller
     {
 
         $projects = Project::latest()->get();
-        
+
         return view('general.projects',[
 
             'projects' => $projects
@@ -183,22 +205,22 @@ class TechnicianPageController extends Controller
         $project = Project::where('id', $project_id)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('general.project',[
             'project' => $project,
             'deployments' => $deployments
         ]);
     }
 
-    
+
     public function deployments()
     {
         $project = Project::where('id', 1)->first();
 
         $deployments = Deployment::latest()->get();
-        
-        
+
+
         return view('general.deployments',[
 
             'deployments' => $deployments,
@@ -214,8 +236,8 @@ class TechnicianPageController extends Controller
 
         // dd($reports);
 
-        
-        
+
+
         return view('technician_dashboard.reports',[
             'reports' => $reports
         ]);
@@ -226,13 +248,13 @@ class TechnicianPageController extends Controller
 
         $report = DeploymentReport::with('report_images')->with('reporters')->where('id', $report_id)->first();
 
-        
+
         $deployments = Deployment::latest()->get();
-        
+
         return view('technician_dashboard.report',[
             'report' => $report,
             'deployments' => $deployments
-        
+
         ]);
     }
 

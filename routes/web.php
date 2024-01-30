@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\EmployeeBioData;
+use App\Models\EmployeePaycheckItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
@@ -27,10 +30,13 @@ use App\Http\Controllers\SecretaryPageController;
 use App\Http\Controllers\AccountMappingController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\TechnicianPageController;
+use App\Http\Controllers\EmployeeBioDataController;
 use App\Http\Controllers\MilestoneReportController;
 use App\Http\Controllers\DeploymentReportController;
 use App\Http\Controllers\ProjectMilestoneController;
+use App\Http\Controllers\EmployeePaycheckItemController;
 use App\Http\Controllers\InstallationScheduleController;
+use App\Http\Controllers\EmployeePaycheckSummaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,8 +110,6 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function () {
 
     Route::get('/deployments', [AdminPageController::class, 'deployments'])->name('admin.deployments');
 
-
-
     Route::get('/deployment/{deployment_id}', [AdminPageController::class, 'deployment'])->name('admin.deployment');
 
     Route::get('/truck_routes', [AdminPageController::class, 'truck_routes'])->name('admin.truck_routes');
@@ -117,18 +121,21 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function () {
 
 // Technicians
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'technician'], function () {
+Route::group(['middleware' => ['auth'],  'prefix' => 'staff'], function () {
 
     Route::get('/', [TechnicianPageController::class, 'index'])->name('technician');
 
     Route::get('/notifications', [TechnicianPageController::class, 'notifications'])->name('technician.notifications');
+
+    Route::get('/profile', [TechnicianPageController::class, 'profile'])->name('technician.profile');
+
 
     Route::get('/reports', [TechnicianPageController::class, 'reports'])->name('technician.report');
 
     Route::get('/create_report', [TechnicianPageController::class, 'create_report'])->name('technician.create_report');
 });
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'superadmin'], function () {
+Route::group(['middleware' => ['auth'],  'prefix' => 'admin'], function () {
 
     Route::get('/', [SuperAdminPageController::class, 'index'])->name('superadmin');
 
@@ -187,32 +194,32 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'accounts'], function () {
 
 // Drivers
 
-Route::group(['middleware' => ['auth'],  'prefix' => 'driver'], function () {
+// Route::group(['middleware' => ['auth'],  'prefix' => 'staff'], function () {
 
-    Route::get('/', [DriverPageController::class, 'index'])->name('driver');
+//     Route::get('/', [DriverPageController::class, 'index'])->name('driver');
 
-    Route::get('/notifications', [DriverPageController::class, 'notifications'])->name('driver.notifications');
+//     Route::get('/notifications', [DriverPageController::class, 'notifications'])->name('driver.notifications');
 
-    Route::get('/messages', [DriverPageController::class, 'messages'])->name('driver.messages');
+//     Route::get('/messages', [DriverPageController::class, 'messages'])->name('driver.messages');
 
-    Route::get('/profile', [DriverPageController::class, 'profile'])->name('driver.profile');
+//     Route::get('/profile', [DriverPageController::class, 'profile'])->name('driver.profile');
 
-    Route::get('/deployments', [DriverPageController::class, 'deployments'])->name('driver.deployments');
+//     Route::get('/deployments', [DriverPageController::class, 'deployments'])->name('driver.deployments');
 
-    Route::get('/projects', [DriverPageController::class, 'projects'])->name('driver.projects');
+//     Route::get('/projects', [DriverPageController::class, 'projects'])->name('driver.projects');
 
-    Route::get('/project/{project_id}', [DriverPageController::class, 'project'])->name('driver.project');
+//     Route::get('/project/{project_id}', [DriverPageController::class, 'project'])->name('driver.project');
 
-    Route::get('/deployment/{deployment_id}', [DriverPageController::class, 'deployment'])->name('driver.deployment');
+//     Route::get('/deployment/{deployment_id}', [DriverPageController::class, 'deployment'])->name('driver.deployment');
 
-    Route::get('/truck_routes', [DriverPageController::class, 'truck_routes'])->name('driver.truck_routes');
+//     Route::get('/truck_routes', [DriverPageController::class, 'truck_routes'])->name('driver.truck_routes');
 
-    Route::get('/reports', [DriverPageController::class, 'reports'])->name('driver.reports');
+//     Route::get('/reports', [DriverPageController::class, 'reports'])->name('driver.reports');
 
-    Route::get('/create_report', [DriverPageController::class, 'create_report'])->name('driver.create_report');
+//     Route::get('/create_report', [DriverPageController::class, 'create_report'])->name('driver.create_report');
 
-    Route::get('/report/{report_id}', [DriverPageController::class, 'report'])->name('driver.report');
-});
+//     Route::get('/report/{report_id}', [DriverPageController::class, 'report'])->name('driver.report');
+// });
 
 
 Route::group(['middleware' => ['auth'],  'prefix' => 'secretary'], function () {
@@ -294,10 +301,21 @@ Route::get('/admin/product-categories', [SuperAdminPageController::class, 'produ
 
 Route::get('/admin/transactions', [SuperAdminPageController::class, 'transactions'])->name('admin.transactions')->middleware('auth');
 
+Route::get('/admin/payroll-records', [SuperAdminPageController::class, 'payroll_records'])->middleware('auth');
+
+Route::get('/admin/loans', [SuperAdminPageController::class, 'loans'])->middleware('auth');
+
+Route::get('/admin/payroll-settings', [SuperAdminPageController::class, 'payroll_settings'])->middleware('auth');
 
 Route::get('/admin/file-manager', [SuperAdminPageController::class, 'file_manager'])->name('admin.file_manager')->middleware('auth');
 
 Route::get('/admin/settings', [SuperAdminPageController::class, 'settings'])->name('admin.settings')->middleware('auth');
+
+Route::post('/admin/generate-schedule', [PayrollController::class, 'generateSchedule'])->middleware('auth');
+
+Route::get('/admin/generate-paychecks', [PayrollController::class, 'generatePaychecks']);
+
+Route::get('/admin/view-employee-summary/{user_id}', [EmployeePaycheckSummaryController::class, 'generatePaycheckSummary']);
 
 Route::get('/cash_request_details/{id}', [SuperAdminPageController::class, 'cash_request_details'])->name('cash_request_details');
 
@@ -332,20 +350,10 @@ Route::get('/export-sales', [InvoiceLineController::class, 'export_sales']);
 
 Route::post('/admin/update-app', [AppUpdateController::class, 'updateApp'])->middleware('auth');
 
+Route::post('/update-employee-data', [EmployeeBioDataController::class, 'store'])->name('employeedata.update')->middleware('auth');
 
+Route::get('/update-success', [EmployeeBioDataController::class, 'update_success'])->name('employeedata.success')->middleware('auth');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::post('/update-pix', [EmployeeBioDataController::class, 'update_pix'])->name('update.pix')->middleware('auth');
 
 // Route::post('/create_requistion_request', [RequisitionController::class, 'create_requisition'])->name('create_requisition_request')->middleware('auth');

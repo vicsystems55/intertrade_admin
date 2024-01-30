@@ -32,7 +32,7 @@
     </li>
     <li class="menu-label">UI Elements</li> -->
     <li>
-        <a href="/superadmin">
+        <a href="{{route('superadmin')}}">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
             </div>
             <div class="menu-title">Dashboard</div>
@@ -49,6 +49,19 @@
             <div class="menu-title">Staff Records</div>
         </a>
     </li>
+
+    @if (Auth::user()->role == 'superadmin')
+
+    @else
+
+    <li>
+        <a href="{{route('admin.profile')}}">
+            <div class="parent-icon"><i class='lni lni-users'></i>
+            </div>
+            <div class="menu-title">My Profile</div>
+        </a>
+    </li>
+    @endif
 
     <li>
         <a href="{{route('superadmin.customer')}}">
@@ -133,7 +146,7 @@
         <a href="{{route('admin.transactions')}}">
             <div class="parent-icon"><i class='bx bx-cog'></i>
             </div>
-            <div class="menu-title">Transactions <span class="badge bg-danger ">new</span></div>
+            <div class="menu-title">Transactions </div>
            </a>
     </li>
     <li class="menu-label">Accounts</li>
@@ -145,6 +158,23 @@
             <div class="menu-title">Cash Request</div>
            </a>
     </li>
+
+    {{-- <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon"><i class="bx bx-category"></i>
+            </div>
+            <div class="menu-title">Payroll <span class="badge bg-danger ">new</span></div>
+        </a>
+        <ul>
+            <li> <a href="/admin/payroll-records"><i class="bx bx-right-arrow-alt"></i>Records </a>
+            </li>
+            <li> <a href="/admin/loans"><i class="bx bx-right-arrow-alt"></i> Loans  </a>
+            </li>
+            <li> <a href="/admin/payroll-settings"><i class="bx bx-right-arrow-alt"></i>Settings  </a>
+            </li>
+
+        </ul>
+    </li> --}}
 
     <li class="menu-label">Data Center</li>
 

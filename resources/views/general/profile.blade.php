@@ -2,163 +2,371 @@
 
 
 @section('content')
+    <div class="page-content">
 
 
-<div class="page-content">
-    <div class="p-5"></div>
+        <h4 class="py-3">My Profile</h4>
 
-    <h4>My Profile</h4>
-
-    <div class="card">
-        <div class="card-body">
-
-            <form action="" method="post">
-                @csrf
-                
-                <div class="form-group text-center">
-                    <img id="previewImg2" style="height: 90px; width: 90px; object-fit: cover; border-radius: 20px;" class="shadow rounded-circle" src="{{config('app.url')}}avatars/{{$profile_data->users->avatar??'default.png'}}" >
-
-                </div> 
-
-              <div class="col-sm-5 mx-auto">
-                <div class="custom-file mb-5 mt-3 mx-auto">
-                    <input onchange="previewFile3(this.id);" type="file" name="avatar" class="form-control" id="formFile">
-                    
-                    @error('avatar')
-                    <span class="text-danger" role="alert">
-                        <span>{{ $message }}</span>
-                    </span>
-                    @enderror
-                </div>
-              </div>
+        <div style="max-width: 730px;" class="card mx-auto">
+            <div class="card-body">
 
 
-              <div class="row px-3">
-                  <div class="col-md-6">
+                @if (Session::has('msgp'))
+                    <p class="alert alert-info">{{ Session::get('msgp') }}</p>
+                @endif
 
-                    <div class="form-group mb-3">
-                        <label for="">Fullname:</label>
-                        <input type="text" class="form-control" name="name" placeholder="Full name">
-                        @error('avatar')
-                        <span class="text-danger" role="alert">
-                            <span>{{ $message }}</span>
-                        </span>
-                        @enderror
+
+                <form action="{{ route('update.pix') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group text-center">
+
+                            <img id="previewImg2" style="height: 90px; width: 90px; object-fit: cover; border-radius: 20px;"
+                                class="shadow rounded-circle"
+                                src="{{ asset('storage') }}/{{ Auth::user()->avatar ?? 'default.png' }}">
+
+
                     </div>
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                    <div class="form-group mb-3">
-                        <label for="">Email:</label>
-                        <input type="text" class="form-control" name="name" placeholder="Full name">
-                        @error('avatar')
-                        <span class="text-danger" role="alert">
-                            <span>{{ $message }}</span>
-                        </span>
-                        @enderror
-                    </div>
+                    <div class="col-sm-5 mx-auto ">
+                        <div class="custom-file mb-2 mt-3 mx-auto">
+                            <input onchange="previewFile3(this.id);" type="file" name="avatar" class="form-control"
+                                id="formFile">
 
-                    <div class="form-group mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">Male</label>
+                            @error('avatar')
+                                <span class="text-danger" role="alert">
+                                    <span>{{ $message }}</span>
+                                </span>
+                            @enderror
                         </div>
-
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">Female</label>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-secondary btn-sm">Update passport</button>
                         </div>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label for="">Address:</label>
-                        <input type="text" class="form-control" name="name" placeholder="Full name">
-                        @error('avatar')
-                        <span class="text-danger" role="alert">
-                            <span>{{ $message }}</span>
-                        </span>
-                        @enderror
+                </form>
+
+
+
+                <form action="{{ route('employeedata.update') }}" method="post">
+                    @csrf
+
+
+
+
+                    <div class="row px-3">
+
+                        <h6 class="pt-2">Personal Data</h6>
+                        <hr>
+
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Surname:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->surname ?? '' }}"
+                                name="surname" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                First Name:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->first_name ?? '' }}"
+                                name="first_name" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Middle Name:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->middle_name ?? '' }}"
+                                name="middle_name" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                State:
+                            </label>
+
+
+                                <select name="state" id="" class="form-control">
+
+                                    @foreach ($states as $state)
+                                    <option value="{{$state->name}}" {{$employeeData->state==$state->name?'selected':''}}>{{$state->name}}</option>
+
+                                    @endforeach
+                                </select>
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                LGA:
+                            </label>
+
+
+                                <select name="lga" id="" class="form-control">
+
+                                    @foreach ($lgas as $lga)
+                                    <option value="{{$lga->name}}" {{$employeeData->lga==$lga->name?'selected':''}}>{{$lga->name}}</option>
+
+                                    @endforeach
+                                </select>
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Gender:
+                            </label>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" value="Male" id="flexRadioDefault1" {{ $employeeData->gender == 'Male'?'checked':'' }}>
+                                <label class="form-check-label" for="flexRadioDefault1">Male</label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault2" {{ $employeeData->gender == 'Female'?'checked':'' }}>
+                                <label class="form-check-label" for="flexRadioDefault2">Female</label>
+                            </div>
+
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Marital Status:
+                            </label>
+
+                            <select name="marital_status" id="" class="form-control">
+                                <option value="Married" {{$employeeData->marital_status == 'Married'?'selected':''}}>Married</option>
+                                <option value="Single" {{$employeeData->marital_status == 'Single'?'selected':''}}>Single</option>
+                                <option value="Others" {{$employeeData->marital_status == 'Others'?'selected':''}}>Others</option>
+                            </select>
+
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Address:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->address ?? '' }}"
+                                name="address" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Phone:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->phone ?? '' }}"
+                                name="phone" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Phone 2:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->phone2 ?? '' }}"
+                                name="phone2" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Phone 3:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->phone3 ?? '' }}"
+                                name="phone3" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Spouse Phone:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->spouse_phone ?? '' }}"
+                                name="spouse_phone" placeholder="Enter ">
+                        </div>
+
+                        <h6 class="pt-2">Emergency Contact</h6>
+                        <hr>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Emergency Cont:act Name
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->ec_name ?? '' }}"
+                                name="ec_name" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Emergency Phone:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->ec_phone ?? '' }}"
+                                name="ec_phone" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Emergency Address:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->ec_address ?? '' }}"
+                                name="ec_address" placeholder="Enter ">
+                        </div>
+
+                        <h6 class="pt-2">Next of kin details</h6>
+                        <hr>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Next of Kin Name:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->nok_name ?? '' }}"
+                                name="nok_name" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Next of Kin Phone:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->nok_phone ?? '' }}"
+                                name="nok_phone" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Next of Kin Address:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->nok_address ?? '' }}"
+                                name="nok_address" placeholder="Enter ">
+                        </div>
+
+                        <h6 class="pt-2">Employment details</h6>
+                        <hr>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Date Employed:
+                            </label>
+                            <input type="date" class="form-control" value="{{ $employeeData->date_employed ?? '' }}"
+                                name="date_employed" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Position Held:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->position_held ?? '' }}"
+                                name="position_held" placeholder="Enter ">
+                        </div>
+                        <h6 class="pt-2">Refrees</h6>
+                        <hr>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Refree Name:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->refree1_name ?? '' }}"
+                                name="refree1_name" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Refree1 Phone:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->refree1_phone ?? '' }}"
+                                name="refree1_phone" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Refree Address:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->refree1_address ?? '' }}"
+                                name="refree1_address" placeholder="Enter ">
+                        </div>
+
+                        <hr>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Refree Name:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->refree2_name ?? '' }}"
+                                name="refree2_name" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Refree Phone:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->refree2_phone ?? '' }}"
+                                name="refree2_phone" placeholder="Enter ">
+                        </div>
+
+                        <div class="py-3 col-md-6">
+                            <label for="">
+                                Refree Address:
+                            </label>
+                            <input type="text" class="form-control" value="{{ $employeeData->refree2_address ?? '' }}"
+                                name="refree2_address" placeholder="Enter ">
+                        </div>
+
+
                     </div>
 
 
 
-
-                  </div>
-                  <div class="col-md-6">
-
-                    <div class="form-group mb-3">
-                        <label for="">Bio:</label>
-                
-                        <textarea name="bio" id="" cols="30" rows="5" class="form-control" placeholder="Max Char (230)"></textarea>
-                        @error('avatar')
-                        <span class="text-danger" role="alert">
-                            <span>{{ $message }}</span>
-                        </span>
-                        @enderror
+                    <div class="form-group col-md-10 mx-auto text-center py-3">
+                        <button type="sumbit" class="btn btn-primary btn-block col-md-6 mx-auto">Submit</button>
                     </div>
 
+                </form>
 
-
-
-                  </div>
-              </div>
-
-
-
-              <div class="form-group col-md-10 mx-auto text-center">
-                <button type="sumbit" class="btn btn-primary btn-block col-md-6 mx-auto" >Submit</button>
             </div>
-
-            </form>
-
         </div>
+
+        <script>
+            function previewFile4(chooser) {
+                console.log('hello');
+
+                var file = $('#' + chooser).get(0).files[0];
+
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function() {
+                        var previewer = chooser + '_preview';
+
+                        // $('#' + previewer).css('background-image', 'url("' + reader.result + '")');
+                        $("#previewImg").attr("src", reader.result);
+
+                        // $("#bg-img").css("background-image", "url(" + reader.result + ")");
+                    }
+
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            function previewFile3(chooser) {
+                console.log('hello');
+
+                var file = $('#' + chooser).get(0).files[0];
+
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function() {
+                        var previewer = chooser + '_preview';
+
+                        // $('#' + previewer).css('background-image', 'url("' + reader.result + '")');
+                        $("#previewImg2").attr("src", reader.result);
+
+                        // $("#bg-img").css("background-image", "url(" + reader.result + ")");
+                    }
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
+
+
+
     </div>
-
-    <script>
-        function previewFile4(chooser){
-            console.log('hello');
-    
-            var file = $('#' + chooser).get(0).files[0];
-    
-            if(file){
-                var reader = new FileReader();
-    
-                reader.onload = function(){
-                    var previewer = chooser +'_preview';
-                
-                    // $('#' + previewer).css('background-image', 'url("' + reader.result + '")');
-                    $("#previewImg").attr("src", reader.result);
-                    
-                    // $("#bg-img").css("background-image", "url(" + reader.result + ")");
-                }
-    
-                reader.readAsDataURL(file);
-            }
-        }
-    
-        function previewFile3(chooser){
-            console.log('hello');
-    
-            var file = $('#' + chooser).get(0).files[0];
-    
-            if(file){
-                var reader = new FileReader();
-    
-                reader.onload = function(){
-                    var previewer = chooser +'_preview';
-                
-                    // $('#' + previewer).css('background-image', 'url("' + reader.result + '")');
-                    $("#previewImg2").attr("src", reader.result);
-                    
-                    // $("#bg-img").css("background-image", "url(" + reader.result + ")");
-                }
-    
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-
-
-
-</div>
-    
 @endsection

@@ -36,9 +36,11 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\AccountMapping;
 use App\Models\AccountSubHead;
+use App\Models\ProductCategory;
 use App\Models\DeploymentReport;
 use App\Models\InstallationSchedule;
 use Illuminate\Support\Facades\Auth;
+use App\Models\EmployeePaycheckSummary;
 use Illuminate\Support\Facades\Session;
 
 
@@ -141,7 +143,7 @@ class SuperAdminPageController extends Controller
     public function notifications()
     {
 
-        $notifications = Notification::where('user_id', Auth::user()->id)->latest()->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->latest()->paginate(10);
 
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'
@@ -266,8 +268,6 @@ class SuperAdminPageController extends Controller
         ]);
     }
 
-
-
     public function truck_routes()
     {
 
@@ -373,8 +373,10 @@ class SuperAdminPageController extends Controller
 
     public function all_products(){
 
+        $productCategories = ProductCategory::get();
 
-        return view('superadmin_dashboard.products');
+
+        return view('superadmin_dashboard.products', compact('productCategories'));
 
     }
 
@@ -400,5 +402,22 @@ class SuperAdminPageController extends Controller
 
         return view('superadmin_dashboard.settings');
 
+    }
+
+    public function payroll_records(){
+
+        $empPaycheckSummary = EmployeePaycheckSummary::with('employee.salary_level')->latest()->get();
+
+        // return $empPaycheckSummary;
+
+        return view('superadmin_dashboard.payroll.payroll_records', compact('empPaycheckSummary'));
+    }
+    public function loans(){
+
+        return view('superadmin_dashboard.payroll.loans');
+    }
+    public function payroll_settings(){
+
+        return view('superadmin_dashboard.payroll.payroll_settings');
     }
 }

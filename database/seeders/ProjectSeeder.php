@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
-use DB;
-
 use Carbon\Carbon;
+
+
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProjectSeeder extends Seeder
 {
@@ -30,7 +31,7 @@ class ProjectSeeder extends Seeder
                 'end_date' => '10 September 2021',
             ],
 
-            
+
         ]);
     }
 }

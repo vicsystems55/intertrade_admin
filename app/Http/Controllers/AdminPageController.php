@@ -111,8 +111,8 @@ class AdminPageController extends Controller
 
         // dd($event);
 
-        $notifications = Notification::where('user_id', Auth::user()->id)->latest()->get();
-        
+        $notifications = Notification::where('user_id', Auth::user()->id)->latest()->paginate(10);
+
 
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'
@@ -144,7 +144,7 @@ class AdminPageController extends Controller
     {
 
 
-        return view('admin_dashboard.profile');
+        return view('general.profile');
     }
 
     public function reports()
@@ -187,7 +187,7 @@ class AdminPageController extends Controller
 
     public function staff_record($user_id)
     {
-        $user = User::where('id', $user_id)->first();
+        $user = User::with('employee_data')->where('id', $user_id)->first();
 
 
         return view('admin_dashboard.staff_record',[

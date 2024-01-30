@@ -6,11 +6,11 @@
 
     <div class="page-content">
 
-        <div class="p-5"></div>
+      <h4>Create account</h4>
 
 
-        <div class="row">
-            <div class="col-md-6">
+        <div class="">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
 
@@ -20,28 +20,28 @@
                             @endforeach
                         @endif
 
-                        
+
                         @if(Session::has('staff_record_msg'))
                         <p class="alert alert-info">{{ Session::get('staff_record_msg') }}</p>
                         @endif
 
 
-                        <form action="{{route('create_staff_account')}}" method="post">
+                        <form action="{{route('create_staff_account')}}" method="post" class="row">
                             @csrf
-       
-                       <div class="form-group mb-3">
+
+                       <div class="col-md-6 form-group mb-3">
                            <label for="">Fullname:</label>
                            <input type="text" class="form-control" name="name" placeholder="Enter Staff Fullname">
-               
+
                        </div>
-               
-                       <div class="form-group mb-3">
+
+                       <div class="col-md-6 form-group mb-3">
                            <label for="">Email:</label>
                            <input type="email" class="form-control" name="email" placeholder="Enter Staff Email">
-               
+
                        </div>
-           
-                       <div class="form-group mb-3">
+
+                       <div class="col-md-6 form-group mb-3">
                            <label for="">Select Role:</label>
                            <select name="role" id="" class="form-control">
                                <option value="">--Select Role--</option>
@@ -53,14 +53,14 @@
                                <option value="accounts">Accountant</option>
                            </select>
                        </div>
-           
-                       <div class="form-group mb-3">
+
+                       <div class="col-md-6 form-group mb-3">
                            <label for="">Create Password:</label>
                            <input type="password" class="form-control" name="password">
                        </div>
 
 
-                       <div class="form-group mb-3">
+                       <div class="col-md-6 form-group mb-3">
                             <label for="">Confrim Password:</label>
                             <input type="password" class="form-control" name="password-confirmation">
                         </div>
@@ -70,7 +70,7 @@
                                 Create Account
                             </button>
                         </div>
-           
+
                     </form>
                     </div>
                 </div>
@@ -81,5 +81,5 @@
 
 
     </div>
-    
+
 @endsection

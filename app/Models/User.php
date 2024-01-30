@@ -47,7 +47,19 @@ class User extends Authenticatable
 
     public function deployment_reports()
     {
-            
+
         return $this->hasMany('App\Models\DeploymentReport', 'reporter_id', 'id');
+    }
+
+    public function salary_level()
+    {
+
+        return $this->belongsTo(SalaryStructure::class, 'salary_structure_id', 'id');
+    }
+
+    public function employee_data()
+    {
+
+        return $this->hasOne(EmployeeBioData::class, 'user_id', 'id');
     }
 }

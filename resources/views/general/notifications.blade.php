@@ -5,7 +5,7 @@
 
 
 <div class="page-content">
-    <div class="p-5"></div>
+    <div class="p-2"></div>
 
     <h4>Notifications</h4>
 
@@ -20,22 +20,28 @@
               <small class="text-muted">{{$notification->created_at->diffForHumans()}}</small>
             </div>
             <p class="mb-1">{{$notification->body}}</p>
-           
+
           </a>
-            
+
         @empty
+
+
 
         <div class="c ">
 
             <div class="p-5"></div>
             <h4 class="text-center">Empty...</h4>
         </div>
-            
+
         @endforelse
-        
- 
-       
+
+
+
+
+
       </div>
+
+      {{ $notifications->render("pagination::bootstrap-4") }}
 </div>
-    
+
 @endsection
