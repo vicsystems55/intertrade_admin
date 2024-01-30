@@ -176,11 +176,26 @@
                                 Marital Status:
                             </label>
 
+                            @if ($employeeData)
+
+
                             <select name="marital_status" id="" class="form-control">
                                 <option value="Married" {{$employeeData->marital_status == 'Married'?'selected':''}}>Married</option>
                                 <option value="Single" {{$employeeData->marital_status == 'Single'?'selected':''}}>Single</option>
                                 <option value="Others" {{$employeeData->marital_status == 'Others'?'selected':''}}>Others</option>
                             </select>
+
+                            @else
+
+
+                            <select name="marital_status" id="" class="form-control">
+                                <option value="Married" >Married</option>
+                                <option value="Single" >Single</option>
+                                <option value="Others" >Others</option>
+                            </select>
+
+                            @endif
+
 
                         </div>
 
