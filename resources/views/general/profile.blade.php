@@ -143,11 +143,29 @@
                                 Gender:
                             </label>
                             <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Male" id="flexRadioDefault1" {{ $employeeData->gender == 'Male'?'checked':'' }}>
+
+                                @if ($employeeData)
+                                <input class="form-check-input" type="radio" name="gender" value="Male" id="flexRadioDefault1" {{ $employeeData->gender == 'Male'?'checked':'' }}>
+
+                                @else
+                                <input class="form-check-input" type="radio" name="gender" value="Male" id="flexRadioDefault1" >
+
+                                @endif
+
+
                                 <label class="form-check-label" for="flexRadioDefault1">Male</label>
                             </div>
                             <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault2" {{ $employeeData->gender == 'Female'?'checked':'' }}>
+
+                                @if ($employeeData)
+                                <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault2" {{ $employeeData->gender == 'Female'?'checked':'' }}>
+
+                                @else
+                                <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault2" >
+
+                                @endif
+
+
                                 <label class="form-check-label" for="flexRadioDefault2">Female</label>
                             </div>
 
