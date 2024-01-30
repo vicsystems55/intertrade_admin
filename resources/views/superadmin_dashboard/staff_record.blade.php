@@ -57,7 +57,7 @@
                     <div class="col-md-6 text-center">
 
                         <div class="c mb-3">
-                            <img src="{{assest('assets/default.png')}}" style="object-fit: cover;" alt="" class="shadow rounded rounded-circle img-thumbnail">
+                            <img src="{{assest('storage')}}/{{$user->avatar}}" style="object-fit: cover;" alt="" class="shadow rounded rounded-circle img-thumbnail">
                         </div>
                         <div style="font-weight: bold;" class=" mb-3">
                             {{$user->user_code}}
