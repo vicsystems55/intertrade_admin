@@ -84,7 +84,7 @@ class SuperAdminPageController extends Controller
     public function staff_records()
     {
 
-        $users = User::latest()->get();
+        $users = User::where('status',null)->latest()->get();
 
 
         return view('superadmin_dashboard.staff_records',[
