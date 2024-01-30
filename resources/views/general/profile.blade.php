@@ -93,10 +93,23 @@
 
                                 <select name="state" id="" class="form-control">
 
+                                    @if ($employeeData)
+
                                     @foreach ($states as $state)
                                     <option value="{{$state->name}}" {{$employeeData->state==$state->name?'selected':''}}>{{$state->name}}</option>
 
                                     @endforeach
+
+                                    @else
+
+                                    @foreach ($states as $state)
+                                    <option value="{{$state->name}}" >{{$state->name}}</option>
+
+                                    @endforeach
+
+                                    @endif
+
+
                                 </select>
                         </div>
 
@@ -107,11 +120,21 @@
 
 
                                 <select name="lga" id="" class="form-control">
-
+                                    @if ($employeeData)
                                     @foreach ($lgas as $lga)
                                     <option value="{{$lga->name}}" {{$employeeData->lga==$lga->name?'selected':''}}>{{$lga->name}}</option>
 
                                     @endforeach
+                                    @else
+
+                                    @foreach ($lgas as $lga)
+                                    <option value="{{$lga->name}}" >{{$lga->name}}</option>
+
+                                    @endforeach
+
+                                    @endif
+
+
                                 </select>
                         </div>
 
