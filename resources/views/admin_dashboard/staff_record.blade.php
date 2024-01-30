@@ -35,7 +35,7 @@
                                 </td>
                             </tr>
 
-                           
+
 
 
                         </table>
@@ -49,7 +49,7 @@
                     <div class="col-md-6 text-center">
 
                         <div class="c mb-3">
-                            <img style="height: 100px;  width:100px;" src="{{asset('avatars/default.png')}}" style="object-fit: cover;" alt="" class="shadow rounded rounded-circle img-thumbnail">
+                            <img style="height: 100px;  width:100px;" src="{{asset('storages')}}/{{$user->avatar}}" style="object-fit: cover;" alt="" class="shadow rounded rounded-circle img-thumbnail">
                         </div>
                         <div style="font-weight: bold;" class=" mb-3">
                             {{$user->user_code}}
