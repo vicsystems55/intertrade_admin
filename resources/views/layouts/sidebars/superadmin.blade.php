@@ -50,9 +50,21 @@
         </a>
     </li>
 
+
     @if (Auth::user()->role == 'superadmin')
 
-    @elseif(Auth::user()->email == 'grace@intertradeltd.biz')
+
+    @if (Auth::user()->email == 'grace@intertradeltd.biz')
+    <li>
+        <a href="{{route('admin.profile')}}">
+            <div class="parent-icon"><i class='lni lni-users'></i>
+            </div>
+            <div class="menu-title">My Profile</div>
+        </a>
+    </li>
+    @endif
+
+    @else
 
     <li>
         <a href="{{route('admin.profile')}}">
