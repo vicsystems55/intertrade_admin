@@ -357,3 +357,8 @@ Route::get('/update-success', [EmployeeBioDataController::class, 'update_success
 Route::post('/update-pix', [EmployeeBioDataController::class, 'update_pix'])->name('update.pix')->middleware('auth');
 
 // Route::post('/create_requistion_request', [RequisitionController::class, 'create_requisition'])->name('create_requisition_request')->middleware('auth');
+
+
+Route::get('/privacy-policy', function(){
+    return view('toc');
+});
