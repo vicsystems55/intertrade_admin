@@ -34,8 +34,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                   
-                
+
+
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         <th>#</th>
                         <th>Fullname</th>
                         <th>Email</th>
-                        <th>Designation</th>
+                 
                     </thead>
 
 
@@ -62,14 +62,14 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->role}}</td>
+
                                 <td>
                                     <a href="{{route('superadmin.staff_record', $user->id)}}" class="btn btn-primary btn-sm shadow">Details</a>
                                 </td>
                             </tr>
 
 
-                            
+
                         @empty
 
                         <tr>
@@ -80,24 +80,24 @@
                             <td></td>
                             <td></td>
                         </tr>
-                            
+
                         @endforelse
 
 
-                       
+
 
                     </tbody>
                 </table>
 
                 <div class="p-3">
-                    
+
                 </div>
             </div>
         </div>
 
 
-        
+
 
     </div>
-    
+
 @endsection

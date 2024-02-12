@@ -41,7 +41,7 @@ class StockExport implements FromCollection, WithMapping, WithHeadings, ShouldAu
             $product->name,
             // Format the 'price' column as a number
             $product->stock->where('type', 'out')->sum('quantity')* -1, // Customize the formatting as needed
-            $product->stock->where('type', 'in')->sum('quantity'),
+            $product->stock->where('type', 'in')->sum('quantity')  + $product->stock->where('type', 'out')->sum('quantity') ,
             $product->price,
             $product->stock->sum('quantity') * $product->price
         ];
