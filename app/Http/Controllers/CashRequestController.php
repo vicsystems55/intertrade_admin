@@ -76,7 +76,8 @@ class CashRequestController extends Controller
             'requested_by_name' => Auth::user()->name,
             'requested_by_email' => Auth::user()->email,
             'title' => $cash_request->title,
-            'amount' => $cash_request->amount_requested
+            'amount' => $cash_request->amount_requested,
+            'status' => ''
         ];
 
 
