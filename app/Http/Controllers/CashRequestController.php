@@ -82,6 +82,7 @@ class CashRequestController extends Controller
 
 
         Mail::to([
+            'eghosa@intertradeltd.biz',
             'victor@intertradeltd.biz',
             'victorasuquob@gmail.com'
         ])->send(new CashRequestMail($data));
