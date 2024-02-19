@@ -59,17 +59,21 @@
                             </div>
 
 
-
-
-
+                        @if (Auth::user()->role == 'superadmin')
                         <div class="form-group py-3">
-                            <input type="submit" value="Approved" name="status" class="btn btn-success col-md-12 shadow " {{$cash_request->status?'disabled':''}}>
+                            <input type="submit" value="Approved" name="status" class="btn btn-success col-md-12 shadow " >
 
                         </div>
                         <div class="form-group py-2">
-                            <input type="submit" value="Disapproved" name="status" class="btn btn-danger col-md-12 shadow " {{$cash_request->status?'disabled':''}}>
+                            <input type="submit" value="Disapproved" name="status" class="btn btn-danger col-md-12 shadow " >
 
                         </div>
+
+                        @else
+
+                        @endif
+
+
 
                     </form>
                     </div>

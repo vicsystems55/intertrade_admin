@@ -115,6 +115,15 @@
                             <div class="card-body">
 
                                 <p>{{$cash_request->description}}</p>
+                                @if ($cash_request->status == 'pending')
+                                <span class="badge rounded-pill bg-primary">{{$cash_request->status}}</span>
+                                @elseif($cash_request->status == 'Approved')
+                                <span class="badge rounded-pill bg-success">{{$cash_request->status}}</span>
+                                @elseif($cash_request->status == 'Disapproved')
+                                <span class="badge rounded-pill bg-danger">{{$cash_request->status}}</span>
+
+                                @endif
+
                                 <h6>N {{number_format($cash_request->amount_requested,2)}}</h6>
 
 

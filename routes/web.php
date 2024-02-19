@@ -293,11 +293,11 @@ Route::get('/UCC_UPDATE', [AdminPageController::class, 'ucc_update'])->name('ucc
 
 Route::resource('/customers', CustomerController::class, ['name' => 'customers']);
 
-Route::resource('cash_request', CashRequestController::class, ['name' => 'cash_request']);
+Route::resource('cash_request', CashRequestController::class, ['name' => 'cash_request'])->middleware('auth');
 
-Route::post('cash-approved', [CashRequestController::class, 'approveCashRequest'])->name('cash_request.approve');
+Route::post('cash-approved', [CashRequestController::class, 'approveCashRequest'])->name('cash_request.approve')->middleware('auth');
 
-Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->name('cash_request');
+Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->name('cash_request')->middleware('auth');
 
 
 Route::get('/admin/products', [SuperAdminPageController::class, 'all_products'])->name('admin.all_products')->middleware('auth');
