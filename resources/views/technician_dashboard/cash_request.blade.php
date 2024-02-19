@@ -8,7 +8,8 @@
 
         <div class="p-2"></div>
 
-        <h4>Cash Request</h4>
+        <h4>My Cash Request</h4>
+
         <hr>
 
         <div class="row">
@@ -37,6 +38,7 @@
                 </div>
             </div>
         </div>
+
 
 
         <div class="row">
@@ -84,8 +86,8 @@
 
 
 
-                        <div class="form-group py-2">
-                            <button class="btn btn-primary shadow ">
+                        <div class="form-group col-md-6 ">
+                            <button class="btn btn-primary float-right shadow ">
                                 Submit
                             </button>
                         </div>
@@ -95,7 +97,7 @@
                 </div>
             </div>
 
-            <h4>All Requests</h4>
+            <h4 class="py-2">Request History</h4>
             <hr>
             <div class="col-md-12">
                 <div class="row">
@@ -131,8 +133,6 @@
                     @endforeach
 
                 </div>
-
-                {{$cash_requests->render("pagination::bootstrap-4")}}
             </div>
         </div>
 

@@ -12,7 +12,7 @@
         </a>
     </li>
 
-{{-- 
+{{--
     <li>
         <a href="#">
             <div class="parent-icon"><i class='bx bx-book'></i>
@@ -38,6 +38,14 @@
             <div class="parent-icon"><i class='bx bx-user'></i>
             </div>
             <div class="menu-title">Profile</div>
+        </a>
+    </li>
+
+    <li>
+        <a href="{{route('technician.cash_request')}}">
+            <div class="parent-icon"><i class='bx bx-user'></i>
+            </div>
+            <div class="menu-title">Cash Request</div>
         </a>
     </li>
 

@@ -21,10 +21,11 @@ use App\Models\Deployment;
 
 use App\Models\TruckRoute;
 
+use App\Models\CashRequest;
 use App\Models\ReportImage;
 use App\Models\Notification;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Models\EmployeeBioData;
 use App\Models\DeploymentReport;
 use Illuminate\Support\Facades\DB;
@@ -56,6 +57,15 @@ class TechnicianPageController extends Controller
             'truck_routes' => $truck_routes,
             'notifications' => $notifications
         ]);
+    }
+
+    public function cash_request(){
+
+        $user_id = Auth::user()->id;
+
+        $cash_requests = CashRequest::with('requestby')->where('request_by', $user_id)->latest()->get();
+
+        return view('technician_dashboard.cash_request', compact('cash_requests'));
     }
 
 
@@ -92,7 +102,7 @@ class TechnicianPageController extends Controller
     public function notifications()
     {
 
-        $notifications = Notification::where('user_id', Auth::user()->id)->paginate(10);
+        $notifications = Notification::latest()->where('user_id', Auth::user()->id)->paginate(10);
 
         $notificationx = Notification::where('user_id', Auth::user()->id)->update([
             'status' => 'read'

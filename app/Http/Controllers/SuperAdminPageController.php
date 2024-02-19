@@ -110,7 +110,7 @@ class SuperAdminPageController extends Controller
 
     public function cash_request()
     {
-        $cash_requests = CashRequest::with('requestby')->get();
+        $cash_requests = CashRequest::latest()->with('requestby')->paginate(20);
 
         // return $cash_requests;
 

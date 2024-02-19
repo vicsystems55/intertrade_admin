@@ -61,7 +61,7 @@
 
 
         <div class="row card-box row-eq-height">
-            <div class="col-md-6 px-5">
+            <div class="col-md-6 px-md-5">
                 <div style="height: 450px;"  class=" card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 px-5">
+            <div class="col-md-6 px-md-5">
                 <div style="height: 450px;" class=" card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 px-5">
+            <div class="col-md-6 px-md-5">
                 <div style="min-height: 300px;" class=" card">
                     <div class="card-body">
                         <h6>Notifications</h6>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 px-5">
+            <div class="col-md-6 px-md-5">
                 <div style="height: 300px;" class=" card">
                     <div class="card-body">
 

@@ -129,6 +129,9 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'staff'], function () {
 
     Route::get('/profile', [TechnicianPageController::class, 'profile'])->name('technician.profile');
 
+    Route::get('/cash-request', [TechnicianPageController::class, 'cash_request'])->name('technician.cash_request');
+
+
 
     Route::get('/reports', [TechnicianPageController::class, 'reports'])->name('technician.report');
 
@@ -291,6 +294,8 @@ Route::get('/UCC_UPDATE', [AdminPageController::class, 'ucc_update'])->name('ucc
 Route::resource('/customers', CustomerController::class, ['name' => 'customers']);
 
 Route::resource('cash_request', CashRequestController::class, ['name' => 'cash_request']);
+
+Route::post('cash-approved', [CashRequestController::class, 'approveCashRequest'])->name('cash_request.approve');
 
 Route::get('/cash_request', [SuperAdminPageController::class, 'cash_request'])->name('cash_request');
 
