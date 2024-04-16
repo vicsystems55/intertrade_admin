@@ -344,6 +344,11 @@ Route::get('/projects', [PageController::class, 'projects']);
 // emailing invoice to customer
 Route::post('/mail-invoice', [InvoiceController::class, 'mail_invoice']);
 
+Route::get('/weekly-report', [InvoiceController::class, 'weekly_report']);
+
+
+
+
 Route::post('/mark-as-paid', [InvoiceLineController::class, 'mark_as_paid'])->middleware('auth');
 
 

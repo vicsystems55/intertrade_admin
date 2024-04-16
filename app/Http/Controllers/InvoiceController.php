@@ -7,13 +7,75 @@ use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\InvoiceLine;
 use Illuminate\Http\Request;
+use App\Mail\WeeklySalesReportMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 
 class InvoiceController extends Controller
 {
 
+    public function weekly_report(){
+
+
+
+
+        $weekly_sales = Invoice::
+        where('invoice_type', 'receipt')
+        ->with(['invoice_line.product', 'customer'])
+        ->whereYear('created_at', Carbon::now()->year)
+        ->whereMonth('created_at', Carbon::now()->month)
+        ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        ->get();
+
+        $total_orders = $weekly_sales->count();
+
+        $weekly_sales = Invoice::whereIn('invoice_code', $weekly_sales->pluck('invoice_code'))
+        ->where('invoice_type', 'Invoice')
+        ->with(['invoice_line.product', 'customer'])
+        ->get();
+
+        $productIds = $weekly_sales->flatMap(function ($invoice) {
+            return $invoice->invoice_line->pluck('product_id');
+        });
+
+        // return $productIds;
+        $occurrences = array_count_values($productIds->all());
+        // return $occurrences;
+
+        // Find the most occurring item
+        $mostOccurringItem = array_search(max($occurrences), $occurrences);
+
+        $mostSoldProduct = Product::find($mostOccurringItem);
+
+        // return $mostOccurringItem;
+
+        $total_sales_amount = $weekly_sales->sum('total_amount');
+
+        try {
+            //code...
+
+            Mail::to([
+                'victor@intertradeltd.biz',
+                'grace@intertradeltd.biz',
+                'eghosa@intertradeltd.biz',
+                'ogedegbeejiro@intertradeltd.biz',
+                'felix@intertradeltd.biz'
+            ])->send(new WeeklySalesReportMail(compact('weekly_sales', 'total_sales_amount', 'total_orders', 'mostSoldProduct')));
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+
+
+        // return compact('weekly_sales', 'total_sales_amount', 'total_orders', 'mostSoldProduct');
+
+
+
+
+    }
     public function salesRecords() {
 
         $monthly_sales = [];

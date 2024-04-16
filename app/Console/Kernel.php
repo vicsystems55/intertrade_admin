@@ -25,12 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
 
+        // $schedule->command('inspire')->hourly();
+//
         $schedule->call(function(){
 
-            Http::get(config('app.url').'api/update_project_admin');
 
+            
              info('admin updated');
 
          })->hourly();
