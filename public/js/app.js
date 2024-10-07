@@ -2072,6 +2072,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      searchKey: '',
       account_maps: [],
       key: '',
       my_maps: [],
@@ -2266,6 +2267,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(error);
       });
     },
+    sortProducts: function sortProducts() {},
     getProducts: function getProducts() {
       var _this5 = this;
       axios.get(this.appurl + 'api/products', {
@@ -3911,7 +3913,30 @@ var render = function render() {
     staticClass: ""
   }, [_c("div", {
     staticClass: "container-fluid"
-  }, [_vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "form-group col-md-6 py-2"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.searchKey,
+      expression: "searchKey"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "Search a product"
+    },
+    domProps: {
+      value: _vm.searchKey
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.searchKey = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12"
@@ -4002,18 +4027,6 @@ var staticRenderFns = [function () {
   }, [_vm._v("Select Type "), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "form-group col-md-6 py-2"
-  }, [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "Search a product"
-    }
-  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

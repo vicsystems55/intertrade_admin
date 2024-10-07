@@ -157,7 +157,7 @@
             <div class="container-fluid">
 
                 <div class="form-group col-md-6 py-2">
-                    <input type="text" class="form-control" placeholder="Search a product">
+                    <input type="text" class="form-control" v-model="searchKey" placeholder="Search a product">
                 </div>
 
                 <div class="cat d-flex flex-wrap justify-content-start py-2">
@@ -235,6 +235,7 @@ export default {
 
     data() {
         return {
+            searchKey: '',
             account_maps: [],
             key: '',
             my_maps: [],
@@ -485,6 +486,12 @@ export default {
             )).catch(function (error) {
                 console.log(error);
             });
+        },
+
+        sortProducts(){
+
+            
+
         },
 
         getProducts() {

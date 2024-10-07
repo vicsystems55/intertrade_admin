@@ -39,7 +39,9 @@ class StockController extends Controller
 
         // return $total;
 
-        $products = Product::has('stock')->with('stock')->get();
+        $products = Product::has('stock')->with('stock')->orderBy('product_category_id', 'asc')->get();
+
+        // return $products;
 
         $total_stock = [];
 

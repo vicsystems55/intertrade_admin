@@ -271,6 +271,7 @@ Route::group(['middleware' => ['auth']], function () {
 // all get
 
 Route::get('/media', [FilemanagerController::class, 'media'])->name('media');
+
 Route::post('/removeMedia', [FilemanagerController::class, 'removeMedia'])->name('media.delete');
 
 
