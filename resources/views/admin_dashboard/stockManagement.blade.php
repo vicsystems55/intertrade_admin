@@ -116,10 +116,10 @@
                         <p>In Stock</p>
                     </div>
                     <div class="col-1">
-                        <h6 class="text-danger">{{$product->stock->where('type', 'out')->sum('quantity') * (-1)}}</h6>
+                        <h6 class="text-danger"><i class="bx bx-share"></i> {{$product->stock->where('type', 'out')->sum('quantity') * (-1)}}</h6>
                     </div>
                     <div class="col-1">
-                        <h6 class="text-success">{{
+                        <h6 class="text-success"><i class="bx bx-archive-in"></i>{{
 
                         $product->stock->where('type', 'in')->sum('quantity') + $product->stock->where('type', 'out')->sum('quantity')
 
