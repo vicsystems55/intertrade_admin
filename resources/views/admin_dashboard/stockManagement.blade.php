@@ -112,6 +112,7 @@
                     </div>
                     <div class="col-3">
                         <h6>{{$product->name}}</h6>
+                        <span class="badge bg-primary rounded-pill">{{$product->category->name}}</span>
                         <p>In Stock</p>
                     </div>
                     <div class="col-1">
