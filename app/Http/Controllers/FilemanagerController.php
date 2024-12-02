@@ -34,14 +34,27 @@ class FilemanagerController extends Controller
 
     public function mediaCategory($id)
     {
+
+
+        $media_category =  MediaCategory::find($id);
+
+        $mediaIds = MediaBankCategory::latest()->where('media_category_id', $id)->get()->pluck('media_bank_id');
+
+        // return $mediaIds;
+
+        $media = MediaBank::latest()->whereIn('id', $mediaIds)->paginate(20);
+
+        // return $media;
         # code...
 
-        $media_category = MediaCategory::where('id', $id)->with('mediaCategory.mediaFiles.uploadedBy')->first();
+        // $media_category = MediaCategory::where('id', $id)->with('mediaCategory.mediaFiles.uploadedBy')->first();
+
+
 
         // return $media_category;
 
 
-        return view('filemanager.category', compact(['media_category']));
+        return view('filemanager.category', compact(['media', 'media_category']));
 
 
     }
@@ -145,7 +158,7 @@ class FilemanagerController extends Controller
         // try {
             //code...
 
-            
+
 
             $data=[
                 'project_title' => Project::find($request->project_id)->title??'Project 1',
