@@ -42,7 +42,7 @@ class FilemanagerController extends Controller
 
         // return $mediaIds;
 
-        $media = MediaBank::latest()->whereIn('id', $mediaIds)->paginate(20);
+        $media = MediaBank::whereIn('id', $mediaIds)->latest()->paginate(20);
 
         // return $media;
         # code...
