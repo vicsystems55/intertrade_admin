@@ -17,9 +17,10 @@ use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\CashRequestController;
 
+use App\Http\Controllers\FilemanagerController;
+
+
 use App\Http\Controllers\InvoiceLineController;
-
-
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\TpsaNotificationController;
@@ -64,6 +65,11 @@ Route::get('/update_project_admin', [ProjectController::class, 'update_project_a
 Route::get('/project-reports', [ProjectController::class, 'project_reports']);
 
 Route::post('/update-report-line', [ProjectController::class, 'update_report_line']);
+
+Route::post('/save-folder-name', [FilemanagerController::class, 'renameFolder']);
+
+
+
 
 // fetch sales records
 Route::get('/sales-records', [InvoiceController::class, 'salesRecords']);

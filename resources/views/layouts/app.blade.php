@@ -47,6 +47,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ config('app.url') }}assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.css" integrity="sha512-j+idvE15yGD+P0xIk4S6BDPdVT3PbJFkR6Ap6M6EBIbkTcD+E/2GJ/JYkMRHycfgkdKbn+wKaiPswUCZVNR9Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>InterTrade Admin</title>
 </head>
@@ -242,6 +244,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- <script src="{{asset('js/app.js')}}"></script> --}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/dist/boxicons.js" integrity="sha512-Dm5UxqUSgNd93XG7eseoOrScyM1BVs65GrwmavP0D0DujOA8mjiBfyj71wmI2VQZKnnZQsSWWsxDKNiQIqk8sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 </body>

@@ -181,7 +181,7 @@
            </a>
     </li>
 
-    {{-- <li>
+     <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon"><i class="bx bx-category"></i>
             </div>
@@ -196,7 +196,7 @@
             </li>
 
         </ul>
-    </li> --}}
+    </li>
 
     <li class="menu-label">Data Center</li>
 

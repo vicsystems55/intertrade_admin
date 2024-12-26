@@ -315,6 +315,13 @@ Route::get('/admin/payroll-settings', [SuperAdminPageController::class, 'payroll
 
 Route::get('/admin/file-manager', [SuperAdminPageController::class, 'file_manager'])->name('admin.file_manager')->middleware('auth');
 
+Route::post('/file-manager/create-folder', [FileManagerController::class, 'createFolder']);
+
+Route::get('/search-directory', [FileManagerController::class, 'searchFilesAndFolders']);
+
+
+Route::post('/file-manager/upload-file', [FileManagerController::class, 'uploadFile']);
+
 Route::get('/admin/settings', [SuperAdminPageController::class, 'settings'])->name('admin.settings')->middleware('auth');
 
 Route::post('/admin/generate-schedule', [PayrollController::class, 'generateSchedule'])->middleware('auth');

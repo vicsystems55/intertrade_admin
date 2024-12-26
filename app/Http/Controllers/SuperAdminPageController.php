@@ -42,12 +42,78 @@ use App\Models\InstallationSchedule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmployeePaycheckSummary;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 
 
 class SuperAdminPageController extends Controller
 {
     //
+
+    public function file_manager(Request $request)
+    {
+        $path = $request->get('path', '/');
+        $disk = Storage::disk('user_files');
+
+        // Get subfolders
+        $folders = collect($disk->directories($path))->map(function ($folder) use ($disk) {
+            return [
+                'name' => basename($folder),
+                'path' => $folder,
+                'size' => $this->getFolderSize($folder, $disk), // Get folder size
+            ];
+        });
+
+        // Get files
+        $files = collect($disk->files($path))->map(function ($file) use ($disk) {
+            return [
+                'name' => basename($file),
+                'path' => $file,
+                'size' => $disk->size($file), // Get file size
+            ];
+        });
+
+        // Breadcrumbs for navigation
+        $breadcrumbs = $this->getBreadcrumbs($path);
+
+        // return $folders;
+
+        return view('superadmin_dashboard.file_manager', compact('folders', 'files', 'path', 'breadcrumbs'));
+    }
+
+    /**
+     * Calculate the total size of a folder recursively.
+     *
+     * @param string $folder
+     * @param \Illuminate\Contracts\Filesystem\Filesystem $disk
+     * @return int
+     */
+    protected function getFolderSize($folder, $disk)
+    {
+        $files = $disk->allFiles($folder); // Get all files within the folder
+        $totalSize = 0;
+
+        foreach ($files as $file) {
+            $totalSize += $disk->size($file); // Add file size
+        }
+
+        return $totalSize;
+    }
+
+    private function getBreadcrumbs($path)
+    {
+        $breadcrumbs = [];
+        $segments = explode('/', trim($path, '/'));
+
+        foreach ($segments as $index => $segment) {
+            $breadcrumbs[] = [
+                'name' => $segment,
+                'path' => implode('/', array_slice($segments, 0, $index + 1)),
+            ];
+        }
+
+        return $breadcrumbs;
+    }
 
     public function spo_reports()
     {
@@ -56,6 +122,8 @@ class SuperAdminPageController extends Controller
 
         return view('genral');
     }
+
+
 
     public function index()
     {
@@ -392,9 +460,16 @@ class SuperAdminPageController extends Controller
 
     }
 
-    public function file_manager(){
+    public function file_managerr(Request $request){
 
-        return view('superadmin_dashboard.file_manager');
+        $idKey = $request->query('idkey');
+        $folderName = $request->query('folderName');
+
+
+        return view('superadmin_dashboard.file_manager', [
+            'idKey' => $idKey,
+            'folderName' => $folderName
+        ]);
 
     }
 

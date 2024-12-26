@@ -1,16 +1,18 @@
 <template>
    <div class="page-content">
 				<!--breadcrumb-->
-
-                <marquee behavior="" direction="">This page is under construction..</marquee>
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 					<div class="breadcrumb-title pe-3">Applications</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item folder"  @click="returnHome()" ><i class="bx bx-home-alt"></i>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">File Manager</li>
+								<li class="breadcrumb-item active folder" aria-current="page" @click="returnHome()" >{{ currentMenuName }}</li>
+								<li v-if="levelOne" class="breadcrumb-item active folder" aria-current="page" @click="returnHome()" >{{ leveOneName }}</li>
+
+
+
 							</ol>
 						</nav>
 					</div>
@@ -32,7 +34,7 @@
 					<div class="col-12 col-lg-3">
 						<div class="card">
 							<div class="card-body">
-								<div class="d-grid"> <a href="javascript:;" class="btn btn-primary">+ Add File</a>
+								<div class="d-grid"> <button class="btn btn-primary" @click="createFolder()">+ Add File</button>
 								</div>
 								<h5 class="my-3">My Drive</h5>
 								<div class="fm-menu">
@@ -120,7 +122,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="row mt-3">
+								<!-- <div class="row mt-3">
 									<div class="col-12 col-lg-4">
 										<div class="card shadow-none border radius-15">
 											<div class="card-body">
@@ -175,24 +177,32 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<!--end row-->
-								<h5>Folders</h5>
-								<div class="row mt-3">
+								<h5 class="py-3"> {{ folderTitle }}</h5>
+								<div style="height: 340px;" v-if="isSingle" class="sig">
+
+
+
+								</div>
+                                <div class="single" v-else>
+                                    <div class="row mt-3">
 									<div class="col-12 col-lg-4">
-										<div class="card shadow-none border radius-15">
+										<div class="folder card shadow-none border radius-15">
 											<div class="card-body">
 												<div class="d-flex align-items-center">
 													<div class="font-30 text-primary"><i class='bx bxs-folder'></i>
 													</div>
 													<div class="user-groups ms-auto">
-														<img src="assets/images/avatars/avatar-1.png" width="35" height="35" class="rounded-circle" alt="" />
-														<img src="assets/images/avatars/avatar-2.png" width="35" height="35" class="rounded-circle" alt="" />
+														<img src="/assets/images/avatars/avatar-1.png" width="35" height="35" class="rounded-circle" alt="" />
+														<img src="/assets/images/avatars/avatar-2.png" width="35" height="35" class="rounded-circle" alt="" />
 													</div>
 													<div class="user-plus">+</div>
 												</div>
-												<h6 class="mb-0 text-primary">Analytics</h6>
-												<small>15 files</small>
+
+												<h6 @click="navigate('Finance')" class="mb-0 text-primary">Finance</h6>
+
+												<small>0 files</small>
 											</div>
 										</div>
 									</div>
@@ -203,30 +213,17 @@
 													<div class="font-30 text-primary"><i class='bx bxs-folder'></i>
 													</div>
 													<div class="user-groups ms-auto">
-														<img src="assets/images/avatars/avatar-4.png" width="35" height="35" class="rounded-circle" alt="" />
+														<img src="/assets/images/avatars/avatar-4.png" width="35" height="35" class="rounded-circle" alt="" />
 													</div>
 												</div>
-												<h6 class="mb-0 text-primary">Assets</h6>
-												<small>345 files</small>
+
+												<h6 @click="navigate('Administration')"  class="mb-0 text-primary folder">Administration</h6>
+
+												<small>5 files</small>
 											</div>
 										</div>
 									</div>
-									<div class="col-12 col-lg-4">
-										<div class="card shadow-none border radius-15">
-											<div class="card-body">
-												<div class="d-flex align-items-center">
-													<div class="font-30 text-primary"><i class='bx bxs-folder'></i>
-													</div>
-													<div class="user-groups ms-auto">
-														<img src="assets/images/avatars/avatar-7.png" width="35" height="35" class="rounded-circle" alt="" />
-														<img src="assets/images/avatars/avatar-8.png" width="35" height="35" class="rounded-circle" alt="" />
-													</div>
-												</div>
-												<h6 class="mb-0 text-primary">Marketing</h6>
-												<small>143 files</small>
-											</div>
-										</div>
-									</div>
+
 								</div>
 								<!--end row-->
 								<div class="d-flex align-items-center">
@@ -261,113 +258,14 @@
 												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
 												</td>
 											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file me-2 font-24 text-primary'></i>
-														</div>
-														<div class="font-weight-bold text-primary">How to Create a Case Study</div>
-													</div>
-												</td>
-												<td>3 members</td>
-												<td>Jun 12, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file me-2 font-24 text-primary'></i>
-														</div>
-														<div class="font-weight-bold text-primary">Landing Page Structure</div>
-													</div>
-												</td>
-												<td>10 members</td>
-												<td>Jul 17, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file-pdf me-2 font-24 text-danger'></i>
-														</div>
-														<div class="font-weight-bold text-danger">Meeting Report</div>
-													</div>
-												</td>
-												<td>5 members</td>
-												<td>Aug 28, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file me-2 font-24 text-primary'></i>
-														</div>
-														<div class="font-weight-bold text-primary">Project Documents</div>
-													</div>
-												</td>
-												<td>Only you</td>
-												<td>Aug 17, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file-doc me-2 font-24 text-success'></i>
-														</div>
-														<div class="font-weight-bold text-success">Review Checklist Template</div>
-													</div>
-												</td>
-												<td>7 members</td>
-												<td>Sep 8, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file me-2 font-24 text-primary'></i>
-														</div>
-														<div class="font-weight-bold text-primary">How to Create a Case Study</div>
-													</div>
-												</td>
-												<td>3 members</td>
-												<td>Jun 12, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file me-2 font-24 text-primary'></i>
-														</div>
-														<div class="font-weight-bold text-primary">Landing Page Structure</div>
-													</div>
-												</td>
-												<td>10 members</td>
-												<td>Jul 17, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div><i class='bx bxs-file-doc me-2 font-24 text-success'></i>
-														</div>
-														<div class="font-weight-bold text-success">Review Checklist Template</div>
-													</div>
-												</td>
-												<td>7 members</td>
-												<td>Sep 8, 2019</td>
-												<td><i class='bx bx-dots-horizontal-rounded font-24'></i>
-												</td>
-											</tr>
+
+
+
+
 										</tbody>
 									</table>
 								</div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -377,6 +275,63 @@
 </template>
 <script>
 export default {
+data() {
+    return {
 
+        params: this.idkey,
+        isSingle: false,
+        folderTitle: '',
+		currentMenuName: 'Home',
+
+    }
+},
+
+mounted() {
+
+    this.loaded()
+
+},
+
+methods: {
+
+    navigate(folderName){
+
+        this.isSingle = true
+        this.folderTitle = folderName
+
+    },
+
+    createFolder(){
+
+        
+
+    },
+
+
+	returnHome(){
+
+		this.isSingle = false;
+		folderTitle="Home"
+
+	},
+
+    loaded(){
+        if (this.idkey == 'single') {
+
+            this.isSingle = true;
+
+        }
+        console.log('logs');
+    },
+},
+
+
+props: ['idkey', 'foldername'],
 }
 </script>
+
+<style>
+.folder:hover{
+    cursor: pointer;
+}
+</style>
