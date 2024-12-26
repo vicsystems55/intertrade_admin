@@ -243,6 +243,7 @@
 
                                                         </div>
                                                         <h6 class="mb-0 text-primary">{{ basename($file['name']) }}</h6>
+                                                        
                                                         <small>{{\App\Helpers\Helpers::formatSizeUnits($file['size'])}}</small>
                                                     </div>
                                                 </div>
