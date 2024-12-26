@@ -215,7 +215,7 @@
                                                             <button class="btn btn-sm btn-primary save-folder-name d-none">Save</button>
                                                         </div>
 
-                                                        <small>{{\App\Helpers\Helpers::formatSizeUnits($folder['size'])}}</small>
+                                                        <small>{{formatSizeUnits($folder['size'])}}</small>
                                                     </div>
                                                 </div>
                                             </a>
@@ -260,6 +260,8 @@
                             </div>
                                     <!-- Upload File -->
                                     <div style="width: 330px" class="file mx-auto">
+
+                                        
 
                                         <form action="{{ url('/file-manager/upload-file') }}" method="POST"
                                             enctype="multipart/form-data">
