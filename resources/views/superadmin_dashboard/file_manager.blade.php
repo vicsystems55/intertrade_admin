@@ -236,14 +236,14 @@
                                                                 <img src="assets/images/avatars/avatar-1.png"
                                                                     width="35" height="35" class="rounded-circle"
                                                                     alt="" />
-                                                                <img src="assets/images/avatars/avatar-2.png"
+                                                                {{-- <img src="assets/images/avatars/avatar-2.png"
                                                                     width="35" height="35" class="rounded-circle"
-                                                                    alt="" />
+                                                                    alt="" /> --}}
                                                             </div>
 
                                                         </div>
                                                         <h6 class="mb-0 text-primary">{{ basename($file['name']) }}</h6>
-                                                        
+
                                                         <small>{{\App\Helpers\Helpers::formatSizeUnits($file['size'])}}</small>
                                                     </div>
                                                 </div>
