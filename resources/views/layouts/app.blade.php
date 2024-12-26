@@ -1,5 +1,6 @@
 <!doctype html>
 
+
 @auth
 
     @if (Auth::user()->role == 'superadmin')
