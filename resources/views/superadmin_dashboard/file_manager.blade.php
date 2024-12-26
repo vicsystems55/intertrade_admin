@@ -215,7 +215,7 @@
                                                             <button class="btn btn-sm btn-primary save-folder-name d-none">Save</button>
                                                         </div>
 
-                                                        <small>{{formatSizeUnits($folder['size'])}}</small>
+                                                        <small>{{\App\Helpers\Helpers::formatSizeUnits($folder['size'])}}</small>
                                                     </div>
                                                 </div>
                                             </a>
@@ -243,7 +243,7 @@
 
                                                         </div>
                                                         <h6 class="mb-0 text-primary">{{ basename($file['name']) }}</h6>
-                                                        <small>{{formatSizeUnits($file['size'])}}</small>
+                                                        <small>{{\App\Helpers\Helpers::formatSizeUnits($file['size'])}}</small>
                                                     </div>
                                                 </div>
                                             </a>
