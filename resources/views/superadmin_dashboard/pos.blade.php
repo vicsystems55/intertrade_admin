@@ -8,7 +8,7 @@
 
         <h4>Sales Point.</h4>
 
-        {{-- <example-component appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"></example-component> --}}
+        <example-component appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"></example-component>
 
 
 
