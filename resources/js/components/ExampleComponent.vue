@@ -194,6 +194,8 @@
                         <div v-else class="p-2">
 
                             <div class="row">
+
+                                
                                 <div v-for="product in products" :key="product.id" class="col-lg-3 col-md-4 mx-auto">
                                     <div class="card" style="max-width: 300px;">
                                         <img style="max-height: 200px; max-width:300px; object-fit: cover;"
