@@ -9,7 +9,7 @@
                     <th>Product Name</th>
                     <th>Product Description</th>
                     <th>Category</th>
-                    <th>Price (N)</th>
+                    <th>Price (N  )</th>
                     <th></th>
 
                 </tr>
