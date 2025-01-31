@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+
     <!--start page wrapper -->
     <div class="page-content">
         <div class="page-content">
@@ -56,8 +58,7 @@
                                 <div class="list-group list-group-flush"> <a href="javascript:;"
                                         class="list-group-item py-1"><i class='bx bx-folder me-2'></i><span>All
                                             Files</span></a>
-                                    <a href="javascript:;" class="list-group-item py-1"><i
-                                            class='bx bx-devices me-2'></i><span>My Devices</span></a>
+
                                     <a href="javascript:;" class="list-group-item py-1"><i
                                             class='bx bx-analyse me-2'></i><span>Recents</span></a>
                                     <a href="javascript:;" class="list-group-item py-1"><i
@@ -169,19 +170,39 @@
                             </div>
 
                             <!--end row-->
-                            <h5 class="py-3">Folders</h5>
+                            <h5 class="py-3">Folders
+
+
+                            </h5>
                             <div style="min-height: 350px;" class="fol">
 
                                 <div class="row mt-3">
 
 
 
+
+
                                     @foreach ($folders as $folder)
 
                                         <div class="col-12 col-lg-4">
-                                            <a href="{{ url('/admin/file-manager?path=' . $folder['path']) }}">
                                                 <div class="card shadow border radius-15">
+
+
                                                     <div class="card-body">
+
+                                                        <div class="dropdown ms-auto">
+                                                            <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bx bx-dots-horizontal-rounded font-22"></i>
+                                                            </div>
+                                                            <ul class="dropdown-menu" style="position: absolute; inset: 0px auto auto 0px; margin: 0px;">
+                                                                <li><a class="dropdown-item" href="javascript:;">Copy</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:;">Move</a></li>
+                                                                <li>
+                                                                    <hr class="dropdown-divider">
+                                                                </li>
+                                                                <li><a class="dropdown-item text-danger" href="javascript:;">Delete</a></li>
+                                                            </ul>
+                                                        </div>
                                                         <a href="{{ url('/admin/file-manager?path=' . $folder['path']) }}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="font-30 text-primary">
@@ -218,7 +239,7 @@
                                                         <small>{{\App\Helpers\Helpers::formatSizeUnits($folder['size'])}}</small>
                                                     </div>
                                                 </div>
-                                            </a>
+
                                         </div>
 
                                     @endforeach
@@ -330,53 +351,6 @@
             <!--end row-->
         </div>
     </div>
-    <!--end page wrapper -->
-
-
-    {{-- <div class="d-none">
-        <h2>File Manager</h2>
-
-        <!-- Breadcrumbs -->
-        <nav>
-            @foreach ($breadcrumbs as $breadcrumb)
-                <a href="{{ url('/admin/file-manager?path=' . $breadcrumb['path']) }}">{{ $breadcrumb['name'] }}</a> /
-            @endforeach
-        </nav>
-
-        <!-- Folders -->
-        <h3>Folders</h3>
-        <ul>
-            @foreach ($folders as $folder)
-                <li><a href="{{ url('/admin/file-manager?path=' . $folder) }}">{{ basename($folder) }}</a></li>
-            @endforeach
-        </ul>
-
-        <!-- Files -->
-        <h3>Files</h3>
-        <ul>
-            @foreach ($files as $file)
-                <li>{{ basename($file) }}</li>
-            @endforeach
-        </ul>
-
-        <!-- Create Folder -->
-
-
-        <!-- Upload File -->
-        <form action="{{ url('/file-manager/upload-file') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="file" required>
-            <input type="hidden" name="path" value="{{ $path }}">
-            <button type="submit">Upload File</button>
-        </form>
-    </div> --}}
-
-    {{-- <file-manager-component
-idkey={{$idKey}}
-foldername={{$folderName}}
-
-></file-manager-component> --}}
-
 
 
 <script>

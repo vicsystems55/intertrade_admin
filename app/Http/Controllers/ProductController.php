@@ -21,8 +21,30 @@ class ProductController extends Controller
     public function index()
     {
         //
+        return Product::latest()->withSum('stock', 'quantity')->get();
+    }
 
-        return Product::withSum('stock', 'quantity')->get();
+
+    public function search(Request $request){
+
+
+        $products = Product::where('product_category_id', $request->productCategoryId)->latest()->get();
+
+        return $products;
+
+    }
+
+    public function searchKeyword(Request $request){
+
+       
+        $query = $request->input('searchKey'); // Get search query from request
+
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->get();
+
+        return $products;
+
     }
 
     public function create_product(Request $request){
@@ -56,8 +78,6 @@ class ProductController extends Controller
 
 
         return back()->with('msg2', 'New product regisered successfully.');
-
-
 
     }
 
@@ -98,8 +118,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
-
-
 
         Excel::import(new SiteImport, 'sites.xlsx');
     }

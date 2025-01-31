@@ -50,6 +50,14 @@
     </li>
 
     <li>
+        <a href="/staff/file-manager">
+            <div class="parent-icon"><i class='bx bx-folder-open'></i>
+            </div>
+            <div class="menu-title">File Manager</div>
+           </a>
+    </li>
+
+    <li>
         <a href="{{route('technician.notifications')}}">
             <div class="parent-icon"><i class='bx bx-bell'></i>
             </div>

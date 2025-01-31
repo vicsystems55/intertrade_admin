@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
     {
         //
 
-        return ProductCategory::get();
+        return ProductCategory::latest()->withCount('products')->get();
     }
 
     /**

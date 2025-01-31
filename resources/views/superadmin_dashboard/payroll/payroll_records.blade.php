@@ -5,7 +5,7 @@
 
     <div class="page-content">
              <!--breadcrumb-->
-				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+				<div class="page-breadcrumb  d-sm-flex align-items-center mb-3">
 					<div class="breadcrumb-title pe-3">Payroll</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
@@ -131,7 +131,7 @@
 
 
 								</tbody>
-								
+
 							</table>
 						</div>
 					</div>

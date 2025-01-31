@@ -131,6 +131,14 @@ Route::group(['middleware' => ['auth'],  'prefix' => 'staff'], function () {
 
     Route::get('/cash-request', [TechnicianPageController::class, 'cash_request'])->name('technician.cash_request');
 
+    Route::get('/file-manager', [SuperAdminPageController::class, 'file_manager'])->name('admin.file_manager')->middleware('auth');
+
+    Route::post('/file-manager/create-folder', [FileManagerController::class, 'createFolder']);
+
+    Route::get('/search-directory', [FileManagerController::class, 'searchFilesAndFolders']);
+
+    Route::post('/file-manager/upload-file', [FileManagerController::class, 'uploadFile']);
+
 
 
     Route::get('/reports', [TechnicianPageController::class, 'reports'])->name('technician.report');
@@ -318,7 +326,6 @@ Route::get('/admin/file-manager', [SuperAdminPageController::class, 'file_manage
 Route::post('/file-manager/create-folder', [FileManagerController::class, 'createFolder']);
 
 Route::get('/search-directory', [FileManagerController::class, 'searchFilesAndFolders']);
-
 
 Route::post('/file-manager/upload-file', [FileManagerController::class, 'uploadFile']);
 

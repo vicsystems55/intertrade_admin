@@ -52,6 +52,12 @@ Route::post('update-product-image', [ProductController::class, 'updateProductIma
 
 Route::resource('product-category', ProductCategoryController::class, ['name' => 'products.categories']);
 
+Route::get('products-search', [ProductController::class,'search']);
+
+Route::get('products-search-keyword', [ProductController::class,'searchKeyword']);
+
+
+
 Route::resource('customers', CustomerController::class, ['name' => 'cus']);
 
 Route::resource('invoices', InvoiceController::class, ['name' => 'invoices']);

@@ -11,4 +11,9 @@ class ProductCategory extends Model
 
     protected $guarded = [];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 }
