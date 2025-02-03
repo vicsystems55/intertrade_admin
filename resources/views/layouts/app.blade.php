@@ -120,7 +120,7 @@
         <!--start switcher-->
     </div>
 
-    <script src="{{ asset('js/app2.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!--end switcher-->
     <!-- Bootstrap JS -->
