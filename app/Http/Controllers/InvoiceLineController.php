@@ -88,10 +88,10 @@ class InvoiceLineController extends Controller
 
             ];
 
-            // Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
-            // Mail::to('felix@intertradeltd.biz')->send(new AccountNotificationMail($data));
-            // Mail::to('grace@intertradeltd.biz')->send(new AccountNotificationMail($data));
-            // Mail::to('eghosa@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            Mail::to('victor@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            Mail::to('felix@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            Mail::to('grace@intertradeltd.biz')->send(new AccountNotificationMail($data));
+            Mail::to('eghosa@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
             // Mail::to('ogedegbeejiro@intertradeltd.biz')->send(new AccountNotificationMail($data));
 
