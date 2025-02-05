@@ -76,7 +76,7 @@ class SuperAdminPageController extends Controller
         // Breadcrumbs for navigation
         $breadcrumbs = $this->getBreadcrumbs($path);
 
-        return $folders;
+        // return $folders;
 
         return view('superadmin_dashboard.file_manager', compact('folders', 'files', 'path', 'breadcrumbs'));
     }
