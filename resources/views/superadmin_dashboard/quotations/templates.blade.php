@@ -3,10 +3,11 @@
 @section('content')
 
 <div class="page-content">
-<h2>Import Solar Quotation Templates</h2>
-<div class="container card card-body col-md-5 mx-auto">
+<h3>Import Solar Quotation Templates</h3>
+<div class="col-md-4 mt-5">
 
-    @if(session('success'))
+    <div class="card card-body " style="margin-top: 140px;">
+        @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
@@ -23,11 +24,14 @@
     <form action="{{ route('import.solar.quotations') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="file" class="form-label">Upload Excel File</label>
+            <label for="file" class="form-label">Upload Excel File..</label>
             <input type="file" class="form-control" name="file" required>
         </div>
         <button type="submit" class="btn btn-primary">Import</button>
     </form>
+    </div>
+
+
 </div>
 
 <div class="page-content">

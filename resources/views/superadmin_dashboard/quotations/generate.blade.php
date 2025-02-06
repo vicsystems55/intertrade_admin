@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="page-content container mt-4">
-    <h1>Quotation Details</h1>
+<div class="page-content ">
+    <h3>Quotation Details</h3>
 
     <form action="{{ route('quotations.update') }}" method="POST">
         @csrf

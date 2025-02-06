@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="page-content container mt-4">
-    <h1>Installation Quotations</h1>
+<div class="page-content ">
+    <h3>Installation Quotations</h3>
 
     <table class="table table-bordered">
         <thead>
