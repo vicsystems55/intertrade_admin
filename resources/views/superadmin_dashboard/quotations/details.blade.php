@@ -162,7 +162,7 @@
 
                                 <h6>Bank Details:</h6>
                                 <p>Account Name: Inter-Trade Ltd.</p>
-                                <p>Account No.: 10025743996</p>
+                                <p>Account No.: 1025743996</p>
                                 <p>Bank Name: Uba</p>
                             </div>
                             <div class="tm_right_footer">
