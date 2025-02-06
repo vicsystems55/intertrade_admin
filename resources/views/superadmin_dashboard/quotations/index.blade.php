@@ -22,7 +22,7 @@
                     <td>{{ $quote->customer->company_name }}</td>
                     <td>{{ $quote->created_at->format('d M, Y') }}</td>
                     <td>{{ $quote->quotation_code }}</td>
-                    <td><a href="" class="btn btn-primary">view</a></td>
+                    <td><a href="{{route('quotations.view', ['customer_quotation_code' => $quote->customer_quotation_code])}}" class="btn btn-primary">view</a></td>
                 </tr>
             @empty
                 <tr>

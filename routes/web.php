@@ -346,6 +346,9 @@ Route::get('/create-quotation', [InstallationQuotationController::class, 'create
 
 Route::get('/gernerate-quotation', [InstallationQuotationController::class, 'generate'])->name('quotations.generate');
 
+Route::get('/view-quotation', [InstallationQuotationController::class, 'view_quotation'])->name('quotations.view');
+
+
 Route::post('/update-generated-quotation', [InstallationQuotationController::class, 'update_generated_quote'])->name('quotations.update');
 
 

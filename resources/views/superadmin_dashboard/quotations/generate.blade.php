@@ -64,7 +64,10 @@
                         <!-- Item Description -->
                         <td>
                             @if ($quotation->category == 'Main Component')
-                                {{ $quotation->item_description }}
+                            {{ $quotation->item_description }}
+                            <input type="hidden" name="quotations[{{ $quotation->id }}][description]"
+                            class="form-control description" value="{{ $quotation->item_description }}"
+                            data-id="{{ $quotation->id }}" >
                             @else
                                 <input type="text" name="quotations[{{ $quotation->id }}][description]"
                                        class="form-control description" value="{{ $quotation->item_description }}"
@@ -87,6 +90,9 @@
                         <td>
                             @if ($quotation->category == 'Main Component')
                                 <!-- Empty cell for main component -->
+                                <input type="hidden" name="quotations[{{ $quotation->id }}][unit_price]"
+                                class="form-control unit_price" value="{{ $quotation->total_price }}" step="50.00" min="0"
+                                onchange="updateTotal(this)" data-id="{{ $quotation->id }}">
                             @else
                                 <input type="number" name="quotations[{{ $quotation->id }}][unit_price]"
                                        class="form-control unit_price" value="{{ $quotation->unit_price }}" step="50.00" min="0"

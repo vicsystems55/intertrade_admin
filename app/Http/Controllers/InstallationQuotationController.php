@@ -80,10 +80,10 @@ class InstallationQuotationController extends Controller
                     'quotation_code' => $request->quotation_code,
                     'customer_quotation_code' =>  $customer_quotation_code,
                     'system_capacity' => $request->system_capacity,
-                    'item_description' => $quotationData['description']??'',
-                    'quantity' => $quotationData['quantity']??0,
-                    'unit_price' => $quotationData['unit_price']??0,
-                    'total_price' => $quotationData['quantity']??0 * ($quotationData['unit_price'])??0,
+                    'item_description' => $quotationData['description'],
+                    'quantity' => $quotationData['quantity']??1,
+                    'unit_price' => $quotationData['unit_price'],
+                    'total_price' => $quotationData['quantity']??1 * ($quotationData['unit_price']),
                     'total_cost' => 0,
                     'category' => 'Main',
 
@@ -97,6 +97,50 @@ class InstallationQuotationController extends Controller
         }
 
         return redirect()->route('quotations.fetch')->with('success', 'Quotation updated successfully!');
+    }
+
+    public function view_quotation(Request $request){
+
+        $quotation_data = GeneratedQuation::where('customer_quotation_code', $request->customer_quotation_code);
+
+        $quotation_details = $quotation_data->get();
+
+        $customer = GeneratedQuation::with('customer') // Load customer relationship
+        ->select('customer_id', 'customer_quotation_code', 'quotation_code', 'created_at')
+        ->groupBy('customer_id', 'customer_quotation_code', 'quotation_code', 'created_at')
+        ->orderBy('created_at', 'desc')
+        ->first();
+
+        // return $customer;
+        $customer_quotation_code = $customer->customer_quotation_code;
+
+
+
+        // Retrieve specific costs
+        $total_material_cost = GeneratedQuation::where('customer_quotation_code', $request->customer_quotation_code)->where('item_description', 'Total Installtion material cost')->first();
+        $total_material_cost_price = $total_material_cost ? $total_material_cost->total_price : 0;
+
+        $installation_cost = GeneratedQuation::where('customer_quotation_code', $request->customer_quotation_code)->where('item_description', 'Installation')->first();
+        $installation_cost_price = $installation_cost ? $installation_cost->unit_price : 0;
+
+        $total_cost = GeneratedQuation::where('customer_quotation_code', $request->customer_quotation_code)->where('item_description', 'Total')->first();
+        $total_cost_price = $total_cost ? $total_cost->unit_price : 0;
+
+        $grand_total = GeneratedQuation::where('customer_quotation_code', $request->customer_quotation_code)->where('item_description', 'Total Cost of Installation')->first();
+        $grand_total_price = $grand_total ? $grand_total->total_price : 0;
+
+        // return $installation_cost_price;
+
+
+        return view('superadmin_dashboard.quotations.details',
+        compact('quotation_details',
+                'customer',
+                'customer_quotation_code',
+                'total_material_cost_price',
+                'installation_cost_price',
+                'total_cost_price',
+                'grand_total_price'));
+
     }
     public function quotations()
     {
