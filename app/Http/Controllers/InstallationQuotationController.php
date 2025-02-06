@@ -105,6 +105,8 @@ class InstallationQuotationController extends Controller
 
         $quotation_details = $quotation_data->get();
 
+        // return $quotation_details;
+
         $customer = GeneratedQuation::with('customer') // Load customer relationship
         ->select('customer_id', 'customer_quotation_code', 'quotation_code', 'created_at')
         ->groupBy('customer_id', 'customer_quotation_code', 'quotation_code', 'created_at')

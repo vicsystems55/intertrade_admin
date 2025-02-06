@@ -28,7 +28,9 @@
                             </div>
                         </div>
                         <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                            <div class="tm_f50 tm_text_uppercase tm_white_color">Quotation</div>
+                            <div class="tm_f25 tm_text_uppercase tm_white_color">Quotation</div>
+                            <div class="tm_f25 tm_text_uppercase tm_white_color">For {{$quotation_details[0]->system_capacity}} Kw System</div>
+
                         </div>
                         <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                     </div>
@@ -156,10 +158,16 @@
                         </div>
 
                         <div class="tm_invoice_footer tm_type1">
-                            <div class="tm_left_footer"></div>
+                            <div class="tm_left_footer">
+
+                                <h6>Bank Details:</h6>
+                                <p>Account Name: Inter-Trade Ltd.</p>
+                                <p>Account No.: 10025743996</p>
+                                <p>Bank Name: Uba</p>
+                            </div>
                             <div class="tm_right_footer">
                                 <div class="tm_sig tm_text_center">
-                                    {{-- <img style="width: 150px;" src="{{asset('invoice')}}/assets/img/sign.png" alt="Sign"> --}}
+                                    <img style="width: 150px;" src="{{asset('invoice')}}/assets/img/sign.png" alt="Sign">
                                     <p class="tm_m0 tm_ternary_color">...</p>
                                     <p class="tm_m0 tm_f16 tm_primary_color">Management</p>
                                 </div>
