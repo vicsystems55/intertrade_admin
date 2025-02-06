@@ -165,6 +165,22 @@
            </a>
     </li>
     <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon"><i class="bx bx-category"></i>
+            </div>
+            <div class="menu-title">Quotations </div>
+        </a>
+        <ul>
+            <li> <a href="{{route('quotations.create')}}"><i class="bx bx-right-arrow-alt"></i>Create new  </a>
+            </li>
+            <li> <a href="{{route('quotations.fetch')}}"><i class="bx bx-right-arrow-alt"></i>All Quotes </a>
+            </li>
+            <li> <a href="{{route('quotations.templates')}}"><i class="bx bx-right-arrow-alt"></i>Templates </a>
+            </li>
+
+        </ul>
+    </li>
+    <li>
         <a href="{{route('admin.transactions')}}">
             <div class="parent-icon"><i class='bx bx-cog'></i>
             </div>

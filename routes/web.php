@@ -37,6 +37,7 @@ use App\Http\Controllers\ProjectMilestoneController;
 use App\Http\Controllers\EmployeePaycheckItemController;
 use App\Http\Controllers\InstallationScheduleController;
 use App\Http\Controllers\EmployeePaycheckSummaryController;
+use App\Http\Controllers\InstallationQuotationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -338,6 +339,29 @@ Route::get('/admin/generate-paychecks', [PayrollController::class, 'generatePayc
 Route::get('/admin/view-employee-summary/{user_id}', [EmployeePaycheckSummaryController::class, 'generatePaycheckSummary']);
 
 Route::get('/cash_request_details/{id}', [SuperAdminPageController::class, 'cash_request_details'])->name('cash_request_details');
+
+// installatin quotations
+
+Route::get('/create-quotation', [InstallationQuotationController::class, 'create'])->name('quotations.create');
+
+Route::get('/gernerate-quotation', [InstallationQuotationController::class, 'generate'])->name('quotations.generate');
+
+Route::post('/update-generated-quotation', [InstallationQuotationController::class, 'update_generated_quote'])->name('quotations.update');
+
+
+
+Route::get('/quotations', [InstallationQuotationController::class, 'quotations'])->name('quotations.fetch');
+
+Route::get('/quotation-templates', [InstallationQuotationController::class, 'quotation_templates'])->name('quotations.templates');
+
+Route::post('/imort-template', [InstallationQuotationController::class, 'import_template'])->name('import.solar.quotations');
+
+
+
+
+
+
+
 
 Route::get('/invoice/{invoice_id}', [InvoiceController::class, 'invoice'])->name('invoice.view');
 

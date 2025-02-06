@@ -15,10 +15,10 @@
 								<div class="border p-4 rounded">
 									<div class="text-center">
 										<h3 class="">Sign in</h3>
-										
+
 									</div>
-									
-									
+
+
 									<div class="form-body">
 										<form class="row g-3">
 											<div class="col-12">
@@ -37,7 +37,7 @@
 													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
 												</div>
 											</div>
-											{{-- <div class="col-md-6 text-end">	
+											{{-- <div class="col-md-6 text-end">
 												<a href="authentication-forgot-password.html">Forgot Password ?</a>
 											</div> --}}
 											<div class="col-12">
@@ -56,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-		
+
 @endsection
 
 

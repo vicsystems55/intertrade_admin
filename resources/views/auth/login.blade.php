@@ -10,22 +10,22 @@
 						<div class="mb-4 text-center">
 							<img src="{{config('app.url')}}assets/images/logo-img.png" width="180" alt="" />
 						</div>
-						<div class="card">
+						<div class="card mx-auto" style="max-width: 400px;">
 							<div class="card-body">
 								<div class="border p-4 rounded">
 									<div class="text-center">
 										<h3 class="">Sign in</h3>
-										
+
 									</div>
-                                    
+
                                     @if ($errors->any())
                                         @foreach ($errors->all() as $error)
                                             <p class="alert alert-warning">{{$error}}</p>
                                         @endforeach
                                     @endif
 
-									
-									
+
+
 									<div class="form-body">
 										<form class="row g-3" method="post" action="{{route('login')}}">
                                             @csrf
@@ -45,7 +45,7 @@
 													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
 												</div>
 											</div>
-											{{-- <div class="col-md-6 text-end">	
+											{{-- <div class="col-md-6 text-end">
 												<a href="authentication-forgot-password.html">Forgot Password ?</a>
 											</div> --}}
 											<div class="col-12">
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-		
+
 @endsection
 
 
