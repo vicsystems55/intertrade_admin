@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ApiAuthController;
 
+
+use App\Http\Controllers\InvoiceController;
 
 use App\Http\Controllers\ProductController;
 
@@ -17,9 +19,8 @@ use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\CashRequestController;
 
+
 use App\Http\Controllers\FilemanagerController;
-
-
 use App\Http\Controllers\InvoiceLineController;
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\ProductCategoryController;
@@ -79,6 +80,19 @@ Route::post('/save-folder-name', [FilemanagerController::class, 'renameFolder'])
 
 // fetch sales records
 Route::get('/sales-records', [InvoiceController::class, 'salesRecords']);
+
+
+// mobile app functions
+Route::post('/registerp', [ApiAuthController::class, 'register']);
+
+Route::post('/loginp', [ApiAuthController::class, 'login']);
+
+Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
+
+Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
+
+Route::post('/update-password', [ApiAuthController::class, 'updatePassword'])->middleware('auth:sanctum');
+
 
 
 
