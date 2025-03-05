@@ -22,6 +22,7 @@ use App\Http\Controllers\CashRequestController;
 
 use App\Http\Controllers\FilemanagerController;
 use App\Http\Controllers\InvoiceLineController;
+use App\Http\Controllers\LoadAuditGenerationController;
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\TpsaNotificationController;
@@ -92,6 +93,12 @@ Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
 Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
 
 Route::post('/update-password', [ApiAuthController::class, 'updatePassword'])->middleware('auth:sanctum');
+
+
+// generate audit
+
+Route::post('/generate-audit', [LoadAuditGenerationController::class, 'generateAudit'])->middleware('auth:santum');
+
 
 
 
