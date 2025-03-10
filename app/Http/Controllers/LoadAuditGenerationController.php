@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class LoadAuditGenerationController extends Controller
 {
-public function calculate(Request $request)
+public function generateAudit(Request $request)
 {
     // Validate incoming request
     $validated = $request->validate([
