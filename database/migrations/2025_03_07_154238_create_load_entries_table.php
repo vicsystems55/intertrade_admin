@@ -14,15 +14,17 @@ class CreateLoadEntriesTable extends Migration
     public function up() {
         Schema::create('load_entries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('technician_request_id')->constrained()->onDelete('cascade'); // Request ID
+            $table->foreignId('load_audit_generation_id')->constrained()->onDelete('cascade'); // Request ID
             $table->string('equipment_name');
             $table->integer('quantity');
-            $table->decimal('max_power', 10, 2); // In watts
-            $table->integer('day_hours_usage');
-            $table->integer('night_hours_usage');
+            $table->decimal('power', 10, 2); // In watts
+            $table->integer('hours_day');
+            $table->integer('hours_night');
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.
