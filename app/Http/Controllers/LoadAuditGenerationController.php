@@ -101,7 +101,7 @@ public function generateAudit(Request $request)
     // Save Load Entries
     foreach ($validated['loadEntries'] as $entry) {
         LoadEntry::create([
-            'technician_request_id' => $technicianRequest->id,
+            'load_audit_generation_id' => $technicianRequest->id,
             'equipment_name' => $entry['name'],
             'quantity' => $entry['quantity'],
             'power' => $entry['power'],
