@@ -7,7 +7,7 @@ use App\Models\TechnicianRequest;
 use App\Models\LoadEntry;
 use Illuminate\Support\Str;
 
-class SolarCalculatorController extends Controller
+class LoadAuditGenerationController extends Controller
 {
 public function calculate(Request $request)
 {
