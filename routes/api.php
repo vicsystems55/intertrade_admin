@@ -99,6 +99,8 @@ Route::post('/update-password', [ApiAuthController::class, 'updatePassword'])->m
 
 Route::post('/generate-audit', [LoadAuditGenerationController::class, 'generateAudit'])->middleware('auth:sanctum');
 
+Route::get('/load-audits', [LoadAuditGenerationController::class, 'loadAudits'])->middleware('auth:sanctum');
+
 
 
 

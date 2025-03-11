@@ -10,4 +10,8 @@ class LoadAuditGeneration extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function loadEntries(){
+        return $this->hasMany(LoadEntry::class);
+    }
 }

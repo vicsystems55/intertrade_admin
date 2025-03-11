@@ -17,7 +17,7 @@ class CreateLoadAuditGenerationsTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('request_code')->unique();
             $table->string('region_selection');
-            $table->integer('preferred_backup_time');
+            $table->integer('preferred_backup_time')->nullable();
             $table->string('solar_panel_size_preference');
             $table->string('inverter_type_selection');
             $table->decimal('total_max_power', 10, 2);
