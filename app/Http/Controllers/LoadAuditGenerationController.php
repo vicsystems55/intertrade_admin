@@ -128,8 +128,9 @@ public function loadAudits(Request $request)
     $userId = $request->user()->id;
 
     $audits = LoadAuditGeneration::where('user_id', $userId)
-                ->with('loadEntries') // Ensure LoadEntry relationship is defined in LoadAuditGeneration model
-                ->get();
+    ->whereHas('loadEntries') // Ensures only audits with loadEntries are retrieved
+    ->with('loadEntries') // Eager load the loadEntries relationship
+    ->get();
 
     return response()->json($audits);
 }
