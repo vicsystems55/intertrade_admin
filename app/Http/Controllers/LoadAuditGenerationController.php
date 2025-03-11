@@ -125,7 +125,7 @@ public function generateAudit(Request $request)
 
 public function loadAudits(Request $request)
 {
-    $userId = $request->user()->id();
+    $userId = $request->user()->id;
 
     $audits = LoadAuditGeneration::where('user_id', $userId)
                 ->with('loadEntries') // Ensure LoadEntry relationship is defined in LoadAuditGeneration model
