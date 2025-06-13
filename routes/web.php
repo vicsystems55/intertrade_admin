@@ -316,6 +316,9 @@ Route::get('/admin/product-categories', [SuperAdminPageController::class, 'produ
 
 Route::get('/admin/transactions', [SuperAdminPageController::class, 'transactions'])->name('admin.transactions')->middleware('auth');
 
+Route::get('/admin/logistics', [SuperAdminPageController::class, 'logistics'])->name('admin.logistics')->middleware('auth');
+
+
 Route::get('/admin/payroll-records', [SuperAdminPageController::class, 'payroll_records'])->middleware('auth');
 
 Route::get('/admin/loans', [SuperAdminPageController::class, 'loans'])->middleware('auth');

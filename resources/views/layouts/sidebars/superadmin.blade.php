@@ -187,6 +187,15 @@
             <div class="menu-title">Transactions </div>
            </a>
     </li>
+
+
+        <li>
+        <a href="{{route('admin.logistics')}}">
+            <div class="parent-icon"><i class='bx bx-cog'></i>
+            </div>
+            <div class="menu-title">Logistics </div>
+           </a>
+    </li>
     <li class="menu-label">Accounts</li>
 
     <li>

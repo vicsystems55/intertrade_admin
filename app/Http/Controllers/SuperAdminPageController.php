@@ -124,6 +124,16 @@ class SuperAdminPageController extends Controller
     }
 
 
+    public function logistics(){
+
+  return view('superadmin_dashboard.logistics',[
+          
+        ]);
+
+
+    }
+
+
 
     public function index()
     {
