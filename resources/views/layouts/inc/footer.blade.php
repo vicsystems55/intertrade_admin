@@ -41,5 +41,5 @@
     </div>
   </div>
 <footer class="page-footer">
-    <p class="mb-0">Copyright © {{\Carbon\Carbon::now()->format('Y')}}. vicSystems Technologies Ltd.</p>
+    <p class="mb-0">Copyright © {{\Carbon\Carbon::now()->format('Y')}}. Inter-Trade Ltd.</p>
 </footer>

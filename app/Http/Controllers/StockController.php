@@ -15,65 +15,101 @@ use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class StockController extends Controller
 {
     //
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+    public function index(Request $request)
     {
-        //
+        $filter = $request->get('filter', 'all'); // default = all
 
-        $stocks = Stock::where('invoice_id', '!=', null )->with(['invoice','receiver'])->get();
+        // Base queries
+        $stocksQuery = Stock::whereNotNull('invoice_id')->with(['invoice', 'receiver']);
+        $ordersQuery = Invoice::whereNotNull('customer_id');
+        $customersQuery = Customer::query();
 
-        $total = Invoice::whereIn('id', $stocks->pluck('invoice_id'))->get()->sum('total_amount');
+        // Apply filter
+        switch ($filter) {
+            case 'last_week':
+                $start = Carbon::now()->subWeek()->startOfWeek();
+                $end   = Carbon::now()->subWeek()->endOfWeek();
+                $stocksQuery->whereBetween('created_at', [$start, $end]);
+                $ordersQuery->whereBetween('created_at', [$start, $end]);
+                $customersQuery->whereBetween('created_at', [$start, $end]);
+                break;
 
-        $orders = Invoice::where('customer_id','!=',null)->get();
+            case 'last_30_days':
+                $start = Carbon::now()->subDays(30);
+                $stocksQuery->where('created_at', '>=', $start);
+                $ordersQuery->where('created_at', '>=', $start);
+                $customersQuery->where('created_at', '>=', $start);
+                break;
 
-        $customers = Customer::get();
+            case 'last_60_days':
+                $start = Carbon::now()->subDays(60);
+                $stocksQuery->where('created_at', '>=', $start);
+                $ordersQuery->where('created_at', '>=', $start);
+                $customersQuery->where('created_at', '>=', $start);
+                break;
 
+            case 'last_month':
+                $start = Carbon::now()->subMonth()->startOfMonth();
+                $end   = Carbon::now()->subMonth()->endOfMonth();
+                $stocksQuery->whereBetween('created_at', [$start, $end]);
+                $ordersQuery->whereBetween('created_at', [$start, $end]);
+                $customersQuery->whereBetween('created_at', [$start, $end]);
+                break;
 
-
-        // return $total;
-
-        $products = Product::has('stock')->with(['stock','category'])->orderBy('product_category_id', 'asc')->get();
-
-        // return $products;
-
-        $total_stock = [];
-
-        foreach ($products as $product) {
-            # code...
-
-            $product_quantity = Stock::where('product_id', $product->id)->get()->sum('quantity');
-
-            $productStockSum = $product->price * $product_quantity;
-
-            array_push($total_stock, $productStockSum);
-
-
-
+            case 'all':
+            default:
+                // No filter applied
+                break;
         }
 
-        $total_stock = array_sum($total_stock);
+        // Run queries
+        $stocks = $stocksQuery->get();
+        $orders = $ordersQuery->get();
+        $customers = $customersQuery->get();
 
-        // return $total_stock;
+        // Total sales
+        $total = Invoice::whereIn('id', $stocks->pluck('invoice_id'))->sum('total_amount');
 
+        // Products with stock
+        $products = Product::has('stock')
+            ->with(['stock', 'category'])
+            ->orderBy('product_category_id', 'asc')
+            ->get();
 
+        // Total stock value
+        $total_stock = $products->map(function ($product) {
+            $product_quantity = Stock::where('product_id', $product->id)->sum('quantity');
+            return $product->price * $product_quantity;
+        })->sum();
 
-
-        // return $products_in_stock;
-
-        return view('admin_dashboard.stockManagement', compact(['products','stocks', 'total', 'orders', 'customers', 'total_stock']));
+        return view('admin_dashboard.stockManagement', compact([
+            'products',
+            'stocks',
+            'total',
+            'orders',
+            'customers',
+            'total_stock',
+            'filter'
+        ]));
     }
 
 
-    public function export_stock(){
 
-        return Excel::download(new StockExport, Carbon::now()->format('d-m-y').'Stock Report.xlsx');
+    public function export_stock()
+    {
+
+        return Excel::download(new StockExport, Carbon::now()->format('d-m-y') . 'Stock Report.xlsx');
     }
 
     /**
@@ -132,7 +168,8 @@ class StockController extends Controller
         return back()->with('msg', 'Stock Registered');
     }
 
-    public function adjustAddStock(Request $request){
+    public function adjustAddStock(Request $request)
+    {
 
         // return $request->all();
 
@@ -154,25 +191,23 @@ class StockController extends Controller
         return back()->with('msg-add', 'Stock Adjusted');
     }
 
-    public function adjustRemoveStock(Request $request){
+    public function adjustRemoveStock(Request $request)
+    {
 
 
 
 
-        if($request->reason == 'sold'){
+        if ($request->reason == 'sold') {
             $type = 'out';
-
-        }elseif($request->reason == 'damaged'){
+        } elseif ($request->reason == 'damaged') {
             $type = 'in';
-
-        }
-        elseif($request->reason == 'expired'){
+        } elseif ($request->reason == 'expired') {
             $type = 'in';
-        }elseif($request->reason == 'other'){
+        } elseif ($request->reason == 'other') {
             $type = 'in';
         }
 
-          Stock::create([
+        Stock::create([
             'product_id' => $request->product_id,
             'quantity' => $request->quantity * -1,
             'type' => $type,
@@ -185,25 +220,26 @@ class StockController extends Controller
         Notification::create([
             'user_id' => Auth::user()->id,
             'title' => 'Stock Notification',
-            'body' =>  'Stock have been adjusted reason: '.$request->reason
+            'body' =>  'Stock have been adjusted reason: ' . $request->reason
         ]);
 
         return back()->with('msg-remove', 'Stock Adjusted');
     }
 
-    public function updateStockStatus(Request $request){
+    public function updateStockStatus(Request $request)
+    {
 
-    // Validate request
-    $request->validate([
-        'product_id' => 'required|exists:products,id',
-        'status'     => 'required|in:confirmed,not confirmed',
-    ]);
+        // Validate request
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'status'     => 'required|in:confirmed,not confirmed',
+        ]);
 
-    // Update all stocks belonging to this product_id
-    Stock::where('product_id', $request->product_id)
-        ->update(['status' => $request->status]);
+        // Update all stocks belonging to this product_id
+        Stock::where('product_id', $request->product_id)
+            ->update(['status' => $request->status]);
 
-    return back()->with('msg-add', 'Stock Status Updated for all records of this product');
+        return back()->with('msg-add', 'Stock Status Updated for all records of this product');
     }
 
     /**
