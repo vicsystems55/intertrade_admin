@@ -38,16 +38,32 @@
     </style>
 
     <div class="page-content">
-        <div class="p-3"></div>
+        <div class="p-1"></div>
         <h4>Stock Management</h4>
+        <div class="p-1"></div>
+
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
             <!-- Your existing dashboard cards here -->
             <!-- ... -->
         </div><!--end row-->
 
-        <h6>View List</h6>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">Dashboard Overview</h5>
+    <form action="" method="GET" class="d-flex">
+        <select name="filter" class="form-select form-select-sm me-2">
+            <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>All Time</option>
+            <option value="last_week" {{ request('filter') == 'last_week' ? 'selected' : '' }}>Last Week</option>
+            <option value="last_30_days" {{ request('filter') == 'last_30_days' ? 'selected' : '' }}>Last 30 Days</option>
+            <option value="last_60_days" {{ request('filter') == 'last_60_days' ? 'selected' : '' }}>Last 60 Days</option>
+            <option value="last_month" {{ request('filter') == 'last_month' ? 'selected' : '' }}>Last Month</option>
+        </select>
+        <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+    </form>
+</div>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
             <div class="col">
                 <div class="card radius-10 border-start border-0 border-3 border-info">
                     <div class="card-body">
@@ -55,7 +71,7 @@
                             <div>
                                 <p class="mb-0 text-secondary">Orders</p>
                                 <h4 class="my-1 text-info">{{ $orders->count() }}</h4>
-                                <p class="mb-0 font-13">+2.5% from last week</p>
+                                <p class="mb-0 font-13 d-none">+2.5% from last week</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
                                     class='bx bxs-cart'></i>
@@ -72,7 +88,7 @@
                                 <p class="mb-0 text-secondary">Total Sales</p>
                                 <h4 title="N {{ number_format($total, 2) }}" class="my-1 text-success">N
                                     {{ number_format($total, 2) }} </h4>
-                                <p class="mb-0 font-13">-4.5% from last week</p>
+                                <p class="mb-0 font-13 d-none">-4.5% from last week</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
                                     class='bx bxs-wallet'></i>
@@ -88,7 +104,7 @@
                             <div>
                                 <p class="mb-0 text-secondary">Total Stock</p>
                                 <h4 class="my-1 text-success">N {{ Str::limit(number_format($total_stock, 2), 20) }}</h4>
-                                <p class="mb-0 font-13">-4.5% from last week</p>
+                                <p class="mb-0 font-13 d-none">-4.5% from last week</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
                                     class='bx bxs-bar-chart-alt-2'></i>
@@ -104,7 +120,7 @@
                             <div>
                                 <p class="mb-0 text-secondary">Customers</p>
                                 <h4 class="my-1 text-warning">{{ $customers->count() }}</h4>
-                                <p class="mb-0 font-13">+8.4% from last week</p>
+                                <p class="mb-0 font-13 d-none">+8.4% from last week</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
                                     class='bx bxs-group'></i>
@@ -155,51 +171,56 @@
             </div>
         </div>
 
-       @foreach ($products as $product)
-    @php
-        $stockIn = $product->stock->where('type', 'in')->sum('quantity');
-        $stockOut = $product->stock->where('type', 'out')->sum('quantity');
-        $totalStock = $stockIn + $stockOut; // net stock (outs are negative)
-    @endphp
+        @foreach ($products as $product)
+            @php
+                $stockIn = $product->stock->where('type', 'in')->sum('quantity');
+                $stockOut = $product->stock->where('type', 'out')->sum('quantity');
+                $totalStock = $stockIn + $stockOut; // net stock (outs are negative)
+            @endphp
 
-    @if ($totalStock > 1)
-        <div class="py-1 stock-item" data-bs-toggle="modal" data-bs-target="#stockModal"
-             data-product-id="{{ $product->id }}"
-             data-product-name="{{ $product->name }}"
-             data-product-image="{{ $product->featured_image }}"
-             data-current-stock="{{ $totalStock }}"
-             data-stock-in="{{ $stockIn }}"
-             data-stock-out="{{ $stockOut * -1 }}"
-             data-unit-price="{{ $product->price }}">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-2">
-                            <img src="{{ $product->featured_image }}" style="height: 50px;" alt="">
+            @if ($totalStock > 1)
+                <div class="py-1 stock-item" data-bs-toggle="modal" data-bs-target="#stockModal"
+                    data-product-id="{{ $product->id }}" data-product-name="{{ $product->name }}"
+                    data-product-image="{{ $product->featured_image }}" data-current-stock="{{ $totalStock }}"
+                    data-stock-in="{{ $stockIn }}" data-stock-out="{{ $stockOut * -1 }}"
+                    data-unit-price="{{ $product->price }}">
+
+                    <div
+                        class="card {{ optional($product->stock->first())->status == 'not confirmed' ? 'border border-danger' : '' }}">
+                        <div class="card-body position-relative">
+                            {{-- Show "Not Confirmed" badge at top right --}}
+                            @if (optional($product->stock->first())->status == 'not confirmed')
+                                <span class="badge bg-danger position-absolute top-0 end-0 m-2">Not Confirmed</span>
+                            @endif
+
+                            <div class="row d-flex align-items-center">
+                                <div class="col-2">
+                                    <img src="{{ $product->featured_image }}" style="height: 50px;" alt="">
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{ $product->name }}</h6>
+                                    <span class="badge bg-primary rounded-pill">{{ $product->category->name }}</span>
+                                    <p>In Stock</p>
+                                </div>
+                                <div class="col-1">
+                                    <h6 class="text-danger"><i class="bx bx-share"></i> {{ $stockOut * -1 }}</h6>
+                                </div>
+                                <div class="col-1">
+                                    <h6 class="text-success"><i class="bx bx-archive-in"></i> {{ $totalStock }}</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>N {{ number_format($product->price, 2) }}</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>N {{ number_format($totalStock * $product->price, 2) }}</h6>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <h6>{{ $product->name }}</h6>
-                            <span class="badge bg-primary rounded-pill">{{ $product->category->name }}</span>
-                            <p>In Stock</p>
-                        </div>
-                        <div class="col-1">
-                            <h6 class="text-danger"><i class="bx bx-share"></i> {{ $stockOut * -1 }}</h6>
-                        </div>
-                        <div class="col-1">
-                            <h6 class="text-success"><i class="bx bx-archive-in"></i> {{ $totalStock }}</h6>
-                        </div>
-                        <div class="col-2">
-                            <h6>N {{ number_format($product->price, 2) }}</h6>
-                        </div>
-                        <div class="col-2">
-                            <h6>N {{ number_format($totalStock * $product->price, 2) }}</h6>
-                        </div>
+
                     </div>
                 </div>
-            </div>
-        </div>
-    @endif
-@endforeach
+            @endif
+        @endforeach
 
     </div>
 
@@ -254,13 +275,17 @@
                     </div>
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-in-tab" data-bs-toggle="pill"
+                        <li class="nav-item" role="presentation ">
+                            <button class="btn btn-primary active " id="pills-in-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-in" type="button" role="tab">Add Stock</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-out-tab" data-bs-toggle="pill"
+                            <button class="btn btn-danger" id="pills-out-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-out" type="button" role="tab">Remove Stock</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="btn btn-warning" id="pills-status-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-status" type="button" role="tab">Update Status</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
@@ -330,6 +355,26 @@
                                 </div>
                             </form>
                         </div>
+
+                        <!-- Update Stock Status Form -->
+                        <div class="tab-pane fade" id="pills-status" role="tabpanel">
+                            <form id="updateStatusForm" method="POST" action="{{ route('updateStockStatus') }}">
+                                @csrf
+                                <input type="hidden" name="product_id" id="productId">
+
+                                <div class="mb-3">
+                                    <label for="stockStatus" class="form-label">Select Status</label>
+                                    <select class="form-select" id="stockStatus" name="status" required>
+                                        <option value="confirmed">Confirmed</option>
+                                        <option value="not confirmed">Not Confirmed</option>
+                                    </select>
+                                </div>
+
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-warning">Update Status</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -350,9 +395,11 @@
 
                 // Update product info
                 document.getElementById('modalProductImage').src = button.getAttribute(
-                'data-product-image');
+                    'data-product-image');
                 document.getElementById('productName').textContent = button.getAttribute(
                     'data-product-name');
+                document.getElementById('productId').value = button.getAttribute(
+                    'data-product-id');
                 document.getElementById('currentStock').textContent = button.getAttribute(
                     'data-current-stock');
                 document.getElementById('stockIn').textContent = button.getAttribute('data-stock-in');

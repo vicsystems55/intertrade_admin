@@ -387,6 +387,9 @@ Route::post('/adjust-add-stock', [StockController::class, 'adjustAddStock'])->na
 
 Route::post('/adjust-remove-stock', [StockController::class, 'adjustRemoveStock'])->name('adjustRemoveStock')->middleware('auth');
 
+Route::post('/update-stock-status', [StockController::class, 'updateStockStatus'])->name('updateStockStatus')->middleware('auth');
+
+
 
 Route::get('/projects-reports', [PageController::class, 'project_reports']);
 

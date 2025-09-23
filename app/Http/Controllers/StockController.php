@@ -191,6 +191,21 @@ class StockController extends Controller
         return back()->with('msg-remove', 'Stock Adjusted');
     }
 
+    public function updateStockStatus(Request $request){
+
+    // Validate request
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'status'     => 'required|in:confirmed,not confirmed',
+    ]);
+
+    // Update all stocks belonging to this product_id
+    Stock::where('product_id', $request->product_id)
+        ->update(['status' => $request->status]);
+
+    return back()->with('msg-add', 'Stock Status Updated for all records of this product');
+    }
+
     /**
      * Display the specified resource.
      *
