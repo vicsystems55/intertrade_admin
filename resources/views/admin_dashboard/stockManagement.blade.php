@@ -104,6 +104,18 @@
         </div>
     </div><!--end row-->
 
+    @if (session('msg-add'))
+        <div class="alert alert-success">
+            {{ session('msg-add') }}
+        </div>
+    @endif
+
+    @if (session('msg-remove'))
+        <div class="alert alert-danger">
+            {{ session('msg-remove') }}
+        </div>
+    @endif
+
     <div class="py-2 d-flex justify-content-end">
         <button class="btn btn-outline-primary btn-sm float-right me-2">Export PDF</button>
         <a href="/export-stock" class="btn btn-outline-primary btn-sm float-right">Export EXCEL</a>
@@ -229,7 +241,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <!-- Stock In Form -->
                     <div class="tab-pane fade show active" id="pills-in" role="tabpanel">
-                        <form id="stockInForm" method="POST" action="">
+                        <form id="stockInForm" method="POST" action="{{ route('adjustAddStock') }}">
                             @csrf
                             <input type="hidden" name="product_id" id="inProductId">
                             <input type="hidden" name="type" value="in">
@@ -256,7 +268,7 @@
 
                     <!-- Stock Out Form -->
                     <div class="tab-pane fade" id="pills-out" role="tabpanel">
-                        <form id="stockOutForm" method="POST" action="">
+                        <form id="stockOutForm" method="POST" action="{{ route('adjustRemoveStock') }}">
                             @csrf
                             <input type="hidden" name="product_id" id="outProductId">
                             <input type="hidden" name="type" value="out">

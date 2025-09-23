@@ -3,15 +3,11 @@
 
 @section('content')
 
-    <div class="page-content">
-        <div class="p-2"></div>
-
-        <h4>Logistics</h4>
-
-       
-
-
+    <div class="page-wrappe">
+        <h1>Under construction</h1>
     </div>
 
 
+
 @endsection
+

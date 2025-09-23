@@ -52,6 +52,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>InterTrade Admin</title>
+
+
 </head>
 
 <body>

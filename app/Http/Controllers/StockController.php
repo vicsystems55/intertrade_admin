@@ -130,6 +130,65 @@ class StockController extends Controller
         return back()->with('msg', 'Stock Registered');
     }
 
+    public function adjustAddStock(Request $request){
+
+        // return $request->all();
+
+        Stock::create([
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
+            'type' => 'in',
+            // 'reason' => $request->reason,
+            'received_by' => Auth::user()->id,
+            'date_received' => Carbon::now(),
+        ]);
+
+        Notification::create([
+            'user_id' => Auth::user()->id,
+            'title' => 'Stock Notification',
+            'body' =>  'Stock have been adjusted'
+        ]);
+
+        return back()->with('msg-add', 'Stock Adjusted');
+    }
+
+    public function adjustRemoveStock(Request $request){
+
+
+
+
+        if($request->reason == 'sold'){
+            $type = 'out';
+
+        }elseif($request->reason == 'damaged'){
+            $type = 'in';
+
+        }
+        elseif($request->reason == 'expired'){
+            $type = 'in';
+        }elseif($request->reason == 'other'){
+            $type = 'in';
+        }
+
+          Stock::create([
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity * -1,
+            'type' => $type,
+            // 'reason' => $request->reason,
+            'received_by' => Auth::user()->id,
+            'date_received' => Carbon::now(),
+        ]);
+
+
+        Notification::create([
+            'user_id' => Auth::user()->id,
+            'title' => 'Stock Notification',
+            'body' =>  'Stock have been adjusted reason: '.$request->reason
+        ]);
+
+        return back()->with('msg-remove', 'Stock Adjusted');
+    }
+
     /**
      * Display the specified resource.
      *

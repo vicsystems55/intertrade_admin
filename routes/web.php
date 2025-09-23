@@ -38,6 +38,7 @@ use App\Http\Controllers\EmployeePaycheckItemController;
 use App\Http\Controllers\InstallationScheduleController;
 use App\Http\Controllers\EmployeePaycheckSummaryController;
 use App\Http\Controllers\InstallationQuotationController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -381,6 +382,11 @@ Route::resource('/projectMilestones', ProjectMilestoneController::class, ['name'
 Route::resource('/milestoneReports', MilestoneReportController::class, ['name' => 'milestoneReports'])->middleware('auth');
 
 Route::resource('/stockManagement', StockController::class, ['name' => 'stockManagement'])->middleware('auth');
+
+Route::post('/adjust-add-stock', [StockController::class, 'adjustAddStock'])->name('adjustAddStock')->middleware('auth');
+
+Route::post('/adjust-remove-stock', [StockController::class, 'adjustRemoveStock'])->name('adjustRemoveStock')->middleware('auth');
+
 
 Route::get('/projects-reports', [PageController::class, 'project_reports']);
 
