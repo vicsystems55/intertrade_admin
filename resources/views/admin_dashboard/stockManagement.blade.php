@@ -48,7 +48,7 @@
         </div><!--end row-->
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="mb-0">Dashboard Overview</h5>
+    <h5 class="mb-0"></h5>
     <form action="" method="GET" class="d-flex">
         <select name="filter" class="form-select form-select-sm me-2">
             <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>All Time</option>
