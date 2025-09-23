@@ -60,6 +60,8 @@ class StockController extends Controller
 
         $total_stock = array_sum($total_stock);
 
+        // return $total_stock;
+
 
 
 
