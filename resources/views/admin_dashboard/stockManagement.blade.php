@@ -143,7 +143,12 @@
             </div>
         @endif
 
-        <div class="py-2 d-flex justify-content-end">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0"></h5>
+    <input type="text" id="productSearch" class="form-control w-25" placeholder="Search products...">
+</div>
+
+        <div class="py-2 d-flex justify-content-start">
             <button class="btn btn-outline-primary btn-sm float-right me-2">Export PDF</button>
             <a href="/export-stock" class="btn btn-outline-primary btn-sm float-right">Export EXCEL</a>
         </div>
@@ -171,56 +176,62 @@
             </div>
         </div>
 
-        @foreach ($products as $product)
-            @php
-                $stockIn = $product->stock->where('type', 'in')->sum('quantity');
-                $stockOut = $product->stock->where('type', 'out')->sum('quantity');
-                $totalStock = $stockIn + $stockOut; // net stock (outs are negative)
-            @endphp
+<div id="productList">
+    @foreach ($products as $product)
+        @php
+            $stockIn = $product->stock->where('type', 'in')->sum('quantity');
+            $stockOut = $product->stock->where('type', 'out')->sum('quantity');
+            $totalStock = $stockIn + $stockOut; // net stock (outs are negative)
+        @endphp
 
-            @if ($totalStock > 1)
-                <div class="py-1 stock-item" data-bs-toggle="modal" data-bs-target="#stockModal"
-                    data-product-id="{{ $product->id }}" data-product-name="{{ $product->name }}"
-                    data-product-image="{{ $product->featured_image }}" data-current-stock="{{ $totalStock }}"
-                    data-stock-in="{{ $stockIn }}" data-stock-out="{{ $stockOut * -1 }}"
-                    data-unit-price="{{ $product->price }}">
+        @if ($totalStock > 1)
+            <div class="py-1 stock-item"
+                 data-bs-toggle="modal"
+                 data-bs-target="#stockModal"
+                 data-product-id="{{ $product->id }}"
+                 data-product-name="{{ $product->name }}"
+                 data-product-image="{{ $product->featured_image }}"
+                 data-current-stock="{{ $totalStock }}"
+                 data-stock-in="{{ $stockIn }}"
+                 data-stock-out="{{ $stockOut * -1 }}"
+                 data-unit-price="{{ $product->price }}">
 
-                    <div
-                        class="card {{ optional($product->stock->first())->status == 'not confirmed' ? 'border border-danger' : '' }}">
-                        <div class="card-body position-relative">
-                            {{-- Show "Not Confirmed" badge at top right --}}
-                            @if (optional($product->stock->first())->status == 'not confirmed')
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2">Not Confirmed</span>
-                            @endif
+                <div class="card {{ optional($product->stock->first())->status == 'not confirmed' ? 'border border-danger' : '' }}">
+                    <div class="card-body position-relative">
+                        {{-- Show "Not Confirmed" badge at top right --}}
+                        @if (optional($product->stock->first())->status == 'not confirmed')
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">Not Confirmed</span>
+                        @endif
 
-                            <div class="row d-flex align-items-center">
-                                <div class="col-2">
-                                    <img src="{{ $product->featured_image }}" style="height: 50px;" alt="">
-                                </div>
-                                <div class="col-3">
-                                    <h6>{{ $product->name }}</h6>
-                                    <span class="badge bg-primary rounded-pill">{{ $product->category->name }}</span>
-                                    <p>In Stock</p>
-                                </div>
-                                <div class="col-1">
-                                    <h6 class="text-danger"><i class="bx bx-share"></i> {{ $stockOut * -1 }}</h6>
-                                </div>
-                                <div class="col-1">
-                                    <h6 class="text-success"><i class="bx bx-archive-in"></i> {{ $totalStock }}</h6>
-                                </div>
-                                <div class="col-2">
-                                    <h6>N {{ number_format($product->price, 2) }}</h6>
-                                </div>
-                                <div class="col-2">
-                                    <h6>N {{ number_format($totalStock * $product->price, 2) }}</h6>
-                                </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <img src="{{ $product->featured_image }}" style="height: 50px;" alt="">
+                            </div>
+                            <div class="col-3">
+                                <h6 class="product-name">{{ $product->name }}</h6>
+                                <span class="badge bg-primary rounded-pill">{{ $product->category->name }}</span>
+                                <p>In Stock</p>
+                            </div>
+                            <div class="col-1">
+                                <h6 class="text-danger"><i class="bx bx-share"></i> {{ $stockOut * -1 }}</h6>
+                            </div>
+                            <div class="col-1">
+                                <h6 class="text-success"><i class="bx bx-archive-in"></i> {{ $totalStock }}</h6>
+                            </div>
+                            <div class="col-2">
+                                <h6>N {{ number_format($product->price, 2) }}</h6>
+                            </div>
+                            <div class="col-2">
+                                <h6>N {{ number_format($totalStock * $product->price, 2) }}</h6>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            @endif
-        @endforeach
+            </div>
+        @endif
+    @endforeach
+</div>
+
 
     </div>
 
@@ -381,42 +392,88 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set today's date as default for both forms
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('inDate').value = today;
-            document.getElementById('outDate').value = today;
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Set today's date as default for both forms (guarded)
+    const today = new Date().toISOString().split('T')[0];
+    const inDate = document.getElementById('inDate');
+    const outDate = document.getElementById('outDate');
+    if (inDate) inDate.value = today;
+    if (outDate) outDate.value = today;
 
-            // Set up modal with product data when a stock item is clicked
-            var stockModal = document.getElementById('stockModal');
-            stockModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
+    // Modal setup (guarded)
+    var stockModal = document.getElementById('stockModal');
+    if (stockModal) {
+        stockModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            if (!button) return;
 
-                // Update product info
-                document.getElementById('modalProductImage').src = button.getAttribute(
-                    'data-product-image');
-                document.getElementById('productName').textContent = button.getAttribute(
-                    'data-product-name');
-                document.getElementById('productId').value = button.getAttribute(
-                    'data-product-id');
-                document.getElementById('currentStock').textContent = button.getAttribute(
-                    'data-current-stock');
-                document.getElementById('stockIn').textContent = button.getAttribute('data-stock-in');
-                document.getElementById('stockOut').textContent = button.getAttribute('data-stock-out');
-                document.getElementById('unitPrice').textContent = button.getAttribute('data-unit-price');
+            // Update product info
+            const productImage = button.getAttribute('data-product-image');
+            const productName = button.getAttribute('data-product-name');
+            const productId = button.getAttribute('data-product-id');
 
-                // Set product ID in both forms
-                const productId = button.getAttribute('data-product-id');
-                document.getElementById('inProductId').value = productId;
-                document.getElementById('outProductId').value = productId;
+            document.getElementById('modalProductImage').src = productImage || '';
+            document.getElementById('productName').textContent = productName || '';
+            document.getElementById('productId').value = productId || '';
+            document.getElementById('currentStock').textContent = button.getAttribute('data-current-stock') || '';
+            document.getElementById('stockIn').textContent = button.getAttribute('data-stock-in') || '';
+            document.getElementById('stockOut').textContent = button.getAttribute('data-stock-out') || '';
+            document.getElementById('unitPrice').textContent = button.getAttribute('data-unit-price') || '';
 
-                // Reset forms
-                document.getElementById('stockInForm').reset();
-                document.getElementById('stockOutForm').reset();
-                document.getElementById('inDate').value = today;
-                document.getElementById('outDate').value = today;
+            // Set product ID in both forms
+            if (productId) {
+                const inProductIdEl = document.getElementById('inProductId');
+                const outProductIdEl = document.getElementById('outProductId');
+                if (inProductIdEl) inProductIdEl.value = productId;
+                if (outProductIdEl) outProductIdEl.value = productId;
+            }
+
+            // Reset forms and dates
+            const inForm = document.getElementById('stockInForm');
+            const outForm = document.getElementById('stockOutForm');
+            if (inForm) inForm.reset();
+            if (outForm) outForm.reset();
+            if (inDate) inDate.value = today;
+            if (outDate) outDate.value = today;
+        });
+    }
+
+    // Smart search handler (safe + searches name, category, and "Not Confirmed" badge text)
+    const searchInput = document.getElementById('productSearch');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function () {
+            console.log('Searching...', this.value);
+            const filter = this.value.trim().toLowerCase();
+            const items = document.querySelectorAll('#productList .stock-item');
+
+            items.forEach(item => {
+                // product name
+                const nameEl = item.querySelector('.product-name');
+                const name = nameEl ? nameEl.textContent.trim().toLowerCase() : '';
+
+                // category badge (first badge with bg-primary)
+                const categoryEl = item.querySelector('.badge.bg-primary');
+                const category = categoryEl ? categoryEl.textContent.trim().toLowerCase() : '';
+
+                // status badge text (Not Confirmed)
+                const statusEl = item.querySelector('.badge.bg-danger');
+                const status = statusEl ? statusEl.textContent.trim().toLowerCase() : '';
+
+                // If filter is empty show all
+                if (!filter) {
+                    item.style.display = '';
+                    return;
+                }
+
+                // Match name OR category OR status
+                const matches = name.includes(filter) || category.includes(filter) || status.includes(filter);
+
+                item.style.display = matches ? '' : 'none';
             });
         });
-    </script>
+    }
+});
+</script>
+
 @endsection
