@@ -487,19 +487,23 @@ async function uploadFile(formData) {
 
         const response = await fetch('{{ route("installation-locations.uploadExcel") }}', {
             method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+            },
             body: formData
         });
 
         document.getElementById('uploadProgress').style.display = 'none';
 
+        const result = await response.json();
+
         if (response.ok) {
-            const result = await response.json();
-            showToast('success', result.message);
+            showToast('success', result.message || 'Upload successful');
             document.getElementById('excelFile').value = '';
             await loadLocations();
         } else {
-            const error = await response.json();
-            showToast('error', error.message || 'Upload failed');
+            showToast('error', result.message || 'Upload failed');
         }
     } catch (error) {
         console.error('Error uploading file:', error);
