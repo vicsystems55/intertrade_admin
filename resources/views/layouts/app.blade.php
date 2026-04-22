@@ -49,7 +49,7 @@
     <link href="{{ config('app.url') }}assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.css" integrity="sha512-j+idvE15yGD+P0xIk4S6BDPdVT3PbJFkR6Ap6M6EBIbkTcD+E/2GJ/JYkMRHycfgkdKbn+wKaiPswUCZVNR9Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>InterTrade Admin</title>
 
@@ -249,6 +249,284 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- <script src="{{asset('js/app.js')}}"></script> --}}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-image/0.4.0/leaflet-image.umd.js"></script>
+
+
+<script>
+let map;
+let markers = {};
+let currentFilter = 'all';
+let allLocations = [];
+
+// Initialize map
+function initMap() {
+    // Center on Nigeria (approximately)
+    const nigeriaCenter = [9.0765, 7.3986];
+
+    map = L.map('map', {
+        center: nigeriaCenter,
+        zoom: 6,
+        zoomControl: true,
+        attributionControl: true
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19,
+        minZoom: 4
+    }).addTo(map);
+
+    loadLocations();
+}
+
+// Load locations data
+async function loadLocations() {
+    try {
+        showToast('loading', 'Loading installation sites...');
+
+        const response = await fetch('{{ route("installation-locations.index") }}', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch locations');
+        }
+
+        const locations = await response.json();
+        allLocations = locations;
+
+        filterLocations();
+        await updateStatistics();
+        showToast('success', 'Locations loaded successfully!');
+    } catch (error) {
+        console.error('Error loading locations:', error);
+        showToast('error', 'Failed to load locations');
+    }
+}
+
+// Filter and display locations
+function filterLocations() {
+    // Clear existing markers
+    Object.values(markers).forEach(marker => map.removeLayer(marker));
+    markers = {};
+
+    // Filter locations
+    const filtered = currentFilter === 'all' ?
+        allLocations :
+        allLocations.filter(loc => loc.project_type === currentFilter);
+
+    // Add markers for filtered locations
+    filtered.forEach(location => {
+        addMarker(location);
+    });
+
+    // Fit bounds if markers exist
+    if (Object.keys(markers).length > 0) {
+        const group = new L.featureGroup(Object.values(markers));
+        map.fitBounds(group.getBounds().pad(0.1), { maxZoom: 10 });
+    }
+}
+
+// Add marker to map
+function addMarker(location) {
+    const color = location.project_type === 'solar' ? '#28a745' : '#17a2b8';
+
+    const icon = L.divIcon({
+        html: `
+            <div style="background-color: ${color}; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border: 3px solid white;">
+                <i class="bx bx-check" style="color: white; font-size: 18px; line-height: 32px;"></i>
+            </div>
+        `,
+        iconSize: [32, 32],
+        className: ''
+    });
+
+    const marker = L.marker([location.latitude, location.longitude], { icon })
+        .bindPopup(`
+            <div style="min-width: 250px;">
+                <h6 style="margin-bottom: 10px; font-weight: 600;">${location.project_name}</h6>
+                <p style="margin-bottom: 5px;"><strong>Location:</strong> ${location.location_name}</p>
+                <p style="margin-bottom: 5px;"><strong>Type:</strong> <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${color};"></span> ${location.project_type === 'solar' ? 'Solar' : 'Cold Chain'}</p>
+                ${location.state ? `<p style="margin-bottom: 5px;"><strong>State:</strong> ${location.state}</p>` : ''}
+                ${location.installation_date ? `<p style="margin-bottom: 5px;"><strong>Date:</strong> ${location.installation_date}</p>` : ''}
+                ${location.description ? `<p style="margin-bottom: 5px;"><strong>Description:</strong> ${location.description}</p>` : ''}
+            </div>
+        `)
+        .addTo(map);
+
+    markers[location.id] = marker;
+}
+
+// Update statistics
+async function updateStatistics() {
+    try {
+        const response = await fetch('{{ route("installation-locations.statistics") }}');
+
+        if (response.ok) {
+            const stats = await response.json();
+            document.getElementById('totalCount').textContent = stats.total;
+            document.getElementById('solarCount').textContent = stats.solar;
+            document.getElementById('coldChainCount').textContent = stats.cold_chain;
+        }
+    } catch (error) {
+        console.error('Error updating statistics:', error);
+    }
+}
+
+// Show toast notification
+function showToast(type, message) {
+    const toastMap = {
+        'loading': 'loadingToast',
+        'success': 'successToast',
+        'error': 'errorToast'
+    };
+
+    const toastEl = document.getElementById(toastMap[type]);
+    const textEl = toastEl.querySelector('[id*="Text"]');
+
+    textEl.textContent = message;
+    toastEl.style.display = 'block';
+
+    if (type !== 'loading') {
+        setTimeout(() => {
+            toastEl.style.display = 'none';
+        }, 3000);
+    }
+}
+
+// Export as Image
+document.getElementById('exportBtn').addEventListener('click', async () => {
+    try {
+        showToast('loading', 'Generating map image...');
+
+        const leafletImage = window.leafletImage || L.leafletImage;
+        leafletImage(map, function(err, canvas) {
+            if (err) throw err;
+
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = 'installation_sites_' + new Date().toISOString().split('T')[0] + '.png';
+            link.click();
+
+            showToast('success', 'Map exported successfully!');
+        });
+    } catch (error) {
+        console.error('Error exporting map:', error);
+        showToast('error', 'Failed to export map');
+    }
+});
+
+// Fullscreen
+document.getElementById('fullscreenBtn').addEventListener('click', () => {
+    const container = document.getElementById('mapContainer');
+    if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => {
+            showToast('error', 'Fullscreen not supported');
+        });
+    } else {
+        document.exitFullscreen();
+    }
+});
+
+// Upload area click
+document.getElementById('uploadArea').addEventListener('click', () => {
+    document.getElementById('excelFile').click();
+});
+
+// Drag and drop
+document.getElementById('uploadArea').addEventListener('dragover', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('uploadArea').classList.add('dragover');
+});
+
+document.getElementById('uploadArea').addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('uploadArea').classList.remove('dragover');
+});
+
+document.getElementById('uploadArea').addEventListener('drop', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('uploadArea').classList.remove('dragover');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        document.getElementById('excelFile').files = files;
+        handleFileUpload();
+    }
+});
+
+// File upload
+document.getElementById('excelFile').addEventListener('change', handleFileUpload);
+
+function handleFileUpload() {
+    const file = document.getElementById('excelFile').files[0];
+    if (!file) return;
+
+    if (file.size > 10 * 1024 * 1024) {
+        showToast('error', 'File size exceeds 10MB limit');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    uploadFile(formData);
+}
+
+async function uploadFile(formData) {
+    try {
+        showToast('loading', 'Uploading file...');
+        document.getElementById('uploadProgress').style.display = 'block';
+
+        const response = await fetch('{{ route("installation-locations.uploadExcel") }}', {
+            method: 'POST',
+            body: formData
+        });
+
+        document.getElementById('uploadProgress').style.display = 'none';
+
+        if (response.ok) {
+            const result = await response.json();
+            showToast('success', result.message);
+            document.getElementById('excelFile').value = '';
+            await loadLocations();
+        } else {
+            const error = await response.json();
+            showToast('error', error.message || 'Upload failed');
+        }
+    } catch (error) {
+        console.error('Error uploading file:', error);
+        showToast('error', 'Failed to upload file');
+        document.getElementById('uploadProgress').style.display = 'none';
+    }
+}
+
+// Filter radio buttons
+document.querySelectorAll('input[name="projectFilter"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        currentFilter = e.target.value;
+        filterLocations();
+    });
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', initMap);
+
+// Handle map resize on fullscreen change
+document.addEventListener('fullscreenchange', () => {
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
+});
+</script>
+
 
 </body>
 

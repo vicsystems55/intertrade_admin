@@ -319,6 +319,8 @@ Route::get('/admin/transactions', [SuperAdminPageController::class, 'transaction
 
 Route::get('/admin/logistics', [SuperAdminPageController::class, 'logistics'])->name('admin.logistics')->middleware('auth');
 
+Route::get('/admin/installation_sites', [SuperAdminPageController::class, 'installation_sites'])->name('admin.installation_sites')->middleware('auth');
+
 
 Route::get('/admin/payroll-records', [SuperAdminPageController::class, 'payroll_records'])->middleware('auth');
 

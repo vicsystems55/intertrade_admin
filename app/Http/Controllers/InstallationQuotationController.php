@@ -60,7 +60,7 @@ class InstallationQuotationController extends Controller
                 'contact_person_phone' => $request->customer_phone,
                 'address' => $request->customer_address,
 
-        ]);;
+        ]);
 
         $customer_quotation_code = rand(1000,99999);
 

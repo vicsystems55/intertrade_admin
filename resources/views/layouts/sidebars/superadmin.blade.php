@@ -196,6 +196,14 @@
             <div class="menu-title">Logistics </div>
            </a>
     </li>
+
+            <li>
+        <a href="{{route('admin.installation_sites')}}">
+            <div class="parent-icon"><i class='bx bx-location-plus'></i>
+            </div>
+            <div class="menu-title">Installation Sites </div>
+           </a>
+    </li>
     <li class="menu-label">Accounts</li>
 
     <li>

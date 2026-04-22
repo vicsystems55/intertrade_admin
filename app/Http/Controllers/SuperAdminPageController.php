@@ -39,6 +39,7 @@ use App\Models\AccountSubHead;
 use App\Models\ProductCategory;
 use App\Models\DeploymentReport;
 use App\Models\InstallationSchedule;
+use App\Models\InstallationLocation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmployeePaycheckSummary;
 use Illuminate\Support\Facades\Session;
@@ -127,10 +128,16 @@ class SuperAdminPageController extends Controller
     public function logistics(){
 
   return view('superadmin_dashboard.logistics',[
-          
+
         ]);
 
 
+    }
+
+
+    public function installation_sites(){
+        $locations = InstallationLocation::where('status', 'active')->get();
+        return view('superadmin_dashboard.installation_sites', compact('locations'));
     }
 
 

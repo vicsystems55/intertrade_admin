@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ApiAuthController;
-
+use App\Http\Controllers\Api\InstallationQuoteController;
+use App\Http\Controllers\Api\InstallationLocationController;
 
 use App\Http\Controllers\InvoiceController;
 
@@ -102,8 +103,27 @@ Route::post('/generate-audit', [LoadAuditGenerationController::class, 'generateA
 Route::get('/load-audits', [LoadAuditGenerationController::class, 'loadAudits'])->middleware('auth:sanctum');
 
 
+// Installation Quotes
+Route::post('/import-template', [InstallationQuoteController::class, 'import_template'])->middleware('auth:sanctum');
+Route::get('/import-template', [InstallationQuoteController::class, 'index'])->middleware('auth:sanctum');
 
+// New API endpoint for generating installation quotation data
+Route::get('/generate-installation-quotation', [InstallationQuoteController::class, 'generate']);
+// POST endpoint to store generated quotations (creates/updates customer and generated items)
+Route::post('/generate-installation-quotation', [InstallationQuoteController::class, 'update_generate_quote'])->middleware('auth:sanctum');
+// GET endpoint to fetch generated quotations list
+Route::get('/installation-quotations', [InstallationQuoteController::class, 'quotations']);
+// View specific quotation details
+Route::get('/view-installation-quotation', [InstallationQuoteController::class, 'view_quotation']);
 
-
+// Installation Locations (No SANCTUM middleware required)
+Route::get('/installation-locations', [InstallationLocationController::class, 'index'])->name('installation-locations.index');
+Route::post('/installation-locations', [InstallationLocationController::class, 'store'])->name('installation-locations.store');
+Route::get('/installation-locations/{installation_location}', [InstallationLocationController::class, 'show'])->name('installation-locations.show');
+Route::patch('/installation-locations/{installation_location}', [InstallationLocationController::class, 'update'])->name('installation-locations.update');
+Route::delete('/installation-locations/{installation_location}', [InstallationLocationController::class, 'destroy'])->name('installation-locations.destroy');
+Route::get('/installation-locations-statistics', [InstallationLocationController::class, 'statistics'])->name('installation-locations.statistics');
+Route::post('/installation-locations-upload-excel', [InstallationLocationController::class, 'uploadExcel'])->name('installation-locations.uploadExcel');
+Route::get('/installation-locations-export-excel', [InstallationLocationController::class, 'exportExcel'])->name('installation-locations.exportExcel');
 
 
