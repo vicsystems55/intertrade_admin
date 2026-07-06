@@ -14,4 +14,25 @@ class Helpers
         }
         return round($bytes, 2) . ' ' . $units[$i];
     }
+
+    public static function formatCurrencySuffix($num)
+    {
+        if (!is_numeric($num)) {
+            return '₦0';
+        }
+
+        if ($num >= 1000000000) {
+            return '₦' . round($num / 1000000000, 2) . 'B';
+        }
+
+        if ($num >= 1000000) {
+            return '₦' . round($num / 1000000, 2) . 'M';
+        }
+
+        if ($num >= 1000) {
+            return '₦' . round($num / 1000, 2) . 'K';
+        }
+
+        return '₦' . number_format($num, 2);
+    }
 }

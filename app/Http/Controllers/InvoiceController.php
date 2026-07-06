@@ -76,31 +76,107 @@ class InvoiceController extends Controller
 
 
     }
-    public function salesRecords() {
+    public function salesRecords(Request $request)
+    {
+        $period = $request->get('period', 'month');
+        $date = $request->get('date');
 
-        $monthly_sales = [];
-        $monthly_orders = [];
-
-
-        for ($i=1; $i < 13; $i++) {
-            # code...
-            $month_count = Invoice::where('invoice_type', 'receipt')->whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
-
-            $month_orders_count = Invoice::where('invoice_type', '!=', 'receipt')->whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get()->sum('total_amount');
-
-
-            array_push($monthly_sales, $month_count);
-            array_push($monthly_orders, $month_orders_count);
-
-
+        switch ($period) {
+            case 'week':
+                $start = $date ? Carbon::parse($date)->startOfWeek(Carbon::SUNDAY) : Carbon::now()->startOfWeek(Carbon::SUNDAY);
+                $end = $date ? Carbon::parse($date)->endOfWeek(Carbon::SATURDAY) : Carbon::now()->endOfWeek(Carbon::SATURDAY);
+                $labels = collect(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])->toArray();
+                $sales = array_fill(0, 7, 0);
+                $orders = array_fill(0, 7, 0);
+                break;
+            case 'year':
+                $reference = $date ? Carbon::parse($date) : Carbon::now();
+                $start = $reference->copy()->startOfYear();
+                $end = $reference->copy()->endOfYear();
+                $labels = collect(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'])->toArray();
+                $sales = array_fill(0, 12, 0);
+                $orders = array_fill(0, 12, 0);
+                break;
+            case 'day':
+                $reference = $date ? Carbon::parse($date) : Carbon::now();
+                $start = $reference->copy()->startOfDay();
+                $end = $reference->copy()->endOfDay();
+                $labels = array_map(fn ($hour) => sprintf('%02d:00', $hour), range(0, 23));
+                $sales = array_fill(0, 24, 0);
+                $orders = array_fill(0, 24, 0);
+                break;
+            case 'month':
+            default:
+                $reference = $date ? Carbon::parse($date) : Carbon::now();
+                $start = $reference->copy()->startOfMonth();
+                $end = $reference->copy()->endOfMonth();
+                $daysInMonth = $reference->daysInMonth;
+                $labels = array_map('strval', range(1, $daysInMonth));
+                $sales = array_fill(0, $daysInMonth, 0);
+                $orders = array_fill(0, $daysInMonth, 0);
+                break;
         }
 
-        return $data=[
-            'sales' => $monthly_sales,
-            'orders' => $monthly_orders
+        $receiptInvoices = Invoice::where('invoice_type', 'receipt')
+            ->whereBetween('created_at', [$start, $end])
+            ->get(['total_amount', 'created_at']);
 
+        $orderInvoices = Invoice::where('invoice_type', '!=', 'receipt')
+            ->whereBetween('created_at', [$start, $end])
+            ->get(['total_amount', 'created_at']);
+
+        foreach ($receiptInvoices as $invoice) {
+            $createdAt = Carbon::parse($invoice->created_at);
+
+            switch ($period) {
+                case 'week':
+                    $sales[$createdAt->dayOfWeek] += $invoice->total_amount;
+                    break;
+                case 'year':
+                    $sales[$createdAt->month - 1] += $invoice->total_amount;
+                    break;
+                case 'day':
+                    $sales[$createdAt->hour] += $invoice->total_amount;
+                    break;
+                default:
+                    $sales[$createdAt->day - 1] += $invoice->total_amount;
+                    break;
+            }
+        }
+
+        foreach ($orderInvoices as $invoice) {
+            $createdAt = Carbon::parse($invoice->created_at);
+
+            switch ($period) {
+                case 'week':
+                    $orders[$createdAt->dayOfWeek] += $invoice->total_amount;
+                    break;
+                case 'year':
+                    $orders[$createdAt->month - 1] += $invoice->total_amount;
+                    break;
+                case 'day':
+                    $orders[$createdAt->hour] += $invoice->total_amount;
+                    break;
+                default:
+                    $orders[$createdAt->day - 1] += $invoice->total_amount;
+                    break;
+            }
+        }
+
+        $titles = [
+            'week' => 'Weekly Report',
+            'month' => 'Monthly Report',
+            'year' => 'Yearly Report',
+            'day' => 'Daily Report',
         ];
 
+        return response()->json([
+            'period' => $period,
+            'title' => $titles[$period] ?? 'Sales Report',
+            'labels' => $labels,
+            'sales' => array_values($sales),
+            'orders' => array_values($orders),
+        ]);
     }
 
     public function mail_invoice(Request $request)

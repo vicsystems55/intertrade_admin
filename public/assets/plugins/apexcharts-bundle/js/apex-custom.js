@@ -142,32 +142,29 @@ $(function () {
 
 
 	// chart 3
-    fetch('/api/sales-records')
-    .then(res => res.json())
-    .then(res => {
+    let salesChart;
+    const salesChartContainer = document.querySelector('#chart3');
 
+    const formatCurrency = value => {
+        return 'N' + Number(value).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
 
-        console.log(res)
-
-        var options = {
+    const renderSalesChart = data => {
+        const options = {
             series: [{
                 name: 'Sales',
-                data: res.sales,
+                data: data.sales,
+            }, {
+                name: 'Orders',
+                data: data.orders,
+            }],
+            yaxis: {
+                labels: {
+                    formatter: function (value) {
+                        return formatCurrency(value);
+                    },
+                },
             },
-            {
-            	name: 'Orders',
-            	data: res.orders
-            }
-        ],
-        yaxis: {
-            labels: {
-              formatter: function (value) {
-                // Add commas and currency symbol prefix
-                const formattedValue = "N" + parseFloat(value).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                return formattedValue;
-              },
-            },
-          },
             chart: {
                 foreColor: '#9ba7b2',
                 height: 400,
@@ -179,9 +176,9 @@ $(function () {
                     show: true
                 },
             },
-            colors: ["#f41127","#0d6efd" ],
+            colors: ["#f41127", "#0d6efd"],
             title: {
-                text: 'Monthy Report',
+                text: data.title || 'Sales Report',
                 align: 'left',
                 style: {
                     fontSize: "16px",
@@ -195,8 +192,7 @@ $(function () {
                 curve: 'smooth'
             },
             xaxis: {
-                // type: 'datetime',
-                categories: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+                categories: data.labels,
             },
             tooltip: {
                 x: {
@@ -204,13 +200,36 @@ $(function () {
                 },
             },
         };
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
 
-    }).catch(error=>{
-        alert(error)
-        console.log(error)
-    })
+        if (salesChart) {
+            salesChart.updateOptions(options);
+        } else {
+            salesChart = new ApexCharts(salesChartContainer, options);
+            salesChart.render();
+        }
+    };
+
+    const loadSalesChart = period => {
+        fetch(`/api/sales-records?period=${period}`)
+            .then(res => res.json())
+            .then(data => {
+                renderSalesChart(data);
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Unable to load sales report.');
+            });
+    };
+
+    document.querySelectorAll('.sales-period-button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.sales-period-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            loadSalesChart(button.dataset.period);
+        });
+    });
+
+    loadSalesChart('month');
 
 
 	// chart 4

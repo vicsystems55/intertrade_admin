@@ -145,9 +145,13 @@ class SuperAdminPageController extends Controller
     public function index()
     {
 
-        $stocks = Stock::where('invoice_id', '!=', null )->with(['invoice','receiver'])->get();
+        $stocks = Stock::where('invoice_id', '!=', null)->with(['invoice','receiver'])->get();
+        $invoiceIds = $stocks->pluck('invoice_id');
 
-        $total = Invoice::whereIn('id', $stocks->pluck('invoice_id'))->get()->sum('total_amount');
+        $total = Invoice::whereIn('id', $invoiceIds)->sum('total_amount');
+        $yearTotal = Invoice::whereIn('id', $invoiceIds)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->sum('total_amount');
 
 
 
@@ -161,9 +165,11 @@ class SuperAdminPageController extends Controller
 
         $customers = Customer::get();
 
+        // return $stocks;
 
 
-        return view('superadmin_dashboard.index',compact(['products','stocks', 'total', 'orders', 'customers']));
+
+        return view('superadmin_dashboard.index',compact(['products','stocks', 'total', 'yearTotal', 'orders', 'customers']));
     }
 
     public function staff_records()
