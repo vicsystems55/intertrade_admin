@@ -51,6 +51,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.css" integrity="sha512-j+idvE15yGD+P0xIk4S6BDPdVT3PbJFkR6Ap6M6EBIbkTcD+E/2GJ/JYkMRHycfgkdKbn+wKaiPswUCZVNR9Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    @yield('index-css')
     <title>InterTrade Admin</title>
 
 
