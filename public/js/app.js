@@ -2066,15 +2066,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return _defineProperty({
+    return {
       searchKey: '',
       account_maps: [],
       key: '',
@@ -2098,11 +2100,18 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       account_name: 'InterTrade Ltd.',
       account_no: '22002288220',
       generating: false,
-      loading: false
-    }, "searchKey", '');
+      loading: false,
+      showRecordSaleModal: false
+    };
   },
   props: ['appurl', 'userid'],
   methods: {
+    openRecordSaleModal: function openRecordSaleModal() {
+      this.showRecordSaleModal = true;
+    },
+    closeRecordSaleModal: function closeRecordSaleModal() {
+      this.showRecordSaleModal = false;
+    },
     format: function format(value) {
       var numeral = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
       return numeral(value).format('N 0,0.00');
@@ -2123,16 +2132,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
                 _context.next = 4;
                 break;
               }
-              return _context.abrupt("return", alert('Please document type'));
+              return _context.abrupt("return", alert('Please select document type'));
             case 4:
               _this.generating = true;
-              // console.log(this.lineQuantity)
-
-              // var desc = [];
-
-              // desc = document.getElementById('quantity').value
-
-              // console.log(desc);
               _context.next = 7;
               return axios({
                 method: "post",
@@ -2159,18 +2161,13 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
                   'Accept': 'application/json'
                 }
               }).then(function (response) {
-                // this.loading = false,
-
-                // alert('no'),
-
                 console.log(response);
                 _this.resetInvoice();
                 _this.generating = false;
+                _this.closeRecordSaleModal();
                 return window.open(_this.appurl + 'invoice/' + _this.invoice.id, '_blank');
-
-                //  this.results = response.data
               })["catch"](function (err) {
-                // console.log(error);
+                console.log(err);
                 _this.generating = false;
               });
             case 7:
@@ -2182,24 +2179,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     addProduct: function addProduct(productId) {
       var _this2 = this;
-      //alert(this.invoice.id)
-
       axios.post(this.appurl + 'api/invoices', {
         invoice_id: this.invoice.id,
         product_id: productId,
         type: 'add-product'
-        // date: this.date,
-        // file_upload: this.newfile_name,
-        // text_report: this.outputData.blocks,
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          _this2.invoice = response.data, console.log(response), _this2.getInvoice(),
-          //  this.results = response.data
-
-          alert('Prduct Added to list.')
-        );
+        _this2.invoice = response.data;
+        console.log(response);
+        _this2.getInvoice();
+        alert('Product added to invoice.');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2207,28 +2195,17 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     createInvoice: function createInvoice() {
       var _this3 = this;
       if (localStorage.getItem('current_invoice_code')) {
-        // alert('has');
-
         this.getInvoice();
       } else {
         localStorage.setItem('current_invoice_code', Date.now());
         this.current_invoice_code = localStorage.getItem('current_invoice_code');
-
-        //alert('created')
-
         axios.post(this.appurl + 'api/invoices', {
           invoice_code: this.current_invoice_code,
           userid: this.userid
-          // date: this.date,
-          // file_upload: this.newfile_name,
-          // text_report: this.outputData.blocks,
         }).then(function (response) {
-          return (
-            // this.loading = false,
-
-            _this3.invoice = response.data, console.log(response), _this3.getInvoice()
-            //  this.results = response.data
-          );
+          _this3.invoice = response.data;
+          console.log(response);
+          _this3.getInvoice();
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2248,25 +2225,20 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           'Accept': 'application/json'
         }
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          //alert('reveic curent invoice'),
-
-          _this4.invoice = response.data, _this4.lineQuantity = response.data.invoice_line.map(function (line) {
-            return line.quantity;
-          }), console.log(_this4.lineQuantity), _this4.lineDescription = response.data.invoice_line.map(function (line) {
-            return line.description;
-          }), console.log(_this4.lineDescription), _this4.lineIds = response.data.invoice_line.map(function (line) {
-            return line.id;
-          }), console.log(_this4.lineIds), _this4.linePrice = response.data.invoice_line.map(function (line) {
-            return line.product.price;
-          }), console.log(_this4.linePrice), console.log(response)
-
-          //alert('this.invoice')
-
-          //  this.results = response.data
-        );
+        _this4.invoice = response.data;
+        _this4.lineQuantity = response.data.invoice_line.map(function (line) {
+          return line.quantity;
+        });
+        _this4.lineDescription = response.data.invoice_line.map(function (line) {
+          return line.description;
+        });
+        _this4.lineIds = response.data.invoice_line.map(function (line) {
+          return line.id;
+        });
+        _this4.linePrice = response.data.invoice_line.map(function (line) {
+          return line.product.price;
+        });
+        console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2286,16 +2258,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           'Accept': 'application/json'
         }
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          _this5.products = response.data, console.log('can sort'), console.log(response), _this5.loading = false
-
-          //  this.results = response.data
-        );
+        _this5.products = response.data;
+        console.log('can sort');
+        console.log(response);
+        _this5.loadProductsWithStock();
+        _this5.loading = false;
       })["catch"](function (error) {
         console.log(error);
-        this.loading = false;
+        _this5.loading = false;
       });
     },
     searchProducts: function searchProducts() {
@@ -2313,56 +2283,120 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           'Accept': 'application/json'
         }
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          _this6.products = response.data, console.log('can sort'), console.log(response), _this6.loading = false
-
-          //  this.results = response.data
-        );
+        _this6.products = response.data;
+        console.log('search results');
+        console.log(response);
+        _this6.loadProductsWithStock();
+        _this6.loading = false;
       })["catch"](function (error) {
         console.log(error);
-        this.loading = false;
+        _this6.loading = false;
       });
     },
     getProducts: function getProducts() {
       var _this7 = this;
       axios.get(this.appurl + 'api/products', {
         key: this.key
-        // date: this.date,
-        // file_upload: this.newfile_name,
-        // text_report: this.outputData.blocks,
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          _this7.products = response.data, console.log(response)
-          //  this.results = response.data
-        );
+        _this7.products = response.data;
+        console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    getProductCategories: function getProductCategories() {
+    showAllProducts: function showAllProducts() {
       var _this8 = this;
+      this.loading = true;
+      this.searchKey = '';
+      axios.get(this.appurl + 'api/products', {
+        key: this.key
+      }).then(function (response) {
+        _this8.products = response.data;
+        console.log('All products loaded:', response);
+        _this8.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+        _this8.loading = false;
+      });
+    },
+    loadProductsWithStock: function loadProductsWithStock() {
+      var _this9 = this;
+      // Get product IDs from current products
+      var productIds = this.products.map(function (p) {
+        return p.id;
+      });
+      if (productIds.length === 0) return;
+
+      // Fetch full product details with stock info
+      axios({
+        method: "post",
+        url: this.appurl + 'api/products-stock',
+        data: {
+          product_ids: productIds
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        // Merge stock data with existing products
+        var stockMap = {};
+        response.data.forEach(function (product) {
+          stockMap[product.id] = product.stock_sum_quantity || 0;
+        });
+
+        // Update products with correct stock values
+        _this9.products = _this9.products.map(function (product) {
+          return _objectSpread(_objectSpread({}, product), {}, {
+            stock_sum_quantity: stockMap[product.id] !== undefined ? stockMap[product.id] : product.stock_sum_quantity || 0
+          });
+        });
+        console.log('Products updated with stock info', _this9.products);
+      })["catch"](function (error) {
+        console.log('Could not load stock info:', error);
+        // If the dedicated endpoint doesn't exist, try to get stock from main products endpoint
+        _this9.loadProductsWithStockFallback();
+      });
+    },
+    loadProductsWithStockFallback: function loadProductsWithStockFallback() {
+      var _this10 = this;
+      // Fallback: reload all products and filter them
+      axios.get(this.appurl + 'api/products', {
+        key: this.key
+      }).then(function (response) {
+        var allProducts = response.data;
+        var currentIds = _this10.products.map(function (p) {
+          return p.id;
+        });
+
+        // Update current products with stock data from all products
+        _this10.products = _this10.products.map(function (product) {
+          var fullProduct = allProducts.find(function (p) {
+            return p.id === product.id;
+          });
+          return fullProduct ? _objectSpread(_objectSpread({}, product), {}, {
+            stock_sum_quantity: fullProduct.stock_sum_quantity || 0
+          }) : product;
+        });
+        console.log('Products updated with fallback stock info', _this10.products);
+      })["catch"](function (error) {
+        console.log('Fallback also failed:', error);
+      });
+    },
+    getProductCategories: function getProductCategories() {
+      var _this11 = this;
       axios.get(this.appurl + 'api/product-category', {
         key: this.key
-        // date: this.date,
-        // file_upload: this.newfile_name,
-        // text_report: this.outputData.blocks,
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          _this8.productCategories = response.data, console.log(response)
-          //  this.results = response.data
-        );
+        _this11.productCategories = response.data;
+        console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     getInvoices: function getInvoices() {
-      var _this9 = this;
+      var _this12 = this;
       axios({
         method: "get",
         url: this.appurl + 'api/invoices',
@@ -2375,55 +2409,21 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           'Accept': 'application/json'
         }
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          _this9.invoices = response.data, console.log(response)
-          //  this.results = response.data
-        );
+        _this12.invoices = response.data;
+        console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     resetInvoice: function resetInvoice() {
-      var _this10 = this;
+      var _this13 = this;
       return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              // axios({
-              //     method: "post",
-              //     url: this.appurl + 'api/invoices',
-              //     params: {
-              //         invoice_code: localStorage.getItem('current_invoice_code'),
-              //         type: 'delete'
-
-              //     },
-              //     headers: {
-              //         'Access-Control-Allow-Origin': '*',
-              //         'Content-type': 'application/json',
-              //         'Accept': 'application/json',
-              //     },
-
-              // }).then((response) => (
-              //     // this.loading = false,
-
-              //     //alert('reveic curent invoice'),
-
-              //     // this.invoice = response.data,
-              //     console.log(response)
-
-              //     //alert('this.invoice')
-
-              //     //  this.results = response.data
-
-              // )).catch(function (error) {
-              //     console.log(error);
-              // });
-
               localStorage.removeItem('current_invoice_code');
               _context2.next = 3;
-              return _this10.createInvoice();
+              return _this13.createInvoice();
             case 3:
               console.log('Invoice Refreshed!!');
             case 4:
@@ -2434,7 +2434,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }))();
     },
     removeInvoiceLine: function removeInvoiceLine(invoiceLineId) {
-      var _this11 = this;
+      var _this14 = this;
       axios({
         method: "post",
         url: this.appurl + 'api/invoice_lines',
@@ -2448,29 +2448,20 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           'Accept': 'application/json'
         }
       }).then(function (response) {
-        return (
-          // this.loading = false,
-
-          //alert('reveic curent invoice'),
-
-          // this.invoice = response.data,
-          console.log(response), _this11.getInvoice()
-
-          //alert('this.invoice')
-
-          //  this.results = response.data
-        );
+        console.log(response);
+        _this14.getInvoice();
       })["catch"](function (error) {
         console.log(error);
       });
     },
     getCustomers: function getCustomers() {
-      var _this12 = this;
+      var _this15 = this;
       axios({
         method: "get",
         url: this.appurl + 'api/customers'
       }).then(function (response) {
-        _this12.customers = response.data, console.log(response);
+        _this15.customers = response.data;
+        console.log(response);
       });
     },
     getCustomer: function getCustomer() {
@@ -3596,17 +3587,34 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {}, [_c("div", {
-    staticClass: "switcher-wrapper"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "switcher-body"
-  }, [_vm._m(1), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: ""
+  return _c("div", [_vm.showRecordSaleModal ? _c("div", {
+    staticClass: "pos-modal-overlay",
+    on: {
+      click: function click($event) {
+        if ($event.target !== $event.currentTarget) return null;
+        return _vm.closeRecordSaleModal.apply(null, arguments);
+      }
+    }
   }, [_c("div", {
-    staticClass: "car"
+    staticClass: "pos-modal"
   }, [_c("div", {
-    staticClass: "form-group p-1"
-  }, [_vm._m(2), _vm._v(" "), _c("select", {
+    staticClass: "pos-modal-header"
+  }, [_vm._m(0), _vm._v(" "), _c("button", {
+    staticClass: "pos-modal-close",
+    attrs: {
+      type: "button",
+      "aria-label": "Close"
+    },
+    on: {
+      click: _vm.closeRecordSaleModal
+    }
+  }, [_c("i", {
+    staticClass: "bx bx-x"
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "pos-modal-body"
+  }, [_c("div", {
+    staticClass: "form-section"
+  }, [_vm._m(1), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3635,70 +3643,41 @@ var render = function render() {
       domProps: {
         value: customer.id
       }
-    }, [_vm._v("\n                                " + _vm._s(customer.company_name) + " " + _vm._s(customer.conact_person_name))]);
-  })], 2)]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticStyle: {
-      height: "400px",
-      "overflow-y": "auto"
-    }
-  }, [_vm._l(_vm.invoice.invoice_line, function (line, key) {
+    }, [_vm._v("\n                            " + _vm._s(customer.company_name) + " - " + _vm._s(customer.conact_person_name) + "\n                        ")]);
+  })], 2)]), _vm._v(" "), _c("div", {
+    staticClass: "invoice-items-section"
+  }, [_c("h5", {
+    staticClass: "section-title"
+  }, [_vm._v("Items in Invoice")]), _vm._v(" "), _c("div", {
+    staticClass: "invoice-items-list"
+  }, [_vm.invoice.invoice_line && _vm.invoice.invoice_line.length === 0 ? _c("div", {
+    staticClass: "empty-state"
+  }, [_c("p", [_vm._v("No items added yet")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.invoice.invoice_line, function (line, key) {
     return _c("div", {
       key: line.id,
-      staticClass: "card border mb-2 p-2 border border-primary"
+      staticClass: "invoice-item-card"
     }, [_c("div", {
-      staticClass: "row"
+      staticClass: "item-header"
     }, [_c("div", {
-      staticClass: "col-12"
-    }, [_c("div", {
-      staticClass: "d-flex justify-content-between"
-    }, [_c("div", {
-      staticClass: "c"
-    }, [_c("h6", {
-      staticStyle: {
-        "font-weight": "bold"
-      }
-    }, [_vm._v("\n                                                " + _vm._s(key + 1) + ". " + _vm._s(line.product.name) + "\n                                            ")])]), _vm._v(" "), _c("div", {
-      staticClass: "r"
+      staticClass: "item-info"
     }, [_c("span", {
-      staticClass: "btn p-0 px-1 text-white h6 bg-danger",
+      staticClass: "item-number"
+    }, [_vm._v(_vm._s(key + 1))]), _vm._v(" "), _c("h6", {
+      staticClass: "item-name"
+    }, [_vm._v(_vm._s(line.product.name))])]), _vm._v(" "), _c("button", {
+      staticClass: "btn-remove",
       on: {
         click: function click($event) {
           return _vm.removeInvoiceLine(line.id);
         }
       }
-    }, [_vm._v("x")])])])]), _vm._v(" "), _c("div", {
-      staticClass: "col-12"
-    }, [_c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _vm.lineIds[key],
-        expression: "lineIds[key]"
-      }],
-      attrs: {
-        type: "hidden",
-        name: ""
-      },
-      domProps: {
-        value: _vm.lineIds[key]
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-          _vm.$set(_vm.lineIds, key, $event.target.value);
-        }
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "form-group"
+    }, [_c("i", {
+      staticClass: "bx bx-trash"
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "item-details"
     }, [_c("div", {
-      staticClass: "row"
-    }, [_c("div", {
-      staticClass: "col-8"
-    }, [_c("label", {
-      attrs: {
-        "for": "price"
-      }
-    }, [_vm._v("Price")]), _vm._v(" "), _c("input", {
+      staticClass: "detail-group"
+    }, [_c("label", [_vm._v("Price")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -3719,12 +3698,8 @@ var render = function render() {
         }
       }
     })]), _vm._v(" "), _c("div", {
-      staticClass: "col-4"
-    }, [_c("label", {
-      attrs: {
-        "for": "quantity"
-      }
-    }, [_vm._v("Quantity")]), _vm._v(" "), _c("input", {
+      staticClass: "detail-group"
+    }, [_c("label", [_vm._v("Quantity")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -3744,22 +3719,18 @@ var render = function render() {
           _vm.$set(_vm.lineQuantity, key, $event.target.value);
         }
       }
-    })])])])]), _vm._v(" "), _c("div", {
-      staticClass: "form-group py-2"
-    }, [_c("label", {
-      attrs: {
-        "for": "desc"
-      }
-    }, [_vm._v("Description")]), _vm._v(" "), _c("textarea", {
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "detail-group full-width"
+    }, [_c("label", [_vm._v("Description")]), _vm._v(" "), _c("textarea", {
       directives: [{
         name: "model",
         rawName: "v-model",
         value: _vm.lineDescription[key],
         expression: "lineDescription[key]"
       }],
-      staticClass: "form-control",
+      staticClass: "form-control form-control-sm",
       attrs: {
-        rows: "1"
+        rows: "2"
       },
       domProps: {
         value: _vm.lineDescription[key]
@@ -3770,10 +3741,14 @@ var render = function render() {
           _vm.$set(_vm.lineDescription, key, $event.target.value);
         }
       }
-    })])])]);
-  }), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-1"
-  }, [_vm._m(3), _vm._v(" "), _c("select", {
+    })])]);
+  })], 2)]), _vm._v(" "), _c("div", {
+    staticClass: "settings-section"
+  }, [_c("h5", {
+    staticClass: "section-title"
+  }, [_vm._v("Document Settings")]), _vm._v(" "), _c("div", {
+    staticClass: "form-section"
+  }, [_vm._m(2), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3781,9 +3756,6 @@ var render = function render() {
       expression: "invoice_type"
     }],
     staticClass: "form-control",
-    attrs: {
-      id: ""
-    },
     on: {
       change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
@@ -3808,12 +3780,10 @@ var render = function render() {
       value: "Pro forma Invoice"
     }
   }, [_vm._v("Pro forma Invoice")])])]), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-1"
+    staticClass: "form-section"
   }, [_c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Status")]), _vm._v(" "), _c("select", {
+    staticClass: "form-label"
+  }, [_vm._v("Payment Status")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3821,9 +3791,6 @@ var render = function render() {
       expression: "payment_status"
     }],
     staticClass: "form-control",
-    attrs: {
-      id: ""
-    },
     on: {
       change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
@@ -3836,7 +3803,9 @@ var render = function render() {
       }
     }
   }, [_c("option", [_vm._v("Paid")]), _vm._v(" "), _c("option", [_vm._v("Unpaid")])])]), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-1 py-2"
+    staticClass: "checkbox-group"
+  }, [_c("div", {
+    staticClass: "form-check"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -3847,7 +3816,7 @@ var render = function render() {
     staticClass: "form-check-input",
     attrs: {
       type: "checkbox",
-      id: "flexCheckDefault"
+      id: "vatCheck"
     },
     domProps: {
       checked: Array.isArray(_vm.vat_included) ? _vm._i(_vm.vat_included, null) > -1 : _vm.vat_included
@@ -3871,12 +3840,12 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label text-danger",
+    staticClass: "form-check-label",
     attrs: {
-      "for": "flexCheckDefault"
+      "for": "vatCheck"
     }
   }, [_vm._v("\n                                VAT Included\n                            ")])]), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-1 py-2"
+    staticClass: "form-check"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -3887,7 +3856,7 @@ var render = function render() {
     staticClass: "form-check-input",
     attrs: {
       type: "checkbox",
-      id: "flexCheckDefault2"
+      id: "receiptCheck"
     },
     domProps: {
       value: "true",
@@ -3912,16 +3881,18 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label text-danger",
+    staticClass: "form-check-label",
     attrs: {
-      "for": "flexCheckDefault2"
+      "for": "receiptCheck"
     }
-  }, [_vm._v("\n                                Generate Receipt\n                            ")])]), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-1"
+  }, [_vm._v("\n                                Generate Receipt\n                            ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "bank-section"
+  }, [_c("h5", {
+    staticClass: "section-title"
+  }, [_vm._v("Bank Details")]), _vm._v(" "), _c("div", {
+    staticClass: "form-section"
   }, [_c("label", {
-    attrs: {
-      "for": ""
-    }
+    staticClass: "form-label"
   }, [_vm._v("Bank Name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -3942,10 +3913,10 @@ var render = function render() {
         _vm.bank_name = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("label", {
-    attrs: {
-      "for": ""
-    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-section"
+  }, [_c("label", {
+    staticClass: "form-label"
   }, [_vm._v("Account Name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -3966,11 +3937,11 @@ var render = function render() {
         _vm.account_name = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Account No.")]), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-section"
+  }, [_c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Account Number")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3990,41 +3961,67 @@ var render = function render() {
         _vm.account_no = $event.target.value;
       }
     }
-  })])], 2), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-2"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "pos-modal-footer"
   }, [_c("button", {
-    staticClass: "btn btn-primary col-12",
-    on: {
-      click: function click($event) {
-        return _vm.generateInvoice();
-      }
-    }
-  }, [_vm._v(_vm._s(_vm.generating == true ? "Generating..." : "Submit"))])]), _vm._v(" "), _c("div", {
-    staticClass: "form-group p-2"
-  }, [_c("button", {
-    staticClass: "btn btn-danger col-12",
+    staticClass: "btn btn-outline-secondary",
     on: {
       click: function click($event) {
         return _vm.resetInvoice();
       }
     }
-  }, [_vm._v("Reset")])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: ""
+  }, [_c("i", {
+    staticClass: "bx bx-reset"
+  }), _vm._v(" Reset\n                ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.generating
+    },
+    on: {
+      click: function click($event) {
+        return _vm.generateInvoice();
+      }
+    }
+  }, [!_vm.generating ? _c("i", {
+    staticClass: "bx bx-check"
+  }) : _vm._e(), _vm._v(" "), _vm.generating ? _c("span", {
+    staticClass: "spinner-border spinner-border-sm me-2"
+  }) : _vm._e(), _vm._v("\n                    " + _vm._s(_vm.generating ? "Generating..." : "Submit") + "\n                ")])])])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "pos-container"
   }, [_c("div", {
-    staticClass: "container-fluid"
+    staticClass: "pos-container"
   }, [_c("div", {
-    staticClass: "form-group col-md-6 py-2 d-flex"
-  }, [_c("input", {
+    staticClass: "pos-header"
+  }, [_c("div", {
+    staticClass: "header-content"
+  }, [_vm._m(3), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary btn-lg",
+    on: {
+      click: function click($event) {
+        return _vm.openRecordSaleModal();
+      }
+    }
+  }, [_c("i", {
+    staticClass: "bx bx-plus"
+  }), _vm._v(" Record Sale\n                ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "filter-section"
+  }, [_c("div", {
+    staticClass: "search-bar"
+  }, [_c("div", {
+    staticClass: "search-input-wrapper"
+  }, [_c("i", {
+    staticClass: "bx bx-search"
+  }), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: _vm.searchKey,
       expression: "searchKey"
     }],
-    staticClass: "form-control",
+    staticClass: "search-input",
     attrs: {
       type: "text",
-      placeholder: "Search a product"
+      placeholder: "Search products..."
     },
     domProps: {
       value: _vm.searchKey
@@ -4035,19 +4032,35 @@ var render = function render() {
         _vm.searchKey = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-search",
     on: {
       click: function click($event) {
         return _vm.searchProducts();
       }
     }
-  }, [_vm._v("Search")])]), _vm._v(" "), _c("div", {
-    staticClass: "cat d-flex flex-wrap justify-content-start py-2"
-  }, _vm._l(_vm.productCategories, function (productCategory) {
+  }, [_c("i", {
+    staticClass: "bx bx-search-alt-2"
+  }), _vm._v(" Search\n                ")])]), _vm._v(" "), _c("div", {
+    staticClass: "category-section"
+  }, [_c("h6", {
+    staticClass: "category-title"
+  }, [_vm._v("Categories")]), _vm._v(" "), _c("div", {
+    staticClass: "category-list"
+  }, [_c("button", {
+    staticClass: "category-btn category-all",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.showAllProducts();
+      }
+    }
+  }, [_vm._m(4)]), _vm._v(" "), _vm._l(_vm.productCategories, function (productCategory) {
     return _c("button", {
       key: productCategory.id,
-      staticClass: "btn btn-primary m-1",
+      staticClass: "category-btn",
       attrs: {
         type: "button"
       },
@@ -4056,94 +4069,82 @@ var render = function render() {
           return _vm.sortProducts(productCategory.id);
         }
       }
-    }, [_vm._v(_vm._s(productCategory.name) + " "), _c("span", {
-      staticClass: "badge bg-dark"
+    }, [_c("span", {
+      staticClass: "category-name"
+    }, [_vm._v(_vm._s(productCategory.name))]), _vm._v(" "), _c("span", {
+      staticClass: "category-badge"
     }, [_vm._v(_vm._s(productCategory.products_count))])]);
-  }), 0), _vm._v(" "), _c("div", {
-    staticClass: "row"
+  })], 2)]), _vm._v(" "), _c("div", {
+    staticClass: "results-info"
+  }, [_c("p", [_vm._v("Showing "), _c("strong", [_vm._v(_vm._s(_vm.products.length))]), _vm._v(" products")])])]), _vm._v(" "), _c("div", {
+    staticClass: "products-section"
+  }, [_vm.loading ? _c("div", {
+    staticClass: "loader-container"
   }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "py-4"
-  }, [_vm._v("Resutls: " + _vm._s(_vm.products.length))]), _vm._v(" "), _vm.loading ? _c("div", {
-    staticClass: "loader d-flex justify-content-center align-items-center",
-    staticStyle: {
-      height: "340px"
-    }
-  }, [_c("h6", [_vm._v("Loading...")])]) : _c("div", {
-    staticClass: "p-2"
-  }, [_c("div", {
-    staticClass: "row"
-  }, _vm._l(_vm.products, function (product) {
+    staticClass: "spinner"
+  }), _vm._v(" "), _c("p", [_vm._v("Loading products...")])]) : _c("div", {
+    staticClass: "products-grid"
+  }, [_vm.products.length === 0 ? _c("div", {
+    staticClass: "empty-products"
+  }, [_c("i", {
+    staticClass: "bx bx-inbox"
+  }), _vm._v(" "), _c("p", [_vm._v("No products found")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.products, function (product) {
     return _c("div", {
       key: product.id,
-      staticClass: "col-lg-3 col-md-4 mx-auto"
+      staticClass: "product-card"
     }, [_c("div", {
-      staticClass: "card",
-      staticStyle: {
-        "max-width": "300px"
-      }
+      staticClass: "product-image"
     }, [_c("img", {
-      staticClass: "card-img-top",
-      staticStyle: {
-        "max-height": "200px",
-        "max-width": "300px",
-        "object-fit": "cover"
-      },
       attrs: {
         src: product.featured_image,
-        alt: "..."
+        alt: product.name
       }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "card-body"
+    }), _vm._v(" "), product.stock_sum_quantity ? _c("div", {
+      staticClass: "stock-badge"
+    }, [_vm._v("\n                            " + _vm._s(product.stock_sum_quantity) + " in stock\n                        ")]) : _c("div", {
+      staticClass: "stock-badge out-of-stock"
+    }, [_vm._v("\n                            Out of Stock\n                        ")])]), _vm._v(" "), _c("div", {
+      staticClass: "product-content"
     }, [_c("h6", {
-      staticClass: "card-title"
+      staticClass: "product-name"
     }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
-    }, [_vm._v(_vm._s(product.description))]), _vm._v(" "), product.stock_sum_quantity ? _c("p", [_vm._v("In stock: " + _vm._s(product.stock_sum_quantity))]) : _c("p", [_vm._v("In stock: 0")]), _vm._v(" "), _c("p", [_vm._v("N " + _vm._s(_vm.format(product.price)))]), _vm._v(" "), product.stock_sum_quantity ? _c("button", {
-      staticClass: "btn btn-primary btn-sm col-12",
+      staticClass: "product-description"
+    }, [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("div", {
+      staticClass: "product-footer"
+    }, [_c("span", {
+      staticClass: "product-price"
+    }, [_vm._v("₦" + _vm._s(_vm.format(product.price)))]), _vm._v(" "), product.stock_sum_quantity ? _c("button", {
+      staticClass: "btn-add",
       on: {
         click: function click($event) {
           return _vm.addProduct(product.id);
         }
       }
-    }, [_vm._v("Add +")]) : _c("button", {
-      staticClass: "btn btn-primary btn-sm col-12",
+    }, [_c("i", {
+      staticClass: "bx bx-plus"
+    })]) : _c("button", {
+      staticClass: "btn-add disabled",
       attrs: {
         disabled: ""
       }
-    }, [_vm._v("Add +")])])])]);
-  }), 0)])])])])])]);
+    }, [_c("i", {
+      staticClass: "bx bx-plus"
+    })])])])]);
+  })], 2)])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "switcher-btn"
+  return _c("h3", {
+    staticClass: "pos-modal-title"
   }, [_c("i", {
-    staticClass: "bx bx-cog bx-spin"
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "d-flex align-items-center"
-  }, [_c("h5", {
-    staticClass: "mb-0 text-uppercase"
-  }, [_vm._v("Record Sale")]), _vm._v(" "), _c("button", {
-    staticClass: "btn-close ms-auto close-switcher",
-    attrs: {
-      type: "button",
-      "aria-label": "Close"
-    }
-  })]);
+    staticClass: "bx bx-receipt"
+  }), _vm._v(" Record Sale\n                ")]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("label", {
-    attrs: {
-      "for": ""
-    }
+    staticClass: "form-label"
   }, [_vm._v("Select Customer "), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
@@ -4151,12 +4152,26 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("label", {
-    attrs: {
-      "for": ""
-    }
+    staticClass: "form-label"
   }, [_vm._v("Select Type "), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h2", {
+    staticClass: "page-title"
+  }, [_c("i", {
+    staticClass: "bx bx-shopping-bag"
+  }), _vm._v(" Sales Manager")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("span", {
+    staticClass: "category-name"
+  }, [_c("i", {
+    staticClass: "bx bx-list-ul"
+  }), _vm._v(" All Products")]);
 }];
 render._withStripped = true;
 
@@ -22547,7 +22562,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.switcher-wrapper[data-v-299e239e] {\n    /* width: 400px;\n    right: -384px; */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n*[data-v-299e239e] {\n    box-sizing: border-box;\n}\n\n/* Modal Overlay */\n.pos-modal-overlay[data-v-299e239e] {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 1050;\n    animation: fadeIn-299e239e 0.3s ease-in-out;\n}\n@keyframes fadeIn-299e239e {\nfrom {\n        opacity: 0;\n}\nto {\n        opacity: 1;\n}\n}\n\n/* Modal */\n.pos-modal[data-v-299e239e] {\n    background: white;\n    border-radius: 12px;\n    width: 90%;\n    max-width: 600px;\n    max-height: 90vh;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\n    animation: slideUp-299e239e 0.4s ease-out;\n}\n@keyframes slideUp-299e239e {\nfrom {\n        transform: translateY(30px);\n        opacity: 0;\n}\nto {\n        transform: translateY(0);\n        opacity: 1;\n}\n}\n\n/* Modal Header */\n.pos-modal-header[data-v-299e239e] {\n    padding: 24px;\n    border-bottom: 1px solid #e9ecef;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n}\n.pos-modal-title[data-v-299e239e] {\n    margin: 0;\n    font-size: 1.5rem;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n.pos-modal-close[data-v-299e239e] {\n    background: none;\n    border: none;\n    color: white;\n    font-size: 28px;\n    cursor: pointer;\n    padding: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: transform 0.2s;\n}\n.pos-modal-close[data-v-299e239e]:hover {\n    transform: scale(1.1);\n}\n\n/* Modal Body */\n.pos-modal-body[data-v-299e239e] {\n    overflow-y: auto;\n    flex: 1;\n    padding: 24px;\n}\n.pos-modal-body[data-v-299e239e]::-webkit-scrollbar {\n    width: 8px;\n}\n.pos-modal-body[data-v-299e239e]::-webkit-scrollbar-track {\n    background: #f1f1f1;\n    border-radius: 10px;\n}\n.pos-modal-body[data-v-299e239e]::-webkit-scrollbar-thumb {\n    background: #888;\n    border-radius: 10px;\n}\n.pos-modal-body[data-v-299e239e]::-webkit-scrollbar-thumb:hover {\n    background: #555;\n}\n\n/* Form Sections */\n.form-section[data-v-299e239e] {\n    margin-bottom: 20px;\n}\n.form-label[data-v-299e239e] {\n    display: block;\n    font-weight: 500;\n    margin-bottom: 8px;\n    color: #2d3748;\n    font-size: 0.95rem;\n}\n.form-control[data-v-299e239e] {\n    border: 2px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 10px 12px;\n    font-size: 0.95rem;\n    transition: all 0.3s ease;\n}\n.form-control[data-v-299e239e]:focus {\n    border-color: #667eea;\n    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);\n    outline: none;\n}\n\n/* Section Titles */\n.section-title[data-v-299e239e] {\n    font-size: 1rem;\n    font-weight: 600;\n    margin-bottom: 16px;\n    margin-top: 20px;\n    color: #2d3748;\n    display: flex;\n    align-items: center;\n    padding-bottom: 10px;\n    border-bottom: 2px solid #e2e8f0;\n}\n.section-title[data-v-299e239e]:first-child {\n    margin-top: 0;\n}\n\n/* Invoice Items */\n.invoice-items-section[data-v-299e239e] {\n    margin-bottom: 24px;\n}\n.invoice-items-list[data-v-299e239e] {\n    max-height: 300px;\n    overflow-y: auto;\n    padding-right: 8px;\n}\n.empty-state[data-v-299e239e] {\n    text-align: center;\n    padding: 30px 20px;\n    color: #718096;\n    background: #f7fafc;\n    border-radius: 8px;\n    border: 2px dashed #cbd5e0;\n}\n.invoice-item-card[data-v-299e239e] {\n    background: #f7fafc;\n    border: 2px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 16px;\n    margin-bottom: 12px;\n    transition: all 0.3s ease;\n}\n.invoice-item-card[data-v-299e239e]:hover {\n    border-color: #667eea;\n    background: #f0f4ff;\n}\n.item-header[data-v-299e239e] {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 12px;\n}\n.item-info[data-v-299e239e] {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n.item-number[data-v-299e239e] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 32px;\n    height: 32px;\n    background: #667eea;\n    color: white;\n    border-radius: 50%;\n    font-weight: 600;\n    font-size: 0.9rem;\n}\n.item-name[data-v-299e239e] {\n    margin: 0;\n    color: #2d3748;\n    font-size: 0.95rem;\n    font-weight: 500;\n}\n.btn-remove[data-v-299e239e] {\n    background: #fc8181;\n    color: white;\n    border: none;\n    width: 32px;\n    height: 32px;\n    border-radius: 6px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.3s ease;\n    padding: 0;\n}\n.btn-remove[data-v-299e239e]:hover {\n    background: #f56565;\n    transform: scale(1.05);\n}\n.item-details[data-v-299e239e] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 12px;\n    margin-bottom: 12px;\n}\n.detail-group[data-v-299e239e] {\n    display: flex;\n    flex-direction: column;\n}\n.detail-group.full-width[data-v-299e239e] {\n    grid-column: 1 / -1;\n}\n.detail-group label[data-v-299e239e] {\n    font-size: 0.85rem;\n    font-weight: 500;\n    color: #4a5568;\n    margin-bottom: 6px;\n}\n\n/* Checkbox Groups */\n.checkbox-group[data-v-299e239e] {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 16px;\n    background: #f7fafc;\n    border-radius: 8px;\n}\n.form-check[data-v-299e239e] {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n}\n.form-check-input[data-v-299e239e] {\n    width: 18px;\n    height: 18px;\n    cursor: pointer;\n    accent-color: #667eea;\n}\n.form-check-label[data-v-299e239e] {\n    margin-bottom: 0;\n    cursor: pointer;\n    color: #2d3748;\n    font-weight: 500;\n}\n\n/* Modal Footer */\n.pos-modal-footer[data-v-299e239e] {\n    padding: 16px 24px;\n    border-top: 1px solid #e9ecef;\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    background: #f7fafc;\n}\n.btn[data-v-299e239e] {\n    padding: 10px 16px;\n    border-radius: 8px;\n    border: none;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-size: 0.95rem;\n}\n.btn-primary[data-v-299e239e] {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n}\n.btn-primary[data-v-299e239e]:hover:not(:disabled) {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);\n}\n.btn-primary[data-v-299e239e]:disabled {\n    opacity: 0.6;\n    cursor: not-allowed;\n}\n.btn-outline-secondary[data-v-299e239e] {\n    background: white;\n    color: #4a5568;\n    border: 2px solid #cbd5e0;\n}\n.btn-outline-secondary[data-v-299e239e]:hover {\n    background: #edf2f7;\n    border-color: #a0aec0;\n}\n\n/* Main Container */\n.pos-container[data-v-299e239e] {\n    background: #f8f9fa;\n    min-height: 100vh;\n    padding: 20px;\n}\n\n/* Header */\n.pos-header[data-v-299e239e] {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    padding: 30px;\n    border-radius: 12px;\n    margin-bottom: 30px;\n    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);\n}\n.header-content[data-v-299e239e] {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.page-title[data-v-299e239e] {\n    color: white;\n    margin: 0;\n    font-size: 2rem;\n    font-weight: 700;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n.btn-lg[data-v-299e239e] {\n    padding: 12px 24px;\n    font-size: 1rem;\n}\n\n/* Filter Section */\n.filter-section[data-v-299e239e] {\n    background: white;\n    padding: 24px;\n    border-radius: 12px;\n    margin-bottom: 30px;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);\n}\n.search-bar[data-v-299e239e] {\n    display: flex;\n    gap: 12px;\n    margin-bottom: 24px;\n}\n.search-input-wrapper[data-v-299e239e] {\n    flex: 1;\n    display: flex;\n    align-items: center;\n    border: 2px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 0 12px;\n    transition: all 0.3s ease;\n    background: white;\n}\n.search-input-wrapper[data-v-299e239e]:focus-within {\n    border-color: #667eea;\n    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);\n}\n.search-input-wrapper i[data-v-299e239e] {\n    color: #a0aec0;\n    font-size: 1.2rem;\n}\n.search-input[data-v-299e239e] {\n    flex: 1;\n    border: none;\n    outline: none;\n    padding: 12px;\n    font-size: 0.95rem;\n    background: transparent;\n}\n.search-input[data-v-299e239e]::-moz-placeholder {\n    color: #cbd5e0;\n}\n.search-input[data-v-299e239e]::placeholder {\n    color: #cbd5e0;\n}\n.btn-search[data-v-299e239e] {\n    padding: 12px 24px;\n    background: #667eea;\n    color: white;\n    border: none;\n    border-radius: 8px;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    white-space: nowrap;\n}\n.btn-search[data-v-299e239e]:hover {\n    background: #764ba2;\n    transform: translateY(-2px);\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);\n}\n\n/* Category Section */\n.category-section[data-v-299e239e] {\n    margin-bottom: 20px;\n}\n.category-title[data-v-299e239e] {\n    font-size: 0.95rem;\n    font-weight: 600;\n    color: #2d3748;\n    margin-bottom: 12px;\n    margin-top: 0;\n}\n.category-list[data-v-299e239e] {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n}\n.category-btn[data-v-299e239e] {\n    padding: 8px 16px;\n    background: #f0f4ff;\n    border: 2px solid #e2e8f0;\n    border-radius: 8px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-weight: 500;\n    color: #2d3748;\n    font-size: 0.9rem;\n    white-space: nowrap;\n}\n.category-btn[data-v-299e239e]:hover {\n    border-color: #667eea;\n    background: #f0f4ff;\n    color: #667eea;\n}\n.category-btn[data-v-299e239e]:active {\n    background: #667eea;\n    color: white;\n    border-color: #667eea;\n}\n.category-name[data-v-299e239e] {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n.category-badge[data-v-299e239e] {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 20px;\n    height: 20px;\n    padding: 0 6px;\n    background: #667eea;\n    color: white;\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 600;\n}\n.category-all[data-v-299e239e] {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    border-color: transparent;\n}\n.category-all[data-v-299e239e]:hover {\n    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);\n    color: white;\n    border-color: transparent;\n}\n.category-all .category-name[data-v-299e239e] {\n    color: white;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n.results-info[data-v-299e239e] {\n    padding-top: 16px;\n    border-top: 1px solid #e2e8f0;\n    color: #4a5568;\n    font-size: 0.9rem;\n}\n\n/* Products Section */\n.products-section[data-v-299e239e] {\n    margin-bottom: 30px;\n}\n.loader-container[data-v-299e239e] {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 400px;\n    background: white;\n    border-radius: 12px;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);\n}\n.spinner[data-v-299e239e] {\n    width: 50px;\n    height: 50px;\n    border: 4px solid #e2e8f0;\n    border-top-color: #667eea;\n    border-radius: 50%;\n    animation: spin-299e239e 0.8s linear infinite;\n    margin-bottom: 16px;\n}\n@keyframes spin-299e239e {\nto {\n        transform: rotate(360deg);\n}\n}\n.products-grid[data-v-299e239e] {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n    gap: 24px;\n    animation: fadeIn-299e239e 0.5s ease-in-out;\n}\n.empty-products[data-v-299e239e] {\n    grid-column: 1 / -1;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 300px;\n    background: white;\n    border-radius: 12px;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);\n    color: #718096;\n}\n.empty-products i[data-v-299e239e] {\n    font-size: 3rem;\n    margin-bottom: 12px;\n    opacity: 0.5;\n}\n\n/* Product Card */\n.product-card[data-v-299e239e] {\n    background: white;\n    border-radius: 12px;\n    overflow: hidden;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n}\n.product-card[data-v-299e239e]:hover {\n    transform: translateY(-8px);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);\n}\n.product-image[data-v-299e239e] {\n    position: relative;\n    width: 100%;\n    height: 200px;\n    overflow: hidden;\n    background: #f0f4ff;\n}\n.product-image img[data-v-299e239e] {\n    width: 100%;\n    height: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n    transition: transform 0.3s ease;\n}\n.product-card:hover .product-image img[data-v-299e239e] {\n    transform: scale(1.05);\n}\n.stock-badge[data-v-299e239e] {\n    position: absolute;\n    top: 12px;\n    right: 12px;\n    padding: 6px 12px;\n    background: #48bb78;\n    color: white;\n    border-radius: 6px;\n    font-size: 0.75rem;\n    font-weight: 600;\n}\n.stock-badge.out-of-stock[data-v-299e239e] {\n    background: #f56565;\n}\n\n/* Product Content */\n.product-content[data-v-299e239e] {\n    padding: 16px;\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n}\n.product-name[data-v-299e239e] {\n    font-size: 1rem;\n    font-weight: 600;\n    margin: 0 0 8px 0;\n    color: #2d3748;\n    line-height: 1.4;\n}\n.product-description[data-v-299e239e] {\n    font-size: 0.85rem;\n    color: #718096;\n    margin: 0 0 12px 0;\n    line-height: 1.4;\n    flex: 1;\n}\n.product-footer[data-v-299e239e] {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding-top: 12px;\n    border-top: 1px solid #e2e8f0;\n}\n.product-price[data-v-299e239e] {\n    font-size: 1.2rem;\n    font-weight: 700;\n    color: #667eea;\n}\n.btn-add[data-v-299e239e] {\n    width: 40px;\n    height: 40px;\n    border-radius: 8px;\n    background: #667eea;\n    color: white;\n    border: none;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.3s ease;\n    font-size: 1.2rem;\n}\n.btn-add[data-v-299e239e]:hover {\n    background: #764ba2;\n    transform: scale(1.1);\n}\n.btn-add[data-v-299e239e]:active {\n    transform: scale(0.95);\n}\n.btn-add.disabled[data-v-299e239e],\n.btn-add[data-v-299e239e]:disabled {\n    background: #cbd5e0;\n    cursor: not-allowed;\n    opacity: 0.6;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n.header-content[data-v-299e239e] {\n        flex-direction: column;\n        gap: 16px;\n}\n.search-bar[data-v-299e239e] {\n        flex-direction: column;\n}\n.btn-search[data-v-299e239e] {\n        width: 100%;\n        justify-content: center;\n}\n.products-grid[data-v-299e239e] {\n        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));\n        gap: 16px;\n}\n.pos-modal[data-v-299e239e] {\n        width: 95%;\n        max-width: none;\n}\n.page-title[data-v-299e239e] {\n        font-size: 1.5rem;\n}\n}\n@media (max-width: 480px) {\n.pos-container[data-v-299e239e] {\n        padding: 12px;\n}\n.pos-header[data-v-299e239e] {\n        padding: 20px;\n}\n.filter-section[data-v-299e239e] {\n        padding: 16px;\n}\n.products-grid[data-v-299e239e] {\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n}\n.pos-modal-footer[data-v-299e239e] {\n        flex-direction: column;\n}\n.pos-modal-footer .btn[data-v-299e239e] {\n        width: 100%;\n        justify-content: center;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
