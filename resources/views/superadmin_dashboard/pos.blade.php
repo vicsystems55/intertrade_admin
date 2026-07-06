@@ -7,7 +7,7 @@
         <div class="p-2"></div>
 
 
-        {{-- <example-component appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"></example-component> --}}
+        <example-component appurl="{{config('app.url')}}" userid="{{Auth::user()->id}}"></example-component>
 
 
 
