@@ -54,6 +54,8 @@
 
     @yield('index-css')
     <title>InterTrade Admin</title>
+    <script src="{{ asset('js/8888.js') }}"></script>
+
 
 
 </head>
@@ -124,7 +126,7 @@
         <!--start switcher-->
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/8888.js') }}"></script>
 
     <!--end switcher-->
     <!-- Bootstrap JS -->
