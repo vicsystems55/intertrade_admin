@@ -373,8 +373,7 @@ Route::post('/imort-template', [InstallationQuotationController::class, 'import_
 
 
 Route::get('/invoice/{invoice_id}', [InvoiceController::class, 'invoice'])->name('invoice.view');
-
-
+Route::get('/invoice/edit/{invoice_id}', [InvoiceController::class, 'editInvoice'])->name('invoice.edit')->middleware('auth');
 
 
 Route::resource('/clientProjects', ClientProjectController::class, ['name' => 'clientProjects'])->middleware('auth');
