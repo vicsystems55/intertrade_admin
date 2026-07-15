@@ -77,7 +77,7 @@
                   <tbody>
                     @foreach ($invoice->invoice_line as $invoice_line)
                     <tr>
-                      <td class="tm_width_3">{{$loop->iteration}} {{$invoice_line->product->name}}</td>
+                      <td class="tm_width_3">{{$loop->iteration}} {{$invoice_line->item_name ?: optional($invoice_line->product)->name}}</td>
                       <td class="tm_width_3">{{$invoice_line->description}}</td>
                       <td class="tm_width_2"><b> {{number_format($invoice_line->amount, 2)}}</b></td>
                       <td class="tm_width_1">{{$invoice_line->quantity}}</td>

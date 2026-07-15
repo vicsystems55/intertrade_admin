@@ -29,7 +29,7 @@ class SalesExport implements FromCollection, WithMapping, WithHeadings, ShouldAu
 
     public function collection()
     {
-        return InvoiceLine::has('product')->has('invoice')->with('product')->with('invoice.customer')
+        return InvoiceLine::has('invoice')->with('product')->with('invoice.customer')
         ->whereHas('invoice', function ($query) {
             $query->where('customer_id', '!=', null);
         })->get();
@@ -44,7 +44,7 @@ class SalesExport implements FromCollection, WithMapping, WithHeadings, ShouldAu
         return [
             $rowNumber,
             $product->invoice->customer->company_name,
-            $product->product->name,
+            $product->item_name ?: optional($product->product)->name,
             $product->description,
             // Format the 'price' column as a number
             $product->quantity, // Customize the formatting as needed
@@ -60,7 +60,7 @@ class SalesExport implements FromCollection, WithMapping, WithHeadings, ShouldAu
         return [
             'S/N',
             'Customer',
-            'Product Name',
+            'Item Name',
             'Description',
             'Qty',
             'Unit Price',

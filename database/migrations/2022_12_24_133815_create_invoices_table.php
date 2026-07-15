@@ -33,11 +33,11 @@ class CreateInvoicesTable extends Migration
 
             $table->boolean('vat_included')->default(0);
 
-            $table->integer('discount_percent')->nullable();
+            $table->decimal('discount_percent', 8, 3)->nullable();
 
-            $table->integer('total_amount')->default(0);
+            $table->decimal('total_amount', 15, 2)->default(0);
 
-            $table->integer('discount_amount')->nullable();
+            $table->decimal('discount_amount', 15, 2)->nullable();
 
             $table->foreign('generated_by')->references('id')->on('users');
 

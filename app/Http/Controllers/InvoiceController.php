@@ -9,7 +9,9 @@ use App\Models\InvoiceLine;
 use Illuminate\Http\Request;
 use App\Mail\WeeklySalesReportMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 
@@ -257,6 +259,120 @@ class InvoiceController extends Controller
         // return $invoice_description;
 
         return view('reports.invoice-edit', compact('invoice', 'invoice_description', 'has_receipt'));
+    }
+
+    public function updateEditor(UpdateInvoiceRequest $request, Invoice $invoice)
+    {
+        if (strtolower((string) $invoice->invoice_type) === 'receipt') {
+            abort(403, 'Receipts cannot be edited.');
+        }
+
+        $validated = $request->validated();
+
+        $updatedInvoice = DB::transaction(function () use ($validated, $invoice) {
+            $invoice = Invoice::whereKey($invoice->id)->lockForUpdate()->firstOrFail();
+
+            $submittedIds = collect($validated['lines'])
+                ->pluck('id')
+                ->filter()
+                ->map(function ($id) {
+                    return (int) $id;
+                });
+
+            $ownedIds = $invoice->invoice_line()
+                ->whereIn('id', $submittedIds)
+                ->pluck('id');
+
+            if ($ownedIds->count() !== $submittedIds->unique()->count()) {
+                throw ValidationException::withMessages([
+                    'lines' => ['One or more invoice lines do not belong to this invoice.'],
+                ]);
+            }
+
+            if ($invoice->customer) {
+                $invoice->customer->update([
+                    'company_name' => $validated['customer']['company_name'],
+                    'contact_person_name' => $validated['customer']['contact_person'] ?? null,
+                    'business_email' => $validated['customer']['email'],
+                    'business_phone1' => $validated['customer']['phone'],
+                    'address' => $validated['customer']['address'],
+                ]);
+            }
+
+            $subtotal = 0;
+            $keptLineIds = collect();
+
+            foreach ($validated['lines'] as $lineData) {
+                $quantity = round((float) $lineData['quantity'], 3);
+                $unitPrice = round((float) $lineData['unit_price'], 2);
+                $lineTotal = round($quantity * $unitPrice, 2);
+
+                $attributes = [
+                    'product_id' => $lineData['product_id'] ?? null,
+                    'line_type' => $lineData['line_type'],
+                    'item_name' => $lineData['item_name'],
+                    'description' => ($lineData['description'] ?? null) ?: $lineData['item_name'],
+                    'quantity' => $quantity,
+                    'amount' => $unitPrice,
+                    'total_amount' => $lineTotal,
+                    'discount_percent' => 0,
+                    'discount_amount' => 0,
+                ];
+
+                if (!empty($lineData['id'])) {
+                    $invoice->invoice_line()->whereKey($lineData['id'])->update($attributes);
+                    $keptLineIds->push((int) $lineData['id']);
+                } else {
+                    $createdLine = $invoice->invoice_line()->create($attributes);
+                    $keptLineIds->push($createdLine->id);
+                }
+
+                $subtotal += $lineTotal;
+            }
+
+            $invoice->invoice_line()
+                ->whereNotIn('id', $keptLineIds)
+                ->delete();
+
+            $discountValue = round((float) $validated['discount_value'], 2);
+            $discountAmount = 0;
+            $discountPercent = null;
+
+            if ($validated['discount_type'] === 'percentage') {
+                $discountPercent = $discountValue;
+                $discountAmount = round($subtotal * $discountPercent / 100, 2);
+            } elseif ($validated['discount_type'] === 'amount') {
+                $discountAmount = min($discountValue, $subtotal);
+            }
+
+            $invoice->update([
+                'invoice_type' => $validated['invoice_type'],
+                'status' => $validated['status'],
+                'vat_included' => $validated['vat_included'],
+                'bank_name' => $validated['bank_name'] ?? null,
+                'account_name' => $validated['account_name'] ?? null,
+                'account_no' => $validated['account_number'] ?? null,
+                'discount_percent' => $discountPercent,
+                'discount_amount' => $discountAmount ?: null,
+                'total_amount' => round($subtotal - $discountAmount, 2),
+            ]);
+
+            return $invoice->fresh(['invoice_line.product', 'customer']);
+        });
+
+        $taxAmount = $updatedInvoice->vat_included
+            ? round((float) $updatedInvoice->total_amount * 0.075, 2)
+            : 0;
+
+        return response()->json([
+            'message' => 'Invoice updated successfully.',
+            'invoice' => $updatedInvoice,
+            'summary' => [
+                'net_total' => (float) $updatedInvoice->total_amount,
+                'vat_amount' => $taxAmount,
+                'grand_total' => round((float) $updatedInvoice->total_amount + $taxAmount, 2),
+            ],
+        ]);
     }
     /**
      * Display a listing of the resource.

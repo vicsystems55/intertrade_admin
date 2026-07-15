@@ -18,12 +18,14 @@ class CreateInvoiceLinesTable extends Migration
             
             $table->foreignId('invoice_id')->constrained();
             $table->string('description');
-            $table->foreignId('product_id');
-            $table->integer('quantity');
-            $table->integer('amount');
-            $table->integer('total_amount')->default(0);
-            $table->integer('discount_percent');
-            $table->integer('discount_amount');
+            $table->foreignId('product_id')->nullable();
+            $table->string('item_name')->nullable();
+            $table->string('line_type')->default('product');
+            $table->decimal('quantity', 15, 3);
+            $table->decimal('amount', 15, 2);
+            $table->decimal('total_amount', 15, 2)->default(0);
+            $table->decimal('discount_percent', 8, 3)->default(0);
+            $table->decimal('discount_amount', 15, 2)->default(0);
 
             
             $table->timestamps();

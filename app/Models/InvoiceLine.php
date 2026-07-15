@@ -11,6 +11,14 @@ class InvoiceLine extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'quantity' => 'decimal:3',
+        'amount' => 'decimal:2',
+        'total_amount' => 'decimal:2',
+        'discount_percent' => 'decimal:3',
+        'discount_amount' => 'decimal:2',
+    ];
+
     public function product()
     {
 

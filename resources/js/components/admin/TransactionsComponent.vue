@@ -27,6 +27,34 @@
             </div>
 
             <div class="summary-card">
+                <div class="card-icon product-sales">
+                    <i class="bx bx-package"></i>
+                </div>
+                <div class="card-content">
+                    <h4>Product Sales</h4>
+                    <div class="dual-value">
+                        <p class="card-value">₦{{ format(thisMonthProductSales) }}</p>
+                        <span class="card-ytd">₦{{ format(ytdProductSales) }} YTD</span>
+                    </div>
+                    <span class="card-subtitle">Paid product revenue</span>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="card-icon service-sales">
+                    <i class="bx bx-wrench"></i>
+                </div>
+                <div class="card-content">
+                    <h4>Service &amp; Charges</h4>
+                    <div class="dual-value">
+                        <p class="card-value">₦{{ format(thisMonthServiceSales) }}</p>
+                        <span class="card-ytd">₦{{ format(ytdServiceSales) }} YTD</span>
+                    </div>
+                    <span class="card-subtitle">Paid service revenue</span>
+                </div>
+            </div>
+
+            <div class="summary-card">
                 <div class="card-icon total-orders">
                     <i class="bx bx-receipt"></i>
                 </div>
@@ -67,10 +95,10 @@
         <div class="analytics-row">
             <!-- Best Performing Products -->
             <div class="analytics-card products-card">
-                <h3 class="section-title"><i class="bx bx-star"></i> Best Performing Products</h3>
+                <h3 class="section-title"><i class="bx bx-star"></i> Best Performing Items</h3>
                 <div class="products-list">
                     <div v-if="bestProducts.length === 0" class="empty-state">
-                        <p>No products found</p>
+                        <p>No paid items found</p>
                     </div>
                     <div v-for="(product, index) in bestProducts" :key="index" class="product-item">
                         <div class="product-rank">
@@ -139,6 +167,16 @@
                 </div>
             </div>
 
+            <div v-if="loading" class="transactions-message loading-message">
+                <i class="bx bx-loader-alt bx-spin"></i>
+                <span>Loading transactions...</span>
+            </div>
+            <div v-if="loadError" class="transactions-message error-message">
+                <i class="bx bx-error-circle"></i>
+                <span>{{ loadError }}</span>
+                <button type="button" @click="getInvoices">Retry</button>
+            </div>
+
             <!-- Transaction Tabs -->
             <div class="transaction-tabs">
                 <button class="tab-btn" :class="{active: activeTab === 'invoices'}" @click="activeTab = 'invoices'">
@@ -153,7 +191,7 @@
             <div class="search-section">
                 <div class="search-input">
                     <i class="bx bx-search"></i>
-                    <input v-model="searchKey" type="text" placeholder="Search customer, product...">
+                    <input v-model="searchKey" type="text" placeholder="Search customer or item...">
                 </div>
                 <input v-model="filterDate" type="date" class="date-input">
                 <button @click="applyFilters()" class="btn-filter">
@@ -167,8 +205,8 @@
                     <thead>
                         <tr>
                             <th>Customer</th>
-                            <th>Products</th>
                             <th>Items</th>
+                            <th>Count</th>
                             <th>Amount</th>
                             <th>Date</th>
                             <th>Type</th>
@@ -178,26 +216,26 @@
                     <tbody>
                         <tr v-for="sale in filteredInvoices" :key="sale.id" class="table-row">
                             <td class="customer-name">
-                                <a :href="'/invoice/' + sale.id">
+                                <a :href="invoiceUrl(sale)">
                                     {{ sale.customer ? sale.customer.company_name : 'Unknown' }}
                                 </a>
                             </td>
                             <td class="products-col">
-                                <span v-for="line in sale.invoice_line.slice(0, 2)" :key="line.id" class="product-tag">
-                                    {{ line.product.name }}
+                                <span v-for="line in transactionLines(sale).slice(0, 2)" :key="line.id" class="product-tag">
+                                    {{ lineLabel(line) }}
                                 </span>
-                                <span v-if="sale.invoice_line.length > 2" class="more-count">
-                                    +{{ sale.invoice_line.length - 2 }}
+                                <span v-if="transactionLines(sale).length > 2" class="more-count">
+                                    +{{ transactionLines(sale).length - 2 }}
                                 </span>
                             </td>
-                            <td class="items-count">{{ sale.invoice_line.length }}</td>
+                            <td class="items-count">{{ transactionLines(sale).length }}</td>
                             <td class="amount">₦{{ format(sale.total_amount) }}</td>
                             <td class="date">{{ formatDate(sale.created_at) }}</td>
                             <td>
                                 <span class="badge badge-invoice">{{ sale.invoice_type }}</span>
                             </td>
                             <td class="action">
-                                <a :href="'/invoice/' + sale.id" class="link-btn">View</a>
+                                <a :href="invoiceUrl(sale)" class="link-btn">View</a>
                             </td>
                         </tr>
                         <tr v-if="filteredInvoices.length === 0" class="empty-row">
@@ -225,7 +263,7 @@
                     <tbody>
                         <tr v-for="sale in filteredReceipts" :key="sale.id" class="table-row">
                             <td class="customer-name">
-                                <a :href="'/invoice/' + sale.id">
+                                <a :href="invoiceUrl(sale)">
                                     {{ sale.customer ? sale.customer.company_name : 'Unknown' }}
                                 </a>
                             </td>
@@ -236,7 +274,7 @@
                                 <span class="badge badge-receipt">{{ sale.invoice_type }}</span>
                             </td>
                             <td class="action">
-                                <a :href="'/invoice/' + sale.id" class="link-btn">View</a>
+                                <a :href="invoiceUrl(sale)" class="link-btn">View</a>
                             </td>
                         </tr>
                         <tr v-if="filteredReceipts.length === 0" class="empty-row">
@@ -265,6 +303,8 @@ export default {
             filterYear: '',
             bestProducts: [],
             topCustomers: [],
+            loading: false,
+            loadError: '',
         }
     },
 
@@ -275,61 +315,100 @@ export default {
             return [...this.invoices, ...this.receipts];
         },
 
+        paidSalesRecords() {
+            const invoiceByCode = new Map();
+            const seenReceiptCodes = new Set();
+
+            this.invoices.forEach(invoice => {
+                const code = String(invoice.invoice_code || '');
+                if (String(invoice.invoice_type).toLowerCase() === 'invoice' && !invoiceByCode.has(code)) {
+                    invoiceByCode.set(code, invoice);
+                }
+            });
+
+            return this.receipts.reduce((records, receipt) => {
+                const code = String(receipt.invoice_code || `receipt-${receipt.id}`);
+                if (seenReceiptCodes.has(code)) return records;
+
+                seenReceiptCodes.add(code);
+                const invoice = invoiceByCode.get(code) || null;
+                const netTotal = this.numeric(receipt.total_amount);
+                const breakdown = this.salesBreakdown(invoice, netTotal);
+
+                records.push({
+                    code,
+                    receipt,
+                    invoice,
+                    customer: receipt.customer || (invoice ? invoice.customer : null),
+                    createdAt: receipt.created_at,
+                    netTotal,
+                    productTotal: breakdown.productTotal,
+                    serviceTotal: breakdown.serviceTotal,
+                    discountRatio: breakdown.discountRatio
+                });
+
+                return records;
+            }, []);
+        },
+
+        thisMonthPaidSales() {
+            const now = new Date();
+            return this.paidSalesRecords.filter(record => {
+                const date = new Date(record.createdAt);
+                return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+            });
+        },
+
+        ytdPaidSales() {
+            const currentYear = new Date().getFullYear();
+            return this.paidSalesRecords.filter(record => new Date(record.createdAt).getFullYear() === currentYear);
+        },
+
         totalSales() {
-            return this.receipts.reduce((sum, receipt) => sum + (receipt.total_amount || 0), 0);
+            return this.sumPaidSales(this.paidSalesRecords, 'netTotal');
         },
 
         thisMonthSales() {
-            const now = new Date();
-            const currentMonth = now.getMonth();
-            const currentYear = now.getFullYear();
-
-            return this.receipts.filter(receipt => {
-                const date = new Date(receipt.created_at);
-                return date.getMonth() === currentMonth && date.getFullYear() === currentYear;
-            }).reduce((sum, receipt) => sum + (receipt.total_amount || 0), 0);
+            return this.sumPaidSales(this.thisMonthPaidSales, 'netTotal');
         },
 
         ytdSales() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
+            return this.sumPaidSales(this.ytdPaidSales, 'netTotal');
+        },
 
-            return this.receipts.filter(receipt => {
-                const date = new Date(receipt.created_at);
-                return date.getFullYear() === currentYear;
-            }).reduce((sum, receipt) => sum + (receipt.total_amount || 0), 0);
+        thisMonthProductSales() {
+            return this.sumPaidSales(this.thisMonthPaidSales, 'productTotal');
+        },
+
+        ytdProductSales() {
+            return this.sumPaidSales(this.ytdPaidSales, 'productTotal');
+        },
+
+        thisMonthServiceSales() {
+            return this.sumPaidSales(this.thisMonthPaidSales, 'serviceTotal');
+        },
+
+        ytdServiceSales() {
+            return this.sumPaidSales(this.ytdPaidSales, 'serviceTotal');
         },
 
         totalOrders() {
-            return this.receipts.length;
+            return this.paidSalesRecords.length;
         },
 
         thisMonthReceipts() {
-            const now = new Date();
-            const currentMonth = now.getMonth();
-            const currentYear = now.getFullYear();
-
-            return this.receipts.filter(receipt => {
-                const date = new Date(receipt.created_at);
-                return date.getMonth() === currentMonth && date.getFullYear() === currentYear;
-            }).length;
+            return this.thisMonthPaidSales.length;
         },
 
         ytdReceipts() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-
-            return this.receipts.filter(receipt => {
-                const date = new Date(receipt.created_at);
-                return date.getFullYear() === currentYear;
-            }).length;
+            return this.ytdPaidSales.length;
         },
 
         uniqueCustomers() {
             const customers = new Set();
-            this.allTransactions.forEach(trans => {
-                if (trans.customer && trans.customer.id) {
-                    customers.add(trans.customer.id);
+            this.paidSalesRecords.forEach(record => {
+                if (record.customer && record.customer.id) {
+                    customers.add(record.customer.id);
                 }
             });
             return customers.size;
@@ -350,7 +429,46 @@ export default {
     },
 
     methods: {
+        sumPaidSales(records, field) {
+            return records.reduce((sum, record) => sum + this.numeric(record[field]), 0);
+        },
+
+        salesBreakdown(invoice, netTotal) {
+            const lines = this.transactionLines(invoice);
+            const grossTotal = lines.reduce((sum, line) => sum + this.lineRevenue(line), 0);
+
+            if (!grossTotal) {
+                return {
+                    productTotal: 0,
+                    serviceTotal: netTotal,
+                    discountRatio: 0
+                };
+            }
+
+            const productGross = lines.reduce((sum, line) => {
+                return String(line.line_type || 'product').toLowerCase() === 'product'
+                    ? sum + this.lineRevenue(line)
+                    : sum;
+            }, 0);
+            const discountRatio = netTotal / grossTotal;
+            const productTotal = Math.round(productGross * discountRatio * 100) / 100;
+
+            return {
+                productTotal,
+                serviceTotal: Math.round((netTotal - productTotal) * 100) / 100,
+                discountRatio
+            };
+        },
+
+        lineRevenue(line) {
+            const storedTotal = this.numeric(line && line.total_amount);
+            if (storedTotal) return storedTotal;
+
+            return this.numeric(line && line.quantity) * this.numeric(line && line.amount);
+        },
+
         format(value) {
+            value = this.numeric(value);
             if (value >= 1000000000) {
                 return (value / 1000000000).toFixed(1) + 'B';
             } else if (value >= 1000000) {
@@ -391,9 +509,12 @@ export default {
                 // Filter by search key
                 if (this.searchKey) {
                     const key = this.searchKey.toLowerCase();
-                    const customerMatch = trans.customer && trans.customer.company_name.toLowerCase().includes(key);
-                    const productMatch = trans.invoice_line && trans.invoice_line.some(line =>
-                        line.product.name.toLowerCase().includes(key)
+                    const customerName = trans.customer && trans.customer.company_name
+                        ? trans.customer.company_name.toLowerCase()
+                        : '';
+                    const customerMatch = customerName.includes(key);
+                    const productMatch = this.transactionLines(trans).some(line =>
+                        this.lineLabel(line).toLowerCase().includes(key)
                     );
                     if (!customerMatch && !productMatch) return false;
                 }
@@ -410,18 +531,22 @@ export default {
         calculateBestProducts() {
             const productMap = {};
 
-            this.receipts.forEach(receipt => {
-                receipt.invoice_line.forEach(line => {
-                    const productId = line.product.id;
-                    if (!productMap[productId]) {
-                        productMap[productId] = {
-                            name: line.product.name,
+            this.paidSalesRecords.forEach(record => {
+                this.transactionLines(record.invoice).forEach(line => {
+                    const name = this.lineLabel(line);
+                    const itemKey = line.product_id
+                        ? `product-${line.product_id}`
+                        : `${line.line_type || 'item'}-${name.toLowerCase()}`;
+
+                    if (!productMap[itemKey]) {
+                        productMap[itemKey] = {
+                            name,
                             count: 0,
                             revenue: 0
                         };
                     }
-                    productMap[productId].count += line.quantity;
-                    productMap[productId].revenue += line.quantity * line.amount;
+                    productMap[itemKey].count += this.numeric(line.quantity);
+                    productMap[itemKey].revenue += this.lineRevenue(line) * record.discountRatio;
                 });
             });
 
@@ -433,18 +558,18 @@ export default {
         calculateTopCustomers() {
             const customerMap = {};
 
-            this.allTransactions.forEach(trans => {
-                if (trans.customer && trans.customer.id) {
-                    const customerId = trans.customer.id;
+            this.paidSalesRecords.forEach(record => {
+                if (record.customer && record.customer.id) {
+                    const customerId = record.customer.id;
                     if (!customerMap[customerId]) {
                         customerMap[customerId] = {
-                            name: trans.customer.company_name,
+                            name: record.customer.company_name,
                             orders: 0,
                             total: 0
                         };
                     }
                     customerMap[customerId].orders += 1;
-                    customerMap[customerId].total += trans.total_amount;
+                    customerMap[customerId].total += record.netTotal;
                 }
             });
 
@@ -454,6 +579,8 @@ export default {
         },
 
         getInvoices() {
+            this.loading = true;
+            this.loadError = '';
             axios({
                 method: "get",
                 url: this.appurl + 'api/invoices',
@@ -466,14 +593,40 @@ export default {
                     'Accept': 'application/json',
                 },
             }).then((response) => {
-                this.invoices = response.data.filter(item => item.invoice_type !== 'receipt');
-                this.receipts = response.data.filter(item => item.invoice_type === 'receipt');
+                const transactions = Array.isArray(response.data) ? response.data : [];
+                this.invoices = transactions.filter(item => String(item.invoice_type).toLowerCase() !== 'receipt');
+                this.receipts = transactions.filter(item => String(item.invoice_type).toLowerCase() === 'receipt');
                 this.calculateBestProducts();
                 this.calculateTopCustomers();
-                console.log('Invoices loaded:', this.invoices);
             }).catch((error) => {
-                console.log(error);
+                this.loadError = 'Transactions could not be loaded. Please refresh the page.';
+                console.error(error);
+            }).finally(() => {
+                this.loading = false;
             });
+        },
+
+        transactionLines(transaction) {
+            return transaction && Array.isArray(transaction.invoice_line)
+                ? transaction.invoice_line
+                : [];
+        },
+
+        lineLabel(line) {
+            if (!line) return 'Unnamed item';
+            if (line.item_name) return String(line.item_name);
+            if (line.product && line.product.name) return String(line.product.name);
+            if (line.description) return String(line.description);
+            return 'Unnamed item';
+        },
+
+        numeric(value) {
+            const number = Number(value);
+            return Number.isFinite(number) ? number : 0;
+        },
+
+        invoiceUrl(invoice) {
+            return `${this.appurl.replace(/\/+$/, '')}/invoice/${invoice.id}`;
         },
 
         getCustomers() {
@@ -581,7 +734,7 @@ export default {
 /* Summary Cards */
 .summary-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     margin-bottom: 32px;
 }
@@ -603,14 +756,22 @@ export default {
 }
 
 .summary-card:nth-child(2) {
-    border-left-color: #159ECC;
+    border-left-color: #2f855a;
 }
 
 .summary-card:nth-child(3) {
-    border-left-color: #f093fb;
+    border-left-color: #dd6b20;
 }
 
 .summary-card:nth-child(4) {
+    border-left-color: #159ECC;
+}
+
+.summary-card:nth-child(5) {
+    border-left-color: #f093fb;
+}
+
+.summary-card:nth-child(6) {
     border-left-color: #4facfe;
 }
 
@@ -633,6 +794,14 @@ export default {
 
 .card-icon.total-sales {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-icon.product-sales {
+    background: linear-gradient(135deg, #38a169 0%, #276749 100%);
+}
+
+.card-icon.service-sales {
+    background: linear-gradient(135deg, #ed8936 0%, #c05621 100%);
 }
 
 .card-icon.total-orders {
@@ -820,6 +989,35 @@ export default {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     border-top: 4px solid #159ECC;
+}
+
+.transactions-message {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 24px;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.loading-message {
+    color: #0d7a9c;
+    background: #eefaff;
+}
+
+.error-message {
+    color: #a83b46;
+    background: #fff1f2;
+}
+
+.error-message button {
+    margin-left: auto;
+    padding: 6px 12px;
+    border: 1px solid #e3a7ad;
+    border-radius: 6px;
+    color: #a83b46;
+    background: white;
+    cursor: pointer;
 }
 
 .section-header {
@@ -1085,6 +1283,10 @@ export default {
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .analytics-row {
         grid-template-columns: 1fr;
     }

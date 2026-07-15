@@ -54,7 +54,7 @@
 
     @yield('index-css')
     <title>InterTrade Admin</title>
-    {{-- <script src="{{ asset('js/8888.js') }}"></script> --}}
+  
 
 
 

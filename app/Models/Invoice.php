@@ -11,6 +11,13 @@ class Invoice extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'vat_included' => 'boolean',
+        'discount_percent' => 'decimal:3',
+        'discount_amount' => 'decimal:2',
+        'total_amount' => 'decimal:2',
+    ];
+
     public function invoice_line()
     {
 

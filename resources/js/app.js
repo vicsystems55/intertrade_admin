@@ -40,6 +40,8 @@ Vue.component('file-manager-component', require('./components/admin/FileManagerC
 
 Vue.component('transactions-component', require('./components/admin/TransactionsComponent.vue').default);
 
+Vue.component('invoice-edit-component', require('./components/InvoiceEditComponent.vue').default);
+
 
 
 
